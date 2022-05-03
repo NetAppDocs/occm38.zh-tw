@@ -1,0 +1,110 @@
+---
+sidebar: sidebar 
+permalink: task_sync_installing_aws.html 
+keywords: data broker, install, aws, networking, permissions, regions, install data broker in aws, install in aws, deploy in aws, deploy data broker in aws, cft, template, iam role, use your own iam role, regions, supported regions, networking requirements, port, ports, 443, port 443, ntp, network time protocol, permissions, iam role, iam permissions, aws data broker 
+summary: 建立同步關係時、請選擇AWS Data Broker選項、將資料代理軟體部署在VPC中的新EC2執行個體上。本頁將會重複提供安裝程序的支援、協助您做好安裝準備。 Cloud Sync 
+---
+= 在 AWS 中安裝資料代理程式
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+建立同步關係時、請選擇AWS Data Broker選項、將資料代理軟體部署在VPC中的新EC2執行個體上。本頁將會重複提供安裝程序的支援、協助您做好安裝準備。 Cloud Sync
+
+您也可以選擇在雲端或內部部署的現有 Linux 主機上安裝資料代理程式。 link:task_sync_installing_linux.html["深入瞭解"]。
+
+
+
+== 支援的 AWS 區域
+
+除了中國和政府雲端（ US ）地區之外、所有地區都受到支援。
+
+
+
+== 網路需求
+
+* 資料代理人需要傳出的網際網路連線、以便透過 Cloud Sync 連接埠 443 輪詢該服務的工作。
++
+當在 AWS 中部署資料代理程式時 Cloud Sync 、它會建立一個安全群組、以啟用必要的傳出通訊。請注意、您可以設定資料代理程式在安裝過程中使用 Proxy 伺服器。
+
++
+如果您需要限制傳出連線、請參閱 link:reference_sync_networking.html["資料代理所連絡的端點清單"]。
+
+* NetApp 建議將來源、目標及資料代理程式設定為使用網路時間傳輸協定（ NTP ）服務。三個元件之間的時間差異不應超過 5 分鐘。
+
+
+
+
+== 在 AWS 中部署資料代理程式所需的權限
+
+您用來部署資料代理程式的 AWS 使用者帳戶必須具有中所含的權限 https://s3.amazonaws.com/metadata.datafabric.io/docs/aws_iam_policy.json["此 NetApp 提供的原則"^]。
+
+
+
+== 將您自己的 IAM 角色用於 AWS 資料代理程式的要求
+
+當執行數據代理部署時、它會為資料代理執行個體建立 IAM 角色。 Cloud Sync您可以視需要使用自己的 IAM 角色來部署資料代理程式。如果您的組織具有嚴格的安全性原則、您可以使用此選項。
+
+IAM 角色必須符合下列要求：
+
+* 必須允許 EC2 服務以信任實體的身分承擔 IAM 角色。
+* link:media/aws_iam_policy_data_broker.json["在此 Json 檔案中定義的權限"^] 必須附加至 IAM 角色、資料代理才能正常運作。
+
+
+部署資料代理程式時、請依照下列步驟指定 IAM 角色。
+
+
+
+== 安裝資料代理程式
+
+建立同步關係時、您可以在 AWS 中安裝資料代理程式。
+
+.步驟
+. 按一下「 * 建立新同步 * 」。
+. 在「 * 定義同步關係 * 」頁面上、選擇來源和目標、然後按一下「 * 繼續 * 」。
++
+完成這些步驟、直到您到達「 * 資料代理人 * 」頁面為止。
+
+. 在「 * 資料代理人 * 」頁面上、按一下「 * 建立資料代理人 * 」、然後選取「 * Amazon Web Services* 」。
++
+如果您已經有資料代理程式、則必須按一下 image:screenshot_plus_icon.gif["加號圖示的快照"] 圖示優先。
+
++
+image:screenshot_create_data_broker.gif["Data Broker 頁面的快照、可讓您在 AWS 、 Azure 、 GCP 和 On -Prem 資料代理程式之間進行選擇。"]
+
+. 輸入資料代理的名稱、然後按一下 * 繼續 * 。
+. 輸入 AWS 存取金鑰、 Cloud Sync 以便讓支援代表您在 AWS 中建立資料代理程式。
++
+金鑰不會儲存或用於任何其他用途。
+
++
+如果您不想提供存取金鑰、請按一下頁面底部的連結、改用 CloudForation 範本。使用此選項時、您不需要提供認證、因為您是直接登入 AWS 。
+
++
+[CFT] 下列影片說明如何使用 CloudForation 範本啟動資料代理執行個體：
+
++
+video::video_cloud_sync.mp4[width=848,height=480]
+. 如果您輸入 AWS 存取金鑰、請選取執行個體的位置、選取金鑰組、選擇是否啟用公用 IP 位址、然後選取現有的 IAM 角色、或將欄位保留空白、 Cloud Sync 以便讓 NetApp 為您建立角色。
++
+如果您選擇自己的 IAM 角色、 <<iam,您需要提供必要的權限>>。
+
++
+image:screenshot_aws_data_broker.gif["在 AWS 中部署資料代理程式時所需提供資訊的快照。"]
+
+. 在資料代理程式可用之後、按 Cloud Sync 一下「」中的「 * 繼續 * 」。
++
+下列影像顯示 AWS 中已成功部署的執行個體：
+
++
+image:screenshot_created_instance.gif["此快照顯示已成功部署的執行個體。介面會顯示執行個體的詳細資料、包括 AWS 網路。"]
+
+. 完成精靈中的頁面、以建立新的同步關係。
+
+
+您已在 AWS 中部署資料代理程式、並建立新的同步關係。您可以將此資料代理程式與其他同步關係搭配使用。

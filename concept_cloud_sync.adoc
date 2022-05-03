@@ -1,0 +1,141 @@
+---
+sidebar: sidebar 
+permalink: concept_cloud_sync.html 
+keywords: cloud sync, overview, conceptual, how, data broker, service 
+summary: NetApp Cloud Sync 支援服務提供簡單、安全且自動化的方式、可將您的資料移轉至雲端或內部部署的任何目標。 
+---
+= 概述 Cloud Sync
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+NetApp Cloud Sync 支援服務提供簡單、安全且自動化的方式、可將您的資料移轉至雲端或內部部署的任何目標。無論是檔案型 NAS 資料集（ NFS 或 SMB ）、 Amazon Simple Storage Service （ S3 ）物件格式、 NetApp StorageGRID S還原 ® 應用裝置、或是任何其他雲端供應商物件存放區、 Cloud Sync 均可將其轉換並移動。
+
+
+
+== 功能
+
+觀看下列影片、瞭解 Cloud Sync 有關下列功能的概述：
+
+video::oZNJtLvgNfQ[youtube, width=848,height=480]
+
+
+== 運作原理 Cloud Sync
+
+VMware 是軟體即服務（ SaaS ）平台、包含資料代理商、雲端型介面（可透過 Cloud Manager 取得）、以及來源與目標。 Cloud Sync
+
+下圖顯示 Cloud Sync 了各個元件之間的關係：
+
+image:diagram_cloud_sync_overview.gif["顯示資料從來源流向目標的概念性映像。資料代理軟體扮演中介角色、輪詢 Cloud Sync 功能以瞭如任務所需。"]
+
+NetApp 資料代理軟體會將資料從來源同步至目標（這稱為 _sync 關係 _ ）。您可以在 AWS 、 Azure 、 Google Cloud Platform 或內部部署環境中執行資料代理程式。資料代理人需要透過連接埠 443 的傳出網際網路連線、以便與 Cloud Sync 該服務進行通訊、並聯絡其他服務與儲存庫。 link:reference_sync_networking.html["檢視端點清單"]。
+
+初始複本之後、服務會根據您設定的排程同步任何變更的資料。
+
+
+
+== 支援的儲存類型
+
+支援下列儲存類型： Cloud Sync
+
+* 任何 NFS 伺服器
+* 任何 SMB 伺服器
+* AWS EFS
+* AWS S3
+* Azure Blob
+* Azure NetApp Files
+* Cloud Volumes Service
+* Cloud Volumes ONTAP
+* Google Cloud Storage
+* IBM Cloud 物件儲存設備
+* 內部部署 ONTAP 的叢集
+* SS3 儲存設備 ONTAP
+* StorageGRID
+
+
+link:reference_sync_requirements.html["檢閱支援的同步關係"]。
+
+
+
+== 成本
+
+有兩種成本與 Cloud Sync 使用效益有關：資源費用和服務費用。
+
+資源費用:: 資源費用與在雲端執行資料代理商的運算和儲存成本有關。
+服務費用:: 在您的 14 天免費試用結束後、有兩種方式可以支付同步關係的費用。第一個選項是向 AWS 或 Azure 訂閱、這可讓您每小時或每年付費。第二種選擇是直接向 NetApp 購買授權。如需詳細資料、請參閱下列各節。
+
+
+
+
+=== 市場訂閱
+
+訂閱 Cloud Sync AWS 或 Azure 提供的支援服務、可讓您以每小時的費率付款、或是每年付費。 link:task_sync_licensing.html["您可以透過 AWS 或 Azure 訂閱"]（視您要帳單的地點而定）。
+
+每小時訂閱:: 透過每小時隨用隨付訂閱、 Cloud Sync 根據您建立的同步關係數量、本服務每小時收費一次。
++
+--
+* https://azuremarketplace.microsoft.com/en-us/marketplace/apps/netapp.cloud-sync-service?tab=PlansAndPrice["在 Azure 中檢視定價"^]
+* https://aws.amazon.com/marketplace/pp/B01LZV5DUJ["在 AWS 中檢視隨用隨付定價"^]
+
+
+--
+年度訂閱:: 一年訂閱可提供 20 種同步關係的授權、您可以預付費用。如果您的同步關係超過 20 個、而且您已透過 Azure 訂閱、則需在一小時內支付額外的關係費用。
++
+--
+https://aws.amazon.com/marketplace/pp/B06XX5V3M2["在 AWS 中檢視年度定價"^]
+
+--
+
+
+
+
+=== NetApp 授權
+
+另一種預付同步關係費用的方法是直接向 NetApp 購買授權。每個授權可讓您建立最多 20 個同步關係。
+
+您可以搭配 AWS 或 Azure 訂閱使用這些授權。例如、如果您有 25 個同步關係、您可以使用授權支付前 20 個同步關係的費用、然後從 AWS 或 Azure 購買剩餘的 5 個同步關係。
+
+link:task_sync_licensing.html["瞭解如何購買授權、並將其新增 Cloud Sync 至"]。
+
+
+
+=== 授權條款
+
+購買「自帶授權（ BYOL ）到 Cloud Sync 該服務」的客戶、應注意授權權利的相關限制。
+
+* 自交付日起一年內、客戶有權使用 BYOL 授權。
+* 客戶有權利用 BYOL 授權、在來源與目標之間建立且不超過 20 個個別連線（每個連線都是「同步關係」）。
+* 客戶的權利將在一年授權期限結束時到期、無論客戶是否達到 20 個同步關係限制。
+* 如果客戶選擇續約其授權、則與先前授權授予相關的未使用同步關係不會滾存至授權續約。
+
+
+
+
+== 資料隱私
+
+NetApp 無法存取您在使用 Cloud Sync 此服務時提供的任何認證資料。這些認證資料會直接儲存在網路中的資料代理機器上。
+
+根據您選擇的組態、 Cloud Sync 當您建立新關係時、可能會提示您輸入認證資料。例如、在設定包含 SMB 伺服器的關係時、或在 AWS 中部署資料代理程式時。
+
+這些認證資料一律會直接儲存至資料代理程式本身。資料代理商位於網路中的機器上、無論是內部部署或雲端帳戶。這些認證資料絕不會提供給 NetApp 。
+
+這些認證資料會使用 HashiCorp Vault 在資料代理機器上進行本機加密。
+
+
+
+== 限制
+
+* 中國不支援此功能。 Cloud Sync
+* 除了中國以外、 Cloud Sync 下列地區不支援 The Sun 的資料代理程式：
++
+** AWS GovCloud （美國）
+** Azure US Gov
+** Azure US DoD
+
+
+

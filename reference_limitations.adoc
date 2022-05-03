@@ -1,0 +1,56 @@
+---
+sidebar: sidebar 
+permalink: reference_limitations.html 
+keywords: limitations, active directory, ad, iscsi, key managers, ip address, govcloud, cloud manager, Cloud Volumes ONTAP, days, 14 days, running, Connectors should remain running 
+summary: 已知限制指出本產品版本不支援的平台、裝置或功能、或是無法與產品正確互通的平台、裝置或功能。請仔細檢閱這些限制。 
+---
+= 已知限制
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+已知限制指出本產品版本不支援的平台、裝置或功能、或是無法與產品正確互通的平台、裝置或功能。請仔細檢閱這些限制。
+
+
+
+== 連接器應保持運作
+
+連接器應隨時保持執行狀態。這對於您持續啟用的服務健全狀況和營運而言十分重要。
+
+例如、連接器是 Cloud Volumes ONTAP 指功能健全及運作的關鍵元件。如果連接器電源關閉、 Cloud Volumes ONTAP 則在與連接器失去通訊超過 14 天之後、將會關閉此功能。
+
+
+
+== SaaS 平台在政府區域中已停用
+
+如果您在 AWS GovCloud 區域、 Azure Gov 區域或 Azure DoD 區域部署 Connector 、則只能透過 Connector 的主機 IP 位址存取 Cloud Manager 。系統會停用整個帳戶的 SaaS 平台存取權。
+
+這表示只有能夠存取終端使用者內部 VPC/vnet 的授權使用者、才能使用 Cloud Manager 的 UI 或 API 。
+
+這也表示 Cloud Manager 無法提供下列服務：
+
+* 雲端法規遵循
+* Kubernetes
+* 雲端分層
+* 全域檔案快取
+* 監控（ Cloud Insights 僅限部分）
+
+
+需要 SaaS 平台才能使用這些服務。
+
+
+
+== 不支援共享 Linux 主機
+
+與其他應用程式共用的主機不支援 Connector 。主機必須是專屬主機。
+
+
+
+== Cloud Manager不支援FlexGroup 使用各種功能
+
+雖然支援不支援任何功能、但 Cloud Manager 卻不支援。 Cloud Volumes ONTAP FlexGroup如果 FlexGroup 您從 System Manager 或 CLI 建立一個支援功能區、則應將 Cloud Manager 的容量管理模式設為手動。自動模式可能無法與 FlexGroup 功能不全的功能搭配使用。

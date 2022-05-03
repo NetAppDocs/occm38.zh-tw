@@ -1,0 +1,71 @@
+---
+sidebar: sidebar 
+permalink: concept_azure_netapp_files.html 
+keywords: azure netapp files, cost, price, features, azure netapp files features, anf, supported regions, azure regions, azure netapp files regions 
+summary: 支援企業在 Azure 中移轉及執行效能密集且對延遲敏感的核心業務關鍵應用程式、而不需重新調整雲端的因素。 Azure NetApp Files 
+---
+= 深入瞭解 Azure NetApp Files
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+支援企業在 Azure 中移轉及執行效能密集且對延遲敏感的核心業務關鍵應用程式、而不需重新調整雲端的因素。 Azure NetApp Files
+
+
+
+== 功能
+
+* 支援多種傳輸協定、可讓 Linux 與 Windows 應用程式在 Azure 中順暢執行。
+* 多個效能層級可與工作負載效能需求緊密一致。
+* SAP HANA 、 GDPR 及 HIPPA 等領先業界的認證、可將要求最嚴苛的工作負載移轉至 Azure 。
+
+
+
+
+== Cloud Manager 的其他功能
+
+* 直接從 Cloud Manager 將 NFS 或 SMB 資料移轉 Azure NetApp Files 至支援功能。資料移轉是以 NetApp Cloud Sync 的「支援」服務為後盾。 link:concept_cloud_sync.html["深入瞭解"]。
+* Cloud Compliance 採用人工智慧（ AI ）導向技術、可協助您瞭解資料內容、並識別 Azure NetApp Files 駐留在您的不實帳戶中的敏感資料。 link:concept_cloud_compliance.html["深入瞭解"]。
+
+
+
+
+== 成本
+
+https://azure.microsoft.com/pricing/details/netapp/["檢視 Azure NetApp Files 報價"^]。
+
+請注意、您的訂閱和收費是 Azure NetApp Files 由不受 Cloud Manager 保護的功能由不受此功能保護的功能所維護。
+
+
+
+== 支援的地區
+
+https://cloud.netapp.com/cloud-volumes-global-regions["檢視支援的 Azure 地區"^]。
+
+
+
+== 正在要求存取
+
+您必須獲得 Azure NetApp Files 存取功能才能存取此功能 https://aka.ms/azurenetappfiles["提交線上申請"^]。您必須等待 Azure NetApp Files 該團隊的核准、才能繼續進行。
+
+
+
+== 取得協助
+
+如需 Azure NetApp Files 有關支援方面的技術支援問題、請使用 Azure 入口網站將支援要求記錄給 Microsoft 。選取您的相關 Microsoft 訂閱、然後在 Azure NetApp Files * Storage* 下選取 * 《 * 》服務名稱。提供建立 Microsoft 支援要求所需的其餘資訊。
+
+對於 Cloud Sync 與功能不實和 Azure NetApp Files 功能不實相關的問題、您可以從 NetApp 開始、直接 Cloud Sync 從 Cloud Sync 功能不實的服務中使用您的產品不含序列號。您必須 Cloud Sync 透過 Cloud Manager 中的連結存取此功能。 https://docs.netapp.com/us-en/cloudsync/reference_additional_info.html["檢視啟用 Cloud Sync 支援功能的程序"^]。
+
+
+
+== 相關連結
+
+* https://cloud.netapp.com/azure-netapp-files["NetApp Cloud Central Azure NetApp Files"^]
+* https://docs.microsoft.com/azure/azure-netapp-files/["本文檔 Azure NetApp Files"^]
+* https://docs.netapp.com/us-en/cloudsync/index.html["本文檔 Cloud Sync"^]
+

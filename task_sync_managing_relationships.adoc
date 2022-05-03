@@ -1,0 +1,124 @@
+---
+sidebar: sidebar 
+permalink: task_sync_managing_relationships.html 
+keywords: sync, immediate, now, schedule, minutes, hours, on, off, delete, group, accelerate, accelerating, grouping, multiple data brokers, sync now, turn off, turn on, sync schedule, settings, change settings, recently modified files, delete files on target, retries, retry, file types, exclude file type, include file type, delete relationship 
+summary: 您可以立即同步資料、變更排程等、隨時管理同步關係。 
+---
+= 管理同步關係
+:toc: macro
+:hardbreaks:
+:allow-uri-read: 
+:toc: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+:toc-position: content
+
+
+[role="lead"]
+您可以立即同步資料、變更排程等、隨時管理同步關係。
+
+
+
+== 立即執行資料同步
+
+您可以按下按鈕、在來源和目標之間立即同步資料、而不必等到下次排程同步。
+
+.步驟
+. 在 * 同步儀表板 * 中、將游標暫留在同步關係上、然後按一下動作功能表。
++
+image:screenshot_relationship_menu.gif["快照顯示當您將滑鼠游標移到同步關係上時所出現的動作功能表。"]
+
+. 按一下「 * 立即同步 * 」、然後按一下「 * 同步 * 」進行確認。
++
+image:screenshot_dashboard_actions.gif["此快照顯示您可以在同步關係上執行的動作。"]
+
+
+
+執行資料同步處理程序。 Cloud Sync
+
+
+
+== 加速同步效能
+
+在關係中加入額外的資料代理程式、以加速同步關係的效能。額外的資料代理程式必須是 _new 資料代理程式。
+
+如果關係中現有的資料代理人用於其他同步關係、 Cloud Sync 那麼、當這些關係中也會自動新增新的資料代理人。
+
+例如、假設您有三種關係：
+
+* 關係 1 使用資料代理程式 A
+* 關係 2 使用資料代理程式 B
+* 關係 3 使用資料代理程式 A
+
+
+您想要加速關係 1 的效能、以便為該關係新增資料代理程式（資料代理程式 C ）。由於資料代理人 A 也用於關係 3 、因此新的資料代理人也會自動新增至關係 3 。
+
+.步驟
+. 確保關係中至少有一家資料代理人處於線上狀態。
+. 將游標暫留在同步關係上、然後按一下動作功能表。
+. 按一下 * 加速 * 。
++
+image:screenshot_accelerate.gif["顯示同步關係動作功能表的功能表快照 Cloud Sync 。「加速」會以滑鼠指標反白顯示。"]
+
+. 依照提示建立新的資料代理程式。
+
+
+此功能可將新的資料代理程式新增至同步關係。 Cloud Sync下一次資料同步的效能應該加快。
+
+
+
+== 變更同步關係的設定
+
+修改設定、定義如何在目標位置同步及維護來源檔案和資料夾。
+
+. 將游標暫留在同步關係上、然後按一下動作功能表。
+. 按一下 * 設定 * 。
+. 修改任何設定。
++
+image:screenshot_sync_settings.gif["顯示同步關係設定的快照。"]
+
++
+[[deleteonSOURS] 以下是每項設定的簡短說明：
+
++
+排程:: 選擇週期性排程以供未來同步或關閉同步排程。您可以排程關係、每 1 分鐘同步一次資料。
+重試次數:: 定義 Cloud Sync 在跳過檔案之前、應重試同步檔案的次數。
+最近修改的檔案:: 選擇排除最近在排程同步之前修改的檔案。
+刪除來源上的檔案:: 選擇在將檔案複製到目標位置後、從來源位置刪除檔案 Cloud Sync 。此選項包括資料遺失的風險、因為來源檔案在複製後會被刪除。
++
+--
+如果啟用此選項、您也需要變更資料代理程式上 local.json 檔案中的參數。開啟檔案並將名為 _workers.transferrer.delete-on-source_ 的參數變更為 * true* 。
+
+--
+刪除目標上的檔案:: 如果檔案已從來源中刪除、請選擇從目標位置刪除。預設值是從不從目標位置刪除檔案。
+物件標記:: 當 AWS S3 成為同步關係的目標時、 Cloud Sync Synetical 會將 S3 物件標記為與同步作業相關的中繼資料。您可以停用 S3 物件的標記（如果環境中不需要）。如果停用標記、 Cloud Sync 對功能不造成影響、 Cloud Sync 只會以不同的方式儲存同步中繼資料。
+檔案類型:: 定義要包含在每個同步中的檔案類型：檔案、目錄和符號連結。
+排除檔案副檔名:: 輸入副檔名並按 * Enter * 鍵、指定要從同步中排除的副檔名。例如、輸入 _log_ 或 _.log_ 以排除 * 。 log 檔案。多個副檔名不需要分隔符號。以下影片提供簡短示範：
++
+--
+video::video_file_extensions.mp4[width=840,height=240]
+--
+檔案大小:: 無論檔案大小為何、或只是特定大小範圍內的檔案、都可以選擇同步所有檔案。
+修改日期:: 無論檔案上次修改日期、在特定日期之後修改的檔案、在特定日期之前修改的檔案、或是在某個時間範圍之間、都要選擇所有檔案。
+將存取控制清單複製到目標:: 選擇在來源 SMB 共用區和目標 SMB 共用區之間複製存取控制清單（ ACL ）。請注意、此選項僅適用於 2020 年 2 月 23 日發行之後所建立的同步關係。
+
+
+. 按一下 * 儲存設定 * 。
+
+
+利用新的設定修改同步關係。 Cloud Sync
+
+
+
+== 刪除關係
+
+如果不再需要在來源與目標之間同步資料、您可以刪除同步關係。此動作不會刪除資料代理執行個體、也不會從目標刪除資料。
+
+.步驟
+. 將游標暫留在同步關係上、然後按一下動作功能表。
+. 單擊 * 刪除 * ，然後再次單擊 * 刪除 * 進行確認。
+
+
+執行此動作會刪除同步關係。 Cloud Sync

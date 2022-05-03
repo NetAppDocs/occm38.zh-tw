@@ -1,0 +1,72 @@
+---
+sidebar: sidebar 
+permalink: task_managing_state.html 
+keywords: schedule, schedules, scheduling, shutdowns, shut down, restart, stop, stopping, turn off, weekday, weekend 
+summary: 您可以從 Cloud Volumes ONTAP Cloud Manager 停止並開始執行功能、以管理雲端運算成本。 
+---
+= 管理 Cloud Volumes ONTAP 功能不全
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+您可以從 Cloud Volumes ONTAP Cloud Manager 停止並開始執行功能、以管理雲端運算成本。
+
+
+
+== 排程 Cloud Volumes ONTAP 自動關閉功能
+
+您可能想要在 Cloud Volumes ONTAP 特定時間間隔內關閉此功能、以降低運算成本。您可以將 Cloud Manager 設定為在特定時間自動關機、然後重新啟動系統、而非手動執行此動作。
+
+排定 Cloud Volumes ONTAP 自動關機功能時、如果執行中的資料傳輸正在進行、 Cloud Manager 會將關機時間延後。Cloud Manager 會在傳輸完成後關閉系統。
+
+此工作會排程 HA 配對中兩個節點的自動關機。
+
+.步驟
+. 在工作環境中、按一下時鐘圖示：
++
+image:screenshot_shutdown_icon.gif["螢幕擷取畫面：顯示載入自動關機頁面的圖示。"]
+
+. 指定關機排程：
++
+.. 選擇您要每天、每個工作日、每個週末或三種選項的任意組合來關閉系統。
+.. 指定您要關閉系統的時間、以及關閉系統的時間長度。
++
+* 範例 *
+
++
+下圖顯示每週六上午 12 ： 00 指示 Cloud Manager 關閉系統的排程48 小時。Cloud Manager 每週一上午 12 ： 00 重新啟動系統
+
++
+image:screenshot_shutdown.gif["螢幕擷取畫面：顯示每 Cloud Volumes ONTAP 週末中午 12 ： 00 關閉支援 48 小時的關機排程。"]
+
+
+
+. 按一下「 * 儲存 * 」。
+
+
+Cloud Manager 會儲存排程。時鐘圖示會變更、表示已設定排程： image:screenshot_shutdown_icon_scheduled.gif["螢幕擷取畫面：在定義排程後顯示自動關機圖示。"]
+
+
+
+== 停止 Cloud Volumes ONTAP
+
+停止 Cloud Volumes ONTAP 使用功能可節省運算成本、並建立根磁碟和開機磁碟的快照、有助於疑難排解。
+
+當您停止 HA 配對時、 Cloud Manager 會關閉兩個節點。
+
+.步驟
+. 在工作環境中、按一下 * 關閉 * 圖示。
++
+image:screenshot_otc_turn_off.gif["螢幕擷取畫面：顯示圖示以關閉 Cloud Volumes ONTAP 一套功能完善的系統。"]
+
+. 保留建立快照的選項、因為快照可以啟用系統還原。
+. 按一下 * 關閉 * 。
++
+停止系統可能需要幾分鐘的時間。您可以稍後從工作環境頁面重新啟動系統。
+
+

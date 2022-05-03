@@ -1,0 +1,39 @@
+---
+sidebar: sidebar 
+permalink: reference_gfc_additional_information.html 
+keywords: global file cache 
+summary: 請使用下列連結、深入瞭解 Global File Cache 及其他 NetApp 產品。 
+---
+= 其他資訊
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+請使用下列連結、深入瞭解 Global File Cache 及其他 NetApp 產品：
+
+* 全域檔案快取常見問題集
++
+** 請參閱常見問題集與解答清單 link:https://cloud.netapp.com/global-file-cache-faq["請按這裡"^]
+
+
+* link:https://repo.cloudsync.netapp.com/gfc/NetApp%20GFC%20-%20User%20Guide.pdf["NetApp 全球檔案快取使用者指南"^]
+* NetApp 產品文件
++
+** 請參閱 NetApp 雲端產品的其他文件 https://docs.netapp.com/us-en/cloud/["請按這裡"^]
+** 請參閱所有 NetApp 產品的其他文件 https://docs.netapp.com["請按這裡"^]
+
+
+* 客戶可 Cloud Volumes ONTAP 透過下列管道、獲得支援支援使用支援功能支援功能支援：
++
+** 引導式問題解決、案例管理、知識庫、下載、工具、 還有更多 link:https://cloud.netapp.com/gfc-support["請按這裡"^]
+** 登入 NetApp 支援網址： https://mysupport.netapp.com[] 使用您的 NSS 認證
+** 如需 P1 問題的立即協助、請致電： +1 856.481.3990 （選項 2 ）
+
+
+* 客戶可 Azure NetApp Files 透過供應商的標準支援、來支援使用 Cloud Volumes Services 和支援功能的全域檔案快取使用者。請分別聯絡 Google 客戶支援或 Microsoft 客戶支援。
+

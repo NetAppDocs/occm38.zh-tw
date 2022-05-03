@@ -1,0 +1,32 @@
+---
+sidebar: sidebar 
+permalink: task_registering.html 
+keywords: Cloud Volumes ONTAP, register, registering, paygo, pay-as-you-go, registration, instance id, serial number, account id, support 
+summary: NetApp 的支援包含 Cloud Volumes ONTAP 在 NetApp 的《 Explore 》、《 Standard 》和《 Premium 》系統中、但您必須先向 NetApp 註冊系統、才能啟動支援。 
+---
+= 註冊隨用隨付系統
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+NetApp 的支援包含 Cloud Volumes ONTAP 在 NetApp 的《 Explore 》、《 Standard 》和《 Premium 》系統中、但您必須先向 NetApp 註冊系統、才能啟動支援。
+
+.步驟
+. 如果您尚未將 NetApp 支援網站帳戶新增至 Cloud Manager 、請前往 * 帳戶設定 * 、立即新增帳戶。
++
+link:task_adding_nss_accounts.html["瞭解如何新增 NetApp 支援網站帳戶"]。
+
+. 在「工作環境」頁面上、按兩下您要登錄的系統名稱。
+. 按一下功能表圖示、然後按一下 * 支援註冊 * ：
++
+image:screenshot_menu_registration.gif["螢幕擷取畫面：顯示 Cloud Volumes ONTAP 在功能表圖示中選取的支援登錄選項、以供選擇。"]
+
+. 選擇 NetApp 支援網站帳戶、然後按一下 * 註冊 * 。
+
+
+Cloud Manager 會向 NetApp 註冊系統。

@@ -1,0 +1,139 @@
+---
+sidebar: sidebar 
+permalink: task_sync_nfs_encryption.html 
+keywords: encryption, in flight, data in flight, in-flight, data-in-flight, nfs, initiator, listener, port 
+summary: 如果您的企業有嚴格的安全性原則、請使用即時資料加密、在不同網路中的 NFS 伺服器之間同步資料。 
+---
+= 使用資料傳輸加密來同步 NFS 資料
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+如果您的企業有嚴格的安全性原則、您可以使用即時資料加密來同步 NFS 資料。從 NFS 伺服器到另一個 NFS 伺服器、以及 Azure NetApp Files 從功能到 Azure NetApp Files 功能的支援。
+
+例如、您可能想要在不同網路中的兩個 NFS 伺服器之間同步資料。或者、您可能需要在 Azure NetApp Files 子網路或區域之間安全地傳輸有關的資料。
+
+
+
+== 資料傳輸加密的運作方式
+
+資料傳輸加密功能可在兩個資料代理人之間透過網路傳送 NFS 資料時、加密 NFS 資料。下圖顯示兩部 NFS 伺服器與兩個資料代理人之間的關係：
+
+image:diagram_nfs_encryption.gif["顯示兩個 NFS 伺服器和兩個資料代理人的圖表。資料會從來源 NFS 伺服器流向來源資料代理程式、並在該代理程式中加密資料。然後將資料傳送至目標資料代理程式、再傳送至目標 NFS 伺服器。"]
+
+一個資料代理會做為 _initiator 。當需要同步資料時、它會傳送連線要求給另一個資料代理程式（即 _listener ）。該資料代理程式會偵聽連接埠 443 上的要求。如果需要、您可以使用不同的連接埠、但請務必檢查連接埠是否未被其他服務使用。
+
+例如、如果您將內部部署 NFS 伺服器的資料同步到雲端型 NFS 伺服器、您可以選擇哪些資料代理程式會接聽連線要求、以及哪些資料代理程式會傳送這些要求。
+
+以下是機上加密的運作方式：
+
+. 建立同步關係之後、啟動器會啟動與其他資料代理的加密連線。
+. 來源資料代理人會使用 TLS 1.3 加密來源的資料。
+. 然後、它會透過網路將資料傳送至目標資料代理程式。
+. 目標資料代理人會先解密資料、再將其傳送至目標。
+. 初始複本之後、服務會每 24 小時同步所有變更的資料。如果有要同步的資料、程序會從啟動器開啟與其他資料代理的加密連線開始。
++
+如果您偏好更頻繁地同步資料、 link:task_sync_managing_relationships.html#changing-the-settings-for-a-sync-relationship["您可以在建立關係之後變更排程"]。
+
+
+
+
+
+== 支援的 NFS 版本
+
+* 對於 NFS 伺服器、 NFS 版本 3 、 4.0 、 4.1 和 4.2 支援傳輸中資料加密。
+* 對於更新、 NFS 版本 3 和 4.1 支援資料傳輸加密。 Azure NetApp Files
+
+
+
+
+== 您需要什麼才能開始使用
+
+請務必具備下列項目：
+
+* 兩部 NFS 伺服器 link:reference_sync_requirements.html#source-and-target-requirements["來源與目標需求"] 或 Azure NetApp Files 是兩個子網路或區域的不二選擇。
+* 伺服器的 IP 位址或完整網域名稱。
+* 兩個資料代理人的網路位置。
++
+您可以選取現有的資料代理程式、但它必須做為啟動器。接聽程式資料代理程式必須是 _new 資料代理程式。
+
++
+如果您尚未部署資料代理程式、請檢閱資料代理程式的需求。由於您有嚴格的安全原則、因此請務必檢閱網路需求、包括連接埠 443 和的傳出流量 link:reference_sync_networking.html["網際網路端點"] 讓資料代理能夠聯絡。
+
++
+** link:task_sync_installing_aws.html["檢閱 AWS 安裝"]
+** link:task_sync_installing_azure.html["檢閱 Azure 安裝"]
+** link:task_sync_installing_gcp.html["檢閱 GCP 安裝"]
+** link:task_sync_installing_linux.html["檢閱 Linux 主機安裝"]
+
+
+
+
+
+
+== 使用資料傳輸加密來同步 NFS 資料
+
+在兩部 NFS 伺服器之間或 Azure NetApp Files 在彼此之間建立新的同步關係、啟用即時加密選項、然後依照提示進行。
+
+.步驟
+. 按一下「 * 建立新同步 * 」。
+. 將 * NFS 伺服器 * 拖放到來源和目標位置、或 * Azure NetApp Files 《 * 》 * 拖放到來源和目標位置、然後選取 * 「是 * 」以啟用資料傳輸加密。
++
+下圖顯示您選擇在兩個 NFS 伺服器之間同步資料的項目：
+
++
+image:screenshot_nfs_encryption.gif["螢幕快照顯示 NFS 對 NFS 的同步關係、並啟用資料傳輸加密。"]
+
++
+下圖顯示 Azure NetApp Files 您選擇在各個方面同步資料的內容：
+
++
+image:screenshot_anf_encryption.gif["螢幕快照顯示 Azure NetApp Files 啟用 Azure NetApp Files 資料傳輸加密功能的「從功能到功能的整合」關係。"]
+
+. 依照提示建立關係：
++
+.. * NFS Server* / * Azure NetApp Files * ：選擇 NFS 版本、然後指定新的 NFS 來源或選取現有的伺服器。
+.. * 定義 Data Broker Function* ：定義哪個資料代理程式偵聽連接埠上的連線要求、以及哪個 _ 啟動 _ 連線。根據您的網路需求做出選擇。
+.. * 資料代理人 * ：依照提示新增來源資料代理人或選取現有的資料代理人。
++
+如果來源資料代理做為接聽程式、則必須是新的資料代理程式。
+
++
+如果您需要新的資料代理程式、 Cloud Sync 則會以安裝說明提示您。您可以在雲端部署資料代理程式、或下載適用於您自己 Linux 主機的安裝指令碼。
+
++
+image:screenshot_create_data_broker.gif["螢幕快照顯示可在 AWS 、 Azure 、 Google Cloud Platform 或現有 Linux 主機中選取資料代理程式的選項。"]
+
+.. * 目錄 * ：選取所有目錄或向下切入並選取子目錄、以選擇要同步的目錄。
++
+按一下「 * 篩選來源物件 * 」以修改設定、定義如何在目標位置同步及維護來源檔案與資料夾。
+
++
+image:screenshot_directories.gif["螢幕擷取畫面會顯示選取最上層目錄、向下切入及選取「篩選來源物件」選項的選項。"]
+
+.. * 目標 NFS 伺服器 * / * 目標 Azure NetApp Files * ：選擇 NFS 版本、然後輸入新的 NFS 目標或選取現有的伺服器。
+.. * 目標資料代理 * ：依照提示新增來源資料代理程式或選取現有的資料代理程式。
++
+如果目標資料代理做為接聽程式、則必須是新的資料代理程式。
+
++
+以下是當目標資料代理程式做為接聽程式時提示的範例。請注意指定連接埠的選項。
+
++
+image:screenshot_nfs_encryption_listener.gif["螢幕擷取畫面、顯示在接聽程式資料代理程式上指定連接埠的選項。"]
+
+.. * 目標目錄 * ：選取最上層目錄、或向下切入以選取現有的子目錄、或在匯出中建立新的資料夾。
+.. * 設定 * ：定義如何在目標位置同步及維護來源檔案與資料夾。
+.. * 審查 * ：檢閱同步關係的詳細資料、然後按一下 * 建立關係 * 。
++
+image:screenshot_nfs_encryption_review.gif["顯示檢閱畫面的快照。它會顯示 NFS 伺服器、資料代理程式及每個伺服器的網路資訊。"]
+
+
+
+
+
+從建立新的同步關係開始。 Cloud Sync完成後、按一下「儀表板」中的 * 「檢視」 * 即可檢視新關係的詳細資料。

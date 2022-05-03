@@ -1,0 +1,260 @@
+---
+sidebar: sidebar 
+permalink: download_gfc_resources.html 
+keywords: global file cache, edge 
+summary: 在遠端辦公室開始安裝 Global File Cache Edge 軟體之前、您需要注意許多需求。 
+---
+= 開始部署全域檔案快取 Edge 執行個體之前
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+在遠端辦公室開始安裝 Global File Cache Edge 軟體之前、您需要注意許多需求。
+
+
+
+== 下載所需資源
+
+下載您計畫在分公司使用的通用檔案快取虛擬範本、軟體安裝套件及其他參考文件：
+
+* Windows Server 2016 虛擬範本：
++
+https://repo.cloudsync.netapp.com/gfc/2K16_GFC_1_0_18_OVF.zip["Windows Server 2016 .OVA （含 NetApp GFC ）（ VMware vSphere 6.5 以上）"^]
+https://repo.cloudsync.netapp.com/gfc/2k16_GFC_1_0_0_18_VHD.zip["Windows Server 2016 .VHDX 、包括 NetApp GFC （ Microsoft Hyper-V ）"^]
+
+* Windows Server 2019 虛擬範本：
++
+https://repo.cloudsync.netapp.com/gfc/2K19_GFC_1_0_18_OVF.zip["Windows Server 2019 .OVA （含 NetApp GFC ）（ VMware vSphere 6.5 以上）"^]
+https://repo.cloudsync.netapp.com/gfc/2k19_GFC_1_0_0_18_VHD.zip["包括 NetApp GFC （ Microsoft Hyper-V ）在內的 Windows Server 2019 .VHDX"^]
+
+* 全域檔案快取 Edge 軟體：
++
+https://repo.cloudsync.netapp.com/gfc/GFC-1-0-0-21-Release.exe["NetApp GFC軟體（.Exe）"^]
+
+* 全域檔案快取文件：
++
+link:https://repo.cloudsync.netapp.com/gfc/NetApp%20GFC%20-%20User%20Guide.pdf["NetApp 全球檔案快取使用者指南"^]
+
+
+
+
+
+== 設計及部署 Global File Cache Edge
+
+視您的需求而定、您可能需要根據分公司的並行使用者工作階段來部署一或多個 Global File Cache Edge 執行個體。Edge 執行個體會將虛擬檔案共用呈現給分公司內的終端使用者、此共用區已從關聯的「全域檔案快取核心」執行個體透明地延伸。Global File Cache Edge 應包含一個「 D:\ 」 NTFS 磁碟區、其中包含分公司內的快取檔案。
+
+
+NOTE: 對於全域檔案快取 Edge 、請務必瞭解 link:concept_before_you_begin_to_deploy_gfc.html#sizing-guidelines["規模調整準則"^]。這將有助於您為全域檔案快取部署做出正確的設計。您還需要判斷環境的規模、資源可用度及備援能力。
+
+
+
+=== 全域檔案快取 Edge 執行個體
+
+部署全域檔案快取 Edge 執行個體時、您必須部署單一 VM 、方法是部署 Windows Server 2016 Standard 或 Datacenter Edition 、或部署 Windows Server 2019 Standard 或 Datacenter Edition 、或使用 Global File Cache 、 .OVA 或 .VHD 範本。 其中包括自選的 Windows Server 作業系統和全域檔案快取軟體。
+
+
+
+==== 快速步驟
+
+. 部署全域檔案快取虛擬範本、或 Windows Server 2016 VM 、或 Windows Server 2019 Standard 或 Datacenter 版本。
+. 確認 VM 已連線至網路、已加入網域、並可透過 RDP 存取。
+. 安裝最新的 Global File Cache Edge 軟體。
+. 識別全域檔案快取管理伺服器和核心執行個體。
+. 設定全域檔案快取 Edge 執行個體。
+
+
+
+
+== 全域檔案快取 Edge 需求
+
+Global File Cache Edge 的設計可跨所有支援 Windows Server 2016 和 2019 的平台運作、為企業遠端辦公室及其他辦公室提供簡化的 IT 。重要的是、如果全球檔案快取符合幾項基礎層級需求、幾乎每個案例都能在現有的硬體基礎架構、虛擬化或混合 / 公有雲環境上部署。
+
+Global File Cache Edge 需要下列硬體與軟體資源才能發揮最佳功能。如需整體規模調整準則的詳細資訊、請參閱 link:concept_before_you_begin_to_deploy_gfc.html#sizing-guidelines["規模調整準則"]。
+
+
+
+=== 強化的伺服器應用裝置
+
+全域檔案快取安裝套件會在任何 Microsoft Windows Server 執行個體上建立強化的軟體應用裝置。_ 不要解除安裝 _ 全域檔案快取套件。解除安裝「全域檔案快取」會影響伺服器執行個體的功能、可能需要完整重新建置伺服器執行個體。
+
+
+
+=== 實體硬體需求
+
+* 至少 4 個 CPU 核心
+* 至少 16 GB RAM
+* 專用的單一或備援 1 Gbps NIC
+* 10K RPM SAS HDD 或 SSD （首選）
+* 啟用回寫快取功能的 RAID 控制器
+
+
+
+
+=== 虛擬部署需求
+
+Hypervisor 平台已知會從儲存子系統的觀點（例如延遲）而降低效能。若要使用全域檔案快取達到最佳效能、建議使用 SSD 的實體伺服器執行個體。
+
+為了在虛擬環境中達到最佳效能、除了實體主機需求之外、還必須滿足下列需求和資源保留要求：
+
+Microsoft Hyper-V 2012 R2 及更新版本：
+
+* 處理器（ CPU ）： CPU 必須設為 * 靜態 * ：至少 4 個 vCPU 核心。
+* 記憶體（ RAM ）：最低： 16 GB 設為 * 靜態 * 。
+* 硬碟資源配置：硬碟必須設定為 * 固定式磁碟 * 。
+
+
+VMware vSphere 6.x 及更新版本：
+
+* 處理器（ CPU ）：必須設定 CPU 週期保留。最低： 4 個 vCPU 核心 @ 10000 MHz 。
+* 記憶體（ RAM ）：最低：保留 16 GB 。
+* 硬碟資源配置：
++
+** 磁碟資源配置必須設為 * 完整資源配置的必要項目零位 * 。
+** 硬碟共用必須設定為 * 高 * 。
+** 使用 vSphere Client 時、必須將 devices.hotplug* 設為 * 假 * 、以避免 Microsoft Windows 將全域檔案快取磁碟機顯示為可移除磁碟機。
+
+
+* 網路：網路介面必須設定為 * VMXNET3* （需要 VM 工具）。
+
+
+全域檔案快取可在 Windows Server 2016 和 2019 上執行、因此虛擬化平台需要支援作業系統、並與公用程式整合、以提升 VM 客體作業系統的效能及 VM 管理（例如 VM Tools ）。
+
+
+
+=== 分割區規模調整需求
+
+* C ： \ - 最低 250GB （系統 / 開機磁碟區）
+* D..\ - 最小 1TB （用於全域檔案快取智慧型檔案快取的獨立資料 Volume * ）
+
+
+* 最小大小是作用中資料集的 2 倍。快取磁碟區（ D ： \ ）可以擴充、而且僅受 Microsoft Windows NTFS 檔案系統的限制所限制。
+
+
+
+=== 全域檔案快取智慧型檔案快取磁碟需求
+
+全域檔案快取智慧型檔案快取磁碟（ D： \ ）上的磁碟延遲、應能為每個並行使用者提供 < 0.5 毫秒的平均 I/O 磁碟延遲和 1 個 1TBps 處理量。
+
+如需詳細資訊、請參閱 link:https://repo.cloudsync.netapp.com/gfc/NetApp%20GFC%20-%20User%20Guide.pdf["NetApp 全球檔案快取使用者指南"^]。
+
+
+
+=== 網路
+
+* 防火牆：應該允許在「全域檔案快取邊緣」與「管理伺服器」與「核心執行個體」之間使用 TCP 連接埠。
++
+全域檔案快取 TCP 連接埠： 443 （ HTTPS - LMS ）、 6618 – 6630 。
+
+* 網路最佳化裝置（例如 Riverbed Steelhead ）必須設定為傳遞全域檔案快取特定連接埠（ TCP 6618-6630 ）。
+
+
+
+
+=== 用戶端工作站與應用程式最佳實務做法
+
+全域檔案快取可透明地整合至客戶的環境中、讓使用者能夠使用用戶端工作站來存取集中式資料、並執行企業應用程式。使用「全域檔案快取」、資料可透過直接磁碟機對應或透過 DFS命名 空間存取。如需 Global File Cache Fabric 、智慧型檔案快取及軟體主要方面的詳細資訊、請參閱 link:concept_before_you_begin_to_deploy_gfc.html["開始部署全域檔案快取之前"^] 區段。
+
+為確保最佳體驗與效能、請務必遵守《全球檔案快取使用指南》中所述的 Microsoft Windows 用戶端要求與最佳實務做法。這適用於所有版本的 Microsoft Windows 。
+
+如需詳細資訊、請參閱 link:https://repo.cloudsync.netapp.com/gfc/NetApp%20GFC%20-%20User%20Guide.pdf["NetApp 全球檔案快取使用者指南"^]。
+
+
+
+=== 防火牆與防毒最佳實務做法
+
+雖然 Global File Cache 盡合理努力驗證最常見的防毒應用程式套件是否與 Global File Cache 相容、但 NetApp 無法保證這些程式所造成的任何不相容或效能問題、或是相關的更新、 Service Pack 或修改、也不承擔任何責任。
+
+全域檔案快取不建議在任何啟用全域檔案快取的執行個體（核心或邊緣）上安裝或應用監控或防毒解決方案。如果是依選擇或原則安裝解決方案、則必須套用下列最佳實務做法和建議。如需一般防毒套件、請參閱中的附錄 A link:https://repo.cloudsync.netapp.com/gfc/NetApp%20GFC%20-%20User%20Guide.pdf["NetApp 全球檔案快取使用者指南"^]。
+
+
+
+=== 防火牆設定
+
+* Microsoft 防火牆：
++
+** 保留防火牆設定為預設值。
+** 建議：將 Microsoft 防火牆設定和服務保留為預設設定為「 Off 」、而非針對標準「 Global File Cache Edge 執行個體」啟動。
+** 建議：將 Microsoft 防火牆設定和服務保留為預設設定為「 On 」（開啟）、並針對同時執行網域控制器角色的 Edge 執行個體啟動。
+
+
+* 企業防火牆：
++
+** 全域檔案快取核心執行個體會在 TCP 連接埠 6618-6630 上接聽、確保全域檔案快取 Edge 執行個體可以連線到這些 TCP 連接埠。
+** 全域檔案快取執行個體需要透過 TCP 連接埠 443 （ HTTPS ）與全域檔案快取管理伺服器通訊。
+
+
+* 網路最佳化解決方案 / 裝置必須設定為傳遞全域檔案快取特定連接埠。
+
+
+
+
+=== 防毒最佳實務做法
+
+本節可協助您瞭解在執行全域檔案快取的 Windows Server 執行個體上執行防毒軟體時的需求。Global File Cache 已測試最常用的防毒產品、包括 Cylinance 、 McAfee 、 Symantec 、 Sophos 、趨勢 Micro 、 卡巴斯基和 Windows Defender 搭配全域檔案快取一起使用。
+
+
+NOTE: 將防毒軟體新增至 Edge 應用裝置可能會對使用者效能造成 10 – 20% 的影響。
+
+如需詳細資訊、請參閱 link:https://repo.cloudsync.netapp.com/gfc/NetApp%20GFC%20-%20User%20Guide.pdf["NetApp 全球檔案快取使用者指南"^]。
+
+
+
+==== 設定排除項目
+
+防毒軟體或其他協力廠商索引或掃描公用程式、絕對不能掃描 Edge 執行個體上的磁碟機 D:\ 。這些 Edge Server 磁碟機 D ： \ 的掃描結果會導致對整個快取命名空間提出許多檔案開啟要求。這將導致透過 WAN 擷取檔案、並將檔案擷取至資料中心正在最佳化的所有檔案伺服器。Edge 執行個體會發生 WAN 連線氾濫和不必要的負載、導致效能降低。
+
+除了 D:\ 磁碟機之外、下列全域檔案快取目錄和程序一般應排除在所有防毒應用程式之外：
+
+* 「 C ： \Program Files\TalonFAST\ 」
+* 「 C:\Program Files\TalonFAST\Bin \LMClientService.exe 」
+* 「 C:\Program Files\TalonFAST\Bin \LMServerService.exe 」
+* 「 C ： \Program Files\TalonFAST\Bin \Optimus.exe 」
+* 「 C:\Program Files\TalonFAST\Bin \tafsexp.exe 」
+* 「 C:\Program Files\TalonFAST\Bin \tafsutils.exe 」
+* 「 C:\Program Files\TalonFAST\Bin \Tapp.exe 」
+* 「 C:\Program Files\TalonFAST\Bin \Tfs.exe 」
+* 「 C:\Program Files\TalonFAST\Bin \TService.exe 」
+* 「 C:\Program Files\TalonFAST\Bin \tum.exe 」
+* 「 C:\Program Files\TalonFAST\FastDebugLogs\ 」
+* 「 C ： \Windows \System32\drivers\tfast ． sys 」
+* 「 \?\TafsMtPtPt:\ 」或「 \TafsMtPt* 」
+* 「 \ 裝置 \ TalonCacheFS 」
+* 「 \?\GLOBALROOT\Device\TalonCacheFS 」
+* 「 \?\GLOBALROOT\Device\TalonCacheFS\* 」
+
+
+
+
+== NetApp 支援政策
+
+全域檔案快取執行個體是專為全域檔案快取所設計、做為在 Windows Server 2016 和 2019 平台上執行的主要應用程式。全域檔案快取需要優先存取平台資源、例如磁碟、記憶體、網路介面、 並可能對這些資源提出高需求。虛擬部署需要記憶體 /CPU 保留和高效能磁碟。
+
+* 對於部署 Global File Cache 的分公司、執行 Global File Cache 之伺服器上支援的服務和應用程式僅限於：
++
+** DNS/DHCP
+** Active Directory 網域控制器（全域檔案快取必須位於不同的磁碟區）
+** 列印服務
+** Microsoft System Center 組態管理程式（ Software ）
+** 全域檔案快取核准的用戶端系統代理程式和防毒應用程式
+
+
+* NetApp 支援與維護僅適用於全域檔案快取。
+* 業務單位生產力軟體、通常需要大量資源、例如資料庫伺服器、郵件伺服器等。 不受支援。
+* 客戶負責安裝在執行全域檔案快取之伺服器上的任何非全域檔案快取軟體：
++
+** 如果任何協力廠商軟體套件導致軟體或資源與全域檔案快取發生衝突、或是效能受損、則全域檔案快取的支援組織可能會要求客戶停用或移除執行全域檔案快取的伺服器上的軟體。
+** 客戶有責任安裝、整合、支援及升級任何新增至執行「全域檔案快取」應用程式之伺服器的軟體。
+
+
+* 防毒工具和授權代理程式等系統管理公用程式 / 代理程式可能會共存。不過、除了上述支援的服務和應用程式、這些應用程式不受 Global File Cache 支援、而且仍必須遵循上述相同的準則：
++
+** 客戶有責任安裝、整合、支援及升級任何新增的軟體。
+** 如果客戶確實安裝任何導致或疑似造成軟體或資源與全域檔案快取衝突或效能受損的協力廠商軟體套件、則 Global File Cache 的支援組織可能會要求停用 / 移除軟體。
+
+
+

@@ -1,0 +1,105 @@
+---
+sidebar: sidebar 
+permalink: task_sync_installing_gcp.html 
+keywords: data broker, install, gcp, google, networking, permissions, regions, install data broker in gcp, install in gcp, deploy in gcp, deploy data broker in gcp, install data broker in google, install in google, deploy in google, deploy data broker in google, networking requirements, port, ports, 443, port 443, ntp, network time protocol, gcp data broker, service account 
+summary: 建立同步關係時、請選擇GCP Data Broker選項、在VPC的新虛擬機器執行個體上部署資料代理軟體。本頁將會重複提供安裝程序的支援、協助您做好安裝準備。 Cloud Sync 
+---
+= 在 Google Cloud Platform 中安裝資料代理程式
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+建立同步關係時、請選擇GCP Data Broker選項、在VPC的新虛擬機器執行個體上部署資料代理軟體。本頁將會重複提供安裝程序的支援、協助您做好安裝準備。 Cloud Sync
+
+您也可以選擇在雲端或內部部署的現有 Linux 主機上安裝資料代理程式。 link:task_sync_installing_linux.html["深入瞭解"]。
+
+
+
+== 支援的 GCP 區域
+
+支援所有地區。
+
+
+
+== 網路需求
+
+* 資料代理人需要傳出的網際網路連線、以便透過 Cloud Sync 連接埠 443 輪詢該服務的工作。
++
+當在 GCP 中部署資料代理程式時 Cloud Sync 、它會建立一個安全群組、以啟用必要的傳出通訊。
+
++
+如果您需要限制傳出連線、請參閱 link:reference_sync_networking.html["資料代理所連絡的端點清單"]。
+
+* NetApp 建議將來源、目標及資料代理程式設定為使用網路時間傳輸協定（ NTP ）服務。三個元件之間的時間差異不應超過 5 分鐘。
+
+
+
+
+== 在 GCP 中部署資料代理程式所需的權限
+
+確保部署資料代理的 GCP 使用者具有下列權限：
+
+[source, yaml]
+----
+- compute.networks.list
+- compute.regions.list
+- deploymentmanager.deployments.create
+- deploymentmanager.deployments.delete
+- deploymentmanager.operations.get
+- iam.serviceAccounts.list
+----
+
+
+== 服務帳戶所需的權限
+
+部署資料代理程式時、您需要選取具有下列權限的服務帳戶：
+
+[source, yaml]
+----
+- logging.logEntries.create
+- resourcemanager.projects.get
+- storage.buckets.get
+- storage.buckets.list
+- storage.objects.*
+----
+
+
+== 安裝資料代理程式
+
+建立同步關係時、您可以在 GCP 中安裝資料代理程式。
+
+.步驟
+. 按一下「 * 建立新同步 * 」。
+. 在「 * 定義同步關係 * 」頁面上、選擇來源和目標、然後按一下「 * 繼續 * 」。
++
+完成這些步驟、直到您到達「 * 資料代理人 * 」頁面為止。
+
+. 在「 * 資料代理人 * 」頁面上、按一下「 * 建立資料代理人 * 」、然後選取「 * Google Cloud Platform* 」。
++
+如果您已經有資料代理程式、則必須按一下 image:screenshot_plus_icon.gif["加號圖示的快照"] 圖示優先。
+
++
+image:screenshot_create_data_broker.gif["Data Broker 頁面的快照、可讓您在 AWS 、 Azure 、 GCP 和 On -Prem 資料代理程式之間進行選擇。"]
+
+. 輸入資料代理的名稱、然後按一下 * 繼續 * 。
+. 如果出現提示、請使用 Google 帳戶登入。
++
+這份表單由 Google 擁有及託管。您的認證資料不會提供給 NetApp 。
+
+. 選取專案和服務帳戶、然後選擇資料代理的位置。
++
+image:screenshot_data_broker_gcp.gif["快照顯示在 Google Cloud 中部署資料代理所需的資訊。"]
+
+. 一旦資料代理程式可供使用、請按 Cloud Sync 一下《》中的 * 「 Continue 」（繼續） * 。
++
+執行個體部署約需 5 至 10 分鐘。您可以監控 Cloud Sync 來自於此服務的進度、當執行個體可用時、此服務會自動重新整理。
+
+. 完成精靈中的頁面、以建立新的同步關係。
+
+
+您已在 GCP 中部署資料代理程式、並建立新的同步關係。您可以將此資料代理程式與其他同步關係搭配使用。

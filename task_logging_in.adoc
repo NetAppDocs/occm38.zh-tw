@@ -1,0 +1,25 @@
+---
+sidebar: sidebar 
+permalink: task_logging_in.html 
+keywords: logging in, log in, sign in, signing in, cloud central, netapp cloud central, user account 
+summary: 'Cloud Manager 介面可透過 SaaS 型使用者介面存取、方法是前往 https://cloudmanager.netapp.com[]。' 
+---
+= 登入 Cloud Manager
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Cloud Manager 介面可透過 SaaS 型使用者介面存取、方法是前往 https://cloudmanager.netapp.com[]。
+
+.步驟
+. 開啟網頁瀏覽器並前往 https://cloudmanager.netapp.com[]。
+. 使用您的 NetApp Cloud Central 認證登入。
++
+image:screenshot_login.gif["Cloud Central 的登入畫面。"]
+
+

@@ -1,0 +1,91 @@
+---
+sidebar: sidebar 
+permalink: concept_ha_azure.html 
+keywords: high availability, HA, concepts, understanding, overview, takeover, giveback, rpo, rto, nondisruptive, ha pairs, node, nodes, recovery point objective, recovery time objective, nas, nfs, cifs, iscsi, mpio, alua, failover, failure, azure, shared storage, active, passive, load balancer, availability set, storage accounts, page blobs 
+summary: 在雲端環境發生故障時、提供企業級的可靠性和持續運作。 Cloud Volumes ONTAP在 Azure 中、儲存設備會在兩個節點之間共享。 
+---
+= Azure 中的高可用度配對
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+在雲端環境發生故障時、提供企業級的可靠性和持續運作。 Cloud Volumes ONTAP在 Azure 中、儲存設備會在兩個節點之間共享。
+
+
+
+== HA 元件
+
+Azure 中的功能介紹 HA 組態包括下列元件： Cloud Volumes ONTAP
+
+image:diagram_ha_azure.png["概念性映像顯示負載平衡器、可管理來自 Cloud Manager 和用戶端的傳入流量、 Cloud Volumes ONTAP 可用度集內的兩個支援節點、開機資料的 SSD 磁碟、以及客戶資料的 Page Blobs 。"]
+
+請注意 Cloud Manager 為您部署的 Azure 元件：
+
+Azure 標準負載平衡器:: 負載平衡器負責管理 Cloud Volumes ONTAP 傳入流量至 the ireHA 配對。
+可用度設定:: 可用度集可確保節點位於不同的故障和更新網域中。
+磁碟:: 客戶資料位於 Premium Storage 頁面上。每個節點均可存取其他節點的儲存設備。也需要額外的儲存空間 link:reference_default_configs.html#boot-and-root-data-for-cloud-volumes-ontap["開機、 root 和核心資料"]。
+儲存帳戶::
++
+--
+* 託管磁碟需要一個儲存帳戶。
+* 由於達到每個儲存帳戶的磁碟容量限制、因此 Premium Storage 頁面區塊需要一個或多個儲存帳戶。
++
+https://docs.microsoft.com/en-us/azure/storage/common/storage-scalability-targets["Azure 文件： Azure 儲存設備擴充性與儲存帳戶效能目標"^]。
+
+* 資料分層至 Azure Blob 儲存設備需要一個儲存帳戶。
+* 從 NetApp 9.7 開始 Cloud Volumes ONTAP 、 Cloud Manager 為 HA 配對所建立的儲存帳戶就是通用的 v2 儲存帳戶。
+* 您可以在 Cloud Volumes ONTAP 建立工作環境時、從一個可疑的 9.7 HA 配對啟用 HTTPS 連線至 Azure 儲存帳戶。請注意、啟用此選項可能會影響寫入效能。您無法在建立工作環境之後變更設定。
+
+
+--
+
+
+
+
+== RPO 和 RTO
+
+HA 組態可維持資料的高可用度、如下所示：
+
+* 恢復點目標（ RPO ）為 0 秒。您的資料交易一致、不會遺失任何資料。
+* 恢復時間目標（ RTO ）為 60 秒。發生中斷時、資料應可在 60 秒內取得。
+
+
+
+
+== 儲存設備接管與恢復
+
+與實體 ONTAP 的實體叢集類似、 Azure HA 配對中的儲存設備會在節點之間共享。連線至合作夥伴的儲存設備、可讓每個節點在 _ 接管 _ 時存取對方的儲存設備。網路路徑容錯移轉機制可確保用戶端和主機繼續與正常運作的節點通訊。當節點恢復連線時、合作夥伴 _ 會提供 Back_storage 。
+
+對於 NAS 組態、如果發生故障、資料 IP 位址會自動在 HA 節點之間移轉。
+
+對於 iSCSI 、 Cloud Volumes ONTAP Reality 使用多重路徑 I/O （ MPIO ）和非對稱邏輯單元存取（ ALUA ）來管理主動最佳化和非最佳化路徑之間的路徑容錯移轉。
+
+
+NOTE: 如需哪些特定主機組態支援 ALUA 的相關資訊、請參閱 http://mysupport.netapp.com/matrix["NetApp 互通性對照表工具"^] 以及主機作業系統的主機公用程式安裝與設定指南。
+
+
+
+== 儲存組態
+
+您可以使用 HA 配對做為主動 - 主動式組態、讓兩個節點都能將資料提供給用戶端、或做為主動 - 被動式組態、被動節點只有在接管主動節點的儲存設備時、才會回應資料要求。
+
+
+
+== HA 限制
+
+下列限制會影響 Cloud Volumes ONTAP Azure 中的功能組合：
+
+* HA 配對支援 Cloud Volumes ONTAP 以支援不含支援功能的標準版、高級版和 BYOL 。不支援 Explore 。
+* 不支援 NFSv4 。支援 NFSv3 。
+* 某些地區不支援 HA 配對。
++
+https://cloud.netapp.com/cloud-volumes-global-regions["請參閱支援的 Azure 地區清單"^]。
+
+
+
+link:task_deploying_otc_azure.html["瞭解如何在 Azure 中部署 HA 系統"]。

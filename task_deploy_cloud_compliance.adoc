@@ -1,0 +1,227 @@
+---
+sidebar: sidebar 
+permalink: task_deploy_cloud_compliance.html 
+keywords: cloud compliance, get started, deploy cloud compliance, outbound internet, endpoints, cloud compliance internet, web browser connectivity, cloud compliance access, privacy, compliance 
+summary: 請完成幾個步驟、在 Cloud Manager 工作區中部署 Cloud Compliance 執行個體。 
+---
+= 部署雲端法規遵循
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+請完成幾個步驟、在 Cloud Manager 工作區中部署 Cloud Compliance 執行個體。
+
+
+
+== 快速入門
+
+請依照下列步驟快速入門、或向下捲動至其餘部分以取得完整詳細資料。
+
+
+
+==== 建立連接器
+
+[role="quick-margin-para"]
+如果您還沒有連接器、請在 Azure 或 AWS 中建立連接器。請參閱 link:task_creating_connectors_aws.html["在 AWS 中建立連接器"] 或 link:task_creating_connectors_azure.html["在 Azure 中建立 Connector"]。
+
+
+
+==== 檢閱先決條件
+
+[role="quick-margin-para"]
+確保您的雲端環境符合先決條件、包括16個vCPU用於Cloud Compliance執行個體、例如傳出網際網路存取、連接器與雲端法規遵循之間透過連接埠80的連線等。 <<Reviewing prerequisites,請參閱完整清單>>。
+
+
+
+==== 部署雲端法規遵循
+
+[role="quick-margin-para"]
+啟動安裝精靈、在Cloud Manager中部署Cloud Compliance執行個體。
+
+
+
+==== 訂閱雲端法規遵循服務
+
+[role="quick-margin-para"]
+Cloud Compliance 在 Cloud Manager 中掃描的前 1 TB 資料是免費的。必須訂閱 AWS 或 Azure Marketplace 、才能在該時間點之後繼續掃描資料。
+
+
+
+== 建立連接器
+
+如果您還沒有連接器、請在 Azure 或 AWS 中建立連接器。請參閱 link:task_creating_connectors_aws.html["在 AWS 中建立連接器"] 或 link:task_creating_connectors_azure.html["在 Azure 中建立 Connector"]。在大多數情況下、您可能會先設定 Connector 、然後才嘗試啟動 Cloud Compliance 、因為大多數情況都是如此 link:concept_connectors.html#when-a-connector-is-required["Cloud Manager 功能需要連接器"]但有時您需要立即設定。
+
+在某些情況下、您必須在 AWS 或 Azure 中使用 Connector 來達到雲端法規遵循。
+
+* 在 Cloud Volumes ONTAP AWS 或 AWS S3 儲存區中掃描資料時、您會在 AWS 中使用連接器。
+* 在 Cloud Volumes ONTAP Azure 或 Azure NetApp Files 以不一樣的方式掃描資料時、您需要使用 Azure 中的連接器。
+* 可使用任一Connector掃描資料庫。
+
+
+如您所見、您可能需要使用某些情況 link:concept_connectors.html#when-to-use-multiple-connectors["多個連接器"]。
+
+
+NOTE: 如果您正在規劃掃描 Azure NetApp Files 功能、則必須確保部署的區域與您想要掃描的磁碟區相同。
+
+
+
+== 檢閱先決條件
+
+在部署 Cloud Compliance 之前、請先檢閱下列先決條件、確定您擁有支援的組態。
+
+啟用傳出網際網路存取:: 雲端法規遵循需要外傳網際網路存取。如果您的虛擬網路使用Proxy伺服器進行網際網路存取、請確定Cloud Compliance執行個體具有傳出網際網路存取權限、以聯絡下列端點。請注意、Cloud Manager會將Cloud Compliance執行個體部署在連接器所在的同一子網路中。
++
+--
+[cols="43,57"]
+|===
+| 端點 | 目的 
+
+
+| \https://cloudmanager.cloud.netapp.com | 與 Cloud Manager 服務（包括 Cloud Central 帳戶）進行通訊。 
+
+
+| \https://netapp-cloud-account.auth0.com \https://auth0.com | 與 NetApp Cloud Central 通訊、以進行集中式使用者驗證。 
+
+
+| \https://cloud-compliance-support-netapp.s3.us-west-2.amazonaws.com \https://hub.docker.com \https://auth.docker.io \https://registry-1.docker.io \https://index.docker.io/ \https://dseasb33srnrn.cloudfront.net/ \https://production.cloudflare.docker.com/ | 提供軟體映像、資訊清單和範本的存取權限。 
+
+
+| \https://kinesis.us-east-1.amazonaws.com | 讓 NetApp 能夠從稽核記錄串流資料。 
+
+
+| \https://cognito-idp.us-east-1.amazonaws.com \https://cognito-identity.us-east-1.amazonaws.com | 讓 Cloud Compliance 能夠存取及下載資訊清單和範本、並傳送記錄和指標。 
+|===
+--
+確保 Cloud Manager 擁有所需的權限:: 確保 Cloud Manager 擁有部署資源的權限、並為 Cloud Compliance 執行個體建立安全群組。您可以在中找到最新的 Cloud Manager 權限 https://mysupport.netapp.com/site/info/cloud-manager-policies["NetApp 提供的原則"^]。
+檢查 vCPU 的限制:: 確保雲端供應商的vCPU限制允許部署16個核心的執行個體。您需要驗證 Cloud Manager 所在區域中相關執行個體系列的 vCPU 限制。
++
+--
+在 AWS 中、執行個體系列是隨需標準執行個體 _ 。在Azure中、執行個體系列是_Standard DSv3系列_。
+
+如需 vCPU 限制的詳細資訊、請參閱下列內容：
+
+* https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-resource-limits.html["AWS 文件： Amazon EC2 服務限制"^]
+* https://docs.microsoft.com/en-us/azure/virtual-machines/linux/quotas["Azure 文件：虛擬機器 vCPU 配額"^]
+
+
+--
+確保 Cloud Manager 能夠存取 Cloud Compliance:: 確保 Connector 與 Cloud Compliance 執行個體之間的連線能力。連接器的安全性群組必須允許進出連接埠 80 的流量進出 Cloud Compliance 執行個體。
++
+--
+此連線可部署 Cloud Compliance 執行個體、並可讓您在 Compliance （法規遵循）索引標籤中檢視資訊。
+
+--
+設定Azure NetApp Files 探索功能:: 在您掃描Volume以尋找Azure NetApp Files link:task_manage_anf.html["必須設定 Cloud Manager 才能探索組態"^]。
+確保雲端法規遵循持續運作:: Cloud Compliance 執行個體必須持續執行、才能持續掃描資料。
+確保網頁瀏覽器連線至 Cloud Compliance:: 啟用 Cloud Compliance 之後、請確保使用者從連線至 Cloud Compliance 執行個體的主機存取 Cloud Manager 介面。
++
+--
+Cloud Compliance 執行個體使用私有 IP 位址、確保索引資料無法存取網際網路。因此、您用來存取 Cloud Manager 的網頁瀏覽器必須連線至該私有 IP 位址。這種連線可能來自於 AWS 或 Azure （例如 VPN ）的直接連線、或來自與 Cloud Compliance 執行個體位於同一個網路內的主機。
+
+--
+
+
+
+
+== 部署 Cloud Compliance 執行個體
+
+您可以為每個Cloud Manager執行個體部署Cloud Compliance執行個體。
+
+.步驟
+. 在Cloud Manager中、按一下* Cloud Compliance *。
+. 按一下*啟動Cloud Compliance *以啟動部署精靈。
++
+image:screenshot_cloud_compliance_deploy_start.png["選取「啟用雲端法規遵循」按鈕以部署雲端法規遵循的快照。"]
+
+. 精靈會在執行部署步驟時顯示進度。如果遇到任何問題、它將會停止並徵求意見。
++
+image:screenshot_cloud_compliance_wizard_start.png["雲端法規遵循精靈的快照、用於部署新執行個體。"]
+
+. 部署執行個體後、按一下 * 繼續進行組態 * 以前往「 _Scan Configuration 」頁面。
+
+
+Cloud Manager 會在雲端供應商中部署 Cloud Compliance 執行個體。
+
+從「掃描組態」頁面中、您可以選取要掃描法規遵循的工作環境、磁碟區和儲存區。您也可以連線至資料庫伺服器、以掃描特定的資料庫架構。在任何這些資料來源上啟動Cloud Compliance。
+
+
+
+== 訂閱雲端法規遵循服務
+
+Cloud Compliance 在 Cloud Manager 工作區中掃描的前 1 TB 資料是免費的。必須訂閱 AWS 或 Azure Marketplace 、才能在該時間點之後繼續掃描資料。
+
+您可以隨時訂閱、而且在資料量超過 1 TB 之前、將不會向您收取費用。您隨時都可以從 Cloud Compliance Dashboard 查看要掃描的資料總量。而且「立即訂閱」按鈕可讓您在準備就緒時輕鬆訂閱。
+
+image:screenshot_compliance_subscribe.png["螢幕快照顯示正在掃描多少資料、以及訂閱服務的「訂閱」按鈕。"]
+
+* 附註： * 如果 Cloud Compliance 提示您訂閱、但您已經訂閱 Azure 、您可能使用舊的 * Cloud Manager* 訂閱、而且需要變更為新的 * NetApp Cloud Manager* 訂閱。請參閱<<Changing to the new Cloud Manager plan in Azure,改用 Azure 中的全新 NetApp Cloud Manager 計畫>> 以取得詳細資料。
+
+這些步驟必須由擁有 _Account Admin_ 角色的使用者完成。
+
+. 在 Cloud Manager 主控台右上角、按一下「設定」圖示、然後選取 * 認證 * 。
++
+image:screenshot_settings_icon.gif["Cloud Manager 右上方橫幅的快照、您可在其中選取「設定」圖示。"]
+
+. 尋找 AWS 執行個體設定檔或 Azure 託管服務身分識別的認證資料。
++
+訂閱必須新增至執行個體設定檔或託管服務識別碼。否則無法充電。
+
++
+如果您已經有訂閱、那麼您就已經設定好了、就不需要做其他事了。
+
++
+image:screenshot_profile_subscription.gif["「認證」頁面的快照、顯示使用中訂閱的執行個體設定檔。"]
+
+. 如果您尚未訂閱、請將游標移至認證上方、然後按一下動作功能表。
+. 按一下 * 新增訂閱 * 。
++
+image:screenshot_add_subscription.gif["認證頁面中功能表的快照。它會顯示一個按鈕、用於新增認證資料的訂閱。"]
+
+. 按一下 * 「 Add Subscription* （新增訂閱 * ）」、按一下 * 「 Continue （繼續）」 * 、然後依照步驟進行
++
+下列影片說明如何將 Marketplace 訂閱與 AWS 訂閱建立關聯：
+
++
+video::video_subscribing_aws.mp4[width=848,height=480]
++
+下列影片說明如何將 Marketplace 訂閱與 Azure 訂閱建立關聯：
+
++
+video::video_subscribing_azure.mp4[width=848,height=480]
+
+
+
+
+== 在 Azure 中改用新的 Cloud Manager 計畫
+
+截至 2020 年 10 月 7 日為止、 Azure Marketplace 訂閱名為 * NetApp Cloud Manager* 的 Cloud Compliance 已新增至雲端法規遵循部門。如果您已訂閱原始 Azure * Cloud Manager* 、將無法使用 Cloud Compliance 。
+
+您必須遵循下列步驟、選取新的* NetApp Cloud Manager*訂閱、然後移除舊的* Cloud Manager*訂閱。
+
+
+NOTE: 如果您現有的訂閱已隨附特殊的私人優惠方案、您必須聯絡 NetApp 、以便我們在包含法規遵循的情況下、發行新的專屬優惠方案。
+
+這些步驟類似於如上所述新增訂閱、但在幾個地方有所不同。
+
+. 在 Cloud Manager 主控台右上角、按一下「設定」圖示、然後選取 * 認證 * 。
+. 尋找您要變更訂閱的 Azure 託管服務身分證明、並將游標暫留在認證上、然後按一下「 * 關聯訂閱 * 」。
++
+隨即顯示您目前的 Marketplace 訂閱詳細資料。
+
+. 按一下 * 「 Add Subscription* （新增訂閱 * ）」、按一下 * 「 Continue （繼續）」 * 、然後依照步驟進行您會重新導向至Azure入口網站、以建立新的訂閱。
+. 請務必選擇「NetApp Cloud Manager*」計畫、以存取「Cloud Compliance」（雲端法規遵循）、而非「Cloud Manager*」。
+. 請瀏覽影片中的步驟、將Marketplace訂閱與Azure訂閱建立關聯：
++
+video::video_subscribing_azure.mp4[width=848,height=480]
+. 返回Cloud Manager、選取新的訂閱、然後按一下* Associat*。
+. 若要驗證您的訂閱是否已變更、請將游標暫留在認證卡上方的「I」號上方。
++
+現在您可以從Azure入口網站取消訂閱舊的訂閱。
+
+. 在Azure入口網站中、前往Software as a Service（SaaS）（軟體即服務（SaaS））、選取訂閱內容、然後按一下* Un訂閱*。
+

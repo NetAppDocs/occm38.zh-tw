@@ -1,0 +1,115 @@
+---
+sidebar: sidebar 
+permalink: task_managing_licenses.html 
+keywords: license, licensing, install, updating license, system license, add system license, adding a system license, byol license, add byol license, update byol license, nlf, license generator, backup license, add backup license, update backup license 
+summary: 新增 Cloud Volumes ONTAP 一個「功能完善」系統授權、以新增額外容量、更新現有的系統授權、以及管理「備份至雲端」的 BYOL 授權。 
+---
+= 管理 BYOL 授權 Cloud Volumes ONTAP 以利執行
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+新增 Cloud Volumes ONTAP 一個「功能完善」系統授權、以新增額外容量、更新現有的系統授權、以及管理「備份至雲端」的 BYOL 授權。
+
+
+
+== 管理系統授權
+
+您可以購買 Cloud Volumes ONTAP 多個適用於某個不含資料的 BYOL 系統授權、以配置超過 368TB 的容量。例如、您可能會購買兩份授權、以配置多達 736 TB 的容量來 Cloud Volumes ONTAP 供參考。或者、您也可以購買四份授權、最高可達 1.4 PB 。
+
+單一節點系統或 HA 配對可購買的授權數量不受限制。
+
+
+
+=== 取得系統授權檔案
+
+在大多數情況下、 Cloud Manager 會使用您的 NetApp 支援網站帳戶自動取得授權檔案。但如果無法、則需要手動上傳授權檔案。如果您沒有授權檔案、可以從 netapp.com 取得。
+
+.步驟
+. 前往 https://register.netapp.com/register/getlicensefile["NetApp 授權檔案產生器"^] 並使用您的 NetApp 支援網站認證登入。
+. 輸入您的密碼、選擇產品、輸入序號、確認您已閱讀並接受隱私權政策、然後按一下 * 提交 * 。
++
+* 範例 *
+
++
+image:screenshot_license_generator.gif["螢幕擷取畫面：顯示填寫的 NetApp 授權檔案產生器網頁範例、包括密碼、產品（ Cloud Volumes ONTAP 適用於 AWS 的 NetApp Eshot BYOL ）和產品序號。"]
+
+. 選擇您要透過電子郵件或直接下載來接收 serialNumber.NLF Json 檔案。
+
+
+
+
+=== 新增系統授權
+
+隨時新增 BYOL 系統授權、為 Cloud Volumes ONTAP 您的 BYOL 系統分配額外的 368TB 容量。
+
+.步驟
+. 在 Cloud Manager 中、開啟 Cloud Volumes ONTAP 「 NetApp BYOL 」工作環境。
+. 按一下功能表圖示、然後按一下 * 授權 * 。
++
+image:screenshot_menu_license.gif["在工作環境中顯示功能表圖示的快照。「授權」選項可讓您上傳授權檔案。"]
+
+. 按一下 * 新增 CVO 系統授權 * 。
++
+image:screenshot_system_license.gif["一份《不實系統授權》的快照 Cloud Volumes ONTAP 、顯示新增系統授權及更新系統授權的按鈕。"]
+
+. 選擇輸入序號或上傳授權檔案。
+. 按一下「 * 新增授權 * 」。
+
+
+Cloud Manager 會將新的授權檔案安裝在 Cloud Volumes ONTAP 更新的作業系統上。
+
+
+
+=== 更新系統授權
+
+當您透過聯絡 NetApp 代表續約 BYOL 訂閱時、 Cloud Manager 會自動從 NetApp 取得新授權、並將其安裝在 Cloud Volumes ONTAP 該系統上。
+
+如果 Cloud Manager 無法透過安全的網際網路連線存取授權檔案、您可以自行取得檔案、然後手動將檔案上傳至 Cloud Manager 。
+
+.步驟
+. 在 Cloud Manager 中、開啟 Cloud Volumes ONTAP 「 NetApp BYOL 」工作環境。
+. 按一下功能表圖示、然後按一下 * 授權 * 。
+. 按一下 * 更新 CVO 系統授權 * 。
++
+image:screenshot_system_license.gif["一份《不實系統授權》的快照 Cloud Volumes ONTAP 、顯示新增系統授權及更新系統授權的按鈕。"]
+
+. 按一下 * 上傳檔案 * 、然後選取授權檔案。
+. 按一下 * 更新授權 * 。
+
+
+Cloud Manager 會更新 Cloud Volumes ONTAP 整個作業系統的授權。
+
+
+
+== 新增及更新備份 BYOL 授權
+
+您可以使用「 BYOL 授權」頁面來新增或更新您的備份 BYOL 授權。
+
+.步驟
+. 在 Cloud Manager 中、開啟 Cloud Volumes ONTAP 「 NetApp BYOL 」工作環境。
+. 按一下功能表圖示、然後按一下 * 授權 * 。
++
+image:screenshot_menu_license.gif["在工作環境中顯示功能表圖示的快照。「授權」選項可讓您上傳授權檔案。"]
+
+. 視您要新增授權或更新現有授權而定、按一下 * 「新增備份授權 * 」或 * 「更新備份授權 * 」。
++
+image:screenshot_backup_byol_license.png["顯示 BYOL 授權頁面的快照、其中包含用於新增和更新備份授權的按鈕"]
+
+. 輸入授權資訊、然後按一下 * 新增授權 * ：
++
+** 如果您有序號、請選取 * 輸入備份 BYOL 序號 * 選項、然後輸入序號。
+** 如果您有備份授權檔案、請選取 * 上傳備份 BYOL 授權 * 選項、然後依照提示附加檔案。
++
+image:screenshot_backup_byol_license_add.png["顯示新增 Backup BYOL 授權頁面的快照。"]
+
+
+
+
+
+Cloud Manager 會新增或更新授權、讓您的 Backup to Cloud 服務處於作用中狀態。

@@ -1,0 +1,68 @@
+---
+sidebar: sidebar 
+permalink: concept_licensing.html 
+keywords: licenses, licensing, byol, license, subscription, renewal, expire, netapp support site, account, credentials, file, license file, upload, nlf, backup to cloud license, byol backup, license for backup to cloud 
+summary: 每 Cloud Volumes ONTAP 個 BYOL 系統都必須安裝有效訂閱的系統授權。Cloud Manager 可為您管理授權、並在授權到期前通知您、藉此簡化程序。BYOL 授權也適用於備份至雲端。 
+---
+= 授權
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+每 Cloud Volumes ONTAP 個 BYOL 系統都必須安裝有效訂閱的系統授權。Cloud Manager 可為您管理授權、並在授權到期前通知您、藉此簡化程序。BYOL 授權也適用於備份至雲端。
+
+
+
+== BYOL 系統授權
+
+您可以購買 Cloud Volumes ONTAP 多個適用於某個不含資料的 BYOL 系統授權、以配置超過 368TB 的容量。例如、您可能會購買兩份授權、以配置多達 736 TB 的容量來 Cloud Volumes ONTAP 供參考。或者、您也可以購買四份授權、最高可達 1.4 PB 。
+
+單一節點系統或 HA 配對可購買的授權數量不受限制。
+
+請注意、磁碟限制可能會讓您無法單獨使用磁碟來達到容量限制。您可以超越磁碟限制 link:concept_data_tiering.html["將非作用中資料分層至物件儲存設備"]。如需磁碟限制的相關資訊、請參閱 https://docs.netapp.com/us-en/cloud-volumes-ontap/["《發行說明》中的儲存限制 Cloud Volumes ONTAP"^]。
+
+
+
+=== 新系統的授權管理
+
+當您建立 BYOL 系統時、 Cloud Manager 會提示您輸入授權的序號和 NetApp Support Site 帳戶。Cloud Manager 使用帳戶從 NetApp 下載授權檔案、並將其安裝在 Cloud Volumes ONTAP 整個作業系統上。
+
+link:task_adding_nss_accounts.html["瞭解如何將 NetApp 支援網站帳戶新增至 Cloud Manager"]。
+
+如果 Cloud Manager 無法透過安全的網際網路連線存取授權檔案、您可以自行取得檔案、然後手動將檔案上傳至 Cloud Manager 。如需相關指示、請參閱 link:task_managing_licenses.html["管理 BYOL 授權 Cloud Volumes ONTAP 以利執行"]。
+
+
+
+=== 授權過期警告
+
+Cloud Manager 會在授權到期前 30 天、以及授權到期時再次發出警告。下圖顯示 30 天到期警告：
+
+image:screenshot_warning.gif["螢幕擷取畫面：顯示 Cloud Volumes ONTAP 包含警告圖示的功能不全的工作環境。圖示表示需要採取行動。"]
+
+您可以選取工作環境來檢閱訊息。
+
+如果您未及時續約授權、 Cloud Volumes ONTAP 則無法自行關閉。如果您重新啟動、它會再次自動關機。
+
+
+NOTE: 透過電子郵件、 SNMP traphost 或使用 EMS （事件管理系統）事件通知的 syslog 伺服器、也可以通知您。 Cloud Volumes ONTAP如需相關指示、請參閱 http://docs.netapp.com/ontap-9/topic/com.netapp.doc.exp-ems/home.html["《 9 EMS 組態快速指南》 ONTAP"^]。
+
+
+
+=== 授權續約
+
+當您透過聯絡 NetApp 代表續約 BYOL 訂閱時、 Cloud Manager 會自動從 NetApp 取得新授權、並將其安裝在 Cloud Volumes ONTAP 該系統上。
+
+如果 Cloud Manager 無法透過安全的網際網路連線存取授權檔案、您可以自行取得檔案、然後手動將檔案上傳至 Cloud Manager 。如需相關指示、請參閱 link:task_managing_licenses.html["管理 BYOL 授權 Cloud Volumes ONTAP 以利執行"]。
+
+
+
+== BYOL 備份授權
+
+BYOL 備份授權可讓您向 NetApp 購買授權、以便在一段時間內使用「備份至雲端」、並獲得最大的備份空間。達到任一限制時、您都需要續約授權。
+
+link:concept_backup_to_cloud.html#cost["深入瞭解 Backup to Cloud BYOL 授權"]。

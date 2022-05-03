@@ -1,0 +1,52 @@
+---
+sidebar: sidebar 
+permalink: task_monitoring_costs.html 
+keywords: cost, costs, storage, compute, savings, aws, aws costs, billing 
+summary: Cloud Manager 可讓您檢視在 Cloud Volumes ONTAP AWS 中執行功能的相關成本。您也可以瞭解使用 NetApp 功能來降低儲存成本、省下多少成本。 
+---
+= 監控 AWS 資源成本
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Cloud Manager 可讓您檢視在 Cloud Volumes ONTAP AWS 中執行功能的相關資源成本。您也可以瞭解使用 NetApp 功能來降低儲存成本、省下多少成本。
+
+當您重新整理頁面時、 Cloud Manager 會更新成本。如需最終成本詳細資料、請參閱 AWS 。
+
+.步驟
+. 確認 Cloud Manager 可從 AWS 取得成本資訊：
++
+.. 確保提供 Cloud Manager 權限的 IAM 原則包括下列動作：
++
+[source, json]
+----
+"ce:GetReservationUtilization",
+"ce:GetDimensionValues",
+"ce:GetCostAndUsage",
+"ce:GetTags"
+----
++
+這些行動包含在最新的中 https://mysupport.netapp.com/site/info/cloud-manager-policies["Cloud Manager 原則"^]。從 NetApp Cloud Central 部署的新系統會自動包含這些權限。
+
+.. https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/activating-tags.html["啟動 * 工作環境 Id* 標籤"^]。
++
+為了追蹤 AWS 成本、 Cloud Manager 會指派成本分配標籤給 Cloud Volumes ONTAP 各個執行個體。建立第一個工作環境之後、請啟動 * 工作環境 Id* 標籤。使用者定義的標記不會出現在 AWS 帳單報告上、除非您在帳單和成本管理主控台中啟動它們。
+
+
+
+. 在「工作環境」頁面上、選取Cloud Volumes ONTAP 一個「運作環境」、然後按一下「*成本*」。
++
+「成本」頁面會顯示目前和過去幾個月的成本、並顯示您每年的 NetApp 節約效益（如果您已啟用 NetApp 的 Volume 節約功能）。
+
++
+下圖顯示成本頁範例：
+
++
+image:screenshot_cost.gif["螢幕擷取畫面：顯示 Cloud Volumes ONTAP 每個月的成本（例如每個實例的成本）。"]
+
+

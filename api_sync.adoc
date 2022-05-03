@@ -1,0 +1,189 @@
+---
+sidebar: sidebar 
+permalink: api_sync.html 
+keywords: api, apis, rest, restful, authorization, getting started, body, header, token, reference, expired token, expires, expired, token expired, list apis, 202, https status code 202, status code 202, id, id field 
+summary: 透過網路 UI 提供的功能、也可透過 RESTful API 取得。 Cloud Sync 
+---
+= 資訊 API Cloud Sync
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+透過網路 UI 提供的功能、也可透過 RESTful API 取得。 Cloud Sync
+
+
+
+== 快速入門
+
+若要開始使用Cloud Sync 此解決方案、您需要取得使用者權杖和Cloud Central帳戶ID。進行 API 呼叫時、您必須將權杖和帳戶 ID 新增至「授權」標頭。
+
+.步驟
+. 從 NetApp Cloud Central 取得使用者權杖。
++
+[source, http]
+----
+POST https://netapp-cloud-account.auth0.com/oauth/token
+Header: Content-Type: application/json
+Body:
+{
+              "username": "<user_email>",
+              "scope": "profile",
+              "audience": "https://api.cloud.netapp.com",
+              "client_id": "UaVhOIXMWQs5i1WdDxauXe5Mqkb34NJQ",
+              "grant_type": "password",
+              "password": "<user_password>"
+}
+----
+. 取得您的 Cloud Central 帳戶 ID 。
++
+[source, http]
+----
+GET https://cloudsync.netapp.com/api/accounts
+Headers: Authorization: Bearer <user_token>
+Content-Type: application/json
+----
++
+此 API 會傳回如下回應：
+
++
+[source, json]
+----
+[
+  {
+    "accountId": "account-JeL97Ry3",
+    "name": "Test"
+  }
+]
+----
+. 在每個 API 呼叫的「授權」標頭中新增使用者權杖和帳戶 ID 。
++
+* 範例 *
+
++
+下列範例顯示在 Microsoft Azure 中建立資料代理程式的 API 呼叫。您只需將 <user_token （使用者權杖） > 和 <AccountID> 替換成您在先前步驟中取得的權杖和 ID 即可。
+
++
+[source, http]
+----
+POST https://cloudsync.netapp.com/api/data-brokers
+Headers: Authorization: Bearer <user_token>
+Content-Type: application/json
+x-account-id: <accountId>
+Body: { "name": "databroker1", "type": "AZURE" }
+----
+
+
+.權杖過期時該怎麼辦？
+****
+NetApp Cloud Central 的使用者權杖有到期日。若要重新整理權杖、您需要再次從步驟 1 呼叫 API 。
+
+API 回應包含「 Expire_in 」欄位、指出權杖過期的時間。
+
+****
+
+
+== API 參考
+
+如需每 Cloud Sync 個版本的資料、請參閱 https://cloudsync.netapp.com/docs/["NetApp Cloud Central"^]。
+
+
+
+== 使用清單 API
+
+清單 API 為非同步 API 、因此不會立即傳回結果（例如：「 Get /data-kers/{id}/list-nfs_export-folders 」和「 Get /data-ker/{id}/list-s3-buckets 」）。伺服器唯一的回應是 HTTP 狀態 202 。若要取得實際結果、您必須使用「 Get /Messages / Client （取得 / 訊息 / 用戶端）」 API 。
+
+.步驟
+. 呼叫您要使用的清單 API 。
+. 使用「 Get /Messages / Client （取得 / 訊息 / 用戶端）」 API 來檢視作業結果。
+. 使用相同的API、將它附加到您剛收到的ID：「Get \http://cloudsync.netapp.com/api/messages/client?last=<id_from_step_2>`」
++
+請注意、每次您呼叫「 Get /Messages / Client （取得 / 訊息 / 用戶端）」 API 時、 ID 都會變更。
+
+
+
+* 範例 *
+
+當您呼叫「 list-s3-buckets 」 API 時、不會立即傳回結果：
+
+[source, http]
+----
+GET http://cloudsync.netapp.com/api/data-brokers/<data-broker-id>/list-s3-buckets
+Headers: Authorization: Bearer <user_token>
+Content-Type: application/json
+x-account-id: <accountId>
+----
+結果是 HTTP 狀態代碼 202 、表示訊息已被接受、但尚未處理。
+
+若要取得作業結果、您需要使用下列 API ：
+
+[source, http]
+----
+GET http://cloudsync.netapp.com/api/messages/client
+Headers: Authorization: Bearer <user_token>
+Content-Type: application/json
+x-account-id: <accountId>
+----
+結果是一個陣列、其中一個物件包含 ID 欄位。ID 欄位代表伺服器傳送的最後一則訊息。例如：
+
+[source, json]
+----
+[
+    {
+        "header": {
+            "requestId": "init",
+            "clientId": "init",
+            "agentId": "init"
+        },
+        "payload": {
+            "init": {}
+        },
+        "id": "5801"
+    }
+]
+----
+您現在可以使用剛收到的 ID 進行下列 API 呼叫：
+
+[source, http]
+----
+GET http://cloudsync.netapp.com/api/messages/client?last=<id_from_step_2>
+Headers: Authorization: Bearer <user_token>
+Content-Type: application/json
+x-account-id: <accountId>
+----
+結果是一組訊息。每個訊息內部都有一個有效負載物件、其中包含作業名稱（做為金鑰）及其結果（做為值）。例如：
+
+[source, json]
+----
+[
+    {
+        "payload": {
+            "list-s3-buckets": [
+                {
+                    "tags": [
+                        {
+                            "Value": "100$",
+                            "Key": "price"
+                        }
+                    ],
+                    "region": {
+                        "displayName": "US West (Oregon)",
+                        "name": "us-west-2"
+                    },
+                    "name": "small"
+                }
+            ]
+        },
+        "header": {
+            "requestId": "f687ac55-2f0c-40e3-9fa6-57fb8c4094a3",
+            "clientId": "5beb032f548e6e35f4ed1ba9",
+            "agentId": "5bed61f4489fb04e34a9aac6"
+        },
+        "id": "5802"
+    }
+]
+----

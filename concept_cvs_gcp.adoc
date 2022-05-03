@@ -1,0 +1,76 @@
+---
+sidebar: sidebar 
+permalink: concept_cvs_gcp.html 
+keywords: cloud volumes service for gcp, google cloud, cloud volumes, cloud volumes service subscription 
+summary: 適用於 Google Cloud 的 NetApp Cloud Volumes Service 解決方案可讓您快速新增多重傳輸協定工作負載、以及建置及部署 Windows 和 UNIX 應用程式。 
+---
+= 深入瞭 Cloud Volumes Service 解適用於 Google Cloud 的功能
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+適用於 Google Cloud 的 NetApp Cloud Volumes Service 解決方案可讓您快速新增多重傳輸協定工作負載、以及建置及部署 Windows 和 UNIX 應用程式。
+
+
+
+== 主要特色：
+
+* 在內部部署與 Google Cloud 之間移轉資料。
+* 在數秒內配置 1 至 100 TiB 的磁碟區。
+* 多重傳輸協定支援（您可以建立 NFS 或 SMB Volume ）。
+* 利用自動化且有效率的快照來保護資料。
+* 利用快速複製來加速應用程式開發。
+
+
+
+
+== 成本
+
+由適用於 Google Cloud 的 NetApp 所建立的 Volume Cloud Volumes Service 、將由您訂閱服務的費用支付、而非透過 Cloud Manager 。
+
+link:https://console.cloud.google.com/marketplace/product/endpoints/cloudvolumesgcp-api.netapp.com?q=cloud%20volumes%20service["檢視定價"^]
+
+從 Cloud Volumes Service Cloud Manager 探索適用於 Google Cloud 的地區或磁碟區不需付費。
+
+
+
+== 支援的地區
+
+link:https://cloud.google.com/solutions/partners/netapp-cloud-volumes/regional-availability["檢視支援的 Google Cloud 地區。"^]
+
+
+
+== 開始之前
+
+Cloud Manager 可探索 Cloud Volumes Service GCP 訂閱和 Volume 的現有功能。請參閱 https://cloud.google.com/solutions/partners/netapp-cloud-volumes/["NetApp Cloud Volumes Service for Google Cloud 文件"^] 如果您尚未設定訂閱、
+
+
+
+== 取得協助
+
+請使用 Cloud Manager 聊天室、瞭解 Cloud Volumes Service Cloud Manager 中有關功能不全的常見問題。
+
+如需 Cloud Volumes Service 有關適用於 Google Cloud 的一般問題、請寄送電子郵件至 NetApp 的 Google Cloud Team ： gcinfo@netapp.com 。
+
+針對雲端磁碟區的相關技術問題、您可以從 Google Cloud Console 建立技術支援案例。請參閱 link:https://cloud.google.com/solutions/partners/netapp-cloud-volumes/support["取得支援"^] 以取得詳細資料。
+
+
+
+== 限制
+
+* Cloud Manager 不支援 Cloud Volumes Service 使用支援在工作環境之間進行資料複寫的功能。
+* 不 Cloud Volumes Service 支援從 Cloud Manager 刪除您的 for Google Cloud 訂閱。您只能透過 Google Cloud Console 執行此作業。
+
+
+
+
+== 相關連結
+
+* https://cloud.netapp.com/cloud-volumes-service-for-gcp["NetApp Cloud Central ： Cloud Volumes Service 適用於 Google Cloud 的解決方案"^]
+* https://cloud.google.com/solutions/partners/netapp-cloud-volumes/["NetApp Cloud Volumes Service for Google Cloud 文件"^]
+

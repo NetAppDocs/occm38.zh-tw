@@ -1,0 +1,271 @@
+---
+sidebar: sidebar 
+permalink: task_manage_cvs_gcp.html 
+keywords: cloud volumes service for gcp, google cloud, cloud volumes, create cloud volumes, delete cloud volumes, discover region, service level, allowed clients, create snapshots 
+summary: Cloud Manager 可讓您根據 Cloud Volumes Service 您的需求來建立雲端磁碟區、以供 Google Cloud 訂閱。您也可以編輯磁碟區的特定屬性、取得相關的掛載命令、建立快照複本、以及刪除雲端磁碟區。 
+---
+= 建立及管理適用於 Cloud Volumes Service Google Cloud 的 Volume
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Cloud Manager 可讓您根據建立雲端磁碟區 link:https://console.cloud.google.com/marketplace/product/endpoints/cloudvolumesgcp-api.netapp.com?q=cloud%20volumes%20service["適用於 Google Cloud Cloud Volumes Service"^] 訂購：您也可以編輯磁碟區的特定屬性、取得相關的掛載命令、建立快照複本、以及刪除雲端磁碟區。
+
+
+
+== 建立雲端磁碟區
+
+您可以在 Cloud Volumes Service Google Cloud 的全新或現有版本中建立 NFS 或 SMB Volume 。雲端磁碟區目前支援適用於 Linux 和 UNIX 用戶端的 NFSv3 和 NFSv4.1 、以及適用於 Windows 用戶端的 SMB 3.x 。
+
+.開始之前
+* 如果您想在 GCP 中使用 SMB 、則必須設定 DNS 和 Active Directory 。
+* 規劃建立 SMB Volume 時、您必須擁有可連線的 Windows Active Directory 伺服器。建立磁碟區時、您將輸入此資訊。此外、請確定管理使用者能夠在指定的組織單位（ OU ）路徑中建立機器帳戶。
+
+
+.步驟
+. 選取工作環境、然後按一下 * 新增 Volume * 。
+. 在「詳細資料與位置」頁面中、輸入有關磁碟區的詳細資料：
++
+.. 輸入磁碟區名稱。
+.. 指定 1 TiB （ 1024 GiB ）到 100 TiB 範圍內的大小。
++
+link:https://cloud.google.com/solutions/partners/netapp-cloud-volumes/selecting-the-appropriate-service-level-and-allocated-capacity-for-netapp-cloud-volumes-service#allocated_capacity["深入瞭解已分配容量"^]。
+
+.. 指定服務層級： Standard 、 Premium 或 Extreme 。
++
+link:https://cloud.google.com/solutions/partners/netapp-cloud-volumes/selecting-the-appropriate-service-level-and-allocated-capacity-for-netapp-cloud-volumes-service#service_levels["深入瞭解服務層級"^]。
+
+.. 選取 Google Cloud 區域。
+.. 選取可存取磁碟區的 VPC 網路。請注意、 VPC 無法在建立磁碟區之後進行變更或編輯。
+.. 按一下 * 繼續 * 。
++
+image:screenshot_cvs_gcp_vol_details_page.png["提供名稱、大小和服務層級的 Volume 詳細資料頁面快照"]
+
+
+
+. 在「傳輸協定」頁面中、選取 NFS 或 SMB 、然後定義詳細資料。NFS 和 SMB 的必要項目如下所示。
+. NFS ：
++
+.. 在 Volume Path （磁碟區路徑）欄位中、指定掛載磁碟區時所看到的磁碟區匯出名稱。
+.. 視您的需求而定、選取 NFSv3 、 NFSv4.1 或兩者。
+.. 您也可以建立匯出原則、以識別可存取磁碟區的用戶端。指定：
++
+*** 使用 IP 位址或無類別網域間路由（ CIDR ）的允許用戶端。
+*** 讀寫或唯讀的存取權限。
+*** 存取傳輸協定（若 Volume 允許 NFSv3 和 NFSSv4.1 存取）、則為使用者所使用的傳輸協定。
+*** 若要定義其他匯出原則規則、請按一下「 * + 新增匯出原則規則 * 」。
++
+下圖顯示為 NFS 傳輸協定填寫的 Volume （磁碟區）頁面：
+
++
+image:screenshot_cvs_gcp_nfs_details.png["快照顯示已填入 NFS Cloud Volumes Service S大批 量的 Volume 頁面。"]
+
+
+
+
+
+. 中小企業：
++
+.. 在 Volume Path （磁碟區路徑）欄位中、指定掛載磁碟區時所看到的磁碟區匯出名稱、然後按一下 * Continue （繼續） * 。
+.. 如果已設定 Active Directory 、您會看到組態。如果是第一個要設定的磁碟區、但尚未設定 Active Directory 、您可以在「 SMB 連線設定」頁面中啟用 SMB 工作階段加密：
++
+[cols="25,75"]
+|===
+| 欄位 | 說明 
+
+
+| DNS 主要 IP 位址 | 提供 SMB 伺服器名稱解析的 DNS 伺服器 IP 位址。當參考多個伺服器時、請使用逗號分隔 IP 位址、例如 172.31.25.223 、 172.31.2.74 。 
+
+
+| 要加入的 Active Directory 網域 | 您要 SMB 伺服器加入之 Active Directory （ AD ）網域的 FQDN 。 
+
+
+| SMB 伺服器的 NetBios 名稱 | 要建立之 SMB 伺服器的 NetBios 名稱。 
+
+
+| 授權加入網域的認證資料 | 具有足夠權限的 Windows 帳戶名稱和密碼、可將電腦新增至 AD 網域內的指定組織單位（ OU ）。 
+
+
+| 組織單位 | AD 網域中與 SMB 伺服器相關聯的組織單位。預設值為「 CN= 電腦」、用於連線至您自己的 Windows Active Directory 伺服器。 
+|===
++
+下圖顯示 SMB 傳輸協定的「 Volume 」（磁碟區）頁面：
+
++
+image:screenshot_cvs_smb_details.png["快照顯示 SMB Cloud Volumes Service 版的 Volume 頁面已填滿。"]
+
+
+
+. 按一下 * 繼續 * 。
+. 如果您要根據現有磁碟區的快照建立磁碟區、請從 Snapshot Name （快照名稱）下拉式清單中選取快照。否則請按一下 * 繼續 * 。
+. 在「 Snapshot Policy 」（ Snapshot 原則）頁面中、 Cloud Volumes Service 您可以根據排程來啟用「支援功能」、以建立磁碟區的 Snapshot 複本。您現在可以將選取元移至右側來完成此作業、或稍後再編輯磁碟區以定義快照原則。
++
+請參閱 link:task_manage_cloud_volumes_gcp_snapshots.html#create_or_modify_a_snapshot_policy["建立快照原則"^] 以取得有關 Snapshot 功能的詳細資訊。
+
+. 按一下 * 新增 Volume * 。
+
+
+新磁碟區會新增至工作環境。
+
+繼續 link:task_manage_cvs_gcp.html#mount-the-cloud-volume["掛載雲端 Volume"]。
+
+
+
+== 掛載雲端磁碟區
+
+從 Cloud Manager 存取掛載指示、以便將磁碟區掛載至主機。
+
+* 附註： * 請使用您用戶端所支援的反白傳輸協定 / 方言。
+
+.步驟
+. 開啟工作環境。
+. 將游標移到磁碟區上、然後按一下 * 掛載磁碟區 * 。
++
+NFS 和 SMB 磁碟區會顯示該傳輸協定的掛載指示。
+
+. 將游標暫留在命令上、然後將其複製到剪貼簿、以簡化此程序。只要在命令結尾處新增目的地目錄 / 掛載點即可。
++
+* NFS 範例： *
+
++
+image:screenshot_cvs_aws_nfs_mount.png["NFS 磁碟區的掛載指示"]
+
++
+「 rsize 」和「 wsize 」選項所定義的最大 I/O 大小為 1048576 、不過對於大多數使用案例、建議使用 65536 。
+
++
+請注意、 Linux 用戶端預設為 NFSv4.1 、除非使用「 VERRS=<NFS_VERON>> 」選項指定版本。
+
++
+* 中小企業範例： *
+
++
+image:screenshot_cvs_aws_smb_mount.png["SMB 磁碟區的掛載指示"]
+
+. 依照執行個體的掛載指示來對應網路磁碟機。
++
+完成掛載指示中的步驟之後、您已成功將雲端磁碟區掛載至 GCP 執行個體。
+
+
+
+
+
+== 管理現有磁碟區
+
+您可以在儲存需求變更時管理現有的磁碟區。您可以檢視、編輯、還原及刪除磁碟區。
+
+.步驟
+. 開啟工作環境。
+. 將游標暫留在磁碟區上。
++
+image:screenshot_cvs_gcp_volume_hover_menu.png["Volume Hover 功能表的快照、可讓您執行 Volume 工作"]
+
+. 管理您的磁碟區：
++
+[cols="30,70"]
+|===
+| 工作 | 行動 
+
+
+| 檢視磁碟區的相關資訊 | 按一下 * 資訊 * 。 
+
+
+| 編輯磁碟區（包括 Snapshot 原則）  a| 
+.. 按一下 * 編輯 * 。
+.. 修改磁碟區的內容、然後按一下 * 更新 * 。
+
+
+
+
+| 取得 NFS 或 SMB 掛載命令  a| 
+.. 按一下 * 掛載磁碟區 * 。
+.. 按一下 * 複製 * 以複製命令。
+
+
+
+
+| 隨需建立 Snapshot 複本  a| 
+.. 按一下 * 建立 Snapshot 複本 * 。
+.. 視需要變更名稱、然後按一下「 * 建立 * 」。
+
+
+
+
+| 將磁碟區更換為 Snapshot 複本的內容  a| 
+.. 按一下 * 「將磁碟區還原為快照 * 」。
+.. 選取 Snapshot 複本、然後按一下 * 還原 * 。
+
+
+
+
+| 刪除 Snapshot 複本  a| 
+.. 按一下 * 刪除 Snapshot 複本 * 。
+.. 選取快照、然後按一下 * 刪除 * 。
+.. 當系統提示您確認時、請再次按一下 * 刪除 * 。
+
+
+
+
+| 刪除 Volume  a| 
+.. 從所有用戶端卸載 Volume ：
++
+*** 在 Linux 用戶端上、請使用「 umount 」命令。
+*** 在 Windows 用戶端上、按一下 * 中斷網路磁碟機 * 。
+
+
+.. 選取磁碟區、然後按一下 * 刪除 * 。
+.. 再按一下 * 刪除 * 以確認。
+
+
+|===
+
+
+
+
+== 從 Cloud Volumes Service Cloud Manager 移除
+
+您可以從 Cloud Volumes Service Cloud Manager 移除適用於 Google Cloud 訂閱的功能、以及所有現有的磁碟區。磁碟區不會刪除、只會從 Cloud Manager 介面移除。
+
+.步驟
+. 開啟工作環境。
+. 按一下 image:screenshot_gallery_options.gif[""] 按一下頁面頂端的按鈕、然後按一下「 * 移除 Cloud Volumes Service 此功能 * 」。
+. 在確認對話方塊中、按一下 * 移除 * 。
+
+
+
+
+== 管理 Active Directory 組態
+
+如果您變更 DNS 伺服器或 Active Directory 網域、則需要修改 Cloud Volumes Services 中的 SMB 伺服器、以便伺服器繼續為用戶端提供儲存設備。
+
+.步驟
+. 開啟工作環境。
+. 按一下 image:screenshot_gallery_options.gif[""] 按鈕、然後按一下 * 管理 Active Directory * 。如果未設定 Active Directory 、您可以立即新增一個 Active Directory 。如果已設定、您可以使用修改或刪除設定 image:screenshot_gallery_options.gif[""] 按鈕。
+. 指定 SMB 伺服器的設定：
++
+[cols="25,75"]
+|===
+| 欄位 | 說明 
+
+
+| DNS 主要 IP 位址 | 提供 SMB 伺服器名稱解析的 DNS 伺服器 IP 位址。當參考多個伺服器時、請使用逗號分隔 IP 位址、例如 172.31.25.223 、 172.31.2.74 。 
+
+
+| 要加入的 Active Directory 網域 | 您要 SMB 伺服器加入之 Active Directory （ AD ）網域的 FQDN 。 
+
+
+| SMB 伺服器的 NetBios 名稱 | 要建立之 SMB 伺服器的 NetBios 名稱。 
+
+
+| 授權加入網域的認證資料 | 具有足夠權限的 Windows 帳戶名稱和密碼、可將電腦新增至 AD 網域內的指定組織單位（ OU ）。 
+
+
+| 組織單位 | AD 網域中與 SMB 伺服器相關聯的組織單位。預設值為「 CN= 電腦」、用於連線至您自己的 Windows Active Directory 伺服器。 
+|===
+. 按一下「 * 儲存 * 」以儲存您的設定。
+

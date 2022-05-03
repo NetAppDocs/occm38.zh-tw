@@ -1,0 +1,86 @@
+---
+sidebar: sidebar 
+permalink: reference_azure_support.html 
+keywords: microsoft azure, azure, hot, access tier, cold, regions 
+summary: 雲端分層可支援熱存取層和大部分地區。 
+---
+= 支援的 Azure Blob 存取層級和地區
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+雲端分層支援 _hot_ 存取層和大多數地區。
+
+
+
+== 支援的 Azure Blob 存取層
+
+當您設定資料分層至 Azure 時、 Cloud Tiering 會自動使用 _hot_ 存取層來處理您的非使用中資料。
+
+
+
+== 支援的 Azure 地區
+
+雲端分層支援下列 Azure 地區。
+
+
+
+=== 非洲
+
+* 南非北部
+
+
+
+
+=== 亞太地區
+
+* 澳洲東部
+* 澳洲東南部
+* 東南亞
+* 日本東部
+* 日本西部
+* 韓國中央
+* 南韓
+* 東南亞
+
+
+
+
+=== 歐洲
+
+* 法國中部
+* 德國中部
+* 德國東北部
+* 北歐洲
+* 英國南方
+* 英國西部
+* 西歐
+
+
+
+
+=== 北美地區
+
+* 加拿大中部
+* 加拿大東部
+* 美國中部
+* 美國東部
+* 美國東部 2.
+* 美國中北部
+* 美國中南部
+* 美國西部
+* 美國西部 2.
+* 美國中西部
+
+
+
+
+=== 南美洲
+
+* 巴西南方
+

@@ -1,0 +1,176 @@
+---
+sidebar: sidebar 
+permalink: reference_key_changes.html 
+keywords: 'what"s new, key changes, saas, accounts, workspaces, users, connectors, endpoints, urls, permissions, permission changes' 
+summary: 本頁重點介紹 Cloud Manager 中的 _Important _ 變更、可協助您在我們推出新的增強功能時使用此服務。您應該繼續閱讀「新增功能」頁面、以瞭解所有新功能和增強功能。 
+---
+= Cloud Manager 的重要變更
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+本頁重點介紹 Cloud Manager 的重要變更、可協助您在我們推出新的增強功能時使用本服務。您應該繼續閱讀 link:reference_new_occm.html["新增功能"] 頁面、瞭解所有新功能與增強功能。
+
+
+
+== SaaS 變更
+
+我們已推出 Cloud Manager 的軟體即服務體驗。這項全新體驗讓您更容易使用 Cloud Manager 、並讓我們提供額外功能來管理混合雲基礎架構。
+
+* link:concept_saas.html["Cloud Manager 移轉至 SaaS"]
+* link:concept_overview.html["瞭解 Cloud Manager 的運作方式"]
+
+
+
+
+== 機器類型變更
+
+為了確保 Cloud Manager 的新功能和即將推出的功能有足夠的可用資源、我們將所需的最低執行個體、 VM 和機器類型變更如下：
+
+* AWS ： T3.xlarge
+* Azure ： DS3 v2
+* GCP ： NA-Standard-4
+
+
+當您升級機器類型時、您將可存取全新 Kubernetes 體驗、全域檔案快取、監控等功能。
+
+這些預設大小是支援的最小值 link:reference_cloud_mgr_reqs.html["根據 CPU 和 RAM 需求"]。
+
+Cloud Manager 會提示您變更 Connector 機器類型的指示。
+
+
+
+== 帳戶設定
+
+我們推出 Cloud Central 帳戶來提供多租戶共享、協助您在隔離的工作區中組織使用者和資源、以及管理連接器和訂閱的存取。
+
+* link:concept_cloud_central_accounts.html["深入瞭解 Cloud Central 帳戶：使用者、工作區、連接器及訂閱"]
+* link:task_setting_up_cloud_central_accounts.html["瞭解如何開始使用您的帳戶"]
+* link:task_managing_cloud_central_accounts.html["瞭解如何在設定帳戶後進行管理"]
+
+
+
+
+== 新權限
+
+Cloud Manager 偶爾會需要額外的雲端供應商權限、因為我們會推出新功能和增強功能。本節說明目前所需的新權限。
+
+您可以在上找到最新的權限清單 https://mysupport.netapp.com/site/info/cloud-manager-policies["Cloud Manager 原則頁面"^]。
+
+
+
+=== AWS
+
+從 3.8.1 版開始、使用 Backup to Cloud 搭配 Cloud Volumes ONTAP 使用時、必須具備下列權限。 link:task_backup_to_s3.html["深入瞭解"]。
+
+[source, json]
+----
+{
+            "Sid": "backupPolicy",
+            "Effect": "Allow",
+            "Action": [
+                "s3:DeleteBucket",
+                "s3:GetLifecycleConfiguration",
+                "s3:PutLifecycleConfiguration",
+                "s3:PutBucketTagging",
+                "s3:ListBucketVersions",
+                "s3:GetObject",
+                "s3:ListBucket",
+                "s3:ListAllMyBuckets",
+                "s3:GetBucketTagging",
+                "s3:GetBucketLocation",
+                "s3:GetBucketPolicyStatus",
+                "s3:GetBucketPublicAccessBlock",
+                "s3:GetBucketAcl",
+                "s3:GetBucketPolicy",
+                "s3:PutBucketPublicAccessBlock"
+            ],
+            "Resource": [
+                "arn:aws:s3:::netapp-backup-*"
+            ]
+        },
+----
+
+
+=== Azure
+
+* 為了避免 Azure 部署失敗、請確定 Azure 中的 Cloud Manager 原則包含下列權限：
++
+[source, json]
+----
+"Microsoft.Resources/deployments/operationStatuses/read"
+----
+* 從 3.8.7 版開始、您必須具備下列權限、 Cloud Volumes ONTAP 才能使用其他帳戶的外部金鑰、在單一節點的整套系統上加密 Azure 託管磁碟。 link:reference_new_occm.html#cloud-volumes-ontap-enhancements["深入瞭解"]。
++
+[source, json]
+----
+"Microsoft.Compute/diskEncryptionSets/read"
+----
+* 若要在 Cloud Volumes ONTAP 支援功能上啟用「全域檔案快取」、必須具備下列權限。 link:concept_gfc.html["深入瞭解"]。
++
+[source, json]
+----
+"Microsoft.Resources/deployments/operationStatuses/read",
+"Microsoft.Insights/Metrics/Read",
+"Microsoft.Compute/virtualMachines/extensions/write",
+"Microsoft.Compute/virtualMachines/extensions/read",
+"Microsoft.Compute/virtualMachines/extensions/delete",
+"Microsoft.Compute/virtualMachines/delete",
+"Microsoft.Network/networkInterfaces/delete",
+"Microsoft.Network/networkSecurityGroups/delete",
+"Microsoft.Resources/deployments/delete",
+----
+
+
+
+
+=== GCP
+
+
+
+==== Kubernetes 管理的新權限
+
+從3.8.8版本開始、Connector的服務帳戶需要下列權限、才能探索及管理在Google Kubernetes Engine（GKE）中執行的Kubernetes叢集：
+
+[source, yaml]
+----
+- container.*
+----
+
+
+==== 資料分層的新權限
+
+從3.8版開始、使用服務帳戶進行資料分層時、必須具備下列權限。 link:reference_new_occm.html#data-tiering-enhancements-in-gcp["深入瞭解"]。
+
+[source, yaml]
+----
+- storage.buckets.update
+- compute.instances.setServiceAccount
+- iam.serviceAccounts.getIamPolicy
+- iam.serviceAccounts.list
+----
+
+
+== 新的端點
+
+連接器需要存取傳出網際網路、才能管理公有雲環境中的資源和程序。本節說明目前所需的新端點。
+
+您可以找到 link:reference_networking.html["您可在此處從網頁瀏覽器存取完整的端點清單"] 和 link:reference_networking_cloud_manager.html#outbound-internet-access["連接器存取的完整端點清單、請參閱此處"]。
+
+* 使用者必須透過網頁瀏覽器存取 Cloud Manager 、方法是聯絡下列端點：
++
+\https://cloudmanager.netapp.com
+
+* 連接器需要存取下列端點、才能取得 Docker 基礎架構容器元件的軟體映像：
++
+\https://cloudmanagerinfraprod.azurecr.io
+
++
+確保您的防火牆能夠從 Connector 存取此端點。
+
+

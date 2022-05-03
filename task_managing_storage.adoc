@@ -1,0 +1,360 @@
+---
+sidebar: sidebar 
+permalink: task_managing_storage.html 
+keywords: volumes, aggregates, managing, cloning, editing, CIFS server, edit, flexclone, snapshot copy, restore, mount, tier, delete, advanced allocation, disks, cifs setup, DNS, active directory, AD, domain, NetBIOS, identify, move, capacity, action required, clone, snapshot copies, restoring, disk type, add disk, change disk, vol move, volume move, move a volume, volume move slow, volume move performance 
+summary: Cloud Manager 可讓您管理磁碟區、集合體及 CIFS 伺服器。它也會提示您移動磁碟區、以避免發生容量問題。 
+---
+= 管理現有儲存設備
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Cloud Manager 可讓您管理磁碟區、集合體及 CIFS 伺服器。它也會提示您移動磁碟區、以避免發生容量問題。
+
+
+
+== 管理現有磁碟區
+
+您可以在儲存需求變更時管理現有的磁碟區。您可以檢視、編輯、複製、還原及刪除磁碟區。
+
+.步驟
+. 在「工作環境」頁面上、按兩下Cloud Volumes ONTAP 您要管理磁碟區的功能區環境。
+. 管理您的磁碟區：
++
+[cols="30,70"]
+|===
+| 工作 | 行動 
+
+
+| 檢視磁碟區的相關資訊 | 選取磁碟區、然後按一下「 * 資訊 * 」。 
+
+
+| 編輯磁碟區（僅限讀寫磁碟區）  a| 
+.. 選取磁碟區、然後按一下 * 編輯 * 。
+.. 修改磁碟區的 Snapshot 原則、 NFS 傳輸協定版本、 NFS 存取控制清單或共用權限、然後按一下 * 更新 * 。
+
+
+
+NOTE: 如果您需要自訂 Snapshot 原則、可以使用 System Manager 來建立。
+
+
+
+| 複製磁碟區  a| 
+.. 選取磁碟區、然後按一下 * Clone （複製） * 。
+.. 視需要修改複本名稱、然後按一下 * Clone （複製） * 。
+
+
+此程序會建立 FlexClone Volume 。FlexClone Volume 是可寫入的時間點複本、空間效率極高、因為它會使用少量的空間作為中繼資料、然後只會在資料變更或新增時耗用額外空間。
+
+若要深入瞭解 FlexClone Volume 、請參閱 http://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-vsmg/home.html["《 9 邏輯儲存管理指南》 ONTAP"^]。
+
+
+
+| 將資料從 Snapshot 複本還原至新的 Volume  a| 
+.. 選取磁碟區、然後按一下 * 從 Snapshot 複本還原 * 。
+.. 選取 Snapshot 複本、輸入新磁碟區的名稱、然後按一下 * 還原 * 。
+
+
+
+
+| 隨需建立 Snapshot 複本  a| 
+.. 選取一個磁碟區、然後按一下 * 「 Create a Snapshot Copy* （建立 Snapshot 複本 * ）」。
+.. 視需要變更名稱、然後按一下「 * 建立 * 」。
+
+
+
+
+| 取得 NFS 掛載命令  a| 
+.. 選取磁碟區、然後按一下 * 掛載 Command* 。
+.. 按一下 * 複本 * 。
+
+
+
+
+| 檢視 iSCSI 磁碟區的目標 IQN  a| 
+.. 選取磁碟區、然後按一下「 * 目標 IQN* 」。
+.. 按一下 * 複本 * 。
+.. link:task_provisioning_storage.html#connecting-a-lun-to-a-host["使用 IQN 從主機連線至 LUN"]。
+
+
+
+
+| 變更基礎磁碟類型  a| 
+.. 選取磁碟區、然後按一下 * 變更磁碟類型與分層原則 * 。
+.. 選取磁碟類型、然後按一下 * 變更 * 。
+
+
+
+NOTE: Cloud Manager 會將磁碟區移至使用所選磁碟類型的現有 Aggregate 、或為磁碟區建立新的 Aggregate 。
+
+
+
+| 變更分層原則  a| 
+.. 選取磁碟區、然後按一下 * 變更磁碟類型與分層原則 * 。
+.. 按一下 * 編輯原則 * 。
+.. 選取不同的原則、然後按一下 * 變更 * 。
+
+
+
+NOTE: Cloud Manager 會將磁碟區移至現有的 Aggregate 、該集合體使用所選的磁碟類型進行分層、或是為磁碟區建立新的 Aggregate 。
+
+
+
+| 刪除 Volume  a| 
+.. 選取磁碟區、然後按一下 * 刪除 * 。
+.. 再按一下 * 刪除 * 以確認。
+
+
+|===
+
+
+
+
+== 管理現有的集合體
+
+新增磁碟、檢視有關集合體的資訊、以及刪除這些磁碟來管理集合體。
+
+如果您要刪除 Aggregate 、則必須先刪除 Aggregate 中的磁碟區。
+
+如果 Aggregate 空間不足、您可以使用 OnCommand 「系統管理程式」將 Volume 移至其他 Aggregate 。
+
+.步驟
+. 在「工作環境」頁面上、按兩下Cloud Volumes ONTAP 您要管理集合體的功能不全環境。
+. 按一下功能表圖示、然後按一下 * 進階 > 進階分配 * 。
+. 管理您的 Aggregate ：
++
+[cols="30,70"]
+|===
+| 工作 | 行動 
+
+
+| 檢視有關 Aggregate 的資訊 | 選取一個 Aggregate 、然後按一下「 * 資訊 * 」。 
+
+
+| 在特定 Aggregate 上建立磁碟區 | 選取一個 Aggregate 、然後按一下「 * 建立 Volume * 」。 
+
+
+| 將磁碟新增至 Aggregate  a| 
+.. 選取一個 Aggregate 、然後按一下 * 新增 AWS disks* 或 * 新增 Azure disks* 。
+.. 選取您要新增的磁碟數目、然後按一下「 * 新增 * 」。
++
+
+TIP: 集合體中的所有磁碟大小必須相同。
+
+
+
+
+
+| 刪除 Aggregate  a| 
+.. 選取不包含任何磁碟區的 Aggregate 、然後按一下 * 刪除 * 。
+.. 再按一下 * 刪除 * 以確認。
+
+
+|===
+
+
+
+
+== 修改 CIFS 伺服器
+
+如果您變更 DNS 伺服器或 Active Directory 網域、您需要在 Cloud Volumes ONTAP 更新版中修改 CIFS 伺服器、以便繼續將儲存設備提供給用戶端。
+
+.步驟
+. 在工作環境中、按一下功能表圖示、然後按一下 * 進階 > CIFS 設定 * 。
+. 指定 CIFS 伺服器的設定：
++
+[cols="30,70"]
+|===
+| 工作 | 行動 
+
+
+| DNS 主要和次要 IP 位址 | 提供 CIFS 伺服器名稱解析的 DNS 伺服器 IP 位址。列出的 DNS 伺服器必須包含所需的服務位置記錄（ SRV), 才能找到 CIFS 伺服器要加入之網域的 Active Directory LDAP 伺服器和網域控制器。 
+
+
+| 要加入的 Active Directory 網域 | 您要 CIFS 伺服器加入之 Active Directory （ AD ）網域的 FQDN 。 
+
+
+| 授權加入網域的認證資料 | 具有足夠權限的 Windows 帳戶名稱和密碼、可將電腦新增至 AD 網域內的指定組織單位（ OU ）。 
+
+
+| CIFS 伺服器 NetBios 名稱 | AD 網域中唯一的 CIFS 伺服器名稱。 
+
+
+| 組織單位 | AD 網域中與 CIFS 伺服器相關聯的組織單位。預設值為「 CN= 電腦」。如果您將 AWS 託管 Microsoft AD 設定為 AD 伺服器 Cloud Volumes ONTAP 以供使用、您應該在此欄位中輸入 * OID=computers,O=corp* 。 
+
+
+| DNS 網域 | 適用於整個儲存虛擬 Cloud Volumes ONTAP 機器（ SVM ）的 DNS 網域。在大多數情況下、網域與 AD 網域相同。 
+
+
+| NTP 伺服器 | 選擇 * 使用 Active Directory 網域 * 來使用 Active Directory DNS 設定 NTP 伺服器。如果您需要使用不同的位址來設定 NTP 伺服器、則應該使用 API 。請參閱 link:api.html["Cloud Manager API 開發人員指南"^] 以取得詳細資料。 
+|===
+. 按一下「 * 儲存 * 」。
+
+
+利用變更更新 CIFS 伺服器。 Cloud Volumes ONTAP
+
+
+
+== 移動 Volume
+
+移動磁碟區以提高容量使用率、改善效能、並達成服務層級協議。
+
+您可以在 System Manager 中移動磁碟區、方法是選取磁碟區和目的地 Aggregate 、啟動磁碟區移動作業、以及選擇性地監控磁碟區移動工作。使用 System Manager 時、磁碟區移動作業會自動完成。
+
+.步驟
+. 使用 System Manager 或 CLI 將磁碟區移至 Aggregate 。
++
+在大多數情況下、您可以使用 System Manager 來移動磁碟區。
+
++
+如需相關指示、請參閱 http://docs.netapp.com/ontap-9/topic/com.netapp.doc.exp-vol-move/home.html["《》《 9 Volume Move Express Guide 》（英文） ONTAP"^]。
+
+
+
+
+
+== 當 Cloud Manager 顯示「需要採取行動」訊息時、請移動 Volume
+
+Cloud Manager 可能會顯示「必要行動」訊息、指出移動磁碟區是避免容量問題的必要措施、但無法提供修正問題的建議。如果發生這種情況、您需要找出如何修正問題、然後移動一或多個磁碟區。
+
+.步驟
+. <<Identifying how to correct capacity issues,找出如何修正問題>>。
+. 根據您的分析、移動磁碟區以避免容量問題：
++
+** <<Moving volumes to another system to avoid capacity issues,將磁碟區移至其他系統>>。
+** <<Moving volumes to another aggregate to avoid capacity issues,將磁碟區移至同一系統上的其他 Aggregate>>。
+
+
+
+
+
+
+=== 找出如何修正容量問題
+
+如果 Cloud Manager 無法提供移動磁碟區的建議、以避免發生容量問題、您必須識別需要移動的磁碟區、以及是否應該將其移至同一系統上的其他集合體或其他系統。
+
+.步驟
+. 檢視必要行動訊息中的進階資訊、以識別已達到容量上限的集合體。
++
+例如、進階資訊應該說類似以下的內容： Agggr1 已達到其容量上限。
+
+. 識別一個或多個要從集合體移出的磁碟區：
++
+.. 在工作環境中、按一下功能表圖示、然後按一下 * 進階 > 進階配置 * 。
+.. 選取 Aggregate 、然後按一下「 * 資訊 * 」。
+.. 展開 Volume 清單。
++
+image:screenshot_aggr_volumes.gif["螢幕擷取畫面：在 Aggregate 資訊對話方塊中顯示 Aggregate 中的磁碟區清單。"]
+
+.. 檢閱每個磁碟區的大小、然後選擇一或多個磁碟區從集合區移出。
++
+您應該選擇足夠大的磁碟區來釋放集合體中的空間、以避免未來發生額外的容量問題。
+
+
+
+. 如果系統尚未達到磁碟限制、您應該將磁碟區移至同一個系統上的現有集合體或新集合體。
++
+如需詳細資訊、請參閱 link:task_managing_storage.html#moving-volumes-to-another-aggregate-to-avoid-capacity-issues["將磁碟區移至另一個 Aggregate 、以避免容量問題"]。
+
+. 如果系統已達到磁碟限制、請執行下列任何一項：
++
+.. 刪除所有未使用的磁碟區。
+.. 重新排列磁碟區、以釋放集合體上的空間。
++
+如需詳細資訊、請參閱 link:task_managing_storage.html#moving-volumes-to-another-aggregate-to-avoid-capacity-issues["將磁碟區移至另一個 Aggregate 、以避免容量問題"]。
+
+.. 將兩個或多個磁碟區移至另一個有空間的系統。
++
+如需詳細資訊、請參閱 link:task_managing_storage.html#moving-volumes-to-another-system-to-avoid-capacity-issues["將磁碟區移至其他系統、以避免發生容量問題"]。
+
+
+
+
+
+
+
+=== 將磁碟區移至其他系統、以避免發生容量問題
+
+您可以將一個或多個 Volume 移至另 Cloud Volumes ONTAP 一個作業系統、以避免容量問題。如果系統達到磁碟限制、您可能需要這麼做。
+
+您可以依照此工作中的步驟來修正下列必要行動訊息：
+
+ Moving a volume is necessary to avoid capacity issues; however, Cloud Manager cannot perform this action for you because the system has reached the disk limit.
+.步驟
+. 找出 Cloud Volumes ONTAP 具備可用容量的系統、或是部署新系統。
+. 將來源工作環境拖放到目標工作環境、以執行磁碟區的一次性資料複寫。
++
+如需詳細資訊、請參閱 link:task_replicating_data.html["在系統之間複寫資料"]。
+
+. 移至「複寫狀態」頁面、然後中斷 SnapMirror 關係、將複寫的磁碟區從資料保護磁碟區轉換為讀寫磁碟區。
++
+如需詳細資訊、請參閱 link:task_replicating_data.html#managing-data-replication-schedules-and-relationships["管理資料複寫排程和關係"]。
+
+. 設定磁碟區以進行資料存取。
++
+如需設定目的地 Volume 以進行資料存取的相關資訊、請參閱 http://docs.netapp.com/ontap-9/topic/com.netapp.doc.exp-sm-ic-fr/home.html["《》《 9 Volume Disaster Recovery Express 指南》 ONTAP"^]。
+
+. 刪除原始 Volume 。
++
+如需詳細資訊、請參閱 link:task_managing_storage.html#managing-existing-volumes["管理現有磁碟區"]。
+
+
+
+
+
+=== 將磁碟區移至另一個 Aggregate 、以避免容量問題
+
+您可以將一個或多個磁碟區移至另一個 Aggregate 、以避免發生容量問題。
+
+您可以依照此工作中的步驟來修正下列必要行動訊息：
+
+ Moving two or more volumes is necessary to avoid capacity issues; however, Cloud Manager cannot perform this action for you.
+.步驟
+. 驗證現有的 Aggregate 是否具有您需要移動的磁碟區可用容量：
++
+.. 在工作環境中、按一下功能表圖示、然後按一下 * 進階 > 進階配置 * 。
+.. 選取每個 Aggregate 、按一下「 * 資訊 * 」、然後檢視可用容量（ Aggregate capcapcape容納 量減去已使用的 Aggregate capcape望 ）。
++
+image:screenshot_aggr_capacity.gif["螢幕擷取畫面：顯示 Aggregate 資訊對話方塊中可用的總 Aggregate 容量和已使用的 Aggregate 容量。"]
+
+
+
+. 如有需要、請將磁碟新增至現有的 Aggregate ：
++
+.. 選取 Aggregate 、然後按一下 * 「 Add disks* （新增磁碟 * ）」。
+.. 選取要新增的磁碟數目、然後按一下 * 「 Add* （新增 * ）」。
+
+
+. 如果沒有集合體具有可用容量、請建立新的集合體。
++
+如需詳細資訊、請參閱 link:task_provisioning_storage.html#creating-aggregates["建立 Aggregate"]。
+
+. 使用 System Manager 或 CLI 將磁碟區移至 Aggregate 。
+. 在大多數情況下、您可以使用 System Manager 來移動磁碟區。
++
+如需相關指示、請參閱 http://docs.netapp.com/ontap-9/topic/com.netapp.doc.exp-vol-move/home.html["《》《 9 Volume Move Express Guide 》（英文） ONTAP"^]。
+
+
+
+
+
+== 磁碟區移動可能會緩慢執行的原因
+
+如果 Cloud Volumes ONTAP 下列任一情況屬實、則移動 Volume 所需時間可能比預期更長：
+
+* 磁碟區是複製的。
+* Volume 是實體複本的父實體。
+* 來源或目的地 Aggregate 具有單一資料處理量最佳化 HDD （ ST1 ）磁碟。
+* 這個系統位於 AWS 中、其中一個 Aggregate 使用舊的物件命名配置。 Cloud Volumes ONTAP兩個 Aggregate 都必須使用相同的名稱格式。
++
+如果在 9.4 版或更早版本的 Aggregate 上啟用資料分層、則會使用較舊的命名配置。
+
+* 來源與目的地集合體上的加密設定不相符、或是正在進行重新金鑰。
+* 在移動磁碟區時指定了 _ 分層原則 _ 選項、以變更分層原則。
+* 磁碟區移動時指定了「 -generation-destination-key_ 」選項。
+

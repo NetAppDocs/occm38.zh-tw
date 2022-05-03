@@ -1,0 +1,100 @@
+---
+sidebar: sidebar 
+permalink: task_licensing_cloud_tiering.html 
+keywords: subscribe, trial, marketplace, subscription, paygo, pay, pay as you go, aws, tiering, cloud tiering 
+summary: 透過隨用隨付訂閱、 ONTAP 名為 FabricPool 「支援即用」的「資訊強化」授權、或兩者的組合、來支付雲端分層費用。如果您想要隨用隨付、則需要從市場訂閱想要分層處理 Cold 資料的雲端供應商。不需要從每個市場訂閱。 
+---
+= 設定雲端分層授權
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+透過隨用隨付訂閱、 ONTAP 名為 _Set__ 的分層授權 FabricPool 、或兩者的組合、來支付雲端分層的費用。如果您想要隨用隨付、則需要從市場訂閱想要分層處理 Cold 資料的雲端供應商。不需要從每個市場訂閱。
+
+在閱讀更多內容之前、請先提供幾個附註：
+
+* 如果 FabricPool 叢集上已經安裝了某個版本的無線功能授權、您就能輕鬆設定、完全不需要執行任何其他操作。
+* 如果您已在雲端供應商的市場訂閱 Cloud Manager 、您也會自動訂閱 Cloud Tiering 。您會在 Cloud Tiering * Licensing* （雲端分層 * 授權 * ）索引標籤中看到使用中的訂閱。您不需要再次訂閱。
+* 將資料分層至 StorageGRID 不徵收任何費用。不需要 BYOL 授權或 PAYGO 登錄。
+
+
+link:concept_cloud_tiering.html["深入瞭解雲端分層的授權運作方式"]。
+
+
+
+== 從 AWS Marketplace 訂閱
+
+從 AWS Marketplace 訂閱 Cloud Tiering 、即可設定隨用隨付訂閱、將資料從 ONTAP 叢集分層到 AWS S3 。
+
+[[subscribe-aws]]
+.步驟
+. 在 Cloud Manager 中、按一下 * 分層 > 授權 * 。
+. 按一下 AWS Marketplace 下的 * 「訂購 * 」、然後按一下「 * 繼續 * 」。
+. 從 AWS Marketplace 訂閱、然後重新登入 Cloud Central 以完成註冊。
++
+下列影片顯示此程序：
+
++
+video::video_subscribing_aws_tiering.mp4[width=848,height=480]
+
+
+
+
+== 從 Azure Marketplace 訂閱
+
+從 Azure Marketplace 訂閱 Cloud Tiering 、即可設定隨用隨付訂閱、以將資料從 ONTAP 叢集分層到 Azure Blob 儲存設備。
+
+[[subscribe-azure]]
+.步驟
+. 在 Cloud Manager 中、按一下 * 分層 > 授權 * 。
+. 按一下 Azure Marketplace 下的 * 「訂購 * 」、然後按一下 * 「繼續 * 」。
+. 從 Azure Marketplace 訂閱、然後重新登入 Cloud Central 完成註冊。
++
+下列影片顯示此程序：
+
++
+video::video_subscribing_azure_tiering.mp4[width=848,height=480]
+
+
+
+
+== 從 GCP Marketplace 訂閱
+
+從 GCP Marketplace 訂閱 Cloud Tiering 、即可設定隨用隨付訂閱、以將資料從 ONTAP 整套叢集分層到 Google Cloud 儲存設備。
+
+.步驟
+. 在 Cloud Manager 中、按一下 * 分層 > 授權 * 。
+. 按一下「 GCP Marketplace 」下的「 * 訂購 * 」、然後按一下「 * 繼續 * 」。
+. 從 GCP Marketplace 訂閱、然後重新登入 Cloud Central 完成註冊。
++
+[[訂閱 GCP] 下列影片說明程序：
+
++
+video::video_subscribing_gcp_tiering.mp4[width=848,height=480]
+
+
+
+
+== 將分層授權新增 ONTAP 至物件
+
+向 ONTAP FabricPool NetApp 購買一份不含任何功能的授權、即可自帶授權。
+
+.步驟
+. 如果 FabricPool 您沒有不含資訊授權、請寄送電子郵件至 ng-cloud-tiering@netapp.com ？ Subject=Licensing[ 請聯絡我們以購買一份 ] 。
+. 在 Cloud Manager 中、按一下 * 分層 > 授權 * 。
+. 在「叢集清單」表格中、按一下 * 啟用內部 ONTAP 叢集的授權（ BYOL ） * 。
++
+image:screenshot_activate_license.gif["「授權」頁面的快照、可讓您針對內部叢集啟動授權。"]
+
+. 輸入授權的序號、然後輸入與序號相關的 NetApp Support Site 帳戶。
+. 按一下「 * 啟動授權 * 」。
+
+
+Cloud Tiering 會登錄授權、並將其安裝在叢集上。
+
+如果您稍後購買額外的附加容量、叢集上的授權會自動以新容量更新。無需將新的 NetApp 授權檔案（ NLF ）套用至叢集。

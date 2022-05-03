@@ -1,0 +1,183 @@
+---
+sidebar: sidebar 
+permalink: task_getting_started_monitoring.html 
+keywords: monitoring, cloud insights, tenant, acquisition unit, iops, throughput, latency, performance, cloud volumes ontap performance, volume performance 
+summary: 請完成幾個步驟、開始監控 Cloud Volumes ONTAP 效能。 
+---
+= 監控 Cloud Volumes ONTAP AWS 的功能
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+請完成幾個步驟、開始監控 Cloud Volumes ONTAP 效能。
+
+
+
+== 快速入門
+
+請依照下列步驟快速入門、或向下捲動至其餘部分以取得完整詳細資料。
+
+
+
+==== 確認您的組態支援
+
+[role="quick-margin-para"]
+您需要在 Cloud Volumes ONTAP AWS 上的 AWS 上安裝 Cloud Manager 3.8.4 或更新版本、而且您必須是新 Cloud Insights 的支援客戶。
+
+
+
+==== 在新的或現有的系統上啟用監控
+
+* 新的工作環境：建立工作環境時（預設為啟用監控）、請務必保持啟用監控。
+* 現有工作環境：選取工作環境、然後按一下 * 開始監控 * 。
+
+
+
+
+==== 檢視效能資料
+
+[role="quick-margin-para"]
+按一下 * 監控 * 、檢視磁碟區的效能資料。
+
+
+
+==== 訂閱 Cloud Insights 此功能
+
+[role="quick-margin-para"]
+請在 30 天免費試用結束前訂閱、以繼續在 Cloud Manager 和 Cloud Insights VMware 中看到效能資料。 https://docs.netapp.com/us-en/cloudinsights/concept_subscribing_to_cloud_insights.html["瞭解如何訂閱"^]。
+
+
+
+== 需求
+
+請閱讀下列要求、確認您擁有支援的組態。
+
+支援的 Cloud Manager 版本:: 您需要全新安裝 Cloud Manager 3.8.4 或更新版本。由於需要新的基礎架構才能啟用監控服務、因此需要新的安裝。此基礎架構可從 Cloud Manager 3.8.4 的新安裝開始使用。
+支援 Cloud Volumes ONTAP 的支援版本:: AWS 的 Cloud Volumes ONTAP 任何版本的不一樣。
+需求 Cloud Insights:: 您必須是新 Cloud Insights 的客戶。如果您已經 Cloud Insights 擁有一個不支援的用戶、則不支援監控。
+Cloud Central 的電子郵件地址:: Cloud Central 使用者帳戶的電子郵件地址應為您的企業電子郵件地址。建立 Cloud Insights 一個不支援免費的電子郵件網域、例如 Gmail 和 Hotmai 。
+併購單位的網路:: 擷取單元使用雙向 / 相互驗證來連線 Cloud Insights 至該伺服器。用戶端憑證必須傳遞至 Cloud Insights 驗證伺服器。為達成此目的、必須設定 Proxy 、將 http 要求轉送到 Cloud Insights 該伺服器、而不需解密資料。
++
+--
+擷取單元使用下列兩個端點與 Cloud Insights 下列項目進行通訊。如果您在擷取裝置伺服器和 Cloud Insights 功能間有防火牆、則在設定防火牆規則時需要這些端點：
+
+....
+https://aulogin.<Cloud Insights Domain>
+https://<your-tenant-ID>.<Cloud Insights Domain>
+....
+例如：
+
+....
+https://aulogin.c01.cloudinsights.netapp.com
+https://cg0c586a-ee05-45rb-a5ac-333b5ae7718d7.c01.cloudinsights.netapp.com
+....
+如果您需要協助辨識 Cloud Insights 您的域名和租戶 ID 、請透過產品內對談與我們聯絡。
+
+--
+連接器的網路功能:: 與擷取單元類似、連接器必須具備連往 Cloud Insights 該插座的輸出連線能力。但連接器所接觸的端點則略有不同。它會使用簡短的租戶 ID 來聯絡租戶主機 URL ：
++
+--
+ https://<your-short-tenant-ID>.<Cloud Insights Domain>
+例如：
+
+ https://abcd12345.c01.cloudinsights.netapp.com
+如果您需要識別租戶主機 URL 的協助、也可以透過產品內對談與我們聯絡。
+
+--
+
+
+
+
+== 在新系統上啟用監控
+
+監控服務預設會在工作環境精靈中啟用。請務必保持啟用選項。
+
+.步驟
+. 按一下「 * 建立 Cloud Volumes ONTAP 參考 * 」。
+. 選取 Amazon Web Services 做為雲端供應商、然後選擇單一節點或 HA 系統。
+. 填寫「詳細資料與認證」頁面。
+. 在「服務」頁面上、讓服務保持啟用狀態、然後按一下 * 繼續 * 。
++
+image:screenshot_monitoring.gif["您可從「工作環境」精靈啟用的監控服務快照。"]
+
+
+
+
+
+== 在現有系統上啟用監控
+
+可隨時從工作環境進行監控。
+
+.步驟
+. 在Cloud Manager頂端、按一下*工作環境*。
+. 選取工作環境。
+. 在右側窗格中、按一下 * 開始監控 * 。
++
+image:screenshot_enable_monitoring.gif["[在您選取工作環境之後、會顯示「工作環境」索引標籤中可用的「啟用監控」圖示快照。"]
+
+
+
+
+
+== 監控磁碟區
+
+檢視每個磁碟區的 IOPS 、處理量和延遲、以監控效能。
+
+.步驟
+. 在 Cloud Manager 頂端、按一下 * 監控 * 。
+. 篩選儀表板的內容、以取得所需的資訊。
++
+** 選取特定的工作環境。
+** 選取不同的時間範圍。
+** 選取特定 SVM 。
+** 搜尋特定 Volume 。
++
+下圖強調顯示每個選項：
+
++
+image:screenshot_filter_options.gif["「監控」索引標籤的快照、顯示可用來篩選儀表板內容的選項。"]
+
+
+
+. 按一下表格中的磁碟區以展開該列、並檢視 IOPS 、處理量和延遲的時間表。
++
+image:screenshot_vol_performance.gif["Volume 效能資料的快照。"]
+
+. 使用資料找出效能問題、將對使用者和應用程式的影響降至最低。
+
+
+
+
+== 取得 Cloud Insights 更多資訊
+
+Cloud Manager 中的 Monitoring （監控）索引標籤可為您的磁碟區提供基本效能資料。您可以 Cloud Insights 從瀏覽器進入「靜態」網頁介面、以執行更深入的監控、並為 Cloud Volumes ONTAP 您的「靜態」系統設定警示。
+
+.步驟
+. 在 Cloud Manager 頂端、按一下 * 監控 * 。
+. 按一下 * Cloud Insights 《 * 》連結。
++
+image:screenshot_cloud_insights.gif["顯示 Cloud Insights 「監控」索引標籤右上角的「資訊」連結的快照。"]
+
+
+
+可在新的瀏覽器索引標籤中開啟。 Cloud Insights如果您需要協助、請參閱 https://docs.netapp.com/us-en/cloudinsights["本文檔 Cloud Insights"^]。
+
+
+
+== 停用監控
+
+如果您不想再監控 Cloud Volumes ONTAP 不穩定、可以隨時停用服務。
+
+
+NOTE: 如果您停用每個工作環境的監控功能、則必須自行刪除 EC2 執行個體。執行個體名稱為 _AcquisitionUnity_ 、其產生的雜湊（ UUID ）會串連在其中。例如： _AcquitionUnit-FAN7FqeH_
+
+.步驟
+. 在Cloud Manager頂端、按一下*工作環境*。
+. 選取工作環境。
+. 在右側窗格中、按一下 image:screenshot_gallery_options.gif["選取工作環境後、出現在「服務」窗格中的選項圖示快照"] 圖示並選取 * 停用掃描 * 。
+

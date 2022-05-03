@@ -1,0 +1,230 @@
+---
+sidebar: sidebar 
+permalink: task_tiering_onprem_aws.html 
+keywords: data tiering, fabricpool, cloud tiering, tiering cold data, tiering inactive data, tiering aff, tiering fas, tiering ontap, tiering volumes, tier data, tier cold data, tier fas, tier aff, tier ontap, aws, amazon, s3 
+summary: 將資料分層存放至 Amazon S3 、以釋放內部 ONTAP 資源的功能。資料分層是以 NetApp 的雲端分層服務為後盾。 
+---
+= 將內部部署 ONTAP 的資料叢集分層至 Amazon S3
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+將資料分層存放至 Amazon S3 、以釋放內部 ONTAP 資源的功能。資料分層是以 NetApp 的雲端分層服務為後盾。
+
+
+
+== 快速入門
+
+請依照下列步驟快速入門、或向下捲動至其餘部分以取得完整詳細資料。
+
+
+
+==== 準備將資料分層至 Amazon S3
+
+[role="quick-margin-para"]
+您需要下列項目：
+
+* 採用 All SSD 集合體的不支援即用系統、 AFF 執行版本為 S9.2 或更新版本、並可透過 HTTPS 連線至 Amazon S3 。 FAS ONTAP
+* 具有存取金鑰和的 AWS 帳戶 <<Preparing Amazon S3,必要的權限>> 因此、這個功能可將非作用中的資料分層置於 S3 的內和外。 ONTAP
+* 連接器安裝在 AWS VPC 或內部部署環境中。
+* 連接器的網路功能、可將 HTTPS 連線傳出 ONTAP 至叢集、 S3 儲存設備及雲端分層服務。
+
+
+
+
+==== 設定分層
+
+[role="quick-margin-para"]
+在 Cloud Manager 中、選取內部作業環境、按一下 * 設定分層 * 、然後依照提示將資料分層至 Amazon S3 。
+
+
+
+==== 設定授權
+
+[role="quick-margin-para"]
+免費試用結束後、請透過隨用隨付訂閱、 ONTAP 分層授權或兩者的組合來支付雲端分層費用：
+
+* 若要從 AWS Marketplace 訂閱、請按一下 * 分層 > 授權 * 、按一下 * 訂閱 * 、然後依照提示進行。
+* 若要使用分層授權付款、請傳送電子郵件至： ng-cloud-tiering@netapp.com ？ Subject=Licensing[ 如果您需要購買授權、請聯絡我們 ] 、然後再寄送 link:task_licensing_cloud_tiering.html["從雲端分層將其新增至叢集"]。
+
+
+
+
+== 需求
+
+驗證 ONTAP 支援您的物件叢集、設定網路、以及準備物件儲存。
+
+下圖顯示每個元件及其之間需要準備的連線：
+
+image:diagram_cloud_tiering_aws.png["此架構影像顯示雲端分層服務、可連線至雲端供應商的 Connector 、連接 ONTAP 至您的叢集的 Connector 、 ONTAP 以及雲端供應商中的叢集與物件儲存設備之間的連線。作用中資料位於 ONTAP 資源中心叢集、而非作用中資料則位於物件儲存區。"]
+
+
+NOTE: 連接器與 S3 之間的通訊僅供物件儲存設定使用。連接器可位於內部部署環境、而非雲端。
+
+
+
+=== 準備 ONTAP 您的叢集
+
+將資料分層至 Amazon S3 時、您的叢集必須符合下列需求。 ONTAP
+
+支援 ONTAP 的支援功能平台:: Cloud Tiering 可支援 AFF 在 FAS 各種系統上使用的不同步系統和 All SSD 集合體。
+支援 ONTAP 的支援版本:: 0 ： 2 或更新版本 ONTAP
+叢集網路連線需求::
++
+--
+* 此支援叢集可透過連接埠 443 與 Amazon S3 啟動 HTTPS 連線。 ONTAP
++
+可在物件儲存設備中讀取及寫入資料。 ONTAP物件儲存設備從未啟動、只是回應而已。
+
++
+雖然 AWS Direct Connect 提供更好的效能和更低的資料傳輸費用、 ONTAP 但在 VMware 叢集和 S3 之間並不需要。由於使用 AWS Direct Connect 時效能明顯較佳、因此建議您採用最佳實務做法。
+
+* 連接器必須有傳入連線、連接器可位於 AWS VPC 或內部部署環境中。
++
+叢集與雲端分層服務之間不需要連線。
+
+* 託管階層式磁碟區的 ONTAP 每個節點都需要叢集間 LIF 。LIF 必須與 _IPspac__ 建立關聯、 ONTAP 以便連接物件儲存設備。
++
+IPspaces 可隔離網路流量、讓用戶端流量得以分離、以確保隱私與安全。 http://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-nmg/GUID-69120CF0-F188-434F-913E-33ACB8751A5D.html["深入瞭解 IPspaces"^]。
+
++
+設定資料分層時、 Cloud Tiering 會提示您使用 IPspace 。您應該選擇每個 LIF 所關聯的 IPspace 。這可能是您建立的「預設」 IPspace 或自訂 IPspace 。
+
+
+
+--
+支援的磁碟區和集合體:: Cloud Tiering 可以分層的磁碟區總數可能低於 ONTAP 您的整套系統上的磁碟區數量。這是因為磁碟區無法從某些集合體分層。例如 SnapLock 、您無法將資料從「不完整」或 MetroCluster 「不完整」組態中分層。請參閱 ONTAP 的《》文件 link:http://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-psmg/GUID-8E421CC9-1DE1-492F-A84C-9EB1B0177807.html["功能或功能不受 FabricPool 支援"^]。
+
+
+
+NOTE: Cloud Tiering 支援 FlexGroup 從 ONTAP 功能完善的 9.5 開始的各種功能。安裝程式的運作方式與任何其他 Volume 相同。
+
+
+
+=== 建立或切換連接器
+
+需要連接器才能將資料分層至雲端。將資料分層至 AWS S3 時、您可以使用 AWS VPC 或內部部署中的 Connector 。您需要建立新的連接器、或確定目前選取的連接器位於 AWS 或內部部署。
+
+* link:concept_connectors.html["深入瞭解連接器"]
+* link:task_creating_connectors_aws.html["在 AWS 中建立連接器"]
+* link:reference_cloud_mgr_reqs.html["連接器主機需求"]
+* link:task_sync_installing_linux.html["在現有的 Linux 主機上安裝 Connector"]
+* link:task_managing_connectors.html["在連接器之間切換"]
+
+
+
+
+=== 為連接器準備網路
+
+確認連接器具備所需的網路連線。連接器可安裝在內部部署或 AWS 中。
+
+.步驟
+. 確保安裝 Connector 的網路啟用下列連線：
++
+** 透過連接埠 443 （ HTTPS ）連至雲端分層服務的傳出網際網路連線
+** 透過連接埠 443 連線至 S3 的 HTTPS 連線
+** 透過連接埠 443 連線至 ONTAP 您的叢集的 HTTPS 連線
+
+
+. 如有需要、請啟用 VPC 端點至 S3 。
++
+如果 ONTAP 從您的故障叢集到 VPC 有直接連線或 VPN 連線、而且您想要連接器和 S3 之間的通訊保持在 AWS 內部網路中、建議使用 VPC 端點到 S3 。
+
+
+
+
+
+=== 準備 Amazon S3
+
+當您設定資料分層至新叢集時、系統會提示您建立 S3 儲存區、或在設定 Connector 的 AWS 帳戶中選取現有的 S3 儲存區。
+
+AWS 帳戶必須具有權限、並有存取金鑰、您可以在 Cloud Tiering 中輸入。這個支援功能叢集使用存取金鑰來將資料分層進出 S3 。 ONTAP
+
+.步驟
+. 為 IAM 使用者提供下列權限：
++
+[source, json]
+----
+"s3:ListAllMyBuckets",
+"s3:ListBucket",
+"s3:GetBucketLocation",
+"s3:GetObject",
+"s3:PutObject",
+"s3:DeleteObject"
+----
++
+https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-user.html["AWS 文件：建立角色、將權限委派給 IAM 使用者"^]
+
+. 建立或尋找存取金鑰。
++
+Cloud Tiering 會將存取金鑰傳遞至 ONTAP 該叢集。認證資料不會儲存在雲端分層服務中。
+
++
+https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html["AWS 文件：管理 IAM 使用者的存取金鑰"^]
+
+
+
+
+
+== 將第一個叢集的非作用中資料分層至 Amazon S3
+
+準備好 AWS 環境之後、請從第一個叢集開始分層處理非作用中資料。
+
+.您需要的是 #8217 ；需要的是什麼
+* link:task_discovering_ontap.html["內部部署工作環境"]。
+* 具備所需 S3 權限的 IAM 使用者的 AWS 存取金鑰。
+
+
+.步驟
+. 選取內部叢集。
+. 按一下 * 設定分層 * 。
++
+image:screenshot_setup_tiering_onprem.gif["螢幕擷取畫面顯示選取內部 ONTAP 環境後、畫面右側會出現「設定分層」選項。"]
+
++
+您現在已在分層儀表板上。
+
+. 按一下叢集旁的 * 設定分層 * 。
+. 完成「 * 分層設定 * 」頁面上的步驟：
++
+.. * S3 Bucket * ：新增 S3 儲存區或選取以前置字元 _Fabric 集區 _ 開頭的現有 S3 儲存區、然後按一下 * 繼續 * 。
++
+因為連接器的 IAM 原則可讓執行個體在以該確切字首命名的儲存區上執行 S3 動作、所以需要使用 _Fabric 資源池 _ 字首。
+
++
+例如、您可以將 S3 Bucket 網路資源池命名為 AFF1 、其中 AFF1 是叢集的名稱。
+
+.. * 儲存類別 * ：選取您要在 30 天後轉換資料的 S3 儲存類別、然後按一下 * 繼續 * 。
++
+如果您選擇「 Standard （標準）」、則資料會保留在該儲存類別中。
+
+.. * 認證 * ：輸入具有所需 S3 權限之 IAM 使用者的存取金鑰 ID 和秘密金鑰。
++
+IAM 使用者必須與您在「 * S3 Bucket * 」頁面上選取或建立的儲存區位於相同的 AWS 帳戶中。
+
+.. * 叢集網路 * ：選取 ONTAP 要用於連接物件儲存設備的 IPspace 、然後按一下 * 繼續 * 。
++
+選擇正確的 IPspace 、可確保 Cloud Tiering 能夠設定從 ONTAP 效益到雲端供應商物件儲存的連線。
+
+
+
+. 按一下 * 繼續 * 以選取您要分層的磁碟區。
+. 在「 * 層級磁碟區 * 」頁面上、為每個磁碟區設定分層。按一下 image:screenshot_edit_icon.gif["表格中每一列結尾的編輯圖示快照、用於分層磁碟區"] 圖示、選取分層原則（可選擇調整冷卻天數）、然後按一下「 * 套用 * 」。
++
+link:concept_cloud_tiering.html#volume-tiering-policies["深入瞭解磁碟區分層原則"]。
+
++
+image:https://docs.netapp.com/us-en/cloud-tiering/media/screenshot_volumes_select.gif["顯示「選取來源磁碟區」頁面中所選磁碟區的快照。"]
+
+
+
+您已成功設定從叢集上的磁碟區到 S3 物件儲存區的資料分層。
+
+link:task_licensing_cloud_tiering.html["請務必從雲端分層服務訂閱"]。
+
+您也可以新增其他叢集、或檢閱叢集上作用中和非作用中資料的相關資訊。如需詳細資訊、請參閱 link:task_managing_tiering.html["從叢集管理資料分層"]。

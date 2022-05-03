@@ -1,0 +1,137 @@
+---
+sidebar: sidebar 
+permalink: task_setup_cvs_gcp.html 
+keywords: cloud volumes service for gcp, google cloud, cloud volumes, create cloud volumes, discover cloud volumes service for gcp, cloud volumes service subscription, discover cloud volumes service subscription, discover region, allowed clients, create snapshots 
+summary: 在 Cloud Volumes Service Cloud Manager 中建立一個適用於 Google Cloud 的工作環境、以建立及管理磁碟區和快照。 
+---
+= 設定 Cloud Volumes Service 適用於 Google Cloud 的功能
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+在 Cloud Volumes Service Cloud Manager 中建立一個適用於 Google Cloud 的工作環境、以建立及管理磁碟區和快照。
+
+
+
+== 快速入門
+
+請依照下列步驟快速入門、或前往下一節以取得完整詳細資料。
+
+
+
+==== 啟用 Cloud Volumes Service 此功能
+
+[role="quick-margin-para"]
+從 Google 啟用 Cloud Volumes Service 適用於 GCP API 的功能、讓 Cloud Manager 能夠管理訂閱和雲端磁碟區。
+
+
+
+==== 建立 GCP 服務帳戶並下載認證資料
+
+[role="quick-margin-para"]
+從 Google 建立 GCP 服務帳戶和角色、以便 Cloud Manager 存取 Cloud Volumes Service 您的適用於 GCP 的支援服務帳戶。
+
+
+
+==== 建立 Cloud Volumes Service GCP 工作環境的功能
+
+[role="quick-margin-para"]
+在 Cloud Manager 中、按一下 * 新增工作環境 * > * Google Cloud * > * Cloud Volumes Service S供 * 、然後提供服務帳戶和 Google Cloud 專案的詳細資料。
+
+
+
+== 啟用 Cloud Volumes Service 此功能
+
+在 Google Cloud Shell 中、執行下列命令來啟用 Cloud Volumes Service 此功能：
+
+「 gCloud --project =<my-cs-project > 服務可支援 cloudvolumesgcp-api.netapp.com`
+
+
+
+== 讓 Cloud Manager 能夠存取 Cloud Volumes Service 適用於 GCP 的功能
+
+您必須完成下列工作、 Cloud Manager 才能存取您的 Google Cloud 專案：
+
+* 建立新的服務帳戶
+* 將新的服務帳戶成員新增至專案、並指派給專案特定的角色（權限）
+* 為用於驗證 Google 的服務帳戶建立並下載金鑰配對
+
+
+.步驟
+. 在 Google Cloud Console 中、前往 * 服務帳戶 * 頁面。
+. 按一下 * 選取專案 * 、選擇您的專案、然後按一下 * 開啟 * 。
+. 按一下「 * 建立服務帳戶 * 」、輸入服務帳戶名稱（易記的顯示名稱）和說明、然後按一下「 * 建立 * 」。
+. 從「 _IAM 」頁面按一下「 * 新增 * 」、然後填寫「 _Add Memu__ 」頁面中的欄位：
++
+.. 在 New Members （新成員）欄位中、輸入完整的服務帳戶 ID 、例如 user1-service-account-cvs@project1.iam.gserviceaccount.com 。
+.. 新增以下角色：
++
+*** _NetApp Cloud Volumes 管理 _
+*** 運算網路檢視器 _
+*** _ 資料夾檢視器 _
+
+
+.. 按一下「 * 儲存 * 」。
+
+
+. 在「服務帳戶詳細資料」頁面中、按一下「 * 新增金鑰 > 建立新金鑰 * 」。
+. 選擇 * JSON* 作為金鑰類型、然後按一下 * 「 Create * （建立 * ）」。
++
+按一下「 * 建立 * 」、就會產生新的公開 / 私密金鑰配對、並下載至您的系統。它是唯一的私密金鑰複本。請安全地儲存此檔案、因為它可用於驗證您的服務帳戶。
+
+
+
+如需詳細步驟、請參閱 Google Cloud 主題 link:https://cloud.google.com/iam/docs/creating-managing-service-accounts["建立及管理服務帳戶"^]、 link:https://cloud.google.com/iam/docs/granting-changing-revoking-access["授予、變更及撤銷資源存取權"^]和 link:https://cloud.google.com/iam/docs/creating-managing-service-account-keys["建立及管理服務帳戶金鑰"^]。
+
+
+
+== 建立 Cloud Volumes Service GCP 工作環境的功能
+
+在 Cloud Volumes Service Cloud Manager 中設定適用於 GCP 工作環境的功能、以便開始建立磁碟區。
+
+無論您已經從 Google Cloud Console 建立磁碟區、或是剛註冊 Cloud Volumes Service 使用適用於 GCP 且尚未建立磁碟區、第一步都是根據 GCP 訂閱來建立磁碟區的工作環境。
+
+如果此訂閱已存在雲端磁碟區、則磁碟區會出現在新的工作環境中。如果您尚未新增任何雲端磁碟區以供 GCP 訂閱、請在建立新的工作環境之後再新增。
+
+
+TIP: 如果您在多個 GCP 專案中有訂閱和磁碟區、則必須針對每個專案執行此工作。
+
+新增每個專案的訂閱時、您必須提供下列資訊：
+
+* 服務帳戶認證（您下載的 Json 私密金鑰）
+* 專案名稱
+
+
+.步驟
+. 在 Cloud Manager 中、新增工作環境、選取位置 * Google Cloud * 、然後按一下 * 繼續 * 。
+. 選取 * Cloud Volumes Service 《 * 》 * 《 * 》 * 、然後按一下 * 「 Continue * 」。
++
+image:screenshot_add_cvs_gcp_working_env.png["為 Cloud Volumes Service 簽署以供簽署的功能性功能提供工作環境的快照。"]
+
+. 提供 Cloud Volumes Service 有關您的不訂閱資訊：
++
+.. 輸入您要使用的工作環境名稱。
+.. 複製 / 貼上您在先前步驟中下載的 Json 私密金鑰。
+.. 選取 Google Cloud 專案的名稱。
+.. 按一下「 * 新增 * 」。
++
+image:screenshot_add_cvs_gcp_credentials.png["為 Cloud Volumes Service GCP 訂閱新增認證的快照。"]
+
+
+
+
+
+Cloud Manager 會顯示 Cloud Volumes Service 您的 Google Cloud 工作環境的功能。
+
+image:screenshot_cvs_gcp_cloud.png["適用於 Google Cloud 工作環境的功能快照 Cloud Volumes Service 。"]
+
+如果此訂閱已存在雲端磁碟區、則磁碟區會出現在新的工作環境中、如螢幕快照所示。您可以從 Cloud Manager 新增其他雲端磁碟區。
+
+如果此訂閱不存在任何雲端磁碟區、請立即建立。
+
+link:task_manage_cvs_gcp.html["開始建立及管理磁碟區"]。

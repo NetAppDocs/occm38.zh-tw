@@ -1,0 +1,121 @@
+---
+sidebar: sidebar 
+permalink: task_creating_connectors_gcp.html 
+keywords: create connector in GCP, create connector in azure, create connector in gcp, launch connector in GCP, launch connector in azure, launch connector in gcp, deploy connector in GCP, deploy connector in azure, deploy connector in gcp 
+summary: 客戶管理員必須先部署 Connector 、才能使用大多數 Cloud Manager 功能。Connector 可讓 Cloud Manager 管理公有雲環境中的資源與程序。 
+---
+= 從 Cloud Manager 在 GCP 中建立連接器
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+客戶管理員必須先部署 _Connector_ 、才能使用大多數 Cloud Manager 功能。 link:concept_connectors.html["瞭解何時需要連接器"]。Connector 可讓 Cloud Manager 管理公有雲環境中的資源與程序。
+
+本頁說明如何直接從 Cloud Manager 在 GCP 中建立 Connector 。您也可以選擇 link:task_installing_linux.html["下載軟體並安裝在您自己的主機上"]。
+
+這些步驟必須由具有「帳戶管理」角色的使用者完成。工作區管理員無法建立 Connector 。
+
+
+TIP: 當您建立第一個 Cloud Volumes ONTAP 運作環境時、如果您還沒有 Cloud Manager 、 Cloud Manager 會提示您建立 Connector 。
+
+
+
+== 設定 GCP 權限以建立連接器
+
+在從 Cloud Manager 部署 Connector 之前、您必須先確保 GCP 帳戶擁有正確的權限、而且已針對 Connector VM 設定服務帳戶。
+
+.步驟
+. 確保從 NetApp Cloud Central 部署 Cloud Manager 的 GCP 使用者擁有中的權限 https://occm-sample-policies.s3.amazonaws.com/Setup_As_Service_3.7.3_GCP.yaml["GCP 的連接器部署原則"^]。
++
+https://cloud.google.com/iam/docs/creating-custom-roles#iam-custom-roles-create-gcloud["您可以使用 Yaml 檔案建立自訂角色"^] 然後附加到使用者。您需要使用 gCloud 命令列來建立角色。
+
+. 設定具有 Cloud Manager 所需權限的服務帳戶、以便在 Cloud Volumes ONTAP 專案中建立及管理各種系統。
++
+從 Cloud Manager 建立此服務帳戶時、您會將其與 Connector VM 建立關聯。
+
++
+.. https://cloud.google.com/iam/docs/creating-custom-roles#iam-custom-roles-create-gcloud["在 GCP 中建立角色"^] 這包括在中定義的權限 https://occm-sample-policies.s3.amazonaws.com/Policy_for_Cloud_Manager_3.8.0_GCP.yaml["GCP 的 Cloud Manager 原則"^]。同樣地、您需要使用 gCloud 命令列。
++
+此Y反 洗錢檔案所含的權限與步驟2a中的權限不同。
+
+.. https://cloud.google.com/iam/docs/creating-managing-service-accounts#creating_a_service_account["建立 GCP 服務帳戶、並套用您剛建立的自訂角色"^]。
+.. 如果您想要在 Cloud Volumes ONTAP 其他專案中部署 https://cloud.google.com/iam/docs/granting-changing-revoking-access#granting-console["將具有 Cloud Manager 角色的服務帳戶新增至該專案、以授予存取權"^]。您必須針對每個專案重複此步驟。
+
+
+
+
+GCP 使用者現在擁有從 Cloud Manager 建立 Connector 所需的權限、並已設定 Connector VM 的服務帳戶。
+
+
+
+== 啟用 Google Cloud API
+
+部署 Connector 和 Cloud Volumes ONTAP 功能完善的應用程式需要多個 API 。
+
+.步驟
+. https://cloud.google.com/apis/docs/getting-started#enabling_apis["在專案中啟用下列 Google Cloud API"^]。
++
+** Cloud Deployment Manager V2 API
+** 雲端記錄 API
+** Cloud Resource Manager API
+** 運算引擎 API
+** 身分識別與存取管理（ IAM ） API
+
+
+
+
+
+
+== 在 GCP 中建立連接器
+
+Cloud Manager 可讓您直接從使用者介面在 GCP 中建立 Connector 。
+
+.您需要的是 #8217 ；需要的是什麼
+* 。 https://mysupport.netapp.com/site/info/cloud-manager-policies["必要權限"^] 適用於您的 Google Cloud 帳戶。
+* Google Cloud 專案。
+* 擁有建立及管理 Cloud Volumes ONTAP 功能所需權限的服務帳戶。
+* 您所選的 Google Cloud 區域中的 VPC 和子網路。
+
+
+.步驟
+. 如果您要建立第一個工作環境、請按一下 * 新增工作環境 * 、然後依照提示進行。否則、請按一下「 * Connector* 」下拉式清單、然後選取「 * 新增 Connector* 」。
++
+image:screenshot_connector_add.gif["螢幕擷取畫面、會在標題和「新增連接器」動作中顯示「連接器」圖示。"]
+
+. 按一下「 * 讓我們開始 * 」。
+. 選擇 * Google Cloud Platform * 做為雲端供應商。
++
+請記住、連接器必須連線至您所建立的工作環境類型、以及您計畫啟用的服務。
+
++
+link:reference_networking_cloud_manager.html["深入瞭解連接器的網路需求"]。
+
+. 檢閱您需要的內容、然後按一下 * 繼續 * 。
+. 如果出現提示、請登入您的 Google 帳戶、該帳戶應有建立虛擬機器執行個體所需的權限。
++
+這份表單由 Google 擁有及託管。您的認證資料不會提供給 NetApp 。
+
+. 提供必要資訊：
++
+** * 基本設定 * ：輸入虛擬機器執行個體的名稱、並指定具有所需權限的專案和服務帳戶。
+** * 位置 * ：指定執行個體的區域、區域、 VPC 和子網路。
+** * 網路 * ：選擇是否啟用公用 IP 位址、並選擇性地指定 Proxy 組態。
+** * 防火牆原則 * ：選擇是建立新的防火牆原則、還是選擇允許傳入 HTTP 、 HTTPS 及 SSH 存取的現有防火牆原則。
++
+
+NOTE: 除非您啟動連接器、否則不會有傳入流量進入連接器。HTTP 和 HTTPS 可存取 link:concept_connectors.html#the-local-user-interface["本機 UI"]、在極少數情況下使用。只有當您需要連線至主機進行疑難排解時、才需要 SSH 。
+
+
+
+. 按一下「 * 建立 * 」。
++
+執行個體應在 7 分鐘內就緒。您應該留在頁面上、直到程序完成為止。
+
+
+
+您需要將 Connector 與工作空間建立關聯、讓 Workspace Admins 可以使用這些 Connectors 來建立 Cloud Volumes ONTAP 一套系統。如果您只有帳戶管理員、則不需要將 Connector 與工作區建立關聯。根據預設、 Account Admins 可存取 Cloud Manager 中的所有工作區。 link:task_setting_up_cloud_central_accounts.html#associating-connectors-with-workspaces["深入瞭解"]。

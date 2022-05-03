@@ -1,0 +1,105 @@
+---
+sidebar: sidebar 
+permalink: task_managing_connectors.html 
+keywords: managing connectors, uninstall connector, switch connectors, switch between connectors, go to local UI, local interface, local connector, local cloud manager 
+summary: 建立一或多個連接器之後、您可以在連接器之間切換、連線至連接器上執行的本機使用者介面等、來管理連接器。 
+---
+= 管理現有的連接器
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+建立一或多個連接器之後、您可以在連接器之間切換、連線至連接器上執行的本機使用者介面等、來管理連接器。
+
+
+
+== 在連接器之間切換
+
+如果您有多個連接器、可以在它們之間切換、以查看與特定連接器相關聯的工作環境。
+
+例如、假設您是在多個雲端環境中工作。您可能在 AWS 中有一個 Connector 、在 Google Cloud 中有一個 Connector 。您必須在這些連接器之間切換、才能管理 Cloud Volumes ONTAP 在雲端上執行的各種功能。
+
+.步驟
+. 按一下「 * Connector* （ * 連接器 * ）」下拉式清單、選取「 Another Connector （另一個連接器）」、然後按一下「 * Switch*
++
+image:screenshot_connector_switch.gif["螢幕擷取畫面會在標題和「切換」動作中顯示「 Connector 」圖示。"]
+
++
+Cloud Manager 會重新整理並顯示與所選 Connector 相關的工作環境。
+
+
+
+
+
+== 存取本機 UI
+
+雖然您應該從 SaaS 使用者介面執行幾乎所有的工作、但連接器上仍有本機使用者介面可供使用。需要從 Connector 本身執行的幾項工作需要使用此介面：
+
+* link:task_configuring_proxy.html["設定 Proxy 伺服器"]
+* 安裝修補程式（您通常會與 NetApp 人員一起安裝修補程式）
+* 下載 AutoSupport 資訊（如有問題、通常由 NetApp 人員引導）
+
+
+.步驟
+. https://docs.netapp.com/us-en/occm/task_logging_in.html["登入 Cloud Manager SaaS 介面"^] 從連線至連接器執行個體的機器。
++
+如果連接器沒有公有 IP 位址、您將需要 VPN 連線、或是需要從連接器所在的同一個網路中的跨接主機連線。
+
+. 按一下「 * Connector* 」下拉式清單、按一下「 Connector 」的動作功能表、然後按一下「 * 移至本機 ui* 」。
++
+image:screenshot_connector_local_ui.gif["螢幕擷取畫面會在標題中顯示 Connector 圖示、以及「前往本機 UI 」動作。"]
+
++
+在 Connector 上執行的 Cloud Manager 介面會載入新的瀏覽器索引標籤。
+
+
+
+
+
+== 從 Cloud Manager 移除連接器
+
+如果連接器處於非作用中狀態、您可以將其從 Cloud Manager 的連接器清單中移除。如果您刪除了 Connector 虛擬機器、或是卸載了 Connector 軟體、則可以這麼做。
+
+請注意下列關於移除連接器的事項：
+
+* 此動作不會刪除虛擬機器。
+* 此動作無法還原、只要從 Cloud Manager 移除 Connector 、就無法將其新增回 Cloud Manager 。
+
+
+.步驟
+. 按一下 Cloud Manager 標頭中的 Connector 下拉式清單。
+. 按一下非作用中連接器的動作功能表、然後按一下 * 移除連接器 * 。
++
+image:screenshot_connector_remove.gif["連接器 Widget 的快照、可讓您移除非作用中的連接器。"]
+
+. 輸入要確認的連接器名稱、然後按一下「移除」。
+
+
+Cloud Manager 會將 Connector 從記錄中移除。
+
+
+
+== 解除安裝 Connector 軟體
+
+連接器包含一個解除安裝指令碼、可用來解除安裝軟體、以疑難排解問題或從主機永久移除軟體。
+
+.步驟
+. 從 Linux 主機執行解除安裝指令碼：
++
+* /opt/application/NetApp/cloudmanager/in/uninstall.sh [silined]*
+
++
+_silon_ 執行指令碼時不會提示您確認。
+
+
+
+.軟體升級呢？
+****
+只要有、 Connector 就會自動將其軟體更新至最新版本 link:reference_networking_cloud_manager.html["傳出網際網路存取"] 以取得軟體更新。
+
+****

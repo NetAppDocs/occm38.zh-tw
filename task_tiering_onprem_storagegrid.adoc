@@ -1,0 +1,191 @@
+---
+sidebar: sidebar 
+permalink: task_tiering_onprem_storagegrid.html 
+keywords: data tiering, fabricpool, cloud tiering, tiering cold data, tiering inactive data, tiering aff, tiering fas, tiering ontap, tiering volumes, tier data, tier cold data, tier fas, tier aff, tier ontap, storagegrid, tier to storagegrid, fabricpool storagegrid 
+summary: 將資料分層至異地、以釋放內部 ONTAP 的物件叢集空間 StorageGRID 。資料分層是以 NetApp 的雲端分層服務為後盾。 
+---
+= 將內部部署 ONTAP 的資料叢集分層至 StorageGRID 不再需要
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+將資料分層至異地、以釋放內部 ONTAP 的物件叢集空間 StorageGRID 。資料分層是以 NetApp 的雲端分層服務為後盾。
+
+
+
+== 快速入門
+
+請依照下列步驟快速入門、或向下捲動至其餘部分以取得完整詳細資料。
+
+
+
+==== 準備將資料分層 StorageGRID 以供運用
+
+[role="quick-margin-para"]
+您需要下列項目：
+
+* 包含 All SSD 集合體的不完整或不完整系統、執行版本為 9.4 或更新版本、並透過使用者指定的連接埠連線至。 AFF FAS ONTAP StorageGRID
+* 支援 AWS 存取金鑰的 S3 權限、可支援支援支援支援的版本。 StorageGRID
+* 安裝在內部部署上的 Connector 。
+* 連接器的網路功能、可將 HTTPS 連線傳出 ONTAP 至物件叢集、 StorageGRID 到物件叢集和雲端分層服務。
+
+
+
+
+==== 設定分層
+
+[role="quick-margin-para"]
+選擇內部工作環境、按一下 * 設定分層 * 、然後依照提示將資料分層 StorageGRID 至 BIOS 。
+
+
+
+== 需求
+
+驗證 ONTAP 支援您的物件叢集、設定網路、以及準備物件儲存。
+
+下圖顯示每個元件及其之間需要準備的連線：
+
+image:diagram_cloud_tiering_storagegrid.png["此架構影像顯示雲端分層服務、可連線至內部部署的 Service Connector 、可連線 ONTAP 至您的叢集的 Service Connector 、 ONTAP 以及連接至該叢集與物件儲存設備的連接。作用中資料位於 ONTAP 資源中心叢集、而非作用中資料則位於物件儲存區。"]
+
+
+NOTE: Connector 與 StorageGRID 物件之間的通訊僅供物件儲存設定之用。
+
+
+
+=== 準備 ONTAP 您的叢集
+
+將資料分層至異地時、您的叢集必須符合下列要求。 ONTAP StorageGRID
+
+支援 ONTAP 的支援功能平台:: Cloud Tiering 可支援 AFF 在 FAS 各種系統上使用的不同步系統和 All SSD 集合體。
+支援 ONTAP 的支援版本:: 更新版本 ONTAP
+授權:: 將資料分層至異地時、不需要在叢集上取得此功能的使用許可。 FabricPool ONTAP StorageGRID
+叢集網路連線需求::
++
+--
+* 透過使用者指定的連接埠、由支援物件叢集啟動 HTTPS 連線（連接埠可在分層設定期間設定） ONTAP StorageGRID 。
++
+可在物件儲存設備中讀取及寫入資料。 ONTAP物件儲存設備從未啟動、只是回應而已。
+
+* 連接器必須駐留在內部環境中、因此需要傳入連線。
++
+叢集與雲端分層服務之間不需要連線。
+
+* 託管階層式磁碟區的 ONTAP 每個節點都需要叢集間 LIF 。LIF 必須與 _IPspac__ 建立關聯、 ONTAP 以便連接物件儲存設備。
++
+IPspaces 可隔離網路流量、讓用戶端流量得以分離、以確保隱私與安全。 http://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-nmg/GUID-69120CF0-F188-434F-913E-33ACB8751A5D.html["深入瞭解 IPspaces"^]。
+
++
+設定資料分層時、 Cloud Tiering 會提示您使用 IPspace 。您應該選擇每個 LIF 所關聯的 IPspace 。這可能是您建立的「預設」 IPspace 或自訂 IPspace 。
+
+
+
+--
+支援的磁碟區和集合體:: Cloud Tiering 可以分層的磁碟區總數可能低於 ONTAP 您的整套系統上的磁碟區數量。這是因為磁碟區無法從某些集合體分層。例如 SnapLock 、您無法將資料從「不完整」或 MetroCluster 「不完整」組態中分層。請參閱 ONTAP 的《》文件 link:http://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-psmg/GUID-8E421CC9-1DE1-492F-A84C-9EB1B0177807.html["功能或功能不受 FabricPool 支援"^]。
+
+
+
+NOTE: Cloud Tiering 支援 FlexGroup 從 ONTAP 功能完善的 9.5 開始的各種功能。安裝程式的運作方式與任何其他 Volume 相同。
+
+
+
+=== 準備 StorageGRID
+
+必須符合下列需求。 StorageGRID
+
+支援 StorageGRID 的支援版本:: 支援不支援更新版本的支援。 StorageGRID
+S3 認證:: 當您設定 StorageGRID 層疊至物件時、您需要使用 S3 存取金鑰和秘密金鑰來提供 Cloud Tiering 。雲端分層使用關鍵來存取您的儲存庫。
++
+--
+這些存取金鑰必須與具有下列權限的使用者相關聯：
+
+[source, json]
+----
+"s3:ListAllMyBuckets",
+"s3:ListBucket",
+"s3:GetObject",
+"s3:PutObject",
+"s3:DeleteObject",
+"s3:CreateBucket"
+----
+--
+物件版本管理:: 您不得在 StorageGRID 物件存放區上啟用物件版本管理功能。
+
+
+
+
+=== 建立或切換連接器
+
+需要連接器才能將資料分層至雲端。將資料分層至 StorageGRID 無法使用時、內部環境中必須有連接器可供使用。您可能需要安裝新的 Connector 、或確定目前選取的 Connector 位於內部部署。
+
+* link:concept_connectors.html["深入瞭解連接器"]
+* link:reference_cloud_mgr_reqs.html["連接器主機需求"]
+* link:task_installing_linux.html["在現有的 Linux 主機上安裝 Connector"]
+* link:task_managing_connectors.html["在連接器之間切換"]
+
+
+
+
+=== 為連接器準備網路
+
+確認連接器具備所需的網路連線。
+
+.步驟
+. 確保安裝 Connector 的網路啟用下列連線：
++
+** 透過連接埠 443 （ HTTPS ）連至雲端分層服務的傳出網際網路連線
+** 透過連接埠 443 連線至 StorageGRID 支援的 HTTPS 連線
+** 透過連接埠 443 連線至 ONTAP 您的叢集的 HTTPS 連線
+
+
+
+
+
+
+== 將非作用中資料從第一個叢集分層到 StorageGRID 不活動資料
+
+準備好環境之後、請從第一個叢集開始分層處理非作用中資料。
+
+.您需要的是 #8217 ；需要的是什麼
+* link:task_discovering_ontap.html["內部部署工作環境"]。
+* 具備所需 S3 權限的 AWS 存取金鑰。
+
+
+.步驟
+. 選取內部叢集。
+. 按一下 * 設定分層 * 。
++
+image:screenshot_setup_tiering_onprem.gif["螢幕擷取畫面顯示選取內部 ONTAP 環境後、畫面右側會出現「設定分層」選項。"]
+
++
+您現在已在分層儀表板上。
+
+. 按一下叢集旁的 * 設定分層 * 。
+. 完成「 * 分層設定 * 」頁面上的步驟：
++
+.. * 選擇您的供應商 * ：選擇 StorageGRID 「
+.. * 伺服器 * ：輸入 StorageGRID 支援此功能的伺服器 FQDN 、輸入 ONTAP 支援 StorageGRID 使用此功能進行 HTTPS 通訊的連接埠、然後輸入具備所需 S3 權限之 AWS 帳戶的存取金鑰和秘密金鑰。
+.. * Bucket * ：新增儲存庫或為階層式資料選取現有儲存庫。
+.. * 叢集網路 * ：選取 ONTAP 要用於連接物件儲存設備的 IPspace 、然後按一下 * 繼續 * 。
++
+選擇正確的 IPspace 、可確保 Cloud Tiering 能夠設定從 ONTAP 效益到雲端供應商物件儲存的連線。
+
+
+
+. 按一下 * 繼續 * 以選取您要分層的磁碟區。
+. 在「 * 層級磁碟區 * 」頁面上、為每個磁碟區設定分層。按一下 image:screenshot_edit_icon.gif["表格中每一列結尾的編輯圖示快照、用於分層磁碟區"] 圖示、選取分層原則（可選擇調整冷卻天數）、然後按一下「 * 套用 * 」。
++
+link:concept_cloud_tiering.html#volume-tiering-policies["深入瞭解磁碟區分層原則"]。
+
++
+image:https://docs.netapp.com/us-en/cloud-tiering/media/screenshot_volumes_select.gif["顯示「選取來源磁碟區」頁面中所選磁碟區的快照。"]
+
+
+
+您已成功設定資料分層、從叢集上的磁碟區到 StorageGRID 物件。
+
+您可以新增其他叢集、或檢閱叢集上作用中和非作用中資料的相關資訊。如需詳細資訊、請參閱 link:task_managing_tiering.html["從叢集管理資料分層"]。

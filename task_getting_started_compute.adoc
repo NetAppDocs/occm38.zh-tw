@@ -1,0 +1,86 @@
+---
+sidebar: sidebar 
+permalink: task_getting_started_compute.html 
+keywords: compute, cloud insights, cloud analyzer, connect cloud analyzer, connect master payer account, connect payer account, aws payer account 
+summary: 請完成幾個步驟、從 Spot Cloud Analyzer 的資訊區深入分析雲端運算成本。 
+---
+= 開始最佳化雲端運算成本
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+連接 AWS 帳戶、然後檢視分析、開始最佳化雲端運算成本。
+
+
+
+== 連接 Cloud Analyzer 至 AWS 帳戶
+
+按一下 * Compute * 、然後連線您的 AWS 付款人帳戶。
+
+.步驟
+. 按一下 * 運算 * 。
+. 按一下 * 將 AWS 認證資料新增至 Start* 。
+. 請依照頁面上的步驟連線 AWS 帳戶：
++
+.. 登入 AWS 主要付款人帳戶。
+.. 在 AWS 帳戶上設定成本與使用量報告。
+.. 執行 CloudForation 範本。
+.. 貼上 Spot 角色 ARN 。
++
+https://help.spot.io/cloud-analyzer/connect-your-aws-account-2/["檢視這些步驟的詳細資料"^]。
+
++
+image:screenshot_compute_add_account.gif["顯示連線頁面上每個可用欄位的快照。"]
+
+
+
+
+
+從系統開始處理 AWS 帳戶資料。 Cloud Analyzer如果您有多個帳戶、 Cloud Analyzer 則從主付款人帳戶下所有連結帳戶的唯讀功能開始。如果您想要取得更多有關這些帳戶可能節約成本的詳細資料、您也需要將這些帳戶連結起來。您可以在下方的區段中找到更多有關此程序的詳細資料。
+
+
+
+== 分析您的運算成本
+
+在處理您的帳戶資料之後 Cloud Analyzer 、「運算」索引標籤會顯示您對過去、目前及未來雲端成本的洞見。
+
+image:screenshot_compute_dashboard.gif["在 Cloud Manager 中顯示「成本分析」頁面的快照。本頁包含下列文字所述資訊。"]
+
+至今的月成本:: 從本月開始到現在、您的工作負載總成本。
+預計成本:: 根據您使用模式的分析、在月底的預測成本。
+上週錯過了節約效益:: 利用最佳化 Spot 執行個體和保留區、過去七天內可以實現的節約效益。
+AWS 帳戶支出效率最高:: 前 10 大客戶是根據預估額外節約金額的最大金額。
++
+--
+每個帳戶都會根據目前和其他可能的節約效益、獲得效率分數。預估的額外節約額度、表示運用 Spot 和保留執行個體、可進一步節省多少成本。
+
+您可以採取下列行動、進一步最佳化您的帳戶：
+
+* * 檢視詳細資料 * ：前往 Spot Cloud Analyzer 的資訊區、檢視您的成本最佳化商機。
+* * 連線 * ：連線尚未管理的帳戶。系統會引導您前往連接帳戶的精靈。
+
+
+--
+AWS 帳戶排行:: 這是以成本顯示前十大帳戶的長條圖。圖表是根據過去 30 天的支出活動而計算。
+
+
+https://help.spot.io/cloud-analyzer/cost-analysis/["深入瞭解 Spot Cloud Analyzer 的「成本分析」頁面"^]。
+
+
+
+== 如 Cloud Analyzer 需更多分析與建議、請前往參閱
+
+隨時按一下 * 「 Get Full Analysis* 」（取得完整分析）、即可存取更多圖表與分析、深入建議、使用案例最佳化分析（容器、彈性應用程式與保留）等資訊。
+
+以下是 Cloud Analyzer 您將在功能介紹中看到的範例：
+
+image:screenshot_compute_dashboard_spot.gif["這張螢幕擷取畫面顯示「成本分析」頁面、並以「 Spot 」 Cloud Analyzer 為範例。"]
+
+* https://spot.io/products/cloud-analyzer/["請參閱 Cloud Analyzer 產品頁面以瞭解更多有關其功能的資訊"^]。
+* https://help.spot.io/cloud-analyzer/["查看現場文件以取得 Cloud Analyzer 使用支援的資訊"^]。
+

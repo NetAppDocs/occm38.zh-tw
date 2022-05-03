@@ -1,0 +1,208 @@
+---
+sidebar: sidebar 
+permalink: concept_backup_to_cloud.html 
+keywords: backing up, restoring, back up, backup, restore, cloud volumes ontap, aws, azure, s3, blob, back up volumes, Backup to Cloud, restore volumes, billing, cost, on-premises ONTAP, onprem 
+summary: 備份到雲端是 Cloud Volumes ONTAP 一套適用於內部部署和不需部署 ONTAP 的元件、可提供備份與還原功能以保護雲端資料、並可長期歸檔。備份儲存在雲端帳戶的物件存放區中、獨立於用於近期恢復或複製的 Volume Snapshot 複本。 
+---
+= 深入瞭解備份至雲端
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+備份到雲端是 Cloud Volumes ONTAP 一套適用於內部部署和不需部署 ONTAP 的元件、可提供備份與還原功能以保護雲端資料、並可長期歸檔。備份儲存在雲端帳戶的物件存放區中、獨立於用於近期恢復或複製的 Volume Snapshot 複本。
+
+備份到雲端是由提供支援 https://cloud.netapp.com/cloud-backup-service["Cloud Backup Service"^]。
+
+
+NOTE: 您必須使用 Cloud Manager 進行所有備份與還原作業。任何直接從 ONTAP NetApp 或雲端供應商採取的行動、都會產生不受支援的組態。
+
+
+
+== 功能
+
+* 將資料磁碟區的獨立複本備份到雲端的低成本物件儲存設備。
+* 備份資料會以 AES-256 位元加密的閒置和 TLS 1.2 HTTPS 傳輸連線加以保護。
+* 從雲端備份到雲端、從內部部署 ONTAP 的解決系統備份到雲端。
+* 支援單一磁碟區最多 1 、 019 個備份。
+* 從特定時間點還原資料。
+* 將資料還原至來源系統上的磁碟區或其他系統。
+
+
+
+
+== 支援的工作環境與物件儲存供應商
+
+下列類型的工作環境支援雲端備份：
+
+* AWS 中的 Cloud Volumes ONTAP
+* Azure 中的 Cloud Volumes ONTAP
+* 內部部署 ONTAP 的叢集
+
+
+
+
+== 成本
+
+備份到雲端有兩種定價選項可供選擇：自帶授權（BYOL）、隨用隨付（PAYGO）。
+
+如果是BYOL、您需要支付NetApp一段時間（例如6個月）使用服務的費用、如果是最大備份容量、例如10 GB（儲存效率前）、您就必須支付雲端供應商的物件儲存成本。您將會收到一個序號、並在 Cloud Manager 授權頁面中輸入以啟用服務。達到任一限制時、您都需要續約授權。請參閱 link:task_managing_licenses.html#adding-and-updating-your-backup-byol-license["新增及更新備份 BYOL 授權"^]。Backup BYOL授權適用於Cloud Volumes ONTAP 與相關的所有功能齊全的系統 link:concept_cloud_central_accounts.html["Cloud Central 帳戶"^]。
+
+對於 PAYGO 、您需要支付雲端供應商的物件儲存成本、以及 NetApp 的備份授權成本。授權成本是根據已用容量（儲存效率前）而計算：
+
+* AWS ： https://aws.amazon.com/marketplace/pp/B07QX2QLXX["如需價格詳細資料、請前往 Cloud Manager Marketplace 產品"^]。
+* Azure ： https://azuremarketplace.microsoft.com/en-us/marketplace/apps/netapp.cloud-manager?tab=Overview["如需價格詳細資料、請前往 Cloud Manager Marketplace 產品"^]。
+
+
+
+
+=== 免費試用
+
+我們提供30天免費試用。使用試用版時、系統會通知您剩餘的免費試用天數。在免費試用結束時、將停止建立備份。您必須訂閱服務或購買授權、才能繼續使用服務。
+
+停用服務時、不會刪除備份。除非您刪除備份、否則雲端供應商會繼續向您收取備份所使用容量的物件儲存成本。
+
+
+
+== 備份到雲端的運作方式
+
+當您在 Cloud Volumes ONTAP 一個不完整或內部部署 ONTAP 的支援系統上啟用「 Backup to Cloud 」（備份至雲端）時、服務會執行資料的完整備份。備份映像不包含 Volume 快照。在初始備份之後、所有其他備份都是遞增的、這表示只會備份變更的區塊和新的區塊。
+
+
+
+=== 備份所在位置
+
+備份複本儲存在S3儲存區或Cloud Manager在雲端帳戶中建立的Azure Blob容器中。對於供應物件的系統、物件存放區會建立在相同的區域、而此區域正是供應此系統的所在位置。 Cloud Volumes ONTAP Cloud Volumes ONTAP若為內部部署 ONTAP 的不支援系統、您可在啟用服務時識別所在地區。
+
+每 Cloud Volumes ONTAP 個物件庫或內部部署 ONTAP 的地方只有一個物件庫。Cloud Manager 會將物件存放區命名為： NetApp-backup-_clusteruuid_
+
+請勿刪除此物件存放區。
+
+附註：
+
+* 在 AWS 中、 Cloud Manager 可啟用 https://docs.aws.amazon.com/AmazonS3/latest/dev/access-control-block-public-access.html["Amazon S3 封鎖公共存取功能"^] 在 S3 儲存桶上。
+* 在 Azure 中、 Cloud Manager 使用新的或現有的資源群組、並為 Blob 容器提供儲存帳戶。
+
+
+
+
+=== 支援的 S3 儲存類別
+
+在 Amazon S3 中、備份從 _Standard_ 儲存類別開始、 30 天後轉換至 _Standard-inap頻率 Access_ 儲存類別。
+
+
+
+=== 支援的 Azure Blob 存取層
+
+在Azure中、每個備份都與_Cold存取層相關聯。
+
+
+
+=== 備份設定適用於全系統
+
+啟用「備份至雲端」時、系統上識別的所有磁碟區都會備份至雲端。
+
+要保留的備份排程和數量是在系統層級定義。備份設定會影響系統上的所有磁碟區。
+
+
+
+=== 排程為每日、每週、每月或組合
+
+您可以選擇每日、每週或每月備份所有磁碟區。您也可以選擇系統定義的原則之一、提供 3 個月、 1 年及 7 年的備份與保留。這些原則包括：
+
+[cols="30,20,20,20,30"]
+|===
+| 原則名稱 3+| 每個時間間隔的備份數 ... | 最大備份 
+
+
+|  | * 每日 * | * 每週 * | * 每月 * |  
+
+
+| Netapp3MonthsRetention | 30 | 13. | 3. | 46 
+
+
+| Netapp1 年保留 | 30 | 13. | 12. | 55 
+
+
+| Netapp7 年保留 | 30 | 53. | 84. | 167. 
+|===
+一旦您達到某個類別或時間間隔的最大備份數、舊備份就會移除、因此您永遠擁有最新的備份。
+
+請注意、資料保護磁碟區備份的保留期間與來源 SnapMirror 關係中所定義的相同。如果需要、您可以使用 API 進行變更。
+
+
+
+=== 備份會在午夜進行
+
+* 每天的備份作業會在每天午夜之後才開始。
+* 每週備份會在週日早上午夜之後開始。
+* 每月備份的開始時間是每月第一天午夜之後。
+
+
+此時、您無法在使用者指定的時間排程備份作業。
+
+
+
+=== 備份複本會與 Cloud Central 帳戶建立關聯
+
+備份複本與相關聯 link:concept_cloud_central_accounts.html["Cloud Central 帳戶"^] Cloud Manager 所在位置。
+
+如果您在同一個 Cloud Central 帳戶中有多個 Cloud Manager 系統、則每個 Cloud Manager 系統都會顯示相同的備份清單。這包括 Cloud Volumes ONTAP 與其他 ONTAP Cloud Manager 系統上的不二和內部部署的不二執行個體相關的備份。
+
+
+
+=== BYOL 授權考量
+
+使用「備份至雲端 BYOL 」授權時、 Cloud Manager 會在備份接近容量上限或接近授權到期日時通知您。您會收到下列通知：
+
+* 當備份已達到授權容量的80%時、當您達到限制時、也會再次顯示
+* 授權到期前 30 天、授權到期後再一次
+
+
+當您收到這些通知時、請使用 Cloud Manager 介面右下角的聊天圖示來續約授權。
+
+當授權到期時、可能會發生兩件事：
+
+* 如果 ONTAP 您使用的帳戶擁有市場帳戶、則備份服務仍會繼續執行、但您會改用 PAYGO 授權模式。您需要由雲端供應商支付物件儲存成本、並由 NetApp 支付備份授權成本、以支付備份所使用的容量。
+* 如果 ONTAP 您使用的帳戶不具備市場帳戶、則備份服務仍會繼續執行、但您仍會收到到期訊息。
+
+
+續約 BYOL 訂閱之後、 Cloud Manager 會自動從 NetApp 取得新授權、並加以安裝。如果 Cloud Manager 無法透過安全的網際網路連線存取授權檔案、您可以自行取得檔案、然後手動將其上傳至 Cloud Manager 。如需相關指示、請參閱 link:task_managing_licenses.html#adding-and-updating-your-backup-byol-license["新增及更新備份 BYOL 授權"^]。
+
+移轉至 PAYGO 授權的系統會自動傳回 BYOL 授權。而在沒有授權的情況下執行的系統將停止接收警告訊息、並會針對授權過期時發生的備份收取費用。
+
+
+
+== 支援的磁碟區
+
+備份到雲端支援讀寫磁碟區和資料保護（DP）磁碟區。
+
+目前不支援任何支援的資料量。FlexGroup
+
+
+
+== 限制
+
+* 啟用「Backup to Cloud」（備份至雲端）時、WORM儲存（SnapLock 支援）不支援Cloud Volumes ONTAP 在內部部署或內部部署系統上使用。
+* 從內部部署ONTAP 的支援系統進行備份時、必須遵守備份至雲端的限制：
++
+** 內部叢集必須執行ONTAP 不含更新版本的
+** Cloud Manager必須部署在Azure上。不支援內部部署 Cloud Manager 部署。
+** 備份的目的地位置僅為Azure上的物件儲存設備。
+** 備份只能還原Cloud Volumes ONTAP 至Azure上部署的不完整系統。您無法將備份還原至內部部署ONTAP 的支援系統、或還原至Cloud Volumes ONTAP 使用不同雲端供應商的支援系統。
+
+
+* 備份資料保護（ DP ）磁碟區時、針對來源磁碟區上的 SnapMirror 原則所定義的規則、必須使用符合 * 每日 * 、 * 每週 * 或 * 每月 * 允許備份到雲端原則名稱的標籤。否則、該 DP 磁碟區的備份將會失敗。
+* 在 Azure 中、如果 Cloud Volumes ONTAP 您在部署了支援功能時啟用「備份至雲端」、 Cloud Manager 會為您建立資源群組、您無法加以變更。如果您想在啟用「備份到雲端」時挑選自己的資源群組、請在部署 Cloud Volumes ONTAP 時 * 停用 * 「備份到雲端」、然後啟用「備份到雲端」、並從「備份到雲端設定」頁面中選擇資源群組。
+* 從 Cloud Volumes ONTAP 無法使用 Cloud Manager 的系統備份磁碟區時、系統不會自動備份您在 Cloud Manager 以外建立的磁碟區。
++
+例如、如果您是從 ONTAP 無法使用的 CLI 、 ONTAP 還原 API 或系統管理程式建立磁碟區、就不會自動備份磁碟區。
+
++
+如果您想要備份這些磁碟區、您需要停用備份到雲端、然後重新啟用。
+
+

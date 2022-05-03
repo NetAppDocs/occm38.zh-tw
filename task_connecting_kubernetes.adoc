@@ -1,0 +1,288 @@
+---
+sidebar: sidebar 
+permalink: task_connecting_kubernetes.html 
+keywords: kubernetes, persistent volumes, containers, persistent storage, kubeconfig, trident, kubernetes cluster, storage classes, classes, cvo-single, cvo-ha, thick provisioning, trident_trident, connect, disconnect, provision 
+summary: Cloud Manager 可在 Kubernetes 叢集上自動化 NetApp Trident 的部署、讓 Cloud Volumes ONTAP 您可以將 NetApp Trident 用作容器的持續儲存設備。 
+---
+= 使用支援 Kubernetes 的不變儲存 Cloud Volumes ONTAP
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Cloud Manager 可在 Kubernetes 叢集上自動化 NetApp Trident 的部署、讓 Cloud Volumes ONTAP 您可以將 NetApp Trident 用作容器的持續儲存設備。
+
+Trident 是 NetApp 所維護的完全支援的開放原始碼專案。Trident 與 Kubernetes 及其持續 Volume 架構原生整合、可從執行任何 NetApp 儲存平台組合的系統無縫配置及管理 Volume 。 https://netapp-trident.readthedocs.io/en/latest/introduction.html["深入瞭解 Trident"^]。
+
+
+NOTE: 內部 ONTAP 的叢集不支援 Kubernetes 功能。僅支援以不支援的功能。 Cloud Volumes ONTAP
+
+
+
+== 快速入門
+
+請依照下列步驟快速入門、或向下捲動至其餘部分以取得完整詳細資料。
+
+
+
+==== 檢閱先決條件
+
+[role="quick-margin-para"]
+確保您的環境符合先決條件、包括 Kubernetes 叢集與 Cloud Volumes ONTAP 更新之間的連線、 Kubernetes 叢集與連接器之間的連線、最低 Kubernetes 版本 1.14 、叢集中至少有一個工作節點等。 <<Reviewing prerequisites,請參閱完整清單>>。
+
+
+
+==== 將 Kubernetes 叢集新增至 Cloud Manager
+
+[role="quick-margin-para"]
+在Cloud Manager中、按一下* Kubernetes*、直接從雲端供應商的託管服務探索叢集、或是提供Kubeconfig檔案來匯入叢集。
+
+
+
+==== 將叢集連線 Cloud Volumes ONTAP 至
+
+[role="quick-margin-para"]
+新增 Kubernetes 叢集後、按一下 * 「 Connect to Working Environment* （連線至工作環境 * ）」、將叢集連線至一 Cloud Volumes ONTAP 或多個支援系統。
+
+
+
+==== 開始配置持續磁碟區
+
+[role="quick-margin-para"]
+使用原生 Kubernetes 介面和架構來要求及管理持續磁碟區。Cloud Manager 會建立 NFS 和 iSCSI 儲存類別、供您在配置持續磁碟區時使用。
+
+[role="quick-margin-para"]
+https://netapp-trident.readthedocs.io/["深入瞭解如何使用 Kubernetes 的 Trident 來配置第一個 Volume"^]。
+
+
+
+== 檢閱先決條件
+
+開始之前、請先確定 Kubernetes 叢集和 Connector 符合特定要求。
+
+
+
+=== Kubernetes 叢集需求
+
+* Kubernetes 叢集和 Connector 之間、以及 Kubernetes 叢集與 Cloud Volumes ONTAP 之間、都需要網路連線。
++
+連接器和 Cloud Volumes ONTAP 鏈接器均需要連線至 Kubernetes API 端點：
+
++
+** 對於託管叢集、請在叢集的 VPC 和 Cloud Volumes ONTAP 連接器與 VPC 之間設定路由。
+** 對於其他叢集、連接器 Cloud Volumes ONTAP 和插座必須可存取主節點或負載平衡器的 IP 位址（如 kubeconfig 檔案所列）、而且必須提供有效的 TLS 憑證。
+
+
+* Kubernetes 叢集可以位於上述網路連線的任何位置。
+* Kubernetes 叢集必須至少執行 1.14 版。
++
+最大支援版本由 Trident 定義。 https://netapp-trident.readthedocs.io/en/stable-v20.07/support/requirements.html#supported-frontends-orchestrators["按一下此處以查看支援的 Kubernetes 版本上限"^]。
+
+* Kubernetes 叢集必須至少有一個工作節點。
+* 對於以 Amazon Elastic Kubernetes Service （ Amazon EKS ）執行的叢集、每個叢集都需要新增 IAM 角色、才能解決權限錯誤。新增叢集之後、 Cloud Manager 會提示您使用確切的 eksctl 命令來解決錯誤。
++
+https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_boundaries.html["深入瞭解 IAM 權限界限"^]。
+
+* 對於在 Azure Kubernetes Service （ KS ）中執行的叢集、這些叢集必須指派 _Azure Kubernetes Service RBAC 叢集管理 _ 角色。這是必要的、因此 Cloud Manager 可以在叢集上安裝 Trident 並設定儲存類別。
+* 對於在 Google Kubernetes Engine （ GKE ）中執行的叢集、這些叢集不得使用預設的 Container Optimized OS 。您應該將其切換為使用 Ubuntu 。
++
+GKE 預設為使用 Google https://cloud.google.com/container-optimized-os["容器最佳化映像"^]，它沒有 Trident 掛載 Volume 所需的公用程式。
+
+
+
+
+
+=== 連接器需求
+
+確認連接器已具備下列網路和權限。
+
+
+
+==== 網路
+
+* 連接器在安裝Trident時、需要連出網際網路連線才能存取下列端點：
++
+\https://packages.cloud.google.com/yum \https://github.com/NetApp/trident/releases/download/
+
++
+當您將工作環境連線至叢集時、Cloud Manager會在Kubernetes叢集上安裝Trident。
+
+
+
+
+
+==== 探索及管理 EKS 叢集所需的權限
+
+Connector 需要管理權限、才能探索及管理在 Amazon Elastic Kubernetes Service （ EKS ）中執行的 Kubernetes 叢集：
+
+[source, json]
+----
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "VisualEditor0",
+            "Effect": "Allow",
+            "Action": "eks:*",
+            "Resource": "*"
+       }
+    ]
+}
+----
+
+
+==== 探索及管理 GKE 叢集所需的權限
+
+Connector 需要下列權限、才能探索及管理在 Google Kubernetes Engine （ GKE ）中執行的 Kubernetes 叢集：
+
+[source, yaml]
+----
+container.*
+----
+
+
+=== 設定範例
+
+下圖顯示在 Amazon Elastic Kubernetes Service （ Amazon EKS ）中執行 Kubernetes 叢集的範例、以及其與 Connector 和 Cloud Volumes ONTAP EImage 的連線。
+
+image:diagram_kubernetes.png["在 AWS 中執行 Kubernetes 叢集的架構圖、以及其連線至連接器和 Cloud Volumes ONTAP 在 AWS 中執行的功能。"]
+
+
+
+== 新增 Kubernetes 叢集
+
+探索雲端供應商託管 Kubernetes 服務中執行的叢集、或匯入叢集的 Kubeconfig 檔案、將 Kubernetes 叢集新增至 Cloud Manager 。
+
+.步驟
+. 在Cloud Manager頂端、按一下* Kubernetes*。
+. 單擊 * Add Cluster-* 。
+. 請選擇下列其中一個可用選項：
++
+** 按一下 * 探索叢集 * 、即可根據您提供給 Connector 的權限、探索 Cloud Manager 可存取的託管叢集。
++
+例如、如果您的 Connector 是在 Google Cloud 上執行、 Cloud Manager 會使用 Connector 服務帳戶的權限來探索在 Google Kubernetes Engine （ GKE ）中執行的叢集。
+
+** 按一下 * 匯入叢集 * 、以使用 KUbeconfig 檔案匯入叢集。
++
+上傳檔案之後、 Cloud Manager 會驗證與叢集的連線、並儲存 Kbeconfig 檔案的加密複本。
+
+
+
+
+
+Cloud Manager 會新增 Kubernetes 叢集。您現在可以將叢集連線 Cloud Volumes ONTAP 至
+
+
+
+== 將叢集連線 Cloud Volumes ONTAP 至
+
+將 Kubernetes 叢集連線 Cloud Volumes ONTAP 至支援功能、以便 Cloud Volumes ONTAP 將支援功能用作持續儲存容器的功能。
+
+.步驟
+. 在Cloud Manager頂端、按一下* Kubernetes*。
+. 針對您剛新增的叢集、按一下「 * 連線到工作環境 * 」。
++
+image:screenshot_kubernetes_connect.gif["Kubernetes 叢集清單的快照、您可以在其中按一下「連線到工作環境」。"]
+
+. 選取工作環境、然後按一下 * 繼續 * 。
+. 選擇要用作 Kubernetes 叢集預設儲存類別的 NetApp 儲存類別、然後按一下 * 繼續 * 。
++
+使用者建立持續磁碟區時、 Kubernetes 叢集預設會使用此儲存類別作為後端儲存設備。
+
+. 選擇是使用預設的自動匯出原則、還是要新增自訂的 CIDR 區塊。
++
+image:screenshot_kubernetes_confirm.gif["「確認」頁面的快照、您可在其中檢閱選項並設定匯出原則。"]
+
+. 按一下「 * 新增工作環境 * 」。
+
+
+Cloud Manager 可將工作環境連線至叢集、最多需要 15 分鐘。
+
+
+
+== 管理叢集
+
+Cloud Manager 可讓您變更預設的儲存類別、升級 Trident 等、藉此管理 Kubernetes 叢集。
+
+
+
+=== 變更預設儲存類別
+
+請確定您已將 Cloud Volumes ONTAP 支援功能的儲存類別設為預設的儲存類別、以便叢集使用 Cloud Volumes ONTAP 支援功能來做為後端儲存設備。
+
+.步驟
+. 在Cloud Manager頂端、按一下* Kubernetes*。
+. 按一下 Kubernetes 叢集的名稱。
+. 在「 * 儲存類別 * 」表格中、針對您要設為預設的儲存類別、按一下最右側的「動作」功能表。
++
+image:screenshot_kubernetes_storage_class.gif["「儲存類別」表格的快照、您可以在其中按一下動作功能表、然後選取「設為預設值」。"]
+
+. 按一下「 * 設為預設 * 」。
+
+
+
+
+=== 升級 Trident
+
+當新版 Trident 可供使用時、您可以從 Cloud Manager 升級 Trident 。
+
+.步驟
+. 在Cloud Manager頂端、按一下* Kubernetes*。
+. 按一下 Kubernetes 叢集的名稱。
+. 如果有可用的新版本、請按一下 Trident 版本旁的 * Upgrade* 。
++
+image:screenshot_kubernetes_upgrade.gif["叢集詳細資料頁面的快照、其中的「升級」按鈕會出現在 Trident 版本旁。"]
+
+
+
+
+
+=== 正在更新 Kbeconfig 檔案
+
+如果您透過匯入 Kbeconfig 檔案將叢集新增至 Cloud Manager 、您可以隨時將最新的 Kbeconfig 檔案上傳至 Cloud Manager 。如果您已更新認證、變更使用者或角色、或是變更了會影響叢集、使用者、命名空間或驗證的項目、您可以這麼做。
+
+.步驟
+. 在Cloud Manager頂端、按一下* Kubernetes*。
+. 按一下 Kubernetes 叢集的名稱。
+. 按一下 * 更新 Kubeconfig * 。
+. 當您的網頁瀏覽器出現提示時、請選取更新的 KUbeconfig 檔案、然後按一下 * 「 Open* （開啟 * ）」。
+
+
+Cloud Manager 會根據最新的 Kubeconfig 檔案、更新 Kubernetes 叢集的相關資訊。
+
+
+
+=== 中斷叢集連線
+
+當您中斷叢集 Cloud Volumes ONTAP 與效能不穩定的連線時、您將無法再將 Cloud Volumes ONTAP 該系統當成容器的持續儲存設備。不會刪除現有的持續磁碟區。
+
+.步驟
+. 在Cloud Manager頂端、按一下* Kubernetes*。
+. 按一下 Kubernetes 叢集的名稱。
+. 在 * 工作環境 * 表格中、針對您要中斷連線的工作環境、按一下最右側的「動作」功能表。
++
+image:screenshot_kubernetes_disconnect.gif["在您按一下表格最右側的功能表之後、會出現「工作環境」表格的快照、其中顯示「中斷連線」動作。"]
+
+. 按一下「 * 中斷連線 * 」。
+
+
+Cloud Manager 會中斷叢集與 Cloud Volumes ONTAP 整個系統的連線。
+
+
+
+=== 移除叢集
+
+從叢集中斷所有工作環境的連線後、請從 Cloud Manager 移除停用的叢集。
+
+.步驟
+. 在Cloud Manager頂端、按一下* Kubernetes*。
+. 按一下 Kubernetes 叢集的名稱。
+. 按一下「 * 移除叢集 * 」。
++
+image:screenshot_kubernetes_remove.gif["叢集詳細資料頁面頂端顯示的移除叢集按鈕快照。"]
+
+

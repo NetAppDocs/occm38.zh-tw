@@ -1,0 +1,204 @@
+---
+sidebar: sidebar 
+permalink: task_updating_ontap_cloud.html 
+keywords: update, updating, upgrading, upgrade, software, downgrade, downgrading, FTP, HTTP, mediator, local image 
+summary: Cloud Manager提供多種選項、可讓您升級至目前Cloud Volumes ONTAP 的版本、或將Cloud Volumes ONTAP 版本降級至舊版。升級或降級軟體之前、您應該先準備Cloud Volumes ONTAP 好用的不一樣系統。 
+---
+= 更新Cloud Volumes ONTAP 軟體
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Cloud Manager提供多種選項、可讓您升級至目前Cloud Volumes ONTAP 的版本、或將Cloud Volumes ONTAP 版本降級至舊版。升級或降級軟體之前、您應該先準備Cloud Volumes ONTAP 好用的不一樣系統。
+
+
+
+== 軟體更新必須由Cloud Manager完成
+
+必須從 Cloud Manager 完成升級。 Cloud Volumes ONTAP您不應 Cloud Volumes ONTAP 使用 System Manager 或 CLI 來升級功能。這樣做可能會影響系統穩定性。
+
+
+
+== 更新Cloud Volumes ONTAP 方法
+
+Cloud Manager Cloud Volumes ONTAP 會在出現新版 Cloud Volumes ONTAP 的功能時、於不支援功能的環境中顯示通知：
+
+image:screenshot_cot_upgrade.gif["螢幕擷取畫面：顯示「工作環境」頁面中選取工作環境後顯示的「可用新版本」通知。"]
+
+您可以從此通知開始升級程序、從 S3 儲存區取得軟體映像、安裝映像、然後重新啟動系統、藉此自動化程序。如需詳細資訊、請參閱 <<Upgrading Cloud Volumes ONTAP from Cloud Manager notifications>>。
+
+
+NOTE: 對於 AWS 中的 HA 系統、 Cloud Manager 可能會將 HA 中介程式升級為升級程序的一部分。
+
+
+
+=== 軟體更新的進階選項
+
+Cloud Manager也提供下列進階選項來更新Cloud Volumes ONTAP 支援的功能：
+
+* 使用外部URL上的映像進行軟體更新
++
+如果Cloud Manager無法存取S3儲存區來升級軟體、如果您已取得修補程式、或您想要將軟體降級至特定版本、此選項就很有幫助。
+
++
+如需詳細資訊、請參閱 <<Upgrading or downgrading Cloud Volumes ONTAP by using an HTTP or FTP server>>。
+
+* 使用系統上的替代映像進行軟體更新
++
+您可以使用此選項將替代軟體映像設為預設映像、以降級至舊版。此選項不適用於 HA 配對。
+
++
+如需詳細資訊、請參閱 <<Downgrading Cloud Volumes ONTAP by using a local image>>。
+
+
+
+
+
+== 準備更新Cloud Volumes ONTAP 軟件
+
+在執行升級或降級之前、您必須先確認系統已就緒、並進行任何必要的組態變更。
+
+* <<Planning for downtime>>
+* <<Reviewing version requirements>>
+* <<Verifying that automatic giveback is still enabled>>
+* <<Suspending SnapMirror transfers>>
+* <<Verifying that aggregates are online>>
+
+
+
+
+=== 規劃停機時間
+
+當您升級單節點系統時、升級程序會使系統離線長達 25 分鐘、在此期間 I/O 會中斷。
+
+升級 HA 配對不中斷營運、而且 I/O 不中斷。在此不中斷營運的升級程序中、會同時升級每個節點、以繼續為用戶端提供 I/O 服務。
+
+
+
+=== 檢閱版本需求
+
+您可以升級或降級至的版本會因系統上目前執行的版本不一而有所差異。ONTAP ONTAP
+
+若要瞭解版本需求、請參閱 http://docs.netapp.com/ontap-9/topic/com.netapp.doc.exp-dot-upgrade/GUID-AC0EB781-583F-4C90-A4C4-BC7B14CEFD39.html["VMware Update文檔：叢集更新要求ONTAP"^]。
+
+
+
+=== 驗證是否仍啟用自動還原
+
+自動恢復必須在 Cloud Volumes ONTAP 一個「無法恢復的 HA 配對」上啟用（這是預設設定）。如果沒有、則作業將會失敗。
+
+http://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-hacg/GUID-3F50DE15-0D01-49A5-BEFD-D529713EC1FA.html["供應說明文件：設定自動恢復的命令 ONTAP"^]
+
+
+
+=== 暫停 SnapMirror 傳輸
+
+如果 Cloud Volumes ONTAP 某個不活躍的 SnapMirror 關係、最好在更新 Cloud Volumes ONTAP 該軟件之前暫停傳輸。暫停傳輸可防止 SnapMirror 故障。您必須暫停來自目的地系統的傳輸。
+
+這些步驟說明如何使用系統管理程式來執行 9.3 版及更新版本。
+
+.步驟
+. link:task_connecting_to_otc.html["登入 System Manager"] 從目的地系統。
+. 按一下 * 保護 > 關係 * 。
+. 選取關係、然後按一下 * 作業 > 靜止 * 。
+
+
+
+
+=== 驗證 Aggregate 是否在線上
+
+更新軟體之前、必須先在線上安裝適用於 Cloud Volumes ONTAP 此功能的 Aggregate 。在大多數的組態中、 Aggregate 都應該處於線上狀態、但如果沒有、則應該將其上線。
+
+這些步驟說明如何使用系統管理程式來執行 9.3 版及更新版本。
+
+.步驟
+. 在工作環境中、按一下功能表圖示、然後按一下 * 進階 > 進階配置 * 。
+. 選取 Aggregate 、按一下 * Info* 、然後確認狀態為線上。
++
+image:screenshot_aggr_state.gif["螢幕擷取畫面：當您檢視 Aggregate 的資訊時、會顯示 State 欄位。"]
+
+. 如果 Aggregate 離線、請使用 System Manager 將 Aggregate 上線：
++
+.. link:task_connecting_to_otc.html["登入 System Manager"]。
+.. 按一下「 * 儲存設備 > 集合體與磁碟 > Aggregate * 」。
+.. 選取 Aggregate 、然後按一下 * 更多動作 > 狀態 > 線上 * 。
+
+
+
+
+
+
+== 從 Cloud Volumes ONTAP Cloud Manager 通知升級
+
+Cloud Manager 會在 Cloud Volumes ONTAP 推出新版的功能時通知您。按一下通知以開始升級程序。
+
+Cloud Manager 的作業（例如 Volume 或 Aggregate 建立）不得在 Cloud Volumes ONTAP 進行中、以利執行。
+
+.步驟
+. 按一下*工作環境*。
+. 選取工作環境。
++
+如果有新版本可用、則右窗格中會出現通知：
+
++
+image:screenshot_cot_upgrade.gif["螢幕擷取畫面：顯示「工作環境」頁面中選取工作環境後顯示的「可用新版本」通知。"]
+
+. 如果有可用的新版本、請按一下 * 升級 * 。
+. 在「版本資訊」頁面中、按一下連結以閱讀指定版本的「版本說明」、然後選取「 * 我讀過 ... * 」核取方塊。
+. 在「終端使用者授權合約（ EULA ）」頁面中、閱讀 EULA 、然後選取「 * 我閱讀並核准 EULA* 」。
+. 在「檢閱與核准」頁面中、閱讀重要附註、選取 * 我瞭解 ...* 、然後按一下 * 執行 * 。
+
+
+Cloud Manager 會啟動軟體升級。軟體更新完成後、即可在工作環境中執行動作。
+
+如果您暫停 SnapMirror 傳輸、請使用 System Manager 繼續傳輸。
+
+
+
+== 使用HTTP或FTP伺服器升級Cloud Volumes ONTAP 或降級
+
+您可以將Cloud Volumes ONTAP 「更新」軟體映像放在HTTP或FTP伺服器上、然後從Cloud Manager啟動軟體更新。如果Cloud Manager無法存取S3儲存區來升級軟體、或是想要降級軟體、您可以使用此選項。
+
+.步驟
+. 設定 HTTP 伺服器或 FTP 伺服器、以裝載 Cloud Volumes ONTAP 支援此功能的軟體映像。
+. 如果您有虛擬網路的 VPN 連線、可以將 Cloud Volumes ONTAP 該 Imagesoftware 映像放在您自己網路中的 HTTP 伺服器或 FTP 伺服器上。否則、您必須將檔案放在雲端的 HTTP 伺服器或 FTP 伺服器上。
+. 如果您使用自己的安全性群組 Cloud Volumes ONTAP 來執行功能、請確定傳出規則允許 HTTP 或 FTP 連線 Cloud Volumes ONTAP 、以便讓支援者存取軟體映像。
++
+
+NOTE: 預設的 Cloud Volumes ONTAP 「預先定義的功能」安全群組允許輸出 HTTP 和 FTP 連線。
+
+. 從取得軟體映像 https://mysupport.netapp.com/products/p/cloud_ontap.html["NetApp 支援網站"^]。
+. 將軟體映像複製到 HTTP 或 FTP 伺服器上的目錄、以便從中提供檔案。
+. 在 Cloud Manager 的工作環境中、按一下功能表圖示、然後按一下 * 進階 > 更新 Cloud Volumes ONTAP * 。
+. 在更新軟體頁面上、選擇 * 從 URL* 選取可用的映像、輸入 URL 、然後按一下 * 變更映像 * 。
+. 按 * Proceed* 確認。
+
+
+Cloud Manager 會啟動軟體更新。軟體更新完成後、即可在工作環境中執行動作。
+
+如果您暫停 SnapMirror 傳輸、請使用 System Manager 繼續傳輸。
+
+
+
+== 使用本機映像降級Cloud Volumes ONTAP
+
+將同一版本系列中的某個舊版本（Cloud Volumes ONTAP 例如9.5至9.4）轉換為降級。降級新叢集或測試叢集時無需協助即可降級、但如果您想要降級正式作業叢集、請聯絡技術支援部門。
+
+每 Cloud Volumes ONTAP 個功能完善的系統都能容納兩個軟體映像：目前執行的映像、以及可開機的替代映像。Cloud Manager 可將替代映像變更為預設映像。如果您目前的映像發生問題、可以使用此選項降級至Cloud Volumes ONTAP 舊版的版的版次。
+
+此降級程序Cloud Volumes ONTAP 僅適用於單一版的系統。HA配對無法使用此功能。
+
+.步驟
+. 在工作環境中、按一下功能表圖示、然後按一下 * 「進階」 > 「更新 Cloud Volumes ONTAP 」 * 。
+. 在更新軟體頁面上、選取替代映像、然後按一下 * 變更映像 * 。
+. 按 * Proceed* 確認。
+
+
+Cloud Manager 會啟動軟體更新。軟體更新完成後、即可在工作環境中執行動作。
+
+如果您暫停 SnapMirror 傳輸、請使用 System Manager 繼續傳輸。

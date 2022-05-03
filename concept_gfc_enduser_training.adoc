@@ -1,0 +1,33 @@
+---
+sidebar: sidebar 
+permalink: concept_gfc_enduser_training.html 
+keywords: global file cache, training 
+summary: 您將需要訓練使用者如何透過「全域檔案快取」存取共用檔案的最佳實務做法。 
+---
+= 終端使用者訓練
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+您將需要訓練使用者如何透過「全域檔案快取」存取共用檔案的最佳實務做法。
+
+這是「全域檔案快取」部署（終端使用者實作階段）的最後階段。
+
+為了準備並簡化終端使用者的就職程序、請使用下方的電子郵件範本、協助您教育終端使用者在「中央資料」環境中的工作方式。這將有助於您的使用者善用 Global File Cache 解決方案的所有優點。我們也發佈了影片、可視需要分享給「訓練」使用者。
+
+自訂並轉送下列資源給終端使用者、以便他們做好部署的準備：
+
+* 使用者訓練影片link:https://www.youtube.com/watch?v=RYvhnTz4bEA["終端使用者訓練影片"^]
+* 電子郵件範本link:https://repo.cloudsync.netapp.com/gfc/Global%20File%20Cache%20Onboarding%20Email.emltpl["Mac 電子郵件範本（ .emltpl ）"]
++
+link:https://docs.netapp.com/us-en/occm/media/Global_File_Cache_Onboarding_Email.msg["Windows 電子郵件範本（ .msg ）"]
+
+* 就職通訊link:https://repo.cloudsync.netapp.com/gfc/Global%20File%20Cache%20Customer%20Onboarding%20-%20Draft.docx["Word 文件（ .docx ）"]
+
+
+請參閱的第 12 章 link:https://repo.cloudsync.netapp.com/gfc/NetApp%20GFC%20-%20User%20Guide.pdf["NetApp 全球檔案快取使用者指南"^] 以取得其他資料。

@@ -1,0 +1,88 @@
+---
+sidebar: sidebar 
+permalink: reference_additional_info.html 
+keywords: community, forums, help, support, videos, policies, json, api, ontap, release notes, bugs, limitations, known issues, permissions, apis, flexcache, common vulnerabilities and exposures, cve, security 
+summary: 您可以透過 Cloud Volumes ONTAP 各種資源（包括影片、論壇和支援）、取得 Cloud Manager 和支援的相關協助及更多資訊。 
+---
+= 何處可取得協助及尋找更多資訊
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+您可以透過 Cloud Volumes ONTAP 各種資源（包括影片、論壇和支援）、取得 Cloud Manager 和支援的相關協助及更多資訊。
+
+* https://mysupport.netapp.com/GPS/ECMLS2588181.html["NetApp Cloud Volumes ONTAP 支援"^]
++
+存取支援資源以取得協助、並使用 Cloud Volumes ONTAP VMware 解決有關問題。
+
+* https://www.youtube.com/playlist?list=PLdXI3bZJEw7lnoRo8FBKsX1zHbK8AQOoT["Cloud Manager 與 Cloud Volumes ONTAP 解決方案的影片"^]
++
+觀看影片、瞭解如何部署和管理 Cloud Volumes ONTAP 功能、以及如何在混合雲之間複寫資料。
+
+* https://mysupport.netapp.com/site/info/cloud-manager-policies["Cloud Manager 原則"^]
++
+下載 Json 檔案、其中包含 Cloud Manager 在雲端供應商執行行動所需的權限。
+
+* link:api.html["Cloud Manager API 開發人員指南"^]
++
+閱讀 API 總覽、如何使用 API 的範例、以及 API 參考。
+
+* 關於本產品的訓練 Cloud Volumes ONTAP
++
+** https://learningcenter.netapp.com/LC?ObjectType=WBT&ObjectID=00368390["功能基礎知識 Cloud Volumes ONTAP"^]
+** https://learningcenter.netapp.com/LC?ObjectType=WBT&ObjectID=00369436["適用於 Azure 的部署與管理 Cloud Volumes ONTAP"^]
+** https://learningcenter.netapp.com/LC?ObjectType=WBT&ObjectID=00376094["AWS 的部署與管理 Cloud Volumes ONTAP"^]
+
+
+* 技術報告
++
+** https://www.netapp.com/us/media/tr-4383.pdf["NetApp 技術報告 4383 ： Cloud Volumes ONTAP 運用應用程式工作負載、將 Amazon Web Services 中的功能特性化"^]
+** https://www.netapp.com/us/media/tr-4671.pdf["NetApp 技術報告 4671 ： Cloud Volumes ONTAP 利用應用程式工作負載、將 Azure 中的效能特性化"^]
+** https://www.netapp.com/us/media/tr-4816.pdf["NetApp 技術報告 4816 ： Cloud Volumes ONTAP 效能特性分析、適用於 Google Cloud"^]
+
+
+* SVM 災難恢復
++
+SVM 災難恢復是從來源 SVM 到目的地 SVM 的 SVM 資料和組態非同步鏡射。如果來源 SVM 不再可用、您可以快速啟動目的地 SVM 以進行資料存取。
+
++
+** https://library.netapp.com/ecm/ecm_get_file/ECMLP2839856["《 SVM 災難恢復準備快速指南》（英文） Cloud Volumes ONTAP"^]
++
+說明如何快速設定目的地 SVM 、以準備災難恢復。
+
+** https://library.netapp.com/ecm/ecm_get_file/ECMLP2839857["《 SVM Disaster Recovery Express 指南》（英文） Cloud Volumes ONTAP"^]
++
+說明如何在災難發生後快速啟動目的地 SVM 、然後重新啟動來源 SVM 。
+
+
+
+* http://docs.netapp.com/ontap-9/topic/com.netapp.doc.pow-fc-mgmt/home.html["《資料存取能力快速指南》的《支援資料量》（英文） FlexCache"^]
++
+說明如何在 FlexCache 原點磁碟區所在的同一個叢集或不同叢集中建立及管理 Sfor Volume 、以加速資料存取。
+
+* https://security.netapp.com/advisory/["安全性摘要報告"^]
++
+識別 NetApp 產品的已知弱點（ CVE ）、 ONTAP 包括請注意 Cloud Volumes ONTAP 、您可以依照 ONTAP 下列功能說明文件、修正資訊安全漏洞以供使用。
+
+* http://docs.netapp.com/ontap-9/index.jsp["供應說明文件中心 ONTAP"^]
++
+存取 ONTAP 產品文件以供參考、這有助於您使用 Cloud Volumes ONTAP NetApp 。
+
+* https://community.netapp.com/t5/Cloud-Data-Services/ct-p/CDS["NetApp 社群：雲端資料服務"^]
++
+與同儕交流、提出問題、交換想法、尋找資源、並分享最佳實務做法。
+
+* http://cloud.netapp.com/["NetApp Cloud Central"^]
++
+尋找適用於雲端的其他 NetApp 產品與解決方案相關資訊。
+
+* http://docs.netapp.com["NetApp 產品文件"^]
++
+請在 NetApp 產品文件中搜尋說明、資源和答案。
+
+

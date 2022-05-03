@@ -1,0 +1,83 @@
+---
+sidebar: sidebar 
+permalink: task_managing_svms.html 
+keywords: storage virtual machine, vserver, svm, storage vm, supported number, number supported 
+summary: 儲存虛擬機器是 ONTAP 執行於支援內部的虛擬機器、可為您的用戶端提供儲存與資料服務。您可能知道這是 SVM 或 Vserver 。根據預設、系統會設定一個儲存 VM 、但部分組態會支援額外的儲存 VM 。 Cloud Volumes ONTAP 
+---
+= 管理儲存 VM
+:toc: macro
+:hardbreaks:
+:allow-uri-read: 
+:toc: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+:toc-position: content
+
+
+[role="lead"]
+儲存虛擬機器是 ONTAP 執行於支援內部的虛擬機器、可為您的用戶端提供儲存與資料服務。您可能知道這是 _SVM_ 或 _vserver_ 。根據預設、系統會設定一個儲存 VM 、但部分組態會支援額外的儲存 VM 。 Cloud Volumes ONTAP
+
+
+
+== 支援的儲存 VM 數量
+
+利用特定組態和附加授權、支援AWS中的多個儲存VM。Cloud Volumes ONTAP https://docs.netapp.com/us-en/cloud-volumes-ontap/reference_limits_aws_97.html#logical-storage-limits["檢視 AWS 中支援的儲存 VM 數量"^]。請聯絡您的客戶團隊以取得 SVM 附加授權。
+
+所有其他 Cloud Volumes ONTAP 的支援功能均支援單一資料服務儲存 VM 、以及一部用於災難恢復的目的地儲存 VM 。如果來源儲存 VM 發生中斷、您可以啟動目的地儲存 VM 進行資料存取。
+
+儲存虛擬機器橫跨 Cloud Volumes ONTAP 整個整個作業系統（ HA 配對或單一節點）。
+
+
+
+== 建立額外的儲存 VM
+
+如果組態支援、您可以使用建立其他儲存 VM link:task_connecting_to_otc.html["System Manager 或 CLI"]。
+
+* http://docs.netapp.com/ontap-9/topic/com.netapp.doc.pow-cifs-cg/GUID-CE5DE09F-3B48-48FE-A41C-9D69C3D0C402.html["建立 SVM 以進行 SMB 存取"^]
+* http://docs.netapp.com/ontap-9/topic/com.netapp.doc.pow-nfs-cg/GUID-CE5DE09F-3B48-48FE-A41C-9D69C3D0C402.html["建立 SVM 以進行 NFS 存取"^]
+* http://docs.netapp.com/ontap-9/topic/com.netapp.doc.exp-iscsi-cpg/GUID-0FCB46AA-DA18-417B-A9EF-B6A665DB77FC.html["建立 SVM 以進行 iSCSI 存取"^]
+* https://library.netapp.com/ecm/ecm_get_file/ECMLP2839856["建立目的地 SVM 以進行災難恢復"^]
+
+
+
+
+== 在 Cloud Manager 中使用多個儲存 VM
+
+Cloud Manager 支援您從 System Manager 或 CLI 建立的任何其他儲存 VM 。
+
+例如、下圖顯示如何在建立 Volume 時選擇儲存 VM 。
+
+image:screenshot_create_volume_svm.gif["螢幕快照可顯示選取要在其中建立 Volume 的儲存 VM 的功能。"]
+
+下圖顯示如何在將磁碟區複寫至其他系統時、選擇儲存 VM 。
+
+image:screenshot_replicate_volume_svm.gif["螢幕快照顯示您可以選取要複寫磁碟區的儲存 VM 。"]
+
+
+
+== 管理儲存 VM 災難恢復
+
+Cloud Manager 不提供任何儲存 VM 災難恢復的設定或協調支援。您必須使用 System Manager 或 CLI 。
+
+* https://library.netapp.com/ecm/ecm_get_file/ECMLP2839856["SVM 災難恢復準備快速指南"^]
+* https://library.netapp.com/ecm/ecm_get_file/ECMLP2839857["SVM Disaster Recovery Express 指南"^]
+
+
+
+
+== 修改儲存 VM 名稱
+
+Cloud Manager 會自動為其所建立的 Cloud Volumes ONTAP 單一儲存 VM 命名、以供其使用。如果您有嚴格的命名標準、可以修改儲存 VM 的名稱。例如、您可能希望名稱與您為 ONTAP 自己的叢集命名儲存虛擬機器的方式相符。
+
+如果您建立 Cloud Volumes ONTAP 任何其他的儲存 VM 以供使用、則無法從 Cloud Manager 重新命名儲存 VM 。您必須 Cloud Volumes ONTAP 使用 System Manager 或 CLI 直接從支援功能進行此作業。
+
+.步驟
+. 在工作環境中、按一下功能表圖示、然後按一下 * 資訊 * 。
+. 按一下儲存 VM 名稱右側的編輯圖示。
++
+image:screenshot_svm.gif["螢幕擷取畫面：顯示 SVM 名稱欄位、以及您必須按一下以修改 SVM 名稱的編輯圖示。"]
+
+. 在「修改 SVM 名稱」對話方塊中、變更名稱、然後按一下「 * 儲存 * 」。
+

@@ -1,0 +1,145 @@
+---
+sidebar: sidebar 
+permalink: task_managing_backups.html 
+keywords: restoring, restore, restore volumes, Backup to Cloud, cloud backup service, backup schedule, change schedule, change backup schedule, modify schedule, modify backup schedule, retention, backup retention, delete, delete backups, deleting, deleting backups, disable, disable backups, turn off backups, disable backup to cloud, turn off backup to cloud 
+summary: 透過變更備份排程、還原磁碟區、刪除備份等功能、來管理Cloud Volumes ONTAP 內部部署ONTAP 和內部部署的還原系統備份。 
+---
+= 管理 Cloud Volumes ONTAP 針對內部部署 ONTAP 的還原系統的備份
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+透過變更備份排程、還原磁碟區、刪除備份等功能、來管理Cloud Volumes ONTAP 內部部署ONTAP 和內部部署的還原系統備份。
+
+
+
+== 變更排程和備份保留
+
+預設原則會每天備份磁碟區、並保留每個磁碟區最近 30 個備份複本。您可以變更為每週或每月備份、也可以變更要保留的備份複本數量。您也可以選擇系統定義的原則之一、提供 3 個月、 1 年及 7 年的排程備份。
+
+
+TIP: 變更備份原則只會影響變更排程之後所建立的新磁碟區。它不會影響任何現有磁碟區的排程。
+
+.步驟
+. 選取工作環境。
+. 按一下 image:screenshot_gallery_options.gif["更多圖示"] 並選擇 * 備份設定 * 。
++
+image:screenshot_backup_settings_button.png["螢幕擷取畫面會顯示「備份設定」按鈕、您可以在選取工作環境之後使用該按鈕。"]
+
+. 在「備份設定」頁面中、按一下 image:screenshot_horizontal_more_button.gif["更多圖示"] 對於工作環境、請選取 * 修改備份原則 * 。
++
+image:screenshot_backup_modify_policy.png["螢幕擷取畫面會顯示「備份設定」按鈕、您可以在選取工作環境之後使用該按鈕。"]
+
+. 在「修改備份原則」頁面中、變更排程和備份保留、然後按一下「 * 儲存 * 」。
++
+image:screenshot_backup_modify_policy_page.png["螢幕擷取畫面會顯示「備份至雲端」設定、您可以在其中修改備份排程和備份保留設定。"]
+
+
+
+
+
+== 啟動和停止磁碟區備份
+
+如果您不需要該磁碟區的備份複本、而且不想支付儲存備份的成本、則可以停止備份磁碟區。如果目前尚未備份、您也可以將新的磁碟區新增至備份清單。
+
+.步驟
+. 選取工作環境。
+. 按一下 image:screenshot_gallery_options.gif["更多圖示"] 並選擇 * 備份設定 * 。
++
+image:screenshot_backup_settings_button.png["螢幕擷取畫面會顯示「備份設定」按鈕、您可以在選取工作環境之後使用該按鈕。"]
+
+. 在「備份設定」頁面中、按一下 image:screenshot_horizontal_more_button.gif["更多圖示"] 對於工作環境、請選取 * 管理磁碟區 * 。
++
+image:screenshot_backup_manage_volumes.png["顯示「備份設定」頁面中「管理磁碟區」按鈕的快照。"]
+
+. 選取您要開始備份之磁碟區的核取方塊、然後取消選取您要停止備份之磁碟區的核取方塊。
++
+image:screenshot_backup_manage_volumes_page.png["「管理磁碟區」頁面、您可在其中選取或取消選取磁碟區。"]
+
+
+
+* 附註： * 停止備份磁碟區時、除非您同意、否則您將繼續由雲端供應商支付備份所使用容量的物件儲存成本 <<Deleting backups,刪除備份>>。
+
+
+
+== 從備份還原磁碟區
+
+當您從備份還原資料時、Cloud Manager會使用備份中的資料來建立_new磁碟區。您可以將資料還原至相同工作環境中的磁碟區、或還原至與來源工作環境位於相同雲端帳戶中的不同工作環境。由於備份不包含任何快照、因此新還原的磁碟區也不會。
+
+
+TIP: 從內部部署ONTAP 的支援系統建立的備份、只能還原至Cloud Volumes ONTAP 使用與備份所在位置相同雲端供應商的支援系統。
+
+.步驟
+. 選取工作環境。
+. 按一下 image:screenshot_gallery_options.gif["更多圖示"] 並選擇 * 查看備份 * 。
++
+image:screenshot_view_backups_selection.png["為工作環境選取「檢視備份」按鈕的快照。"]
+
+. 選取您要還原的磁碟區列、然後按一下 * 檢視備份清單 * 。
++
+image:screenshot_backup_to_s3_volume.gif["「備份與還原」索引標籤的快照、顯示有備份的磁碟區。"]
+
+. 找到您要還原的備份、然後按一下*還原*圖示。
++
+image:screenshot_backup_to_s3_restore_icon.gif["選取磁碟區後、用於備份的還原圖示快照。"]
+
+. 填寫「還原備份至新磁碟區」頁面：
++
+.. 選取您要還原磁碟區的工作環境。
+.. 輸入磁碟區名稱。
+.. 按一下 * 還原 * 。
++
+image:screenshot_backup_to_s3_restore_options.gif["顯示還原選項的快照：要還原的工作環境、磁碟區名稱及磁碟區資訊。"]
+
+
+
+
+
+Cloud Manager會根據您選取的備份建立新的磁碟區。您可以 link:task_managing_storage.html#managing-existing-volumes["管理此新 Volume"^] 視需要而定。
+
+
+
+== 刪除備份
+
+備份到雲端可讓您刪除特定磁碟區的 _all_ 備份。您無法刪除 _individual_ 備份。
+
+如果您不再需要備份、或是刪除來源磁碟區並想要移除所有備份、您可以這麼做。
+
+
+IMPORTANT: 如果您打算刪除 Cloud Volumes ONTAP 含有備份的內部或內部部署 ONTAP 的還原系統、則必須刪除 * 刪除系統之前 * 的備份。當您刪除系統時、「備份至雲端」不會自動刪除備份、而且使用者介面目前不支援刪除系統後的備份。
+
+.步驟
+. 在 Cloud Manager 頂端、按一下 * 備份 * 。
+. 在 Volume 清單中、找到該磁碟區、然後按一下 * 檢視備份清單 * 。
+. 按一下 image:screenshot_horizontal_more_button.gif["更多圖示"] 並選擇 * 刪除所有備份 * 。
++
+image:screenshot_delete_all_backups.png["選取「刪除所有備份」按鈕以刪除某個磁碟區的所有備份的快照。"]
+
+. 在確認對話方塊中、按一下 * 刪除 * 。
+
+
+
+
+== 停用備份至雲端
+
+停用工作環境的「備份至雲端」會停用系統上每個磁碟區的備份、也會停用還原磁碟區的功能。不會刪除任何現有的備份。
+
+請注意、除非您刪除備份、否則雲端供應商會繼續為備份所使用的容量收取物件儲存成本。
+
+.步驟
+. 選取工作環境。
+. 按一下 image:screenshot_gallery_options.gif["更多圖示"] 並選擇 * 備份設定 * 。
++
+image:screenshot_backup_settings_button.png["螢幕擷取畫面會顯示「備份設定」按鈕、您可以在選取工作環境之後使用該按鈕。"]
+
+. 在「備份設定」頁面中、按一下 image:screenshot_horizontal_more_button.gif["更多圖示"] 針對工作環境、選取 * 停用備份至雲端 * 。
++
+image:screenshot_disable_backups.png["工作環境的「停用備份」按鈕快照。"]
+
+. 在確認對話方塊中、按一下 * 停用 * 。
+

@@ -1,0 +1,938 @@
+---
+sidebar: sidebar 
+permalink: reference_new_occm.html 
+keywords: 'what"s new, features, new, release notes, bugs, limitations, known issues, enhancements, fixes' 
+summary: Cloud Manager 通常每個月都會推出新版本、為您帶來新功能、增強功能和錯誤修正。 
+---
+= Cloud Manager 3.8的新功能
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Cloud Manager 通常每個月都會推出新版本、為您帶來新功能、增強功能和錯誤修正。
+
+
+TIP: 正在尋找舊版產品嗎？link:https://docs.netapp.com/us-en/occm37/reference_new_occm.html["3.7 的新功能"^]
+link:https://docs.netapp.com/us-en/occm36/reference_new_occm.html["3.6的新功能"^]
+link:https://docs.netapp.com/us-en/occm35/reference_new_occm.html["3.5的新功能"^]
+
+
+
+== 全新Terraform供應商（2020年10月19日）
+
+我們開發出全新的Terraform供應商、讓DevOps團隊可以搭配Cloud Manager使用、將Cloud Volumes ONTAP 效能與基礎架構整合為程式碼、以實現自動化與整合。
+
+https://registry.terraform.io/providers/NetApp/netapp-cloudmanager/latest["查看NetApp-cloudmanager供應商"^]。
+
+
+
+== Cloud Manager 3.8.9更新（2020年10月18日）
+
+善用資源 https://spot.io/products/cloud-analyzer/["Spot Cloud Analyzer 的功能"^]Cloud Manager現在可以針對您的雲端運算支出進行高階成本分析、並找出可能的節約效益。此資訊可從Cloud Manager * Compute *服務取得。 link:concept_compute.html["深入瞭解"]。
+
+image:screenshot_compute_dashboard.gif["在Cloud Manager中顯示「成本分析」頁面的快照"]
+
+
+
+== Cloud Manager 3.8.9更新（2020年10月13日）
+
+我們已發行兩項雲端分層更新：
+
+* Cloud Tiering授權現已可從Cloud Manager取得。
++
+透過ONTAP 隨用隨付訂閱、ONTAP 稱為「_Siret_」的分層授權、FabricPool 或兩者的組合、從內部的物件叢集到雲端、都需要付費。
+
+* 獨立式雲端分層服務已經淘汰。您現在應該直接從Cloud Manager存取Cloud Tiering、因為Cloud Manager具備所有相同的功能。
+
+
+
+
+== Cloud Manager 3.8.9（2020年10月4日）
+
+* <<Cloud Compliance enhancements>>
+* <<Cloud Volumes Service for AWS enhancements>>
+* <<Cloud Sync integration>>
+* <<Account management enhancements>>
+* <<Changes for Government regions>>
+
+
+
+
+=== 雲端法規遵循增強功能
+
+* Cloud Manager提供全新的* Cloud Compliance Viewer*角色。
++
+獲指派此角色的使用者只能檢視法規遵循資訊、並針對有權存取的工作區產生報告。他們無法管理雲端法規遵循設定、也無法存取任何其他Cloud Manager功能與服務。這可能是您法律團隊的最佳角色、讓他們能夠監控雲端法規遵循掃描結果。請參閱 link:reference_user_roles.html["使用者角色"] 以取得詳細資料。
+
+* 增加了對掃描MongoDB和PostgreSQL資料庫架構的支援。請參閱 link:task_scanning_databases.html["正在掃描資料庫架構"] 以取得更多資訊。
+* 雲端法規遵循定價將於10月7日變更。
++
+Cloud Compliance 在 Cloud Manager 工作區中掃描的前 1 TB 資料是免費的。這包括Cloud Volumes ONTAP 來自於資料不均、Azure NetApp Files 資料不均、Amazon S3儲存區和資料庫架構的資料。在達到1 TB之後、需要訂閱才能掃描任何其他資料。請參閱 link:https://cloud.netapp.com/cloud-compliance#pricing["定價"^] 以取得詳細資料。
+
+
+
+
+
+=== 適用於AWS增強功能Cloud Volumes Service
+
+建立新磁碟區時、您可以選擇將該磁碟區建立在另一個磁碟區的現有Snapshot複本上。
+
+
+
+=== 整合Cloud Sync
+
+NetApp Cloud Sync 的《不再》服務現在可從Cloud Manager取得。支援簡單、安全且自動化的方式、可將資料從任何來源目的地移轉至任何目標目的地、雲端或內部部署。Cloud Sync link:concept_cloud_sync.html["深入瞭解"]。
+
+
+
+=== 帳戶管理增強功能
+
+我們新增更多方法來管理您的帳戶。
+
+* 您的帳戶資源總覽現已推出。
++
+您可以快速檢視帳戶中的使用者、工作區、連接器和訂閱數量。
+
+* 您可以變更帳戶名稱。
+* 您可以複製帳戶ID、工作區ID或Connector ID。
++
+複製這些ID將有助於我們規劃的自動化功能。
+
+* 您可以停用SaaS平台。
++
+除非您必須遵守公司的安全原則、否則我們不建議停用SaaS平台。停用SaaS平台會限制您使用NetApp整合式雲端服務的能力。 link:task_managing_cloud_central_accounts.html["深入瞭解"]。
+
+
+
+image:screenshot_account_management.gif[""]
+
+
+
+=== 政府區域的變更
+
+如果您在AWS GovCloud區域、Azure Gov區域或Azure DoD區域部署Connector、現在只能透過Connector的主機IP位址存取Cloud Manager。系統會停用整個帳戶的 SaaS 平台存取權。
+
+這表示只有能夠存取終端使用者內部 VPC/vnet 的授權使用者、才能使用 Cloud Manager 的 UI 或 API 。
+
+link:reference_limitations.html["深入瞭解此限制"]。
+
+
+
+== Cloud Manager 3.8.8更新（2020年9月22日）
+
+我們強化了Kubernetes服務、使其更容易使用、並提供額外功能：
+
+* 我們讓您更輕鬆地探索在雲端供應商託管的Kubernetes服務中執行的Kubernetes叢集。
++
+只要按一下*「探索叢集」*、Cloud Manager就會使用您已提供的雲端供應商權限、探索您的託管叢集。
+
+* 您現在可以檢視探索到的Kubernetes叢集的詳細資訊、包括其狀態、磁碟區數量、儲存類別等。
++
+image:screenshot_kubernetes_info.gif["Kubernetes叢集的快照、可讓您取得有關其狀態、磁碟區數量、儲存類別等資訊。"]
+
+* 我們新增了資源和錯誤檢查功能、確保叢集與Cloud Volumes ONTAP 整個過程之間能夠進行通訊。如果沒有、我們會告訴您。
+
+
+link:task_connecting_kubernetes.html["瞭解如何開始使用"]。
+
+請注意、Connector的服務帳戶需要下列權限、才能探索及管理在Google Kubernetes Engine（GKE）中執行的Kubernetes叢集：
+
+[source, yaml]
+----
+- container.*
+----
+
+
+== Cloud Manager 3.8.8更新（2020年9月10日）
+
+透過Cloud Manager部署全域檔案快取時、可以使用下列增強功能：
+
+* AWS中的某個支援功能為基礎儲存平台、可作為中央儲存設備的後端儲存平台。Cloud Volumes ONTAP
+* 您可以在負載分散式設計中部署多個全域檔案快取核心執行個體。
+
+
+link:concept_gfc.html["深入瞭解全域檔案快取"]。
+
+
+
+== Cloud Manager 3.8.82020年9月9日
+
+* <<Support for Cloud Volumes Service for Google Cloud>>
+* <<Backup to Cloud now supports on-premises ONTAP clusters>>
+* <<Backup to Cloud enhancements>>
+* <<Cloud Compliance enhancements>>
+* <<Refreshed navigation>>
+* <<Administration improvements>>
+
+
+
+
+=== 支援Cloud Volumes Service for Google Cloud
+
+* 新增工作環境來管理Cloud Volumes Service GCP磁碟區現有的功能、並建立新的磁碟區。 link:task_setup_cvs_gcp.html["瞭解方法"^]。
+* 為Linux和UNIX用戶端建立及管理NFSv3和NFSv4.1磁碟區、以及為Windows用戶端建立及管理SMB 3.x磁碟區。
+* 建立、刪除及還原Volume快照。
+
+
+
+
+=== 備份到雲端現在支援內部部署ONTAP 的架構式叢集
+
+開始將內部部署ONTAP 的資料從內部部署的支援系統備份到雲端。在內部部署工作環境中啟用「備份至雲端」功能、將磁碟區備份至Azure Blob儲存設備。 link:task_backup_from_onprem.html["深入瞭解"^]。
+
+
+
+=== 備份至雲端增強功能
+
+我們修訂了使用者介面、以提高使用性：
+
+* Volume清單頁面、可輕鬆查看要備份的磁碟區、以及可用的備份
+* 備份設定頁面、可檢視每個工作環境的備份設定
+
+
+
+
+=== 雲端法規遵循增強功能
+
+* 能夠從資料庫掃描資料
++
+掃描您的資料庫、以識別每個架構中的個人和敏感資料。支援的資料庫包括Oracle、SAP HANA及SQL Server（MSSQL）。 link:task_scanning_databases.html["深入瞭解掃描資料庫"^]。
+
+* 能夠掃描資料保護（DP）磁碟區
++
+DP磁碟區是SnapMirror作業的目的地磁碟區、通常來自內部部署ONTAP 的內部元件叢集。現在您可以輕鬆識別內部部署檔案中的個人和敏感資料。 link:task_getting_started_compliance.html#scanning-data-protection-volumes["瞭解方法"^]。
+
+
+
+
+
+=== 重新整理導覽
+
+我們在Cloud Manager中重新整理標題、讓您更輕鬆地在NetApp雲端服務之間進行瀏覽。
+
+按一下「*檢視所有服務*」、即可在導覽中固定及取消固定您要查看的服務。
+
+image:screenshot_header.gif["快照顯示Cloud Manager提供的新標題。"]
+
+如您所見、我們也更新了「帳戶」、「工作區」和「連接器」下拉式清單、讓您更容易檢視目前的選擇。
+
+
+
+=== 系統管理改良
+
+* 您現在可以從Cloud Manager移除非使用中的連接器。 link:task_managing_connectors.html["瞭解方法"]。
++
+image:screenshot_connector_remove.gif["連接器 Widget 的快照、可讓您移除非作用中的連接器。"]
+
+* 您現在可以取代目前與雲端供應商認證相關的Marketplace訂閱。如果您需要變更收費方式、這項變更可協助您確保透過適當的Marketplace訂閱付費。
++
+瞭解方法 link:task_adding_aws_accounts.html["在AWS中"]、 link:task_adding_azure_accounts.html["在Azure中"]和 link:task_adding_gcp_accounts.html["在GCP中"]。
+
+
+
+
+
+== 必要Azure權限更新（2020年8月6日）
+
+為了避免 Azure 部署失敗、請確定 Azure 中的 Cloud Manager 原則包含下列權限：
+
+[source, json]
+----
+"Microsoft.Resources/deployments/operationStatuses/read"
+----
+Azure現在要求某些虛擬機器部署具備此權限（這取決於部署期間所使用的基礎實體硬體）。
+
+https://occm-sample-policies.s3.amazonaws.com/Policy_for_cloud_Manager_Azure_3.8.7.json["檢視Azure最新的Cloud Manager原則"^]。
+
+
+
+== Cloud Manager 3.8.7（2020年8月3日）
+
+* <<New software-as-a-service experience>>
+* <<Cloud Volumes ONTAP enhancements>>
+* <<Azure NetApp Files enhancements>>
+* <<Cloud Volumes Service for AWS enhancements>>
+* <<Cloud Compliance enhancements>>
+* <<Backup to Cloud enhancements>>
+* <<Support for Global File Cache>>
+
+
+
+
+=== 全新的軟體即服務體驗
+
+我們已為Cloud Manager全面推出軟體即服務體驗。這項全新體驗讓您更容易使用 Cloud Manager 、並讓我們提供額外功能來管理混合雲基礎架構。
+
+Cloud Manager包含 https://cloudmanager.netapp.com/["SaaS型介面"^] 與NetApp Cloud Central和Connectors整合、讓Cloud Manager能夠管理公有雲環境中的資源和程序。（連接器實際上與您安裝的現有 Cloud Manager 軟體相同。）
+
+
+NOTE: 大多數情況下都需要連接器、但Azure NetApp Files 不需要使用Cloud Volumes Service Cloud Manager的功能、例如功能介紹、功能介紹或Cloud Sync 功能介紹。
+
+如前文所述、您必須升級連接器的機器類型、才能存取我們提供的新功能。Cloud Manager會提示您變更機器類型的指示。 link:concept_saas.html#the-local-user-interface["深入瞭解"]。
+
+
+
+=== 更新功能 Cloud Volumes ONTAP
+
+有兩項增強Cloud Volumes ONTAP 功能可供使用。
+
+* *多個BYOL授權以分配額外容量*
++
+您現在可以購買Cloud Volumes ONTAP 多份適用於某個不支援的BYOL系統的授權、以配置超過368TB的容量。例如、您可能會購買兩份授權、以配置多達 736 TB 的容量來 Cloud Volumes ONTAP 供參考。或者、您也可以購買四份授權、最高可達 1.4 PB 。
+
++
+單一節點系統或 HA 配對可購買的授權數量不受限制。
+
++
+請注意、磁碟限制可能會讓您無法單獨使用磁碟來達到容量限制。您可以超越磁碟限制 link:concept_data_tiering.html["將非作用中資料分層至物件儲存設備"^]。如需磁碟限制的相關資訊、請參閱 https://docs.netapp.com/us-en/cloud-volumes-ontap/["《發行說明》中的儲存限制 Cloud Volumes ONTAP"^]。
+
++
+link:task_managing_licenses.html["瞭解如何新增系統授權"]。
+
+* *使用外部金鑰加密Azure託管磁碟*
++
+您現在可以使用Cloud Volumes ONTAP 其他帳戶的外部金鑰、在單一節點的不二系統上加密Azure託管磁碟。API 支援此功能。
+
++
+您只需在建立單一節點系統時、將下列項目新增至 API 要求：
+
++
+[source, json]
+----
+"azureEncryptionParameters": {
+      "key": <azure id of encryptionset>
+  }
+----
++
+此功能需要新的權限、如最新所示 https://occm-sample-policies.s3.amazonaws.com/Policy_for_cloud_Manager_Azure_3.8.7.json["Azure 的 Cloud Manager 原則"^]。
+
++
+[source, json]
+----
+"Microsoft.Compute/diskEncryptionSets/read"
+----
+
+
+
+
+=== 更新功能Azure NetApp Files
+
+此版本包含多項支援Azure NetApp Files 功能強化功能。
+
+* *《設定*》Azure NetApp Files
++
+您現在Azure NetApp Files 可以直接從Cloud Manager設定及管理功能。 link:task_manage_anf.html["瞭解方法"]。
+
+* *新的傳輸協定支援*
++
+您現在可以建立NFSv4.1磁碟區和SMB磁碟區。
+
+* *容量資源池與磁碟區快照管理*
++
+Cloud Manager可讓您建立、刪除及還原Volume快照。您也可以建立新的容量集區、並指定其服務層級。
+
+* *編輯磁碟區的能力*
++
+您可以變更磁碟區的大小及管理標記、以編輯該磁碟區。
+
+
+
+
+
+=== 適用於AWS增強功能Cloud Volumes Service
+
+Cloud Manager有許多增強功能可支援Cloud Volumes Service AWS的功能。
+
+* *新的傳輸協定支援*
++
+現在您可以建立NFSv4.1磁碟區、SMB磁碟區和雙傳輸協定磁碟區。先前您只能在Cloud Manager中建立及探索NFSv3磁碟區。
+
+* * Snapshot支援*
++
+您可以建立快照原則來自動化建立Volume快照、建立隨需快照、從快照還原磁碟區、根據現有的快照建立新的磁碟區等等。請參閱 link:task_manage_cloud_volumes_snapshots.html["管理雲端磁碟區快照"] 以取得更多資訊。
+
+* *從Cloud Manager*建立區域中的初始Volume
++
+在此版本發行之前、必須在Cloud Volumes Service 適用於AWS介面的版本中建立每個區域的第一個Volume。現在您可以訂閱 link:https://aws.amazon.com/marketplace/search/results?x=0&y=0&searchTerms=netapp+cloud+volumes+service["AWS Marketplace上的NetApp Cloud Volumes Service 產品組合之一"^] 然後從Cloud Manager建立第一個Volume。
+
+
+
+
+
+=== 雲端法規遵循增強功能
+
+雲端法規遵循現已提供下列增強功能。
+
+* *針對您的雲端法規遵循執行個體*修訂部署程序
++
+Cloud Compliance執行個體是使用Cloud Manager中的新精靈來設定及部署。部署完成後、您可以針對您要掃描的每個工作環境啟用服務。
+
+* *能夠在工作環境中選擇要掃描的磁碟區*
++
+現在、您可以在Cloud Volumes ONTAP 運作環境中啟用和停用個別Volume的掃描Azure NetApp Files 功能。如果您不需要掃描特定磁碟區以確保符合法規、請將其關閉。
+
++
+link:task_getting_started_compliance.html#enabling-and-disabling-compliance-scans-on-individual-volumes["深入瞭解停用磁碟區掃描功能。"^]
+
+* *導覽索引標籤可快速跳至您感興趣的領域*
++
+儀表板、調查和組態的新索引標籤可讓您更輕鬆地前往這些區段。
+
+* * HIPAA報告*
++
+全新的健康保險流通與責任法案（HIPAA）報告現已推出。本報告旨在協助貴組織遵守HIPAA資料隱私權法律。
+
++
+link:task_generating_compliance_reports.html#hipaa-report["深入瞭解HIPAA報告。"^]
+
+* *新的敏感個人資料類型*
++
+Cloud Compliance現在可在檔案中找到ICD-9-CM醫療代碼。
+
+* *新的個人資料類型*
++
+Cloud Compliance現在可以在檔案中找到兩個新的國家識別碼：克羅地亞ID（OIB）和希臘ID。
+
+
+
+
+
+=== 備份至雲端增強功能
+
+下列增強功能現已可供備份至雲端。
+
+* *自帶授權（BYOL）現已推出*
++
+備份到雲端只有透過「隨用隨付」（PAYGO）授權才能使用。BYOL授權可讓您向NetApp購買授權、以便在一段時間內使用「備份至雲端」、並獲得最大的備份空間。達到任一限制時、您都需要續約授權。
+
++
+link:concept_backup_to_cloud.html#cost["深入瞭解新的「備份至雲端BYOL」授權。"^]
+
+* *支援資料保護（DP）磁碟區*
++
+現在即可備份及還原資料保護磁碟區。
+
+
+
+
+
+=== 支援全域檔案快取
+
+NetApp 全球檔案快取可讓您將分散式檔案伺服器的封閉環境整合至公有雲中的單一整體儲存空間。這會在雲端中建立全域存取的檔案系統、讓所有分散式位置都能像在本機一樣使用。
+
+從本版本開始、您可以透過Cloud Manager部署及管理Global File Cache Management執行個體和Core執行個體。這可在初始部署程序期間節省許多小時、並透過Cloud Manager為這部系統和其他已部署系統提供單一窗口。全域檔案快取Edge執行個體仍部署在遠端辦公室的本機上。
+
+請參閱 link:concept_gfc.html["全域檔案快取總覽"^] 以取得更多資訊。
+
+可以使用Cloud Manager部署的初始組態必須符合下列需求。如AWS和GCP的其他組態、Cloud Volumes Service 如：功能完整Azure NetApp Files 、功能完整、Cloud Volumes Service 功能完整、功能完整。 https://cloud.netapp.com/global-file-cache/onboarding["深入瞭解"^]。
+
+* 做為中央儲存設備的後端儲存平台、必須是在Cloud Volumes ONTAP Azure中部署了一套「功能」配對的工作環境。
++
+目前不支援使用Cloud Manager的其他儲存平台和其他雲端供應商、但可以使用舊版部署程序進行部署。
+
+* GFC核心只能部署為獨立執行個體。
++
+如果您需要使用包含多個核心執行個體的負載分散式設計、則必須使用舊版程序。
+
+
+
+此功能需要新的權限、如最新所示 https://occm-sample-policies.s3.amazonaws.com/Policy_for_cloud_Manager_Azure_3.8.7.json["Azure 的 Cloud Manager 原則"^]。
+
+[source, json]
+----
+"Microsoft.Resources/deployments/operationStatuses/read",
+"Microsoft.Insights/Metrics/Read",
+"Microsoft.Compute/virtualMachines/extensions/write",
+"Microsoft.Compute/virtualMachines/extensions/read",
+"Microsoft.Compute/virtualMachines/extensions/delete",
+"Microsoft.Compute/virtualMachines/delete",
+"Microsoft.Network/networkInterfaces/delete",
+"Microsoft.Network/networkSecurityGroups/delete",
+"Microsoft.Resources/deployments/delete",
+----
+
+
+== 改善體驗需要更強大的機器類型（2020年7月15日）
+
+在我們改善Cloud Manager體驗的同時、您需要升級機器類型、才能存取我們即將提供的新功能。改善項目包括 link:concept_saas.html["Cloud Manager的軟體即服務體驗"] 以及全新增強的雲端服務整合功能。
+
+Cloud Manager會提示您變更機器類型的指示。
+
+以下是一些詳細資料：
+
+. 為了確保有足夠的資源可供Cloud Manager中的新功能正常運作、我們變更了預設執行個體、VM和機器類型、如下所示：
++
+** AWS ： T3.xlarge
+** Azure ： DS3 v2
+** GCP ： NA-Standard-4
++
+這些預設大小是支援的最小值 link:reference_cloud_mgr_reqs.html["根據 CPU 和 RAM 需求"]。
+
+
+
+. 在這項轉換過程中、Cloud Manager需要存取下列端點、以便取得Docker基礎架構容器元件的軟體映像：
++
+\https://cloudmanagerinfraprod.azurecr.io
+
++
+確保您的防火牆能夠從Cloud Manager存取此端點。
+
+
+
+
+
+== Cloud Manager 3.8.6（2020年7月6日）
+
+* <<Support for iSCSI volumes>>
+* <<Support for the All tiering policy>>
+
+
+
+
+=== 支援iSCSI磁碟區
+
+Cloud Manager現在可讓您直接Cloud Volumes ONTAP 從使用者介面建立iSCSI Volume、以利執行功能、並在內部ONTAP 使用支援叢集。
+
+建立 iSCSI Volume 時、 Cloud Manager 會自動為您建立 LUN 。我們只要在每個磁碟區建立一個 LUN 、就能輕鬆完成工作、因此不需要管理。建立磁碟區之後、 link:task_provisioning_storage.html#connecting-a-lun-to-a-host["使用 IQN 從主機連線至 LUN"]。
+
+
+NOTE: 您可以從 System Manager 或 CLI 建立其他 LUN 。
+
+
+
+=== 支援All Tiering原則
+
+現在、您可以在建立或修改供Cloud Volumes ONTAP 用的Volume時、選擇「All Tiering（所有分層）」原則。當您使用All Tiering原則時、資料會立即標示為Cold、並儘快階層至物件儲存設備。 link:concept_data_tiering.html["深入瞭解資料分層"]。
+
+
+
+== Cloud Manager移轉至SaaS（2020年6月22日）
+
+我們將為Cloud Manager提供軟體即服務體驗。這項全新體驗讓您更容易使用 Cloud Manager 、並讓我們提供額外功能來管理混合雲基礎架構。 link:concept_saas.html["深入瞭解"]。
+
+
+
+== Cloud Manager 3.8.5（2020年5月31日）
+
+* <<New subscription required in the Azure Marketplace>>
+* <<Backup to Cloud enhancements>>
+* <<Cloud Compliance enhancements>>
+
+
+
+
+=== Azure Marketplace需要新的訂閱
+
+Azure Marketplace提供新的訂閱服務。這項一次性訂閱是部署Cloud Volumes ONTAP 更新的必要條件（30天免費試用系統除外）。訂閱也能讓我們提供Cloud Volumes ONTAP 適用於__LW_PAYGO和BYOL的附加功能。您將會從這項訂閱中、針對Cloud Volumes ONTAP 您所建立的每個功能、以及您啟用的每個附加功能、收取費用。
+
+當您部署新Cloud Volumes ONTAP 的版塊系統（9.7 P1或更新版本）時、Cloud Manager會提示您訂閱此產品。
+
+image:screenshot_azure_marketplace_subscription.gif[""]
+
+
+
+=== 備份至雲端增強功能
+
+下列增強功能現已可供備份至雲端。
+
+* 在Azure中、您現在可以建立新的資源群組、或是選取現有的資源群組、而非讓Cloud Manager為您建立資源群組。啟用「備份至雲端」之後、就無法變更資源群組。
+* 在AWS中、您現在可以備份Cloud Volumes ONTAP 位在Cloud Manager AWS帳戶以外的AWS帳戶上的各個執行個體。
+* 選取磁碟區的備份排程時、現在還提供其他選項。除了每日、每週和每月備份選項之外、您現在也可以選擇系統定義的原則之一、提供每日30個、每週13個和每月12個備份的組合原則。
+* 刪除某個磁碟區的所有備份之後、您現在可以再次開始為該磁碟區建立備份。這是先前版本的已知限制。
+
+
+
+
+=== 雲端法規遵循增強功能
+
+下列增強功能適用於Cloud Compliance。
+
+* 您現在可以掃描位於不同AWS帳戶的S3儲存區、而非Cloud Compliance執行個體。您只需在該新帳戶上建立角色、現有的Cloud Compliance執行個體就能連線至這些儲存區。 link:task_scanning_s3.html#scanning-buckets-from-additional-aws-accounts["深入瞭解"]。
++
+如果您在3.8.5版之前設定Cloud Compliance、則需要修改現有的 link:task_scanning_s3.html#requirements-specific-to-s3["雲端法規遵循執行個體的IAM角色"] 以使用此功能。
+
+* 您現在可以篩選調查頁面的內容、只顯示您要查看的結果。篩選條件包括工作環境、類別、私有資料、檔案類型、上次修改日期、 以及S3物件的權限是否開放給公開存取。
++
+image:screenshot_compliance_investigation_filtered.png[""]
+
+* 您現在可以直接從Cloud Compliance（雲端法規遵循）索引標籤、在工作環境中啟動和停用Cloud Compliance（雲端法規遵循）。
+
+
+
+
+== Cloud Manager 3.8.4更新（2020年5月10日）
+
+我們推出Cloud Manager 3.8.4增強功能。
+
+
+
+=== 整合Cloud Insights
+
+Cloud Manager運用NetApp Cloud Insights 的《效益分析》服務、讓您深入瞭解Cloud Volumes ONTAP VMware執行個體的健全狀況與效能、並協助您疑難排解及最佳化雲端儲存環境的效能。 link:concept_monitoring.html["深入瞭解"]。
+
+
+
+== Cloud Manager 3.8.4（2020年5月3日）
+
+Cloud Manager 3.8.4包含下列改善項目。
+
+
+
+=== 備份至雲端增強功能
+
+下列增強功能現已可供備份至雲端（先前稱為_Backup to S__ for AWS）：
+
+* *備份至Azure Blob儲存設備*
++
+Azure現已提供Cloud Volumes ONTAP 雲端備份功能。備份到雲端提供備份與還原功能、可保護雲端資料、並可長期歸檔。 link:concept_backup_to_cloud.html["深入瞭解"]。
+
+* *刪除備份*
++
+您現在可以直接從Cloud Manager介面刪除特定磁碟區的所有備份。 link:task_managing_backups.html#deleting-backups["深入瞭解"]。
+
+
+
+
+
+== Cloud Manager 3.8.3（2020年4月5日）
+
+* <<Cloud Tiering integration>>
+* <<Data migration to Azure NetApp Files>>
+* <<Cloud Compliance enhancements>>
+* <<Backup to S3 enhancements>>
+* <<iSCSI volumes using APIs>>
+
+
+
+
+=== 雲端分層整合
+
+NetApp的雲端分層服務現在可從Cloud Manager取得。雲端分層功能可讓您將內部部署ONTAP 的叢集資料分層、以降低雲端的物件儲存成本。如此可釋出叢集上的高效能儲存空間、以處理更多工作負載。
+
+link:concept_cloud_tiering.html["深入瞭解"]。
+
+
+
+=== 資料移轉至Azure NetApp Files
+
+您現在可以Azure NetApp Files 直接從Cloud Manager將NFS或SMB資料移轉至支援功能。資料同步是由NetApp Cloud Sync 的《不同步服務（Syncss）：
+
+link:task_manage_anf.html#migrating-data-to-azure-netapp-files["瞭解如何將資料移轉Azure NetApp Files 至"]。
+
+
+
+=== 雲端法規遵循增強功能
+
+雲端法規遵循現已提供下列增強功能。
+
+* * Amazon S3 *免費試用30天*
++
+30天免費試用版現已推出、可透過Cloud Compliance來掃描Amazon S3資料。如果您先前已在Amazon S3上啟用Cloud Compliance、您的30天免費試用期將於今日（2020年4月5日）開始生效。
+
++
+必須訂閱AWS Marketplace、才能在免費試用結束後繼續掃描Amazon S3。 link:task_scanning_s3.html#subscribing-to-aws-marketplace["瞭解如何訂閱"]。
+
++
+https://cloud.netapp.com/cloud-compliance#pricing["深入瞭解掃描Amazon S3的定價方式"^]。
+
+* *新的個人資料類型*
++
+Cloud Compliance現在可以在檔案中找到新的國家識別碼：Brazilian ID（CPF）。
+
++
+link:task_controlling_private_data.html#personal-data["深入瞭解個人資料類型"]。
+
+* *支援其他中繼資料類別*
++
+Cloud Compliance現在可以將資料分類為九個額外的中繼資料類別。 link:task_controlling_private_data.html#types-of-categories["請參閱支援的中繼資料類別完整清單"]。
+
+
+
+
+
+=== 備份到S3的增強功能
+
+下列增強功能現已可供「備份至S3」服務使用。
+
+* *用於備份的S3生命週期原則*
++
+備份從_Standard_儲存類別開始、30天後轉換至_Standard-in頻繁 存取_儲存類別。
+
+* *刪除備份*
++
+您現在可以使用Cloud Manager API刪除備份。 link:task_backup_to_s3.html#deleting-backups["深入瞭解"]。
+
+* *封鎖公共存取*
++
+Cloud Manager現在可啟用 https://docs.aws.amazon.com/AmazonS3/latest/dev/access-control-block-public-access.html["Amazon S3 封鎖公共存取功能"^] 在儲存備份的S3儲存桶上。
+
+
+
+
+
+=== 使用API的iSCSI磁碟區
+
+Cloud Manager API現在可讓您建立iSCSI磁碟區。 link:api.html#_provisioning_iscsi_volumes["請在此檢視範例"^]。
+
+
+
+== Cloud Manager 3.8.2（2020年3月1日）
+
+* <<Amazon S3 working environments>>
+* <<Cloud Compliance enhancements>>
+* <<NFS version for volumes>>
+* <<Support for Azure US Gov regions>>
+
+
+
+
+=== Amazon S3工作環境
+
+Cloud Manager現在會自動探索Amazon S3儲存區的相關資訊、這些儲存區位於安裝該儲存區的AWS帳戶中。這可讓您輕鬆查看S3儲存桶的詳細資料、包括區域、存取層級、儲存層級、以及儲存桶是否搭配Cloud Volumes ONTAP 使用以進行備份或資料分層。您也可以依照下列說明、掃描S3儲存區的Cloud Compliance。
+
+image:screenshot_amazon_s3.gif["顯示 Amazon S3 工作環境詳細資料的螢幕快照：儲存區總數和區域總數、使用中服務的儲存區數目、以及顯示每個 S3 儲存區詳細資料的表格。"]
+
+
+
+=== 雲端法規遵循增強功能
+
+雲端法規遵循現已提供下列增強功能。
+
+* *支援Amazon S3 *
++
+Cloud Compliance現在可以掃描Amazon S3儲存區、找出位於S3物件儲存區的個人和敏感資料。無論是為 NetApp 解決方案建立雲端法規遵循、雲端法規遵循部門都能掃描帳戶中的任何儲存庫。
+
++
+link:task_scanning_s3.html["瞭解如何開始使用"]。
+
+* *調查頁*
++
+現在每種類型的個人檔案、敏感的個人檔案、類別和檔案類型都有新的「調查」頁面可供使用。此頁面會顯示受影響檔案的詳細資料、並可讓您依照包含最個人資料、敏感個人資料及資料主體名稱的檔案進行排序。此頁面取代先前可用的CSV報告。
+
++
+以下是範例：
+
++
+image:screenshot_compliance_investigation.gif["調查頁面的快照。"]
+
++
+link:task_controlling_private_data.html["深入瞭解調查頁面"]。
+
+* * PCI DSS報告*
++
+現已推出全新的支付卡產業資料安全標準（PCI DSS）報告。此報告可協助您識別信用卡資訊在檔案中的發佈情形。您可以檢視包含信用卡資訊的檔案數量、無論工作環境是受到加密或勒索軟體保護、保留詳細資料等保護。
+
++
+link:task_generating_compliance_reports.html["深入瞭解PCI DSS報告"]。
+
+* *新的敏感個人資料類型*
++
+雲端法規遵循現在可以找到ICD-10-CM醫療代碼、這些代碼用於醫療和醫療產業。
+
+
+
+
+
+=== 適用於Volume的NFS版本
+
+現在、您可以在建立或編輯供Cloud Volumes ONTAP 使用的Volume時、選取要在Volume上啟用的NFS版本。
+
+image:screenshot_nfs_version.gif["顯示Volume詳細資料畫面的快照、可讓您啟用NFSv3、NFSv4或兩者。"]
+
+
+
+=== 支援Azure US Gov地區
+
+Azure US Gov地區現在支援的是支援的0、HA配對。Cloud Volumes ONTAP
+
+https://cloud.netapp.com/cloud-volumes-global-regions["請參閱支援的 Azure 地區清單"^]。
+
+
+
+== Cloud Manager 3.8.1更新（2020年2月16日）
+
+我們發表Cloud Manager 3.8.1的幾項增強功能。
+
+
+
+=== 備份到S3的增強功能
+
+* 備份複本現在儲存在Cloud Manager在AWS帳戶中建立的S3儲存區、每Cloud Volumes ONTAP 個運作環境只有一個儲存區。
+* 所有AWS區域現在都支援備份到S3 https://cloud.netapp.com/cloud-volumes-global-regions["支援的地方 Cloud Volumes ONTAP"^]。
+* 您可以將備份排程設定為每日、每週或每月。
+* Cloud Manager不再需要設定與Backup to S3服務的_Private連結。
+
+
+這些增強功能需要額外的S3權限。為Cloud Manager提供權限的IAM角色必須包含最新的權限 https://mysupport.netapp.com/site/info/cloud-manager-policies["Cloud Manager 原則"^]。
+
+link:task_backup_to_s3.html["深入瞭解Backup to S3"]。
+
+
+
+=== AWS更新
+
+我們已推出支援新EC2執行個體、Cloud Volumes ONTAP 以及更新支援的資料磁碟數量、以供支援使用。請查看Cloud Volumes ONTAP 《更新資訊》中的變更內容。
+
+* https://docs.netapp.com/us-en/cloud-volumes-ontap/reference_new_97.html["更新說明Cloud Volumes ONTAP"^]
+* https://docs.netapp.com/us-en/cloud-volumes-ontap/reference_new_96.html["發行說明Cloud Volumes ONTAP"^]
+
+
+
+
+== Cloud Manager 3.8.1（2020年2月2日）
+
+* <<Cloud Compliance enhancements>>
+* <<Enhancements to accounts and subscriptions>>
+* <<Timeline enhancements>>
+
+
+
+
+=== 雲端法規遵循增強功能
+
+雲端法規遵循現已提供下列增強功能。
+
+* *支援Azure NetApp Files S編*
++
+我們很高興宣布Cloud Compliance現在可以掃描Azure NetApp Files 功能表、找出位於磁碟區上的個人和敏感資料。
+
++
+link:task_getting_started_compliance.html["瞭解如何開始使用"]。
+
+* *掃描狀態*
++
+Cloud Compliance現在會顯示每個CIFS和NFS磁碟區的掃描狀態、包括可用來修正任何問題的錯誤訊息。
+
++
+image:screenshot_cloud_compliance_status.gif[""]
+
+* *依工作環境篩選儀表板*
++
+您現在可以篩選Cloud Compliance儀表板的內容、查看特定工作環境的法規遵循資料。
+
++
+image:screenshot_cloud_compliance_filter.gif[""]
+
+* *新的個人資料類型*
++
+雲端法規遵循部門現在可以在掃描資料時識別加州驅動程式的授權。
+
+* *支援其他類別*
++
+支援另外三種類別：應用程式資料、記錄、資料庫和索引檔案。
+
++
+link:task_controlling_private_data.html#categories["深入瞭解類別"]。
+
+
+
+
+
+=== 客戶與訂閱的增強功能
+
+我們讓您更容易選擇AWS帳戶或GCP專案、以及與之相關的市場訂閱方案、以購買隨用隨付Cloud Volumes ONTAP 的功能系統。這些增強功能有助於確保您是從適當的帳戶或專案付款。
+
+例如、當您在AWS中建立系統時、如果您不想使用預設帳戶和訂閱、請按一下*編輯認證*：
+
+image:screenshot_accounts_select_aws.gif["工作環境精靈中的詳細資料&認證頁面快照、顯示「編輯認證」按鈕。"]
+
+您可以從這裡選擇想要使用的帳戶認證資料、以及相關的AWS市場訂閱。您甚至可以視需要新增市場訂閱。
+
+image:screenshot_accounts_aws.gif["「編輯帳戶與新增訂閱」對話方塊的快照。此對話方塊可讓您選擇訂閱、並將認證資料與訂閱建立關聯。"]
+
+如果您管理多個AWS訂閱、您可以從設定中的「認證」頁面、將每個訂閱指派給不同的AWS認證：
+
+image:screenshot_aws_add_subscription.gif["「認證」頁面的快照、您可以從功能表將訂閱新增至 AWS 認證資料。"]
+
+link:task_adding_aws_accounts.html["瞭解如何在Cloud Manager中管理AWS認證資料"]。
+
+
+
+=== 時間軸增強功能
+
+時間軸經過強化、可提供您更多有關所使用NetApp雲端服務的資訊。
+
+* 時間軸現在顯示相同Cloud Central帳戶內所有Cloud Manager系統的行動
+* 您現在可以篩選、搜尋及新增及移除欄、更輕鬆地找到資訊
+* 您現在可以下載CSV格式的時間表資料
+* 未來時間軸會顯示您所使用之每項NetApp雲端服務的行動（但您可以將資訊篩選至單一服務）
+
+
+image:screenshot_timeline.gif["Cloud Manager中出現的時間軸快照。時間軸會顯示Cloud Manager中已採取行動的詳細資料。"]
+
+
+
+== Cloud Manager 3.8（2020年1月8日）
+
+* <<HA enhancements in Azure>>
+* <<Data tiering enhancements in GCP>>
+
+
+
+
+=== Azure的HA增強功能
+
+Azure中的下列增強Cloud Volumes ONTAP 功能現已推出、適用於更新版本的不二線HA配對。
+
+* *取代Cloud Volumes ONTAP Azure *中的CIFS鎖、以實現功能不完全的HA
++
+您現在可以在Cloud Manager中啟用一項設定、以避免Cloud Volumes ONTAP 在Azure維護事件期間發生有關故障恢復的問題。啟用此設定時 Cloud Volumes ONTAP 、不支援 CIFS 會鎖定並重設作用中的 CIFS 工作階段。 link:task_overriding_cifs_locks.html["深入瞭解"]。
+
+* * Cloud Volumes ONTAP 從邊到儲存帳戶的HTTPS連線*
++
+您現在Cloud Volumes ONTAP 可以在建立工作環境時、從一個可疑的9.7 HA配對啟用HTTPS連線至Azure儲存帳戶。請注意、啟用此選項可能會影響寫入效能。您無法在建立工作環境之後變更設定。
+
+* *支援Azure通用v2儲存帳戶*
++
+Cloud Manager為Cloud Volumes ONTAP 更新的版本建立的儲存帳戶現在是通用的v2儲存帳戶。
+
+
+
+
+
+=== GCP的資料分層增強功能
+
+以下增強功能可用於Cloud Volumes ONTAP GCP中的資料分層功能。
+
+* *用於資料分層的Google Cloud儲存類別*
++
+您現在可以選擇儲存類別、將Cloud Volumes ONTAP 資料從階層移至Google Cloud Storage：
+
++
+** 標準儲存設備（預設）
+** 近線儲存設備
+** 共線儲存設備
++
+https://cloud.google.com/storage/docs/storage-classes["深入瞭解Google Cloud儲存課程"^]。
+
++
+link:task_tiering.html#changing-the-storage-class-for-tiered-data["瞭解如何變更Cloud Volumes ONTAP 儲存類別以供使用"]。
+
+
+
+* *使用服務帳戶進行資料分層*
++
+從9.7版開始、Cloud Manager現在就會在Cloud Volumes ONTAP 這個實例上設定服務帳戶。此服務帳戶提供資料分層至 Google Cloud Storage 儲存庫的權限。這項變更可提供更高的安全性、而且需要更少的設定。如需部署新系統的逐步指示、 link:task_getting_started_gcp.html["請參閱本頁的步驟4"]。
+
++
+下圖顯示「工作環境」精靈、您可在其中選取儲存類別和服務帳戶：
+
++
+image:screenshot_data_tiering_gcp.gif[""]
+
+
+
+Cloud Manager需要下列GCP權限才能進行這些增強功能、如最新所示 https://occm-sample-policies.s3.amazonaws.com/Policy_for_Cloud_Manager_3.8.0_GCP.yaml["GCP 的 Cloud Manager 原則"^]。
+
+[source, yaml]
+----
+- storage.buckets.update
+- compute.instances.setServiceAccount
+- iam.serviceAccounts.getIamPolicy
+- iam.serviceAccounts.list
+----

@@ -1,0 +1,47 @@
+---
+sidebar: sidebar 
+permalink: task_scanning_onprem.html 
+keywords: cloud compliance, on-prem, scan on prem data, scan on-prem data 
+summary: 您可以ONTAP 利用Cloud Compliance將內部部署的內部資料複製到Cloud Volumes ONTAP 運作環境、然後再啟用法規遵循功能、藉此掃描內部部署的內部資料。不ONTAP 支援直接從內部部署的不支援環境掃描資料。 
+---
+= 使用ONTAP SnapMirror透過Cloud Compliance掃描內部部署的內部資料
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+您可以ONTAP 將內部部署的內部部署的支援資料複製到Cloud Volumes ONTAP 一個可運作的環境、然後啟用法規遵循、藉此掃描符合Cloud Compliance的內部部署支援資料。不ONTAP 支援直接從內部部署的不支援環境掃描資料。
+
+您必須擁有 link:task_deploy_cloud_compliance.html["已在 Cloud Manager 中部署 Cloud Compliance 執行個體"^]。
+
+.步驟
+. 在 Cloud Manager 中、建立內部部署 ONTAP 的內部部署叢集與 Cloud Volumes ONTAP 內部部署的 SnapMirror 關係。
++
+.. https://docs.netapp.com/us-en/occm/task_discovering_ontap.html["在 Cloud Manager 中探索內部部署叢集"^]。
+.. https://docs.netapp.com/us-en/occm/task_replicating_data.html["在內部部署 ONTAP 的 SnapMirror 叢集和 Cloud Volumes ONTAP Cloud Manager 的功能之間建立 SnapMirror 複寫"^]。
+
+
+. 對於從SMB來源磁碟區建立的DP磁碟區、ONTAP 請從CLI設定SMB目的地磁碟區以進行資料存取。（NFS磁碟區不需要這項功能、因為資料存取是透過Cloud Compliance自動啟用的。）
++
+.. http://docs.netapp.com/ontap-9/topic/com.netapp.doc.pow-cifs-cg/GUID-371B7797-B5BE-4B19-BDE4-BBC938F109BF.html["在目的地磁碟區上建立SMB共用區"^]。
+.. http://docs.netapp.com/ontap-9/topic/com.netapp.doc.pow-cifs-cg/GUID-90FCFDB3-F60C-4685-9BBD-6D648F75701C.html["將適當的ACL套用到目的地Volume的SMB共用區"^]。
+
+
+. 在 Cloud Volumes ONTAP 包含 SnapMirror 資料的整個作業環境中、從 Cloud Manager 啟動 Cloud Compliance ：
++
+.. 按一下*工作環境*。
+.. 選擇包含 SnapMirror 資料的工作環境、然後按一下「 * 啟用法規遵循 * 」。
++
+link:task_getting_started_compliance.html["如果 Cloud Volumes ONTAP 您需要協助、請按一下這裡、在一個支援雲端的系統上實現雲端法規遵循"^]。
+
+.. 按一下「_Scan Configuration」頁面頂端的*「Enable Access to DP Volumes」（啟用DP磁碟區存取）按鈕。
+.. 啟動您要掃描的每個 DP 磁碟區、或使用 * 「所有磁碟區的啟用法規遵循」控制項來啟用所有磁碟區、包括所有 DP 磁碟區。
+
+
+
+
+請參閱 link:task_getting_started_compliance.html#scanning-data-protection-volumes["正在掃描資料保護磁碟區"^] 以取得有關掃描DP Volume的詳細資訊。

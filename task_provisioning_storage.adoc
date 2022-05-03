@@ -1,0 +1,213 @@
+---
+sidebar: sidebar 
+permalink: task_provisioning_storage.html 
+keywords: storage, provisioning, iscsi, nfs, cifs, volumes, aggregates, provision, create, quotas, nas, san, LUNs, quotas, qtree, add, advanced allocation, create a volume, add a volume, create volumes, add volumes, creating a volume, adding a volume, creating aggregates, adding an aggregate, add an aggregate, create an aggregate, provision volume, provision a volume, provisioning volumes, create a LUN, create LUNs, create LUN, provision LUNs, add volume to second node, add volume to node 2, flexcache, flexcache volumes, create a flexcache volume, provision flexcache, create flexcache volume 
+summary: 您可以 Cloud Volumes ONTAP 透過管理磁碟區和集合體、從 Cloud Manager 為您的支援系統配置額外的 NFS 、 CIFS 和 iSCSI 儲存設備。 
+---
+= 資源配置儲存設備
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+您可以 Cloud Volumes ONTAP 透過 Cloud Manager 管理磁碟區和集合體、為您的整個過程提供額外的儲存空間。
+
+
+IMPORTANT: 所有磁碟和集合體都必須直接從 Cloud Manager 建立和刪除。您不應從其他管理工具執行這些動作。這樣做可能會影響系統穩定性、阻礙未來新增磁碟的能力、並可能產生備援雲端供應商費用。
+
+
+
+== 建立 FlexVol 功能區
+
+如果您在啟動 Cloud Volumes ONTAP 完一套功能完善的系統之後需要更多儲存設備、您可以 FlexVol 從 Cloud Manager 為 NFS 、 CIFS 或 iSCSI 建立新的功能完善的功能。
+
+建立 iSCSI Volume 時、 Cloud Manager 會自動為您建立 LUN 。我們只要在每個磁碟區建立一個 LUN 、就能輕鬆完成工作、因此不需要管理。建立磁碟區之後、 <<Connecting a LUN to a host,使用 IQN 從主機連線至 LUN>>。
+
+
+NOTE: 您可以從 System Manager 或 CLI 建立其他 LUN 。
+
+如果您想在 AWS 中使用 CIFS 、則必須設定 DNS 和 Active Directory 。如需詳細資訊、請參閱 link:reference_networking_aws.html["AWS 的 Cloud Volumes ONTAP 網路需求"]。
+
+.步驟
+. 在「工作環境」頁面上、按兩下Cloud Volumes ONTAP 您要配置FlexVol 的一套系統名稱。
+. 在任何 Aggregate 或特定 Aggregate 上建立新磁碟區：
++
+[cols="30,70"]
+|===
+| 行動 | 步驟 
+
+
+| 建立新的 Volume 、讓 Cloud Manager 選擇內含的 Aggregate | 按一下「 * 新增 Volume * 」。 
+
+
+| 在特定 Aggregate 上建立新磁碟區  a| 
+.. 按一下功能表圖示、然後按一下 * 進階 > 進階分配 * 。
+.. 按一下功能表以取得 Aggregate 。
+.. 按一下「 * 建立 Volume * 」。
+
+
+|===
+. 輸入新磁碟區的詳細資料、然後按一下 * 繼續 * 。
++
+本頁中的部分欄位是不知自明的。下表說明您可能需要指導的欄位：
+
++
+[cols="25,75"]
+|===
+| 欄位 | 說明 
+
+
+| 尺寸 | 您可以輸入的最大大小、主要取決於您是否啟用精簡配置、這可讓您建立比目前可用實體儲存容量更大的磁碟區。 
+
+
+| 存取控制（僅適用於 NFS ） | 匯出原則會定義子網路中可存取磁碟區的用戶端。根據預設、 Cloud Manager 會輸入一個值、讓您存取子網路中的所有執行個體。 
+
+
+| 權限與使用者 / 群組（僅限 CIFS ） | 這些欄位可讓您控制使用者和群組（也稱為存取控制清單或 ACL ）的共用存取層級。您可以指定本機或網域 Windows 使用者或群組、或 UNIX 使用者或群組。如果您指定網域 Windows 使用者名稱、則必須使用網域 \ 使用者名稱格式來包含使用者的網域。 
+
+
+| Snapshot 原則 | Snapshot 複製原則會指定自動建立的 NetApp Snapshot 複本的頻率和數量。NetApp Snapshot 複本是一種不影響效能的時間點檔案系統映像、需要最少的儲存容量。您可以選擇預設原則或無。您可以針對暫時性資料選擇「無」：例如、 Microsoft SQL Server 的 Tempdb 。 
+
+
+| 進階選項（僅適用於 NFS ） | 為磁碟區選取 NFS 版本： NFSv3 或 NFSv3 。 
+
+
+| 啟動器群組和 IQN （僅適用於 iSCSI ） | iSCSI 儲存目標稱為 LUN （邏輯單元）、以標準區塊裝置的形式呈現給主機。啟動器群組是 iSCSI 主機節點名稱的表格、可控制哪些啟動器可存取哪些 LUN 。iSCSI 目標可透過標準乙太網路介面卡（ NIC ）、 TCP 卸載引擎（ TOE ）卡（含軟體啟動器）、整合式網路介面卡（ CNA ）或專用主機匯流排介面卡（ HBA ）連線至網路、並由 iSCSI 合格名稱（ IQN ）識別。建立 iSCSI Volume 時、 Cloud Manager 會自動為您建立 LUN 。我們只要在每個磁碟區建立一個 LUN 、就能輕鬆完成工作、因此不需要管理。建立磁碟區之後、 link:task_provisioning_storage.html#connecting-a-lun-to-a-host["使用 IQN 從主機連線至 LUN"]。 
+|===
+. 如果您選擇 CIFS 傳輸協定、但尚未設定 CIFS 伺服器、請在「 Create a CIFS Server （建立 CIFS 伺服器）」對話方塊中指定伺服器的詳細資料、然後按一下 * 「 Save and Continue （儲存並繼續）」 * ：
++
+[cols="30,70"]
+|===
+| 欄位 | 說明 
+
+
+| DNS 主要和次要 IP 位址 | 提供 CIFS 伺服器名稱解析的 DNS 伺服器 IP 位址。列出的 DNS 伺服器必須包含所需的服務位置記錄（ SRV), 才能找到 CIFS 伺服器要加入之網域的 Active Directory LDAP 伺服器和網域控制器。 
+
+
+| 要加入的 Active Directory 網域 | 您要 CIFS 伺服器加入之 Active Directory （ AD ）網域的 FQDN 。 
+
+
+| 授權加入網域的認證資料 | 具有足夠權限的 Windows 帳戶名稱和密碼、可將電腦新增至 AD 網域內的指定組織單位（ OU ）。 
+
+
+| CIFS 伺服器 NetBios 名稱 | AD 網域中唯一的 CIFS 伺服器名稱。 
+
+
+| 組織單位  a| 
+AD 網域中與 CIFS 伺服器相關聯的組織單位。預設值為「 CN= 電腦」。
+
+** 若要將 AWS 託管 Microsoft AD 設定為 AD 伺服器 Cloud Volumes ONTAP 以供使用、您應在此欄位中輸入 * OID=computers,O=corp* 。
+** 若要將 Azure AD 網域服務設定為 Cloud Volumes ONTAP AD 伺服器以供使用、您應在此欄位中輸入 * OID=AADDC computers* 或 * OID=AADDC 使用者 * 。https://docs.microsoft.com/en-us/azure/active-directory-domain-services/create-ou["Azure 說明文件：在 Azure AD 網域服務託管網域中建立組織單位（ OU ）"^]
+
+
+
+
+| DNS 網域 | 適用於整個儲存虛擬 Cloud Volumes ONTAP 機器（ SVM ）的 DNS 網域。在大多數情況下、網域與 AD 網域相同。 
+
+
+| NTP 伺服器 | 選擇 * 使用 Active Directory 網域 * 來使用 Active Directory DNS 設定 NTP 伺服器。如果您需要使用不同的位址來設定 NTP 伺服器、則應該使用 API 。請參閱 link:api.html["Cloud Manager API 開發人員指南"^] 以取得詳細資料。 
+|===
+. 在「使用設定檔」、「磁碟類型」和「分層原則」頁面上、選擇是否要啟用儲存效率功能、選擇磁碟類型、並視需要編輯分層原則。
++
+如需協助、請參閱下列內容：
+
++
+** link:task_planning_your_config.html#choosing-a-volume-usage-profile["瞭解 Volume 使用量設定檔"]
+** link:task_planning_your_config.html#sizing-your-system-in-aws["在 AWS 中調整系統規模"]
+** link:task_planning_your_config.html#sizing-your-system-in-azure["在 Azure 中調整系統規模"]
+** link:concept_data_tiering.html["資料分層總覽"]
+
+
+. 按一下「 * 執行 * 」。
+
+
+供應 Volume 。 Cloud Volumes ONTAP
+
+如果您已配置 CIFS 共用區、請授予使用者或群組檔案和資料夾的權限、並確認這些使用者可以存取共用區並建立檔案。
+
+如果要將配額套用至磁碟區、則必須使用 System Manager 或 CLI 。配額可讓您限制或追蹤使用者、群組或 qtree 所使用的磁碟空間和檔案數量。
+
+
+
+== 在 FlexVol HA 組態的第二個節點上建立功能區
+
+根據預設、 Cloud Manager 會在 HA 組態的第一個節點上建立磁碟區。如果您需要雙節點向用戶端提供資料的雙主動式組態、則必須在第二個節點上建立集合體和磁碟區。
+
+.步驟
+. 在「工作環境」頁面上、按兩下Cloud Volumes ONTAP 您要管理集合體的運作環境名稱。
+. 按一下功能表圖示、然後按一下 * 進階 > 進階分配 * 。
+. 按一下「 * 新增 Aggregate * 」、然後建立 Aggregate 。
+. 對於主節點、請在 HA 配對中選擇第二個節點。
+. Cloud Manager 建立 Aggregate 之後、選取該集合體、然後按一下「 * 建立 Volume * 」。
+. 輸入新磁碟區的詳細資料、然後按一下「 * 建立 * 」。
+
+
+您可以視需要在此集合體上建立其他磁碟區。
+
+
+IMPORTANT: 對於部署在多個 AWS 可用性區域中的 HA 配對、您必須使用磁碟區所在節點的浮動 IP 位址、將磁碟區掛載到用戶端。
+
+
+
+== 建立 Aggregate
+
+您可以自行建立集合體、或是讓 Cloud Manager 在建立磁碟區時為您執行集合體。自行建立集合體的好處在於、您可以選擇基礎磁碟大小、以便根據所需的容量或效能來調整集合體大小。
+
+.步驟
+. 在「工作環境」頁面上、按兩下Cloud Volumes ONTAP 您要管理集合體的執行個體名稱。
+. 按一下功能表圖示、然後按一下 * 進階 > 進階分配 * 。
+. 按一下「 * 新增 Aggregate * 」、然後指定 Aggregate 的詳細資料。
++
+如需磁碟類型與磁碟大小的說明、請參閱 link:task_planning_your_config.html["規劃組態"]。
+
+. 按一下「 * 執行 * 」、然後按一下「 * 核准並購買 * 」。
+
+
+
+
+== 將 LUN 連線至主機
+
+建立 iSCSI Volume 時、 Cloud Manager 會自動為您建立 LUN 。我們只要在每個磁碟區建立一個 LUN 、就能輕鬆完成工作、因此不需要管理。建立磁碟區之後、請使用 IQN 從主機連線至 LUN 。
+
+請注意下列事項：
+
+. Cloud Manager 的自動容量管理不適用於 LUN 。Cloud Manager 建立 LUN 時、會停用自動擴充功能。
+. 您可以從 System Manager 或 CLI 建立其他 LUN 。
+
+
+.步驟
+. 在「工作環境」頁面上、按兩下Cloud Volumes ONTAP 您要管理磁碟區的功能區環境。
+. 選取磁碟區、然後按一下「 * 目標 IQN* 」。
+. 按一下「 * 複製 * 」以複製 IQN 名稱。
+. 設定從主機到 LUN 的 iSCSI 連線。
++
+** http://docs.netapp.com/ontap-9/topic/com.netapp.doc.exp-iscsi-rhel-cg/GUID-15E8C226-BED5-46D0-BAED-379EA4311340.html["適用於 Red Hat Enterprise Linux 的支援 9 iSCSI Express 組態：啟動目標的 iSCSI 工作階段 ONTAP"^]
+** http://docs.netapp.com/ontap-9/topic/com.netapp.doc.exp-iscsi-cpg/GUID-857453EC-90E9-4AB6-B543-83827CF374BF.html["適用於 Windows 的 S89 iSCSI Express 組態：以目標啟動 iSCSI 工作階段 ONTAP"^]
+
+
+
+
+
+
+== 使用功能區來加速資料存取 FlexCache
+
+流通量是儲存磁碟區、可快取來源（或來源）磁碟區的 NFS 讀取資料。 FlexCache後續讀取快取資料會加快該資料的存取速度。
+
+您可以使用 FlexCache 功能區來加速資料存取、或卸載大量存取磁碟區的流量。由於資料無需存取來源磁碟區、因此能夠直接提供服務、因此在用戶端需要重複存取相同資料時、支援使用者更能提升效能。 FlexCache適用於讀取密集的系統工作負載的資料量。 FlexCache
+
+Cloud Manager FlexCache 目前並未提供對各個版本的管理、但您可以使用 ONTAP CLI 或 ONTAP 功能完善的系統管理程式來建立及管理 FlexCache 各個版本：
+
+* http://docs.netapp.com/ontap-9/topic/com.netapp.doc.pow-fc-mgmt/home.html["《資料存取能力快速指南》的《支援資料量》（英文） FlexCache"^]
+* http://docs.netapp.com/ontap-9/topic/com.netapp.doc.onc-sm-help-960/GUID-07F4C213-076D-4FE8-A8E3-410F49498D49.html["在 FlexCache System Manager 中建立功能區"^]
+
+
+從 3.7.2 版開始、 Cloud Manager 會為 FlexCache 所有的 Cloud Volumes ONTAP 全新推出的功能介紹系統產生一套功能不全的使用許可證。授權包含 500 GB 使用量限制。
+
+
+NOTE: 若要產生授權、 Cloud Manager 必須存取 \https://ipa-signer.cloudmanager.netapp.com 。請確定此 URL 可從防火牆存取。
+
+video::PBNPVRUeT1o[youtube, width=848,height=480]

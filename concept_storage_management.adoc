@@ -1,0 +1,116 @@
+---
+sidebar: sidebar 
+permalink: concept_storage_management.html 
+keywords: provisioning, capacity management, storage provisioning, manual, automatic, advanced allocation, aggregates, thin provisioning, free space, mode 
+summary: Cloud Manager 提供 Cloud Volumes ONTAP 簡化且進階的功能、可管理各種不同步儲存設備。 
+---
+= 儲存管理
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Cloud Manager 提供 Cloud Volumes ONTAP 簡化且進階的功能、可管理各種不同步儲存設備。
+
+
+IMPORTANT: 所有磁碟和集合體都必須直接從 Cloud Manager 建立和刪除。您不應從其他管理工具執行這些動作。這樣做可能會影響系統穩定性、阻礙未來新增磁碟的能力、並可能產生備援雲端供應商費用。
+
+
+
+== 儲存資源配置
+
+Cloud Manager Cloud Volumes ONTAP 可為您購買磁碟並管理 Aggregate 、讓您輕鬆配置資料以利執行效能。您只需建立磁碟區即可。如果需要、您可以使用進階分配選項自行配置集合體。
+
+
+
+=== 簡化資源配置
+
+Aggregate 可為磁碟區提供雲端儲存設備。Cloud Manager 會在您啟動執行個體、以及配置其他 Volume 時、為您建立 Aggregate 。
+
+建立 Volume 時、 Cloud Manager 會執行以下三項功能之一：
+
+* 它會將磁碟區放置在現有的 Aggregate 上、該集合體具有足夠的可用空間。
+* 它會為現有的 Aggregate 購買更多磁碟、將磁碟區放在現有的 Aggregate 上。
+* 它會為新的 Aggregate 購買磁碟、並將該磁碟區放在該 Aggregate 上。
+
+
+Cloud Manager 會根據以下幾項因素來決定新磁碟區的放置位置： Aggregate 的最大大小、是否啟用精簡配置、以及 Aggregate 的可用空間臨界值。
+
+
+TIP: 帳戶管理員可從 * 設定 * 頁面修改可用空間臨界值。
+
+
+
+==== AWS 中集合體的磁碟大小選擇
+
+Cloud Manager 在 Cloud Volumes ONTAP AWS 中建立新的 Aggregate 、隨著系統中的 Aggregate 數量增加、它會逐漸增加集合體中的磁碟大小。Cloud Manager 能確保您在系統達到 AWS 允許的資料磁碟數量上限之前、能夠充分利用系統的最大容量。
+
+例如、 Cloud Manager 可能會針對 Cloud Volumes ONTAP 下列大小的磁碟來選擇適用於下列的磁碟大小、以用於在某個供應端點或 BYOL 系統中的集合體：
+
+[cols="3*"]
+|===
+| Aggregate 編號 | 磁碟大小 | 最大 Aggregate 容量 
+
+
+| 1. | 500 MB | 3 TB 
+
+
+| 4. | 1 TB | 6 TB 
+
+
+| 6. | 2 TB | 12 TB 
+|===
+您可以使用進階配置選項自行選擇磁碟大小。
+
+
+
+=== 進階分配
+
+您可以自行管理 Aggregate 、而非讓 Cloud Manager 管理 Aggregate 。 link:task_provisioning_storage.html#creating-aggregates["從 * 進階分配 * 頁面"]、您可以建立新的集合體、包括特定數量的磁碟、新增磁碟至現有的集合體、以及在特定的集合體中建立磁碟區。
+
+
+
+== 容量管理
+
+客戶管理員可以選擇 Cloud Manager 是否通知您儲存容量決策、或 Cloud Manager 是否自動為您管理容量需求。這可能有助於您瞭解這些模式的運作方式。
+
+
+
+=== 自動容量管理
+
+容量管理模式預設為自動。在此模式中、 Cloud Manager 會在 Cloud Volumes ONTAP 需要更多容量時自動購買新的磁碟以供執行個體使用、刪除未使用的磁碟集合（集合體）、視需要在集合體之間移動磁碟區、以及嘗試取消故障磁碟。
+
+下列範例說明此模式的運作方式：
+
+* 如果有 5 個或更少 EBS 磁碟的集合體達到容量臨界值、 Cloud Manager 會自動為該集合體購買新的磁碟、讓磁碟區能夠持續成長。
+* 如果具有 12 個 Azure 磁碟的 Aggregate 達到容量臨界值、 Cloud Manager 會自動將該 Aggregate 中的磁碟區移至具有可用容量的 Aggregate 、或移至新的 Aggregate 。
++
+如果 Cloud Manager 為磁碟區建立新的 Aggregate 、則會選擇適合該磁碟區大小的磁碟大小。
+
++
+請注意、可用空間現在可在原始 Aggregate 上使用。現有磁碟區或新磁碟區可以使用該空間。在此案例中、空間無法歸還給 AWS 、 Azure 或 GCP 。
+
+* 如果 Aggregate 不包含超過 12 小時的磁碟區、 Cloud Manager 會將其刪除。
+
+
+
+
+==== 利用自動容量管理來管理 LUN
+
+Cloud Manager 的自動容量管理不適用於 LUN 。Cloud Manager 建立 LUN 時、會停用自動擴充功能。
+
+
+
+==== 利用自動容量管理來管理 inode
+
+Cloud Manager 會監控磁碟區上的 inode 使用量。當 85% 的 inode 被使用時、 Cloud Manager 會增加磁碟區的大小、以增加可用的 inode 數量。磁碟區可以包含的檔案數量取決於它擁有的 inode 數量。
+
+
+
+=== 手動容量管理
+
+如果帳戶管理員將容量管理模式設為手動、 Cloud Manager 會在必須做出容量決策時、顯示必要行動訊息。自動模式中所述的相同範例適用於手動模式、但您必須接受這些動作。

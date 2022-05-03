@@ -1,0 +1,119 @@
+---
+sidebar: sidebar 
+permalink: task_manage_cloud_volumes_gcp_snapshots.html 
+keywords: Cloud Volumes Service for Google Cloud, gcp, snapshots, on-demand, snapshot schedule 
+summary: 您可以為每個磁碟區建立快照原則、以便從較早的時間恢復或還原磁碟區的全部內容。您也可以視需要建立雲端磁碟區的隨需快照。 
+---
+= 管理雲端磁碟區快照
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+您可以為每個磁碟區建立快照原則、以便從較早的時間恢復或還原磁碟區的全部內容。您也可以視需要建立雲端磁碟區的隨需快照。
+
+
+
+== 建立隨需快照
+
+如果您想要以目前的 Volume 狀態建立快照、可以建立雲端磁碟區的隨需快照。
+
+.步驟
+. 開啟工作環境。
+. 將游標暫留在磁碟區上、然後按一下 * 建立快照複本 * 。
+. 輸入快照的名稱、或使用自動產生的名稱、然後按一下 * 「 Create 」（建立） * 。
++
+image:screenshot_cvs_ondemand_snapshot.png["選取要還原至新磁碟區的快照複本的快照快照"]
+
++
+快照隨即建立。
+
+
+
+
+
+== 建立或修改快照原則
+
+您可以視需要為雲端磁碟區建立或修改快照原則。您可以在建立磁碟區或編輯磁碟區時、從「 Snapshot Policy_ 」索引標籤定義快照原則。
+
+.步驟
+. 開啟工作環境。
+. 將游標暫留在磁碟區上、然後按一下 * 編輯 * 。
+. 從「 _Snapshot Policy_ 」索引標籤、將「啟用快照」滑桿移到右側。
+. 定義快照排程：
++
+.. 選擇頻率： * 每小時 * 、 * 每日 * 、 * 每週 * 或 * 每月 *
+.. 選取您要保留的快照數目。
+.. 選取應拍攝快照的日期、小時和分鐘。
++
+image:screenshot_cvs_aws_snapshot_policy.png["已設定的 Snapshot 原則快照"]
+
+
+
+. 按一下「 * 新增磁碟區 * 」或「 * 更新磁碟區 * 」以儲存原則設定。
+
+
+
+
+== 停用快照原則
+
+您可以停用快照原則、在短時間內停止建立快照、同時保留您的快照原則設定。
+
+.步驟
+. 開啟工作環境。
+. 將游標暫留在磁碟區上、然後按一下 * 編輯 * 。
+. 從「 _Snapshot Policy_ 」索引標籤、將「啟用快照」滑桿移到左邊。
++
+image:screenshot_cvs_aws_snapshot_policy_button_off.png["處於停用位置的快照原則按鈕快照"]
+
+. 按一下 * 更新磁碟區 * 。
+
+
+當您想要重新啟用快照原則時、請將啟用快照滑桿移到右側、然後按一下 * 更新磁碟區 * 。
+
+
+
+== 刪除快照
+
+您可以刪除不再需要的快照。
+
+.步驟
+. 開啟工作環境。
+. 將游標暫留在磁碟區上、然後按一下 * 刪除 Snapshot 複本 * 。
+. 從下拉式清單中選取快照、然後按一下 * 刪除 * 。
++
+image:screenshot_cvs_delete_snapshot.png["選取要刪除之快照複本的快照快照"]
+
+. 在確認對話方塊中、按一下 * 刪除 * 。
+
+
+
+
+== 將快照還原至新磁碟區
+
+您可以視需要將快照還原至新磁碟區。
+
+.步驟
+. 開啟工作環境。
+. 將游標暫留在磁碟區上、然後按一下 * 「還原至新磁碟區」 * 。
+. 從下拉式清單中選取您要用來建立新磁碟區的快照。
+. 輸入新磁碟區的名稱、然後按一下 * 還原 * 。
++
+image:screenshot_cvs_restore_snapshot.png["選取要還原至新磁碟區的快照複本的快照快照"]
+
++
+磁碟區是在工作環境中建立。
+
+. 如果您需要變更任何 Volume 屬性、例如 Volume 路徑或服務層級：
++
+.. 將游標暫留在磁碟區上、然後按一下 * 編輯 * 。
+.. 進行變更、然後按一下 * 更新磁碟區 * 。
+
+
+
+
+繼續 link:task_manage_cvs_gcp.html#mount-cloud-volumes["掛載雲端 Volume"^]。

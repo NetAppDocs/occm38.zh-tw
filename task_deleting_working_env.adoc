@@ -1,0 +1,30 @@
+---
+sidebar: sidebar 
+permalink: task_deleting_working_env.html 
+keywords: terminate, delete, working environment, remove, cloudformation 
+summary: 最好從 Cloud Volumes ONTAP Cloud Manager 刪除不含 AWS 或 Azure 的不含資料的系統。 
+---
+= 刪除 Cloud Volumes ONTAP 功能不正常的環境
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+最好是從 Cloud Volumes ONTAP Cloud Manager 刪除不要從雲端供應商的主控台刪除。例如、如果您從 Cloud Volumes ONTAP AWS 終止授權的樣例、則無法將授權金鑰用於其他執行個體。您必須從 Cloud Manager 刪除工作環境、才能釋出授權。
+
+刪除工作環境時、 Cloud Manager 會終止執行個體、刪除磁碟和快照。
+
+
+IMPORTANT: 支援終止保護功能的執行個體可防止 AWS 意外終止。 Cloud Volumes ONTAP不過、如果您確實從 Cloud Volumes ONTAP AWS 終止一個實體執行個體、則必須移至 AWS CloudForation 主控台、然後刪除執行個體的堆疊。堆疊名稱是工作環境的名稱。
+
+.步驟
+. 在工作環境中、按一下功能表圖示、然後按一下 * 刪除 * 。
+. 輸入工作環境的名稱、然後按一下 * 刪除 * 。
++
+刪除工作環境最多可能需要 5 分鐘。
+
+

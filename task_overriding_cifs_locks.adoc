@@ -1,0 +1,34 @@
+---
+sidebar: sidebar 
+permalink: task_overriding_cifs_locks.html 
+keywords: CIFS locks, azure maintenance, maintenance events, cifs sessions, storage failover 
+summary: 帳戶管理員可在 Cloud Manager 中啟用一項設定、以避免 Cloud Volumes ONTAP 在 Azure 維護事件期間發生有關故障切換的問題。啟用此設定時 Cloud Volumes ONTAP 、不支援 CIFS 會鎖定並重設作用中的 CIFS 工作階段。 
+---
+= 在 Cloud Volumes ONTAP Azure 中覆寫 CIFS 鎖、以利實現不鎖頻
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+帳戶管理員可在 Cloud Manager 中啟用一項設定、以避免 Cloud Volumes ONTAP 在 Azure 維護事件期間發生有關故障切換的問題。啟用此設定時 Cloud Volumes ONTAP 、不支援 CIFS 會鎖定並重設作用中的 CIFS 工作階段。
+
+Microsoft Azure 會排程在其虛擬機器上定期進行維護活動。當某個節點發生維護事件 Cloud Volumes ONTAP 時、 HA 配對會啟動儲存設備接管。如果在此維護事件期間有作用中的 CIFS 工作階段、則 CIFS 檔案上的鎖定功能可能會妨礙儲存容錯移轉。
+
+如果啟用此設定、 Cloud Volumes ONTAP 則會取消鎖定並重設作用中的 CIFS 工作階段。因此、 HA 配對可在這些維護事件期間完成儲存容錯移轉。
+
+
+IMPORTANT: 此程序可能會對 CIFS 用戶端造成破壞。未從 CIFS 用戶端提交的資料可能會遺失。
+
+您必須先建立連接器、才能變更 Cloud Manager 設定。 link:concept_connectors.html#how-to-create-a-connector["瞭解方法"]。
+
+.步驟
+. 在 Cloud Manager 主控台右上角、按一下「設定」圖示、然後選取「 * Cloud Manager 設定 * 」。
++
+image:screenshot_settings_icon.gif["顯示 Cloud Manager 主控台右上角「設定」圖示的快照。"]
+
+. 在「 * HA CIFS Locks * 」下、選取核取方塊、然後按一下「 * Save * 」。
+

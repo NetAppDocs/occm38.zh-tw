@@ -1,0 +1,178 @@
+---
+sidebar: sidebar 
+permalink: concept_before_you_begin_to_deploy_gfc.html 
+keywords: global file cache, core, edge, management server 
+summary: 開始在雲端和遠端辦公室部署全域檔案快取之前、您需要注意許多需求。 
+---
+= 開始部署全域檔案快取之前
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+開始在雲端和遠端辦公室部署全域檔案快取之前、您需要注意許多需求。
+
+
+
+== 全域檔案快取核心設計考量
+
+視您的需求而定、您可能需要部署一或多個全域檔案快取核心執行個體、才能建立全域檔案快取架構。核心執行個體的設計是做為分散式 Global File Cache Edge 執行個體與資料中心檔案伺服器資源之間的流量 COP 、例如檔案共用、資料夾和檔案。
+
+當您在設計全域檔案快取部署時、需要判斷在規模、資源可用度及備援方面、哪些是最適合您環境的選擇。全域檔案快取核心可透過下列方式部署：
+
+* GFC 核心獨立執行個體
+* GFC 核心負載分散式設計（冷備份）
+
+
+請參閱 <<Sizing guidelines>> 若要瞭解每個組態可支援的 Edge 執行個體數目上限和使用者總數：
+
+請洽詢您的全球檔案快取解決方案工程師、以討論企業部署的最佳選項。
+
+
+
+== 規模調整準則
+
+在設定初始系統時、您需要謹記幾種規模調整準則比率。在累積使用記錄後、您應該重新檢視這些比率、以確保您以最佳方式使用系統。包括：
+
+* 整體檔案快取邊緣 / 核心比率
+* 分散式使用者 / 全域檔案快取 Edge 比率
+* 分散式使用者 / 全域檔案快取核心比率
+
+
+
+
+=== 每個核心執行個體的 Edge 執行個體數
+
+我們的準則建議每個全域檔案快取核心執行個體最多可有 10 個 Edge 執行個體、每個全域檔案快取核心執行個體最多可有 20 個邊緣。這在相當程度上取決於最常見工作負載的類型和平均檔案大小。在某些情況下、由於工作負載較為常見、您可以在每個核心新增更多 Edge 執行個體、但在這些情況下、您應該聯絡 NetApp 支援部門、根據檔案集的類型和大小、正確調整 Edge 和核心執行個體的大小。
+
+
+NOTE: 您可以同時運用多個 Global File Cache Edge 和 Core 執行個體、視需求而橫向擴充基礎架構。
+
+
+
+=== 每個 Edge 執行個體的並行使用者數
+
+在快取演算法和檔案層級差異方面、 Global File Cache Edge 可處理繁重的工作負載。單一 Global File Cache Edge 執行個體可為每個專屬實體 Edge 執行個體提供最多 400 位使用者的服務、以及最多 200 位使用者的專屬虛擬部署服務。這在相當程度上取決於最常見工作負載的類型和平均檔案大小。若為較大型的協作檔案類型、請根據實體或虛擬部署、引導使用者達到每個 Global File Cache Edge 下限的最大使用者人數（視實體或虛擬部署而定）的 50% 。如需平均檔案大小低於 1MB 的較常見 Office 項目、請向每個全域檔案快取 Edge 上限的 100% 使用者（視實體或虛擬部署而定）提供指南。
+
+
+NOTE: 全域檔案快取 Edge 會偵測它是否在虛擬或實體執行個體上執行、並將本機虛擬檔案共用的 SMB 連線數目限制為最多 200 或 400 個並行連線。
+
+
+
+=== 每個核心執行個體的並行使用者數
+
+全域檔案快取核心執行個體可擴充性極高、建議並行使用者數為每個核心 3 、 000 位使用者。這在相當程度上取決於最常見工作負載的類型和平均檔案大小。
+
+請洽詢您的全球檔案快取解決方案工程師、以討論企業部署的最佳選項。
+
+
+
+== 先決條件
+
+本節所述的先決條件適用於安裝在雲端的元件：全域檔案快取管理伺服器和全域檔案快取核心。
+
+說明全域檔案快取 Edge 先決條件 link:download_gfc_resources.html#global-file-cache-edge-requirements["請按這裡"]。
+
+
+
+=== Cloud Manager 執行個體
+
+使用 Cloud Volumes ONTAP for Azure 做為儲存平台時、請確保 Cloud Manager 具備最新的權限 https://occm-sample-policies.s3.amazonaws.com/Policy_for_cloud_Manager_Azure_3.8.7.json["Azure 的 Cloud Manager 原則"^]。
+
+根據預設、新建立的執行個體將擁有所有必要的權限。如果您部署的執行個體早於 3.8.7 版（ 2020 年 8 月 3 日）、則需要新增這些項目。
+
+[source, json]
+----
+"Microsoft.Resources/deployments/operationStatuses/read",
+"Microsoft.Insights/Metrics/Read",
+"Microsoft.Compute/virtualMachines/extensions/write",
+"Microsoft.Compute/virtualMachines/extensions/read",
+"Microsoft.Compute/virtualMachines/extensions/delete",
+"Microsoft.Compute/virtualMachines/delete",
+"Microsoft.Network/networkInterfaces/delete",
+"Microsoft.Network/networkSecurityGroups/delete",
+"Microsoft.Resources/deployments/delete",
+----
+
+
+=== 儲存平台（ Volume ）
+
+在這種情況下、您部署 Cloud Volumes ONTAP 的後端儲存平台應該會顯示 SMB 檔案共用。透過「全域檔案快取」公開的任何共用都必須允許共用層級的「所有人」群組「完全控制」、同時透過 NTFS 權限限制權限。
+
+如果 Cloud Volumes ONTAP 您尚未在這個例子上設定至少一個 SMB 檔案共用區、則需要準備好下列資訊、以便在安裝期間設定這些資訊：
+
+* Active Directory 網域名稱、名稱伺服器 IP 位址、 Active Directory 管理認證。
+* 您要建立的磁碟區名稱和大小、要建立磁碟區的集合體名稱、以及共用名稱。
+
+
+我們建議磁碟區的大小足以容納應用程式的總資料集、並能隨著資料集的成長而隨之擴充。如果工作環境中有多個集合體、請參閱 link:task_managing_storage.html["管理現有的集合體"^] 以判斷哪些 Aggregate 具有最大的可用空間、以供新磁碟區使用。
+
+
+
+=== 全域檔案快取管理伺服器
+
+此全域檔案快取管理伺服器需要透過 HTTPS （ TCP 連接埠 443 ）進行外部存取、才能連線至雲端供應商訂閱服務並存取下列 URL ：
+
+* https://talonazuremicroservices.azurewebsites.net["https://talonazuremicroservices.azurewebsites.net"]
+* https://talonlicensing.table.core.windows.net["https://talonlicensing.table.core.windows.net"]
+
+
+此連接埠必須排除在任何 WAN 最佳化裝置或防火牆限制原則之外、才能讓全域檔案快取軟體正常運作。
+
+全域檔案快取管理伺服器也需要執行個體的唯一（地理） NetBios 名稱（例如 GFC-MS1 ）。
+
+
+NOTE: 單一管理伺服器可支援部署在不同工作環境中的多個全域檔案快取核心執行個體。從 Cloud Manager 部署時、每個工作環境都有各自獨立的後端儲存設備、而且不會包含相同的資料。
+
+
+
+=== 全域檔案快取核心
+
+此全域檔案快取核心會在 TCP 連接埠範圍 6618-6630 上接聽。視防火牆或網路安全群組（ NSG ）組態而定、您可能需要透過「傳入連接埠規則」明確允許存取這些連接埠。此外、必須將這些連接埠排除在任何 WAN 最佳化裝置或防火牆限制原則之外、才能讓全域檔案快取軟體正常運作。
+
+全域檔案快取核心需求為：
+
+* 執行個體的唯一（地理） NetBios 名稱（例如 GFC-cor1 ）
+* Active Directory 網域名稱
++
+** 全域檔案快取執行個體應加入 Active Directory 網域。
+** 全域檔案快取執行個體應在全域檔案快取特定組織單位（ OU ）中進行管理、並從繼承的公司 GPO 中排除。
+
+
+* 服務帳戶。此全域檔案快取核心上的服務會以特定網域使用者帳戶執行。此帳戶（也稱為服務帳戶）必須在與全域檔案快取核心執行個體相關聯的每個 SMB 伺服器上擁有下列權限：
++
+** 已配置的服務帳戶必須是網域使用者。
+
+
+
+
+視網路環境中的限制層級和 GPO 而定、此帳戶可能需要網域管理員權限。
+
+* IT 必須擁有「以服務形式執行」權限。
+* 密碼應設定為「永不過期」。
+* 帳戶選項「 User must Change Password at Next Logon" （使用者下次登入時必須變更密碼）應停用（取消核取）。
+* 它必須是後端檔案伺服器內建 Backup Operations 群組的成員（透過 Cloud Manager 部署時會自動啟用此功能）。
+
+
+
+
+=== 授權管理伺服器
+
+* 全域檔案快取授權管理伺服器（ LMS ）應設定於 Microsoft Windows Server 2016 Standard 或 Datacenter 版本或 Windows Server 2019 Standard 或 Datacenter 版本、最好是在資料中心或雲端的全域檔案快取核心執行個體上。
+* 如果您需要個別的全域檔案快取 LMS 執行個體、則必須在原始的 Microsoft Windows Server 執行個體上安裝最新的全域檔案快取軟體安裝套件。
+* LMS 執行個體必須能夠使用 HTTPS （ TCP 連接埠 443 ）連線至訂閱服務（ Azure 服務 / 公有網際網路）。
+* 核心和 Edge 執行個體需要使用 HTTPS （ TCP 連接埠 443 ）連線至 LMS 執行個體。
+
+
+
+
+=== 網路
+
+* 防火牆：應該允許在「全域檔案快取邊緣」和「核心」執行個體之間使用 TCP 連接埠。
+* 全域檔案快取 TCP 連接埠： 443 （ HTTPS ）、 6618 – 6630 。
+* 網路最佳化裝置（例如 Riverbed Steelhead ）必須設定為傳遞全域檔案快取特定連接埠（ TCP 6618-6630 ）。
+

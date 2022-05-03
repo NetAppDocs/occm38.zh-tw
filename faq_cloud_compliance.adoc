@@ -1,0 +1,196 @@
+---
+sidebar: sidebar 
+permalink: faq_cloud_compliance.html 
+keywords: faq, frequently asked questions, questions 
+summary: 如果您只是想要快速回答問題、這個常見問題集就能幫上忙。 
+---
+= 雲端法規遵循的常見問題集
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+如果您只是想要快速回答問題、這個常見問題集就能幫上忙。
+
+
+
+== 什麼是雲端法規遵循？
+
+Cloud Compliance是一款雲端產品、採用人工智慧（AI）導向技術、協助組織瞭解資料內容、並識別Azure NetApp Files 整個支援AWS Cloud Volumes ONTAP 或Azure、Amazon S3儲存桶和資料庫的敏感資料。
+
+雲端法規遵循提供預先定義的參數（例如敏感資訊類型和類別）、以因應資料隱私和敏感度的新資料法規遵循要求、例如 GDPR 、 CCPA 、 HIPAA 等。
+
+
+
+== 為何應該使用雲端法規遵循？
+
+雲端法規遵循可協助您運用資料、協助您：
+
+* 遵守資料法規遵循與隱私權法規。
+* 遵守資料保留政策。
+* 根據 GDPR 、 CCPA 、 HIPAA 及其他資料隱私法規的要求、輕鬆找出特定資料並進行報告、以因應資料主題。
+
+
+
+
+== 雲端法規遵循的常見使用案例為何？
+
+* 識別個人識別資訊（ PII ）。
+* 根據 GDPR 和 CCPA 隱私權法規的要求、識別廣泛的敏感資訊。
+* 遵守新的及即將推出的資料隱私權法規。
+
+
+https://cloud.netapp.com/cloud-compliance["深入瞭解雲端法規遵循的使用案例"^]。
+
+
+
+== 哪些類型的資料可透過 Cloud Compliance 進行掃描？
+
+Cloud Compliance 支援透過 NFS 和 CIFS 傳輸協定掃描非結構化資料 Cloud Volumes ONTAP 、這些傳輸協定由支援的是由支援的功能。 Azure NetApp FilesCloud Compliance也可以掃描儲存在Amazon S3儲存區上的資料。
+
+此外、Cloud Compliance可掃描位於任何位置的資料庫、而不需要由Cloud Manager管理。
+
+link:concept_cloud_compliance.html#how-scans-work["瞭解掃描的運作方式"]。
+
+
+
+== 支援哪些雲端供應商？
+
+Cloud Compliance 是 Cloud Manager 的一部分、目前支援 AWS 和 Azure 。如此一來、您的組織便能在不同的雲端供應商之間統一化隱私權可見度。Google Cloud Platform （ GCP ）支援即將新增。
+
+
+
+== 如何存取雲端法規遵循？
+
+雲端法規遵循是透過 Cloud Manager 進行營運與管理。您可以從 Cloud Manager 的「 * Compliance * 」（ * 法規遵循 * ）索引標籤存取 Cloud Compliance 功能。
+
+
+
+== 雲端法規遵循的運作方式為何？
+
+Cloud Compliance 會在 Cloud Manager 系統和儲存系統旁部署另一層人工智慧。然後掃描磁碟區、儲存區和資料庫上的資料、並為找到的資料洞見建立索引。
+
+link:concept_cloud_compliance.html["深入瞭解 Cloud Compliance 的運作方式"]。
+
+
+
+== Cloud Compliance 的成本是多少？
+
+雲端法規遵循的使用成本取決於您所掃描的資料量。Cloud Compliance 在 Cloud Manager 工作區中掃描的前 1 TB 資料是免費的。必須訂閱 AWS 或 Azure Marketplace 、才能在該時間點之後繼續掃描資料。請參閱 https://cloud.netapp.com/cloud-compliance#pricing["定價"^] 以取得詳細資料。
+
+
+
+== Cloud Compliance 多久掃描一次我的資料？
+
+資料經常變更、因此 Cloud Compliance 會持續掃描您的資料、而不會對您的資料造成任何影響。雖然初次掃描資料可能需要較長時間、但後續掃描只會掃描遞增變更、如此可縮短系統掃描時間。
+
+link:concept_cloud_compliance.html#how-scans-work["瞭解掃描的運作方式"]。
+
+
+
+== Cloud Compliance 是否提供報告？
+
+是的。Cloud Compliance 所提供的資訊可能與貴組織中的其他利害關係人有關、因此我們可讓您產生報告、以分享這些見解。
+
+下列報告適用於雲端法規遵循：
+
+隱私權風險評估報告:: 提供資料的隱私見解和隱私權風險分數。 link:task_generating_compliance_reports.html["深入瞭解"]。
+資料主旨存取要求報告:: 可讓您擷取包含資料主旨特定名稱或個人識別碼相關資訊之所有檔案的報告。 link:task_responding_to_dsar.html["深入瞭解"]。
+PCI DSS 報告:: 協助您辨識信用卡資訊在檔案之間的發佈情形。 link:task_generating_compliance_reports.html["深入瞭解"]。
+HIPAA 報告:: 協助您識別檔案之間的健全狀況資訊發佈。 link:task_generating_compliance_reports.html["深入瞭解"]。
+報告特定資訊類型:: 報告中包含有關已識別檔案的詳細資料、這些檔案包含個人資料和敏感個人資料。您也可以查看依類別和檔案類型分類的檔案。 link:task_controlling_private_data.html["深入瞭解"]。
+
+
+
+
+== 雲端法規遵循需要哪種類型的執行個體或 VM ？
+
+* 在 Azure 中、 Cloud Compliance 可在標準磁碟機 D16s_v3 VM 上執行、磁碟容量為 512 GB 。
+* 在 AWS 中、 Cloud Compliance 會在具有 500 GB GP2 磁碟的 m5.4x大型 執行個體上執行。
++
+在無法使用 m5.4xLarge 的區域中、 Cloud Compliance 會改在 m4.4xLarge 執行個體上執行。
+
+
+
+
+NOTE: 不支援變更或調整執行個體 / VM 類型的大小。您需要使用提供的預設大小。
+
+link:concept_cloud_compliance.html["深入瞭解 Cloud Compliance 的運作方式"]。
+
+
+
+== 掃描效能是否有所差異？
+
+掃描效能可能會因網路頻寬和雲端環境中的平均檔案大小而異。
+
+
+
+== 支援哪些檔案類型？
+
+Cloud Compliance 會掃描所有檔案以取得類別和中繼資料深入資訊、並在儀表板的「檔案類型」區段中顯示所有檔案類型。
+
+當 Cloud Compliance 偵測到個人識別資訊（ PII ）、或執行 DSAR 搜尋時、僅支援下列檔案格式： .PDF 、 .DOCX 、 .DOC 、 .PPTX 、 .XLS 、 .XLSX 、 .CSV 、 TXT 、 .RTF 及 .Json 。
+
+
+
+== 如何實現雲端法規遵循？
+
+首先、您需要在 Cloud Manager 中部署 Cloud Compliance 執行個體。執行執行個體之後、您可以從 * Compliance * 索引標籤或選取特定工作環境、在現有的工作環境和資料庫上啟用執行個體。
+
+link:task_getting_started_compliance.html["瞭解如何開始使用"]。
+
+
+NOTE: 啟動 Cloud Compliance 會立即進行初始掃描。法規遵循結果不久即會顯示。
+
+
+
+== 如何停用雲端法規遵循？
+
+選取個別工作環境之後、即可從「工作環境」頁面停用「雲端法規遵循」。
+
+link:task_managing_compliance.html["深入瞭解"]。
+
+
+NOTE: 若要完全移除 Cloud Compliance 執行個體、您可以從雲端供應商的入口網站手動移除 Cloud Compliance 執行個體。
+
+
+
+== 如果在不支援的情況下啟用資料分層、會發生什麼情況 Cloud Volumes ONTAP ？
+
+您可能想要在 Cloud Volumes ONTAP 將冷資料分層儲存至物件儲存的支援系統上、啟用 Cloud Compliance 。如果啟用資料分層、 Cloud Compliance 會掃描磁碟上的所有資料、然後將冷資料分層至物件儲存設備。
+
+法規遵循掃描不會將冷資料加熱、而是維持冷態並分層至物件儲存設備。
+
+
+
+== 我可以使用Cloud Compliance來掃描內部部署ONTAP 的不實資料儲存設備嗎？
+
+不ONTAP 支援直接從內部部署的不支援環境掃描資料。但您可以將ONTAP 內部部署的內部NFS或CIFS資料複寫到Cloud Volumes ONTAP 可運作的環境、然後在這些磁碟區上啟動法規遵循功能、藉此掃描內部部署的資訊。我們計畫支援Cloud Compliance、提供Cloud Volumes Service 更多雲端產品、例如： 
+
+link:task_scanning_onprem.html["深入瞭解"]。
+
+
+
+== Cloud Compliance 是否能傳送通知給我的組織？
+
+否、但您可以下載狀態報告、以便在組織內部分享。
+
+
+
+== 我可以根據組織的需求自訂服務嗎？
+
+雲端法規遵循可為您的資料提供隨裝即用的洞見。您可以擷取這些洞見、並將其用於貴組織的需求。
+
+
+
+== 我可以將雲端法規遵循資訊限制在特定使用者身上嗎？
+
+是的、 Cloud Compliance 已與 Cloud Manager 完全整合。Cloud Manager 使用者只能根據其工作區權限、查看其符合檢視資格的工作環境資訊。
+
+此外、如果您想要讓特定使用者在不管理雲端法規遵循設定的情況下、只檢視 Cloud Compliance 掃描結果、您可以將 _Cloud Compliance Viewer_ 角色指派給這些使用者。
+
+link:concept_cloud_compliance.html#user-access-to-compliance-information["深入瞭解"]。

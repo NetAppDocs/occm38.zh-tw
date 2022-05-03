@@ -1,0 +1,59 @@
+---
+sidebar: sidebar 
+permalink: task_discovering_ontap.html 
+keywords: ontap, cluster, discover, manage, discovering, fas, aff, discover onprem, discover aff cluster, discover cluster, add cluster 
+summary: Cloud Manager 可在 ONTAP 內部部署環境、 NetApp 私有儲存組態和 IBM Cloud 中探索這些功能集區。探索ONTAP 一個支援功能的叢集、可讓您從內部叢集配置儲存設備、複寫資料、並將冷資料層級化至雲端。 
+---
+= 探索 ONTAP 叢集
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+Cloud Manager 可在 ONTAP 內部部署環境、 NetApp 私有儲存組態和 IBM Cloud 中探索這些功能集區。探索ONTAP 一個支援功能的叢集、可讓您從內部叢集配置儲存設備、複寫資料、備份資料、以及將冷資料分層至雲端。
+
+.您需要的是 #8217 ；需要的是什麼
+* 安裝在雲端供應商或內部部署環境中的 Connector 。
++
+如果您想要將冷資料分層至雲端、則應根據您計畫將冷資料分層的位置來審查 Connector 的需求。
+
++
+** link:concept_connectors.html["深入瞭解連接器"]
+** link:task_managing_connectors.html["在連接器之間切換"]
+** link:concept_cloud_tiering.html["深入瞭解雲端分層"]
+
+
+* 將叢集新增至 Cloud Manager 的叢集管理 IP 位址和管理使用者帳戶密碼。
++
+Cloud Manager 使用 ONTAP HTTPS 探索各個叢集。如果使用自訂防火牆原則、則必須符合下列需求：
+
++
+** 連接器主機必須允許透過連接埠 443 進行傳出 HTTPS 存取。
++
+如果 Connector 位於雲端、則預先定義的安全性群組會允許所有傳出通訊。
+
+** 這個支援叢集必須允許透過連接埠 443 進行傳入 HTTPS 存取。 ONTAP
++
+預設的「管理」防火牆原則允許從所有 IP 位址進行傳入 HTTPS 存取。如果您修改此預設原則、或是建立自己的防火牆原則、則必須將 HTTPS 傳輸協定與該原則建立關聯、並啟用從 Connector 主機存取。
+
+
+
+
+
+.步驟
+. 在「工作環境」頁面上、按一下「*新增工作環境*」、然後選取「*內部部署ONTAP 的更新環境」。
+. 如果出現提示、請建立連接器。
++
+如需詳細資料、請參閱上述連結。
+
+. 在* ONTAP 《叢集詳細資料》*頁面上、輸入叢集管理IP位址、管理使用者帳戶的密碼、以及叢集的位置。
++
+image:screenshot_discover_ontap.gif["螢幕快照顯示ONTAP 「叢集詳細資料」頁面的範例：叢集管理IP位址、使用者名稱和密碼、以及在內部部署中選取作為叢集位置。"]
+
+. 在「詳細資料」頁面上、輸入工作環境的名稱和說明、然後按一下「 * 執行 * 」。
+
+
+Cloud Manager會探索叢集。您現在可以建立磁碟區、在叢集之間複寫資料、設定資料分層至雲端、將磁碟區備份至雲端、以及啟動 System Manager 來執行進階工作。

@@ -1,0 +1,79 @@
+---
+sidebar: sidebar 
+permalink: reference_aws_support.html 
+keywords: aws, amazon, s3, support, regions, storage classes 
+summary: 雲端分層可支援數個 S3 儲存類別和大部分地區。 
+---
+= 支援的 S3 儲存類別和地區
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+雲端分層可支援數個 S3 儲存類別和大部分地區。
+
+
+
+== 支援的 S3 儲存類別
+
+雲端分層可套用生命週期規則、讓資料在 30 天後從 _Standard_ 儲存類別轉換至另一個儲存類別。您可以從下列儲存類別中選擇：
+
+* 標準非常用存取
+* 單一區域 -IA
+* 智慧型
+
+
+如果您選擇「 Standard （標準）」、則資料會保留在該儲存類別中。
+
+https://aws.amazon.com/s3/storage-classes/["瞭解 S3 儲存課程"^]。
+
+
+
+== 支援的 AWS 區域
+
+雲端分層支援下列 AWS 區域。
+
+
+
+==== 亞太地區
+
+* Mumbai
+* 首爾
+* 新加坡
+* 雪梨
+* 東京
+
+
+
+
+==== 歐洲
+
+* 法蘭克福
+* 愛爾蘭
+* 倫敦
+* 巴黎
+* 斯德哥爾摩
+
+
+
+
+==== 北美地區
+
+* 加拿大中部
+* GovCloud （美國西部）–從 ONTAP 推出時起即為
+* 美國東部（北維吉尼亞州）
+* 美國東部（俄亥俄州）
+* 美國西部（北加州）
+* 美國西部（俄勒岡州）
+
+
+
+
+==== 南美洲
+
+* 聖保羅
+

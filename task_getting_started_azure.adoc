@@ -1,0 +1,63 @@
+---
+sidebar: sidebar 
+permalink: task_getting_started_azure.html 
+keywords: microsoft, azure, netapp, data fabric, hybrid cloud, cloud, public cloud, networking, marketplace, virtual machine, vnet, quick, getting started, install, installing, deploy, deploying, setup, setting up, launching, requirements, prerequisites, cloud central, permissions, custom role, role, json, permissions, virtual machine, video, connectivity, internet, outbound, endpoint, connection, networks, vpn, replicating, policy, iam, setupasservice, sign up, cloud manager, cloud volumes ontap, cloud ontap, subscription, create 
+summary: 只要幾個步驟、 Cloud Volumes ONTAP 就能開始使用適用於 Azure 的功能。 
+---
+= Azure 版的功能入門 Cloud Volumes ONTAP
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+只要幾個步驟、 Cloud Volumes ONTAP 就能開始使用適用於 Azure 的功能。
+
+
+
+==== 建立連接器
+
+[role="quick-margin-para"]
+如果您沒有 link:concept_connectors.html["連接器"] 然而、帳戶管理員需要建立一個帳戶。 link:task_creating_connectors_azure.html["瞭解如何在 Azure 中建立 Connector"]。
+
+[role="quick-margin-para"]
+當您建立第一個 Cloud Volumes ONTAP 運作環境時、如果您還沒有連接器、 Cloud Manager 會提示您部署連接器。
+
+
+
+==== 規劃您的組態
+
+[role="quick-margin-para"]
+Cloud Manager 提供符合工作負載需求的預先設定套件、您也可以建立自己的組態。如果您選擇自己的組態、應該瞭解可用的選項。 link:task_planning_your_config_azure.html["深入瞭解"]。
+
+
+
+==== 設定您的網路
+
+. 確保您的 Vnet 和子網路可支援連接器與 Cloud Volumes ONTAP 支援的連接功能。
+. 啟用從目標 vnet 的傳出網際網路存取、讓 Connector 和 Cloud Volumes ONTAP 支援中心能夠連絡多個端點。
++
+這個步驟很重要、因為連接器 Cloud Volumes ONTAP 無法在沒有外傳網際網路存取的情況下管理不穩定。如果您需要限制傳出連線、請參閱的端點清單 link:reference_networking_azure.html["Connector 與 Cloud Volumes ONTAP the"]。
+
+
+
+[role="quick-margin-para"]
+link:reference_networking_azure.html["深入瞭解網路需求"]。
+
+
+
+==== 使用 Cloud Manager 啟動 Cloud Volumes ONTAP
+
+[role="quick-margin-para"]
+按一下「 * 新增工作環境 * 」、選取您要部署的系統類型、然後完成精靈中的步驟。 link:task_deploying_otc_azure.html["閱讀逐步指示"]。
+
+.相關連結
+* link:concept_evaluating.html["評估"]
+* link:task_creating_connectors_azure.html["從 Cloud Manager 建立 Connector"]
+* link:task_launching_azure_mktp.html["從 Azure Marketplace 建立 Connector"]
+* link:task_installing_linux.html["在 Linux 主機上安裝 Connector 軟體"]
+* link:reference_permissions.html#what-cloud-manager-does-with-azure-permissions["Cloud Manager 具備 Azure 權限的功能"]
+

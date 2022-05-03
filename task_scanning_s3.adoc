@@ -1,0 +1,249 @@
+---
+sidebar: sidebar 
+permalink: task_scanning_s3.html 
+keywords: cloud compliance, amazon s3, s3 buckets, amazon s3 buckets, scan s3 buckets, scan amazon s3 buckets, enable compliance s3, enable compliance on s3, s3 working environment 
+summary: Cloud Compliance 可掃描您的 Amazon S3 儲存區、以識別位於 S3 物件儲存區的個人和敏感資料。無論是為 NetApp 解決方案建立雲端法規遵循、雲端法規遵循部門都能掃描帳戶中的任何儲存庫。 
+---
+= Amazon S3 雲端法規遵循入門
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Cloud Compliance 可掃描您的 Amazon S3 儲存區、以識別位於 S3 物件儲存區的個人和敏感資料。無論是為 NetApp 解決方案建立雲端法規遵循、雲端法規遵循部門都能掃描帳戶中的任何儲存庫。
+
+
+
+== 快速入門
+
+請依照下列步驟快速入門、或向下捲動至其餘部分以取得完整詳細資料。
+
+
+
+==== 在雲端環境中設定 S3 需求
+
+[role="quick-margin-para"]
+確保您的雲端環境符合 Cloud Compliance 的要求、包括準備 IAM 角色、以及設定從 Cloud Compliance 到 S3 的連線。 <<Reviewing S3 prerequisites,請參閱完整清單>>。
+
+
+
+==== 部署 Cloud Compliance 執行個體
+
+[role="quick-margin-para"]
+link:task_deploy_cloud_compliance.html["在 Cloud Manager 中部署 Cloud Compliance"^] 如果尚未部署執行個體、
+
+
+
+==== 在 S3 工作環境中啟動法規遵循
+
+[role="quick-margin-para"]
+選取 Amazon S3 工作環境、按一下 * 「 Enable Compliance 」（啟用法規遵循） * 、然後選取內含必要權限的 IAM 角色。
+
+
+
+==== 選取要掃描的儲存區
+
+[role="quick-margin-para"]
+請選擇您要掃描的儲存庫、 Cloud Compliance 會開始掃描。
+
+
+
+== 檢閱 S3 的必要條件
+
+下列需求僅適用於掃描 S3 儲存區。
+
+[[policy-requirements]]
+為 Cloud Compliance 執行個體設定 IAM 角色:: Cloud Compliance 需要權限才能連線至您帳戶中的 S3 儲存區、並加以掃描。設定包含下列權限的 IAM 角色。在 Amazon S3 工作環境中啟用雲端法規遵循時、 Cloud Manager 會提示您選擇 IAM 角色。
++
+--
+[source, json]
+----
+{
+  "Version": "2012-10-17",
+  "Statement": [
+      {
+          "Effect": "Allow",
+          "Action": [
+              "s3:Get*",
+              "s3:List*",
+              "s3:HeadBucket"
+          ],
+          "Resource": "*"
+      },
+      {
+          "Effect": "Allow",
+          "Action": [
+              "iam:GetPolicyVersion",
+              "iam:GetPolicy",
+              "iam:ListAttachedRolePolicies"
+          ],
+          "Resource": [
+              "arn:aws:iam::*:policy/*",
+              "arn:aws:iam::*:role/*"
+          ]
+      }
+  ]
+}
+----
+--
+提供從 Cloud Compliance 到 Amazon S3 的連線能力:: 雲端法規遵循部門需要連線至 Amazon S3 。提供此連線的最佳方法是透過 VPC 端點連線至 S3 服務。如需相關指示、請參閱 https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/vpce-gateway.html#create-gateway-endpoint["AWS 文件：建立閘道端點"^]。
++
+--
+當您建立 VPC 端點時、請務必選取與 Cloud Compliance 執行個體對應的地區、 VPC 和路由表。您也必須修改安全性群組、以新增允許流量到 S3 端點的傳出 HTTPS 規則。否則、 Cloud Compliance 將無法連線至 S3 服務。
+
+如果您遇到任何問題、請參閱 https://aws.amazon.com/premiumsupport/knowledge-center/connect-s3-vpc-endpoint/["AWS 支援知識中心：為什麼我無法使用閘道 VPC 端點連線至 S3 儲存區？"^]
+
+另一種方法是使用 NAT 閘道來提供連線。
+
+
+NOTE: 您無法使用 Proxy 透過網際網路連線至 S3 。
+
+--
+
+
+
+
+== 部署 Cloud Compliance 執行個體
+
+link:task_deploy_cloud_compliance.html["在 Cloud Manager 中部署 Cloud Compliance"^] 如果尚未部署執行個體、
+
+您需要在 AWS Connector 中部署執行個體、以便 Cloud Manager 自動探索此 AWS 帳戶中的 S3 儲存區、並在 Amazon S3 工作環境中顯示這些儲存區。
+
+
+
+== 在 S3 工作環境中啟動法規遵循
+
+驗證先決條件之後、請在 Amazon S3 上啟用 Cloud Compliance 。
+
+.步驟
+. 在Cloud Manager頂端、按一下*工作環境*。
+. 選取 Amazon S3 工作環境。
++
+image:screenshot_s3_we.gif["Amazon S3 工作環境圖示的快照"]
+
+. 在右側窗格中、按一下「 * 啟用相容性 * 」。
++
+image:screenshot_s3_enable_compliance.gif["從「服務」面板啟用雲端法規遵循服務的快照"]
+
+. 出現提示時、請將 IAM 角色指派給具有的 Cloud Compliance 執行個體 <<Requirements specific to S3,必要的權限>>。
++
+image:screenshot_s3_compliance_iam_role.gif["輸入 AWS IAM 角色以符合雲端法規遵循的快照"]
+
+. 按一下「 * 啟用相容性 * 」。
+
+
+
+TIP: 您也可以按一下「掃描組態」頁面、針對工作環境啟用法規遵循掃描 image:screenshot_gallery_options.gif[""] 按鈕並選擇 * 啟動法規遵循 * 。
+
+Cloud Manager 會將 IAM 角色指派給執行個體。
+
+
+
+== 啟用和停用 S3 儲存區的法規遵循掃描
+
+Cloud Manager 在 Amazon S3 上啟用 Cloud Compliance 之後、下一步是設定您要掃描的儲存區。
+
+當 Cloud Manager 在 AWS 帳戶中執行時、若該帳戶中有您要掃描的 S3 儲存區、則會探索這些儲存區、並在 Amazon S3 工作環境中顯示這些儲存區。
+
+雲端法規遵循也可以 <<Scanning buckets from additional AWS accounts,掃描位於不同 AWS 帳戶中的 S3 儲存區>>。
+
+.步驟
+. 選取 Amazon S3 工作環境。
+. 在右側窗格中、按一下 * 設定鏟斗 * 。
++
+image:screenshot_s3_configure_buckets.gif["按一下「 Configure boose 」（設定儲存庫）以選擇您要掃描的 S3 儲存區的快照"]
+
+. 針對您要掃描的儲存區啟用法規遵循。
++
+image:screenshot_s3_select_buckets.gif["選取您要掃描的 S3 儲存區的快照"]
+
+
+
+Cloud Compliance 會開始掃描您啟用的 S3 儲存區。如果有任何錯誤、它們會顯示在「 Status （狀態）」欄中、以及修正錯誤所需的動作。
+
+
+
+== 從其他 AWS 帳戶掃描儲存區
+
+您可以從該帳戶指派角色、以存取現有的 Cloud Compliance 執行個體、藉此掃描位於不同 AWS 帳戶下的 S3 儲存區。
+
+.步驟
+. 前往您要掃描 S3 儲存區的目標 AWS 帳戶、然後選取 * 其他 AWS 帳戶 * 來建立 IAM 角色。
++
+image:screenshot_iam_create_role.gif[""]
+
++
+請務必執行下列動作：
+
++
+** 輸入 Cloud Compliance 執行個體所在帳戶的 ID 。
+** 將 * 最大 CLI/API 工作階段持續時間 * 從 1 小時變更為 12 小時、並儲存變更。
+** 附加雲端法規遵循 IAM 原則。請確定它擁有所需的權限。
++
+[source, json]
+----
+{
+  "Version": "2012-10-17",
+  "Statement": [
+      {
+          "Effect": "Allow",
+          "Action": [
+              "s3:Get*",
+              "s3:List*",
+              "s3:HeadBucket"
+          ],
+          "Resource": "*"
+      },
+  ]
+}
+----
+
+
+. 前往 Cloud Compliance 執行個體所在的來源 AWS 帳戶、然後選取附加至執行個體的 IAM 角色。
++
+.. 將 * 最大 CLI/API 工作階段持續時間 * 從 1 小時變更為 12 小時、並儲存變更。
+.. 按一下「 * 附加原則 * 」、然後按一下「 * 建立原則 * 」。
+.. 建立包含「 STS:AssumeRole 」動作的原則、以及您在目標帳戶中建立之角色的 ARN 。
++
+[source, json]
+----
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": "sts:AssumeRole",
+            "Resource": "arn:aws:iam::<ADDITIONAL-ACCOUNT-ID>:role/<ADDITIONAL_ROLE_NAME>"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "iam:GetPolicyVersion",
+                "iam:GetPolicy",
+                "iam:ListAttachedRolePolicies"
+            ],
+            "Resource": [
+                "arn:aws:iam::*:policy/*",
+                "arn:aws:iam::*:role/*"
+            ]
+        }
+    ]
+}
+----
++
+Cloud Compliance 執行個體設定檔帳戶現在可存取額外的 AWS 帳戶。
+
+
+
+. 移至「 * Amazon S3 Scan Configuration * 」頁面、隨即顯示新的 AWS 帳戶。請注意、雲端法規遵循部門可能需要幾分鐘的時間、才能同步處理新客戶的工作環境、並顯示此資訊。
++
+image:screenshot_activate_and_select_buckets.png[""]
+
+. 按一下「 * 啟動法規遵循與選擇庫位 * 」、然後選取您要掃描的庫位。
+
+
+Cloud Compliance 會開始掃描您啟用的新 S3 儲存區。

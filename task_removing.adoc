@@ -1,0 +1,38 @@
+---
+sidebar: sidebar 
+permalink: task_removing.html 
+keywords: working environments, removing, remove, rediscover 
+summary: 帳戶管理員可移除 Cloud Volumes ONTAP 運作中的環境、將其移至其他系統、或疑難排解探索問題。 
+---
+= 移除 Cloud Volumes ONTAP 運作環境
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+帳戶管理員可移除 Cloud Volumes ONTAP 運作中的環境、將其移至其他系統、或疑難排解探索問題。
+
+移除 Cloud Volumes ONTAP 功能不全的工作環境、將其從 Cloud Manager 中移除。它不會刪除 Cloud Volumes ONTAP 此作業系統。您稍後可以重新探索工作環境。
+
+從 Cloud Manager 移除工作環境可讓您執行下列動作：
+
+* 在另一個工作區重新探索
+* 從另一個 Cloud Manager 系統重新探索
+* 如果在初始探索期間發生問題、請重新探索
+
+
+.步驟
+. 在 Cloud Manager 主控台右上角、按一下「設定」圖示、然後選取 * 「工具」 * 。
++
+image:screenshot_settings_icon.gif["顯示 Cloud Manager 主控台右上角「設定」圖示的快照。"]
+
+. 在「工具」頁面中、按一下 * 「啟動 * 」。
+. 選取 Cloud Volumes ONTAP 您要移除的「不工作環境」。
+. 在「 Review and Approve 」（檢閱並核准）頁面上、按一下「 * Go * 」。
+
+
+Cloud Manager 會移除工作環境。使用者可隨時從「工作環境」頁面重新探索此工作環境。

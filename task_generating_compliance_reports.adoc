@@ -1,0 +1,181 @@
+---
+sidebar: sidebar 
+permalink: task_generating_compliance_reports.html 
+keywords: report, privacy, risk, privacy risk assessment, compliance status, severity, compliance, privacy risk, data subjects, privacy, credit cards, pci dss, hipaa 
+summary: Cloud Compliance 提供報告、讓您更瞭解組織的資料隱私權方案狀態。 
+---
+= 檢視法規遵循報告
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Cloud Compliance 提供報告、讓您更瞭解組織的資料隱私權方案狀態。
+
+根據預設、 Cloud Compliance 儀表板會顯示所有工作環境和資料庫的法規遵循資料。如果您只想檢視某些工作環境中含有資料的報告、 <<Selecting the working environments for reports,選擇那些工作環境>>。
+
+
+NOTE: NetApp 無法保證 Cloud Compliance 所識別的個人資料和敏感個人資料 100% 準確無誤。您應該一律檢閱資料來驗證資訊。
+
+
+
+== 隱私權風險評估報告
+
+隱私權風險評估報告概述貴組織的隱私權風險狀態、如 GDPR 和 CCPA 等隱私權法規要求。報告包含下列資訊：
+
+法規遵循狀態:: 答 <<Severity score,嚴重性分數>> 以及資料的發佈、無論是不敏感、個人或敏感的個人資料。
+評估總覽:: 所找到的個人資料類型及資料類別的明細。
+本評估的資料主題:: 按地點列出的找到國家識別碼的人數。
+
+
+
+
+=== 產生隱私風險評估報告
+
+前往「 Compliance 」（法規遵循）索引標籤以產生報告。
+
+.步驟
+. 在Cloud Manager頂端、按一下* Cloud Compliance *。
+. 在「 * 報告 * 」下、按一下「 * 隱私風險評估 * 」旁的下載圖示。
++
+image:screenshot_privacy_risk_assessment.gif["Cloud Manager 中法規遵循索引標籤的螢幕擷取畫面、會顯示「報告」窗格、您可在其中按一下「隱私風險評估」。"]
+
+
+
+Cloud Compliance 會產生一份 PDF 報告、您可以視需要檢閱並傳送給其他群組。
+
+
+
+=== 嚴重性分數
+
+Cloud Compliance 會根據三個變數來計算隱私風險評估報告的嚴重性分數：
+
+* 所有資料中的個人資料百分比。
+* 所有資料中敏感個人資料的百分比。
+* 包含資料主體的檔案百分比、由國家識別碼、社會安全號碼及稅務 ID 等國家識別碼所決定。
+
+
+用來判斷分數的邏輯如下：
+
+[cols="27,73"]
+|===
+| 嚴重性分數 | 邏輯 
+
+
+| 0 | 這三個變數都是 0% 
+
+
+| 1. | 其中一個變數大於 0% 
+
+
+| 2. | 其中一個變數大於 3% 
+
+
+| 3. | 其中兩個變數大於 3% 
+
+
+| 4. | 其中三個變數大於 3% 
+
+
+| 5. | 其中一個變數大於 6% 
+
+
+| 6. | 其中兩個變數大於 6% 
+
+
+| 7. | 其中三個變數大於 6% 
+
+
+| 8. | 其中一個變數大於 15% 
+
+
+| 9. | 其中兩個變數大於 15% 
+
+
+| 10. | 其中三個變數大於 15% 
+|===
+
+
+== PCI DSS 報告
+
+支付卡產業資料安全標準（ PCI DSS ）報告可協助您識別信用卡資訊在檔案之間的發佈情形。報告包含下列資訊：
+
+總覽:: 有多少檔案包含信用卡資訊、以及在哪些工作環境中。
+加密:: 包含信用卡資訊的檔案在加密或未加密的工作環境中所佔的百分比。此資訊僅供 Cloud Volumes ONTAP 參考。
+勒索軟體保護:: 包含信用卡資訊的檔案所佔的百分比、是在工作環境中啟用或未啟用勒索軟體保護的檔案。此資訊僅供 Cloud Volumes ONTAP 參考。
+保留:: 上次修改檔案的時間範圍。這很有幫助、因為您不應將信用卡資訊保留超過處理所需的時間。
+信用卡資訊的發佈:: 找到信用卡資訊的工作環境、以及是否啟用加密和勒索軟體保護。
+
+
+
+
+=== 產生 PCI DSS 報告
+
+前往「 Compliance 」（法規遵循）索引標籤以產生報告。
+
+.步驟
+. 在Cloud Manager頂端、按一下* Cloud Compliance *。
+. 在「 * 報告 * 」下、按一下「 * PCI DSS 報告 * 」旁的下載圖示。
++
+image:screenshot_pci_dss.gif["Cloud Manager 中法規遵循索引標籤的螢幕擷取畫面、會顯示「報告」窗格、您可在其中按一下「隱私風險評估」。"]
+
+
+
+Cloud Compliance 會產生一份 PDF 報告、您可以視需要檢閱並傳送給其他群組。
+
+
+
+== HIPAA 報告
+
+健康保險流通與責任法案（ HIPAA ）報告可協助您識別含有健全狀況資訊的檔案。其設計旨在協助貴組織遵守 HIPAA 資料隱私權法律。Cloud Compliance 所需的資訊包括：
+
+* 健全狀況參考模式
+* ICD-10-CM 醫療代碼
+* ICD-9-CM 醫療代碼
+* HR –健全狀況類別
+* 健全狀況應用程式資料類別
+
+
+報告包含下列資訊：
+
+總覽:: 有多少檔案包含健全狀況資訊、以及在哪些工作環境中。
+加密:: 包含在加密或未加密工作環境中健全狀況資訊的檔案百分比。此資訊僅供 Cloud Volumes ONTAP 參考。
+勒索軟體保護:: 包含健全狀況資訊的檔案中、有多少檔案位於啟用或未啟用勒索軟體保護的工作環境中。此資訊僅供 Cloud Volumes ONTAP 參考。
+保留:: 上次修改檔案的時間範圍。這很有幫助、因為您不應將健全狀況資訊保留超過處理所需的時間。
+健康資訊的發佈:: 找到健全狀況資訊的工作環境、以及是否啟用加密和勒索軟體保護。
+
+
+
+
+=== 產生 HIPAA 報告
+
+前往「 Compliance 」（法規遵循）索引標籤以產生報告。
+
+.步驟
+. 在Cloud Manager頂端、按一下* Cloud Compliance *。
+. 在「 * 報告 * 」下、按一下「 * HIPAA 報告 * 」旁的下載圖示。
++
+image:screenshot_hipaa.gif["Cloud Manager 中法規遵循索引標籤的螢幕擷取畫面、顯示您可按一下 HIPAA 的「報告」窗格。"]
+
+
+
+Cloud Compliance 會產生一份 PDF 報告、您可以視需要檢閱並傳送給其他群組。
+
+
+
+== 選擇報告的工作環境
+
+您可以篩選 Cloud Compliance 儀表板的內容、查看所有工作環境和資料庫的法規遵循資料、或僅查看特定工作環境的法規遵循資料。
+
+當您篩選儀表板時、 Cloud Compliance 會將法規遵循資料和報告範圍僅限於您所選的工作環境。
+
+.步驟
+. 按一下篩選下拉式清單、選取您要檢視資料的工作環境、然後按一下 * 檢視 * 。
++
+image:screenshot_cloud_compliance_filter.gif["選取您要執行之報告的工作環境的螢幕擷取畫面。"]
+
+

@@ -1,0 +1,59 @@
+---
+sidebar: sidebar 
+permalink: index.html 
+summary: Cloud Manager 可讓 IT 專家和雲端架構設計師使用 NetApp 的雲端解決方案、集中管理混合式多雲端基礎架構。 
+---
+= Cloud Manager 與 Cloud Volumes ONTAP 技術文件
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+Cloud Manager 可讓 IT 專家和雲端架構設計師使用 NetApp 的雲端解決方案、集中管理混合式多雲端基礎架構。
+
+
+
+== 瞭解新功能
+
+* link:reference_key_changes.html["Cloud Manager 的重要變更"]
+* link:reference_new_occm.html["Cloud Manager 的新功能"]
+* https://docs.netapp.com/us-en/cloud-volumes-ontap/reference_new_97.html["更新功能 Cloud Volumes ONTAP"^]
+
+
+
+
+== 開始使用
+
+* link:concept_overview.html["Cloud Manager"]
+* link:concept_cloud_central_accounts.html["帳戶設定"]
+* link:task_getting_started_aws.html["AWS 適用的 Cloud Volumes ONTAP"]
+* link:task_getting_started_azure.html["適用於 Azure Cloud Volumes ONTAP"]
+* link:task_getting_started_gcp.html["適用於 Google Cloud Cloud Volumes ONTAP"]
+* link:task_manage_anf.html["Azure NetApp Files"]
+* link:task_manage_cvs_aws.html["AWS 適用的 Cloud Volumes Service"]
+* link:task_manage_cvs_gcp.html["適用於 Google Cloud Cloud Volumes Service"]
+* link:task_getting_started_compliance.html["雲端法規遵循"]
+* link:task_gfc_getting_started.html["全域檔案快取"]
+* link:concept_backup_to_cloud.html["備份至雲端"]
+* link:task_getting_started_monitoring.html["Cloud Insights"]
+
+
+
+
+== 利用 API 實現自動化
+
+* link:api.html["API 開發人員指南"^]
+* link:reference_infrastructure_as_code.html["自動化範例"]
+
+
+
+
+== 與同儕交流、取得協助、並尋找更多資訊
+
+* https://community.netapp.com/t5/Cloud-Data-Services/ct-p/CDS["NetApp 社群：雲端資料服務"^]
+* https://mysupport.netapp.com/GPS/ECMLS2588181.html["NetApp Cloud Volumes ONTAP 支援"^]
+* link:reference_additional_info.html["何處可取得協助及尋找更多資訊"]
+

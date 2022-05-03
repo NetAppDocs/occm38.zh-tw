@@ -1,0 +1,177 @@
+---
+sidebar: sidebar 
+permalink: task_getting_started_compliance.html 
+keywords: cloud compliance, get started, enable cloud compliance, cifs credentials, smb credentials, outbound internet, endpoints, cloud compliance internet, web browser connectivity, cloud compliance access, privacy, compliance, dp volumes, data protection volumes 
+summary: 在Azure NetApp Files AWS或Azure中完成幾個步驟、即可開始使用Cloud Compliance for功能for效能更新或Cloud Volumes ONTAP 更新。 
+---
+= Cloud Compliance for Cloud Volumes ONTAP 功能的入門指南Azure NetApp Files
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+完成幾個步驟、開始瞭解Cloud Compliance for Cloud Volumes ONTAP NetApp或Azure NetApp Files 更新。
+
+
+
+== 快速入門
+
+請依照下列步驟快速入門、或向下捲動至其餘部分以取得完整詳細資料。
+
+
+
+==== 部署 Cloud Compliance 執行個體
+
+[role="quick-margin-para"]
+link:task_deploy_cloud_compliance.html["在 Cloud Manager 中部署 Cloud Compliance"^] 如果尚未部署執行個體、
+
+
+
+==== 在您的工作環境中實現雲端法規遵循
+
+[role="quick-margin-para"]
+按一下「* Cloud Compliance *（*雲端法規遵循）」、選取「* Configuration *（組態*）」索引標籤、然後針對特定工作環境啟動法規遵循掃描。
+
+
+
+==== 確保能夠存取磁碟區
+
+[role="quick-margin-para"]
+雲端法規遵循已啟用、請確保 IT 能夠存取磁碟區。
+
+* Cloud Compliance執行個體需要連線至Cloud Volumes ONTAP 每個子網路或Azure NetApp Files 子網路的網路連線。
+* 適用於此功能的安全群組 Cloud Volumes ONTAP 必須允許來自 Cloud Compliance 執行個體的傳入連線。
+* NFS Volume 匯出原則必須允許從 Cloud Compliance 執行個體存取。
+* Cloud Compliance 需要 Active Directory 認證資料才能掃描 CIFS Volume 。
++
+按一下「* Cloud Compliance *>* Scan Configuration *>* Edit CIFS Credentials*」、然後提供認證資料。認證資料可以是唯讀的、但提供管理認證可確保Cloud Compliance能夠讀取需要提升權限的資料。
+
+
+
+
+
+==== 設定要掃描的Volume
+
+[role="quick-margin-para"]
+選取您要掃描的磁碟區、Cloud Compliance會開始掃描。
+
+
+
+== 部署 Cloud Compliance 執行個體
+
+link:task_deploy_cloud_compliance.html["在 Cloud Manager 中部署 Cloud Compliance"^] 如果尚未部署執行個體、
+
+
+
+== 在您的工作環境中實現雲端法規遵循
+
+. 在Cloud Manager頂端、按一下* Cloud Compliance *、然後選取* Configuration *索引標籤。
++
+image:screenshot_cloud_compliance_we_scan_config.png["部署 Cloud Compliance 執行個體後、立即顯示「掃描組態」索引標籤的快照。"]
+
+. 若要掃描工作環境中的所有磁碟區、請按一下 * 「啟用所有磁碟區的法規遵循」 * 。
++
+若要僅掃描工作環境中的特定磁碟區、請按一下 * 或選取 Volumes （磁碟區） * 、然後選擇您要掃描的磁碟區。
+
+
+
+請參閱 <<Enabling and disabling compliance scans on volumes,啟用及停用磁碟區的法規遵循掃描>> 以取得詳細資料。
+
+Cloud Compliance會開始掃描每個工作環境中的資料。一旦 Cloud Compliance 完成初始掃描、結果就會顯示在「法規遵循」儀表板中。所需時間取決於資料量、可能需要幾分鐘或幾小時。
+
+
+
+== 確認 Cloud Compliance 可存取磁碟區
+
+請檢查您的網路、安全性群組和匯出原則、確保 Cloud Compliance 能夠存取磁碟區。您必須提供符合雲端法規的 CIFS 認證資料、讓 IT 能夠存取 CIFS 磁碟區。
+
+.步驟
+. 請確定Cloud Compliance執行個體與每個網路之間都有網路連線、其中包含Cloud Volumes ONTAP 供用作或Azure NetApp Files 用作參考的磁碟區。
++
+
+NOTE: 對於解決方案、 Cloud Compliance 只能掃描與 Cloud Manager 位於相同區域的磁碟區。 Azure NetApp Files
+
+. 確保 Cloud Volumes ONTAP 適用於此功能的安全群組允許來自 Cloud Compliance 執行個體的傳入流量。
++
+您可以從 Cloud Compliance 執行個體的 IP 位址開啟流量的安全性群組、也可以開啟虛擬網路內部所有流量的安全性群組。
+
+. 確保 NFS Volume 匯出原則包含 Cloud Compliance 執行個體的 IP 位址、以便存取每個 Volume 上的資料。
+. 如果您使用 CIFS 、請提供 Active Directory 認證的 Cloud Compliance 、以便掃描 CIFS Volume 。
++
+.. 在Cloud Manager頂端、按一下* Cloud Compliance *。
+.. 單擊 * Configuration （配置） * 選項卡。
++
+image:screenshot_cifs_credentials.gif["「符合性」索引標籤的快照、顯示內容窗格右上角可用的「掃描狀態」按鈕。"]
+
+.. 針對每個工作環境、按一下 * 編輯 CIFS 認證 * 、然後輸入 Cloud Compliance 存取系統上 CIFS Volume 所需的使用者名稱和密碼。
++
+認證資料可以是唯讀的、但提供管理認證可確保 Cloud Compliance 能夠讀取任何需要提高權限的資料。認證資料儲存在 Cloud Compliance 執行個體上。
+
++
+輸入認證之後、您應該會看到一則訊息、指出所有 CIFS 磁碟區都已成功驗證。
+
++
+image:screenshot_cifs_status.gif["顯示「掃描組態」頁面的快照、以及 Cloud Volumes ONTAP 成功提供 CIFS 認證的一個更新系統。"]
+
+
+
+. 在「 _Scan Configuration 」（掃描組態）頁面上、按一下「 * View Details 」（檢視詳細資料） * 以檢閱每個 CIFS 和 NFS 磁碟區的狀態、並修正任何錯誤。
++
+例如、下圖顯示三個磁碟區、其中一個因為 Cloud Compliance 執行個體與磁碟區之間的網路連線問題而無法掃描 Cloud Compliance 。
+
++
+image:screenshot_compliance_volume_details.gif["掃描組態中「檢視詳細資料」頁面的快照顯示三個磁碟區、其中一個因為 Cloud Compliance 和 Volume 之間的網路連線而無法掃描。"]
+
+
+
+
+
+== 啟用及停用磁碟區的法規遵循掃描
+
+您可以隨時從「掃描組態」頁面停止或開始掃描工作環境中的磁碟區。建議您掃描所有 Volume 。
+
+image:screenshot_volume_compliance_selection.png["掃描組態頁面的快照、可讓您啟用或停用個別磁碟區的掃描。"]
+
+[cols="40,50"]
+|===
+| 至： | 請執行下列動作： 
+
+
+| 停用掃描磁碟區 | 將 Volume 滑桿移至左側 
+
+
+| 停用掃描所有磁碟區 | 將「所有磁碟區的 * 啟動相容性」滑桿移到左邊 
+
+
+| 啟用磁碟區掃描 | 將 Volume 滑桿向右移動 
+
+
+| 啟用所有 Volume 的掃描 | 將「所有磁碟區的 * 啟動符合性 * 」滑桿移到右側 
+|===
+
+TIP: 只有在啟用「所有磁碟區的 * 啟動符合性 * 」設定時、才會自動掃描新增至工作環境的磁碟區。停用此設定時、您必須在工作環境中建立的每個新磁碟區上啟動掃描。
+
+
+
+== 正在掃描資料保護磁碟區
+
+根據預設、不會掃描資料保護（ DP ）磁碟區、因為這些磁碟區不會對外公開、而且 Cloud Compliance 也無法存取。這些磁碟區通常是內部部署ONTAP 的SnapMirror叢集進行SnapMirror作業的目的地磁碟區。
+
+雲端法規遵循磁碟區清單一開始會將這些磁碟區識別為「_Type」*「DP*」、「_Status」*「Not掃描」*、「_required Action」*「Enable Access to DP Volumes」（啟用對DP磁碟區的存取）。
+
+image:screenshot_cloud_compliance_dp_volumes.png["顯示「啟用 DP 磁碟區存取」按鈕的快照、可供您選擇掃描資料保護磁碟區。"]
+
+如果您要掃描這些資料保護磁碟區：
+
+. 按一下頁面頂端的 * 「 Enable Access to DP Volumes （啟用 DP 磁碟區存取）」按鈕。
+. 啟動您要掃描的每個 DP 磁碟區、或使用 * 「所有磁碟區的啟用法規遵循」控制項來啟用所有磁碟區、包括所有 DP 磁碟區。
+
+
+啟用之後、 Cloud Compliance 會從每個已啟動以符合法規的 DP 磁碟區建立 NFS 共用區、以便進行掃描。共用匯出原則僅允許從 Cloud Compliance 執行個體存取。
+
+
+NOTE: 只有最初在來源ONTAP 供應系統中建立為NFS磁碟區的磁碟區、才會顯示在磁碟區清單中。最初建立為CIFS的來源磁碟區目前不會顯示在Cloud Compliance中。

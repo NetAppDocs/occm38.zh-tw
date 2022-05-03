@@ -1,0 +1,100 @@
+---
+sidebar: sidebar 
+permalink: task_adding_gcp_accounts.html 
+keywords: permissions, gcp, data tiering, tiering, setup, requirements, account for data tiering, account for tiering, interoperable, interoperability, interoperable storage access keys, access keys 
+summary: 您可以從 Cloud Manager 管理兩種類型的 Google Cloud Platform 認證資料、這些認證資料與連接器 VM 執行個體和 Cloud Volumes ONTAP 儲存存取金鑰有關、這些認證資料可搭配使用於 Data 分層的版本 9.6 系統。 
+---
+= 管理 Cloud Manager 的 GCP 認證與訂閱
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+您可以從 Cloud Manager 管理兩種類型的 Google Cloud Platform 認證資料：與 Connector VM 執行個體相關的認證資料、以及 Cloud Volumes ONTAP 與適用於的更新版本的更新版本資訊（例如 link:concept_data_tiering.html["資料分層"]。
+
+
+
+== 將 Marketplace 訂閱與 GCP 認證建立關聯
+
+在 GCP 中部署 Connector 時、 Cloud Manager 會建立一組與 Connector VM 執行個體相關的預設認證資料。這些是 Cloud Manager 用來部署 Cloud Volumes ONTAP 功能的認證資料。
+
+您可以隨時變更與這些認證資料相關的 Marketplace 訂閱。訂閱可讓您建立隨用隨付 Cloud Volumes ONTAP 的功能、並使用其他 NetApp 雲端服務。
+
+.步驟
+. 在 Cloud Manager 主控台右上角、按一下「設定」圖示、然後選取 * 認證 * 。
+. 將游標暫留在一組認證上、然後按一下動作功能表。
+. 從功能表中、按一下「 * 關聯訂閱 * 」。
++
+image:screenshot_gcp_add_subscription.gif["「認證」頁面的快照、您可在功能表中新增 GCP 認證訂閱。"]
+
+. 從下拉式清單中選取 Google Cloud 專案並訂閱、或按一下 * 「 Add Subscription* （新增訂閱 * ）」、然後依照步驟建立新的訂閱。
++
+image:screenshot_gcp_associate.gif["Google Cloud 專案的快照、以及 Google Cloud 認證的訂閱內容。"]
+
+. 按一下「 * 經銷 * 」。
+
+
+
+
+== 利用 Cloud Volumes ONTAP NetApp 功能升級和新增 GCP 帳戶、以利資料分層
+
+如果您想要啟用 Cloud Volumes ONTAP 的支援功能為 link:concept_data_tiering.html["資料分層"]、您必須為具有 Storage Admin 權限的服務帳戶、提供 Cloud Manager 儲存存取金鑰。Cloud Manager 使用存取金鑰來設定及管理雲端儲存庫、以利資料分層。
+
+
+TIP: 如果您想使用Cloud Volumes ONTAP 資料分層搭配使用NetApp 9.7、請依照中的步驟4進行 link:task_getting_started_gcp.html["在 Google Cloud Platform 中開始 Cloud Volumes ONTAP 使用功能"]。
+
+
+
+=== 設定 Google Cloud Storage 的服務帳戶和存取金鑰
+
+服務帳戶可讓 Cloud Manager 驗證及存取用於資料分層的雲端儲存桶。這些金鑰是必要的、以便 Google Cloud Storage 知道誰在提出要求。
+
+.步驟
+. 開啟 GCP IAM 主控台和 https://cloud.google.com/iam/docs/creating-custom-roles#creating_a_custom_role["建立具有 Storage Admin 角色的服務帳戶"^]。
++
+image:screenshot_gcp_service_account_role.gif["GCP IAM 主控台的快照、顯示服務帳戶的儲存管理角色選項。"]
+
+. 前往 https://console.cloud.google.com/storage/settings["GCP 儲存設定"^]。
+. 如果出現提示、請選取專案。
+. 按一下「 * 互通性 * 」索引標籤。
+. 如果您尚未啟用、請按一下 * 「啟用互通性存取」 * 。
+. 在 * 服務帳戶的存取金鑰 * 下、按一下 * 建立服務帳戶的金鑰 * 。
+. 選取您在步驟 1 中建立的服務帳戶。
++
+image:screenshot_gcp_access_key.gif["GCP 儲存主控台的快照、顯示新存取金鑰的所選服務帳戶。"]
+
+. 按一下「 * 建立金鑰 * 」。
+. 複製存取金鑰和密碼。
++
+新增 GCP 帳戶以進行資料分層時、您必須在 Cloud Manager 中輸入此資訊。
+
+
+
+
+
+=== 將 GCP 帳戶新增至 Cloud Manager
+
+現在您已擁有服務帳戶的存取金鑰、可以將其新增至 Cloud Manager 。
+
+您必須先建立連接器、才能變更 Cloud Manager 設定。 link:concept_connectors.html#how-to-create-a-connector["瞭解方法"]。
+
+.步驟
+. 在 Cloud Manager 主控台右上角、按一下「設定」圖示、然後選取 * 認證 * 。
++
+image:screenshot_settings_icon.gif["顯示 Cloud Manager 主控台右上角「設定」圖示的快照。"]
+
+. 按一下 * 「 Add Credentials 」（新增認證） * 、然後選取 * 「 Google Cloud 」
+. 輸入服務帳戶的存取金鑰和密碼。
++
+這些關鍵功能可讓 Cloud Manager 設定雲端儲存庫、以利資料分層。
+
+. 確認已符合原則需求、然後按一下「 * 建立帳戶 * 」。
+
+
+現在、您可以在 Cloud Volumes ONTAP 建立、修改或複寫資料時、在各個磁碟區上啟用資料分層功能。如需詳細資訊、請參閱 link:task_tiering.html["將非作用中資料分層至低成本物件儲存設備"]。
+
+但在您之前、請確定 Cloud Volumes ONTAP 駐留的子網路已設定為私有 Google Access 。如需相關指示、請參閱 https://cloud.google.com/vpc/docs/configure-private-google-access["Google Cloud 文件：設定私有 Google Access"^]。

@@ -1,0 +1,38 @@
+---
+sidebar: sidebar 
+permalink: task_setting_up_gcp_encryption.html 
+keywords: encryption, gcp, encryption key, permissions, customer-managed, gcpencryption 
+summary: 雖然 Google Cloud Storage 會在資料寫入磁碟之前先加密資料、但您可以使用 Cloud Manager API 來建立 Cloud Volumes ONTAP 使用客戶管理加密金鑰的功能完善的系統。這些是您使用 Cloud Key Management Service 在 GCP 中產生及管理的金鑰。 
+---
+= 搭配 Cloud Volumes ONTAP 使用客戶管理的加密金鑰
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+雖然 Google Cloud Storage 會在資料寫入磁碟之前先加密資料、但您可以使用 Cloud Manager API 來建立 Cloud Volumes ONTAP 使用 _ 客戶管理的加密金鑰 _ 的支援系統。這些是您使用 Cloud Key Management Service 在 GCP 中產生及管理的金鑰。
+
+.步驟
+. 授予 Connector 服務帳戶使用加密金鑰的權限。
++
+image:screenshot_gcp_key.gif[""]
+
+. 叫用 /GCP / VSA / 中繼資料 / GCP 加密金鑰 API 的 Get 命令、以取得金鑰的「 ID 」。
+. 建立工作環境時、請將「 GcpEncryption 」參數搭配 API 要求使用。
++
+* 範例 *
+
++
+[source, json]
+----
+"gcpEncryptionParameters": {
+    "key": "projects/tlv-support/locations/us-east4/keyRings/Nikiskeys/cryptoKeys/generatedkey1"
+  }
+----
+
+
+請參閱 link:api.html#_creating_systems_in_gcp["API 開發人員指南"^] 如需使用「 GcpEncryption 」參數的詳細資訊、

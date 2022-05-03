@@ -1,0 +1,33 @@
+---
+sidebar: sidebar 
+permalink: reference_whats_next.html 
+keywords: get started, create working environments, manage settings 
+summary: 現在您已經登入並設定 Cloud Manager 、使用者就能開始建立及探索工作環境。 
+---
+= 下一步
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+現在您已經登入並設定 Cloud Manager 、使用者就能開始建立及探索工作環境。
+
+* link:task_getting_started_aws.html["開始使用 Cloud Volumes ONTAP 適用於 AWS 的解決方法"]
+* link:task_getting_started_azure.html["立即開始使用 Cloud Volumes ONTAP 適用於 Azure 的解決方法"]
+* link:task_getting_started_gcp.html["立即開始使用 Cloud Volumes ONTAP 適用於 Google Cloud 的解決方案"]
+* link:task_manage_anf.html["設定 Azure NetApp Files 功能"]
+* link:task_manage_cvs_aws.html["設定 Cloud Volumes Service AWS 的功能"]
+* link:task_discovering_ontap.html["探索內部部署 ONTAP 的叢集"]
+* link:task_viewing_amazon_s3.html["探索您的 Amazon S3 儲存庫"]
+
+
+如果您是系統管理員、您可以在建立第一個 Connector 之後管理 Cloud Manager 設定。
+
+* link:concept_connectors.html["深入瞭解連接器"]
+* link:task_installing_https_cert.html["管理 HTTPS 憑證以確保安全存取"]
+* link:task_configuring_proxy.html["設定 Proxy 設定"]
+

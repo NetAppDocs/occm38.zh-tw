@@ -1,0 +1,131 @@
+---
+sidebar: sidebar 
+permalink: task_manage_anf_volumes.html 
+keywords: azure netapp files, create volumes, delete volumes, create nfs volumes, delete nfs volumes, netapp account, capacity pool, create capacity pool, azure netapp files permissions, azure permissions, mount path, get mount path, find mount path, mount volume 
+summary: 設定工作環境之後、您可以開始建立及管理 Azure NetApp Files 各種帳戶、容量集區、磁碟區和快照。 
+---
+= 建立及管理用於 Azure NetApp Files 資料的 Volume
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+設定工作環境之後、您可以建立及管理 Azure NetApp Files 各種帳戶、容量集區、磁碟區和快照。
+
+
+
+== 建立磁碟區
+
+您可以在新 Azure NetApp Files 的或現有的支援帳戶中建立 NFS 或 SMB 磁碟區。
+
+.步驟
+. 開放 Azure NetApp Files 整個作業環境。
+. 按一下「 * 新增 Volume * 」。
+. 在每個頁面上提供必要資訊：
++
+** * 《支援帳戶 * 》：選擇現有的支援帳戶或建立新帳戶。 Azure NetApp Files Azure NetApp Files
++
+image:screenshot_anf_create_account.gif["建立 Azure NetApp Files 一個包含名稱、 Azure 訂閱、位置和資源群組之 Isname 帳戶所需欄位的快照。"]
+
+** * 容量資源池 * ：選取現有的容量資源池或建立新的容量資源池。
++
+如果您建立新的容量集區、則需要指定大小並選取 https://docs.microsoft.com/en-us/azure/azure-netapp-files/azure-netapp-files-service-levels["服務層級"^]。
+
++
+容量集區的最小大小為 4 TB 。您可以指定 4 TB 的倍數大小。
+
+** * 詳細資料與標籤 * ：輸入磁碟區名稱與大小、磁碟區應位於的 vnet 與子網路、以及選擇性地指定磁碟區的標籤。
+** * 傳輸協定 * ：選擇 NFS 或 SMB 傳輸協定、然後輸入所需的資訊。
++
+以下是 NFS 詳細資料的範例。
+
++
+image:screenshot_anf_nfs.gif[""]
+
++
+以下是中小企業的詳細資料範例。設定第一個 SMB Volume 時、您需要提供 Active Directory 資訊。
+
++
+image:screenshot_anf_smb.gif[""]
+
+
+
+. 按一下 * 新增 Volume * 。
+
+
+
+
+== 掛載 Volume
+
+從 Cloud Manager 存取掛載指示、以便將磁碟區掛載至主機。
+
+.步驟
+. 開啟工作環境。
+. 將游標移到磁碟區上、然後選取 * 掛載磁碟區 * 。
++
+image:screenshot_anf_hover.gif[""]
+
+. 請依照指示來掛載磁碟區。
+
+
+
+
+== 編輯 Volume 的大小和標記
+
+建立磁碟區之後、您可以隨時修改其大小和標記。
+
+.步驟
+. 開啟工作環境。
+. 將游標暫留在磁碟區上、然後選取 * 編輯 * 。
+. 視需要修改大小和標記。
+. 按一下「 * 套用 * 」。
+
+
+
+
+== 管理 Snapshot 複本
+
+Snapshot 複本提供磁碟區的時間點複本。建立 Snapshot 複本、將資料還原至新磁碟區、以及刪除 Snapshot 複本。
+
+.步驟
+. 開啟工作環境。
+. 將游標暫留在磁碟區上、然後選擇其中一個可用選項來管理 Snapshot 複本：
++
+** * 建立 Snapshot 複本 *
+** * 還原至新磁碟區 *
+** * 刪除 Snapshot 複本 *
+
+
+. 依照提示完成選取的動作。
+
+
+
+
+== 正在刪除磁碟區
+
+刪除不再需要的磁碟區。
+
+.步驟
+. 開啟工作環境。
+. 將游標暫留在磁碟區上、然後按一下 * 刪除 * 。
+. 確認您要刪除該磁碟區。
+
+
+
+
+== 移除 Azure NetApp Files 功能
+
+此動作會從 Azure NetApp Files Cloud Manager 移除不必要的功能。它不會刪除 Azure NetApp Files 您的不知道帳戶或磁碟區。您可以 Azure NetApp Files 隨時將此資料加入 Cloud Manager 。
+
+.步驟
+. 開放 Azure NetApp Files 整個作業環境。
+. 在頁面右上角、選取「 actions （動作）」功能表、然後按一下「 * 移除 Azure NetApp Files 」「 S供 參考 * 」。
++
+image:screenshot_anf_remove.gif[""]
+
+. 按一下「 * 移除 * 」以確認。
+

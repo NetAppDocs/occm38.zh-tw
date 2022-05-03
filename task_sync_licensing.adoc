@@ -1,0 +1,86 @@
+---
+sidebar: sidebar 
+permalink: task_sync_licensing.html 
+keywords: license, subscription, registering, subscribing, subscribing in aws, subscribing in azure, subscribing to aws, subscribing to azure, aws marketplace, azure marketplace, netapp license, byol license, purchase a license, license settings, pay for relationships, paygo, annual, pay-as-you-go 
+summary: 在您的 14 天免費試用結束後、有兩種方式可以支付同步關係的費用。第一個選項是「隨用隨付」。第二種選擇是直接向 NetApp 購買授權。 
+---
+= 免費試用結束後、請支付同步關係的費用
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+在您的 14 天免費試用結束後、有兩種方式可以支付同步關係的費用。第一個選項是從 AWS 或 Azure 訂閱、以隨用隨付或每年付費。第二種選擇是直接向 NetApp 購買授權。
+
+您可以透過 AWS 或 Azure 訂閱來使用 NetApp 的授權。例如、如果您有 25 個同步關係、您可以使用授權支付前 20 個同步關係的費用、然後從 AWS 或 Azure 購買剩餘的 5 個同步關係。
+
+link:concept_cloud_sync.html["深入瞭解授權的運作方式"]。
+
+.如果我在免費試用結束後、不立即付款、該怎麼辦？
+****
+您將無法建立任何其他關係。現有的關係不會刪除、但您必須先訂閱或輸入授權、才能對其進行任何變更。
+
+****
+
+
+== 訂閱 AWS
+
+AWS 可讓您隨用隨付或每年付費。
+
+.隨用隨付的步驟
+. 按一下 * 同步 > 授權 * 。
+. 選擇 * AWS*
+. 按一下「 * 訂閱 * 」、然後按一下「 * 繼續 * 」。
+. 從 AWS Marketplace 訂閱、然後重新登入 Cloud Sync 到該服務以完成註冊。
++
+下列影片顯示此程序：
+
++
+video::video_cloud_sync_registering.mp4[width=848,height=480]
+
+
+.每年支付的步驟
+. https://aws.amazon.com/marketplace/pp/B06XX5V3M2["前往 AWS Marketplace 頁面"^]。
+. 按一下 * 繼續訂閱 * 。
+. 選取您的合約選項、然後按一下 * 建立合約 * 。
+
+
+
+
+== 訂閱 Azure
+
+Azure 可讓您隨用隨付或每年付費。
+
+具備相關訂閱之「參與者」或「擁有者」權限的 Azure 使用者帳戶。
+
+.步驟
+. 按一下 * 同步 > 授權 * 。
+. 選擇 * Azure * 。
+. 按一下「 * 訂閱 * 」、然後按一下「 * 繼續 * 」。
+. 在 Azure 入口網站中、按一下 * 「 Create 」（建立） * 、選取您的選項、然後按一下 * 「訂購」 * 。
++
+選擇 * 每月 * 按小時付費、或 * 每年 * 預付一年。
+
+. 部署完成後、按一下通知快顯視窗中的 SaaS 資源名稱。
+. 按一下「 * 設定帳戶 * 」以返回 Cloud Sync 到「支援」。
++
+下列影片顯示此程序：
+
++
+video::video_cloud_sync_registering_azure.mp4[width=848,height=480]
+
+
+
+
+== 向 NetApp 購買授權、並將其新增 Cloud Sync 至
+
+若要預付同步關係的費用、您必須購買一或多份授權、並將其新增至 Cloud Sync 該服務。
+
+.步驟
+. 請透過 mailto ： ng-cloudsync-contact@netapp.com ® Subject=Cloud %20Sync%20Service%20-%20BYOL%20License%20Purche%20Request 購買授權（聯絡 NetApp ）。
+. 在 Cloud Manager 中、按一下 * 同步 > 授權 * 。
+. 按一下「 * 新增授權 * 」並新增授權。
+

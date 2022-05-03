@@ -1,0 +1,74 @@
+---
+sidebar: sidebar 
+permalink: reference_user_roles.html 
+keywords: user, users, roles, role, task, permission, permissions, tasks, admin, Account Admin, Workspace Admin, Cloud Compliance Viewer 
+summary: 「帳戶管理員」、「工作區管理員」和「雲端法規遵循檢視器」角色可為使用者提供特定權限。 
+---
+= 角色
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+「帳戶管理員」、「工作區管理員」和「雲端法規遵循檢視器」角色可為使用者提供特定權限。
+
+[cols="31,23,23,23"]
+|===
+| 工作 | 帳戶管理員 | 工作區管理 | Cloud Compliance 檢視器 
+
+
+| 管理工作環境 | 是的 | 是的 | 否 
+
+
+| 在工作環境中啟用服務 | 是的 | 是的 | 否 
+
+
+| 檢視資料複寫狀態 | 是的 | 是的 | 否 
+
+
+| 檢視時間表 | 是的 | 是的 | 否 
+
+
+| 在工作區之間切換 | 是的 | 是的 | 是的 
+
+
+| 檢視法規遵循掃描結果 | 是的 | 是的 | 是的 
+
+
+| 刪除工作環境 | 是的 | 否 | 否 
+
+
+| 將 Kubernetes 叢集連接至工作環境 | 是的 | 否 | 否 
+
+
+| 接收 Cloud Volumes ONTAP 此報告 | 是的 | 否 | 否 
+
+
+| 建立連接器 | 是的 | 否 | 否 
+
+
+| 管理 Cloud Central 帳戶 | 是的 | 否 | 否 
+
+
+| 管理認證資料 | 是的 | 否 | 否 
+
+
+| 修改 Cloud Manager 設定 | 是的 | 否 | 否 
+
+
+| 檢視及管理支援儀表板 | 是的 | 否 | 否 
+
+
+| 從 Cloud Manager 移除工作環境 | 是的 | 否 | 否 
+
+
+| 安裝 HTTPS 憑證 | 是的 | 否 | 否 
+|===
+.相關連結
+* link:task_setting_up_cloud_central_accounts.html["在 Cloud Central 帳戶中設定工作區和使用者"^]
+* link:task_managing_cloud_central_accounts.html["管理 Cloud Central 帳戶中的工作區和使用者"^]
+

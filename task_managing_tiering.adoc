@@ -1,0 +1,131 @@
+---
+sidebar: sidebar 
+permalink: task_managing_tiering.html 
+keywords: discover, volumes, report, hot, cold, inactive, active, capacity, used capacity, savings, health, failed 
+summary: 現在您已經從第一個 ONTAP 叢集探索並分層資料、您可以從其他磁碟區分層資料、探索其他叢集等。 
+---
+= 從叢集管理資料分層
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+現在您已經從 ONTAP 您的叢集設定資料分層、您可以從其他磁碟區分層資料、變更磁碟區的分層原則等。
+
+
+
+== 從其他磁碟區分層資料
+
+隨時設定其他磁碟區的資料分層、例如建立新磁碟區之後。
+
+.步驟
+. 在 Cloud Manager 頂端、按一下 * 分層 * 。
+. 在 * 叢集儀表板 * 中、按一下叢集的 * 層級磁碟區 * 。
+. 針對每個Volume、按一下 image:screenshot_edit_icon.gif["表格中每一列結尾的編輯圖示快照、用於分層磁碟區"] 圖示、選取分層原則（可選擇調整冷卻天數）、然後按一下「 * 套用 * 」。
++
+link:concept_cloud_tiering.html#volume-tiering-policies["深入瞭解磁碟區分層原則"]。
+
++
+image:https://docs.netapp.com/us-en/cloud-tiering/media/screenshot_volumes_select.gif["顯示「選取來源磁碟區」頁面中所選磁碟區的快照。"]
+
++
+
+TIP: 您不需要設定物件儲存設備、因為它已在最初設定叢集分層時進行設定。將非作用中資料從這些磁碟區分層到相同的物件存放區。 ONTAP
+
+. 完成後、按一下*關閉*。
+
+
+
+
+== 變更磁碟區的分層原則
+
+變更磁碟區的分層原則、可改變 ONTAP 將資料冷階移至物件儲存的方式。變更從您變更原則的那一刻開始、只會變更磁碟區的後續分層行為。
+
+.步驟
+. 在 Cloud Manager 頂端、按一下 * 分層 * 。
+. 在 * 叢集儀表板 * 中、按一下叢集的 * 層級磁碟區 * 。
+. 按一下 image:screenshot_edit_icon.gif["表格中每一列結尾的編輯圖示快照、用於分層磁碟區"] 圖示、選取分層原則（可選擇調整冷卻天數）、然後按一下「 * 套用 * 」。
++
+link:concept_cloud_tiering.html#volume-tiering-policies["深入瞭解磁碟區分層原則"]。
+
+
+
+
+
+== 管理 Aggregate 上的分層設定
+
+每個 Aggregate 都有兩個您可以調整的設定：分層完整度臨界值、以及是否啟用非使用中資料報告。
+
+分層完整度臨界值:: 將臨界值設為較低的數值、可減少在分層之前儲存在效能層上所需的資料量。這對於包含少量作用中資料的大型 Aggregate 可能很有用。
++
+--
+將臨界值設定為較高的數字、會增加在進行分層之前、儲存在效能層上所需的資料量。這對於設計為僅在集合體接近最大容量時進行分層的解決方案而言可能很有用。
+
+--
+非作用中資料報告:: 非作用中資料報告（ IDR) 使用 31 天的冷卻期來判斷哪些資料被視為非作用中。分層的冷資料量取決於在磁碟區上設定的分層原則。此量可能與使用 31 天冷卻期的印尼盾偵測到的冷資料量不同。
++
+--
+
+TIP: 最好保持啟用印尼盾、因為它有助於識別您的非使用中資料和節約機會。如果在 Aggregate 上啟用資料分層、則必須保持啟用印尼盾。
+
+--
+
+
+.步驟
+. 在 Cloud Manager 頂端、按一下 * 分層 * 。
+. 在「 * 雲端分層 * 」頁面中、按一下叢集的功能表圖示、然後選取 * 管理 Aggregate * 。
++
+image:https://docs.netapp.com/us-en/cloud-tiering/media/screenshot_manage_aggregates.gif["叢集儀表板的快照、會顯示叢集和已展開的動作功能表。"]
+
+. 在 * 管理 Aggregate * 頁面上、按一下 image:screenshot_edit_icon.gif["編輯圖示的快照、顯示在表格中每一列的結尾、用於管理集合體"] 表格中的 Aggregate 圖示。
+. 修改完整度臨界值、並選擇啟用或停用非使用中資料報告。
++
+image:https://docs.netapp.com/us-en/cloud-tiering/media/screenshot_edit_aggregate.gif["螢幕快照顯示滑桿、可用來修改分層完整臨界值、以及啟用或停用非使用中資料報告的按鈕。"]
+
+. 按一下「 * 套用 * 」。
+
+
+
+
+== 檢閱叢集的分層資訊
+
+您可能想要查看雲端層中有多少資料、以及磁碟上有多少資料。或者、您可能想要查看叢集磁碟上的熱和冷資料量。雲端分層可為每個叢集提供此資訊。
+
+.步驟
+. 在 Cloud Manager 頂端、按一下 * 分層 * 。
+. 在 * 叢集儀表板 * 中、按一下 * 更多資訊 * 以取得叢集。
++
+image:https://docs.netapp.com/us-en/cloud-tiering/media/screenshot_more_info.gif["顯示「 More Info （更多資訊）」按鈕的快照、可在每個叢集的「叢集儀表板」上找到。"]
+
+. 檢閱叢集的詳細資料。
++
+範例如下：
+
++
+image:https://docs.netapp.com/us-en/cloud-tiering/media/screenshot_cluster_info.gif["顯示叢集報告的快照、其中詳細說明已使用容量總計、叢集已使用容量、叢集資訊及物件儲存資訊。"]
+
+
+
+
+
+== 修復作業健全狀況
+
+可能會發生故障。當他們執行此作業時、 Cloud Tiering 會在叢集儀表板上顯示「失敗」的作業健全狀況狀態。健全狀況反映 ONTAP 出功能不全系統和 Cloud Manager 的狀態。
+
+.步驟
+. 識別任何運作健全狀況為「故障」的叢集。
++
+image:https://docs.netapp.com/us-en/cloud-tiering/media/screenshot_tiering_health.gif["顯示叢集分層健全狀況失敗狀態的快照。"]
+
+. 將游標暫留在上方 image:https://docs.netapp.com/us-en/cloud-tiering/media/screenshot_info_icon.gif["顯示失敗原因的 i 圖示快照"] 圖示以查看故障原因。
+. 修正問題：
++
+.. 驗證 ONTAP 該叢集是否正常運作、以及是否有連至物件儲存供應商的傳入和傳出連線。
+.. 確認 Cloud Manager 已連線至 Cloud Tiering 服務、物件存放區及 ONTAP 其探索的物件叢集。
+
+
+

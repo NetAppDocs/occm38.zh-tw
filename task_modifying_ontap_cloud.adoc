@@ -1,0 +1,181 @@
+---
+sidebar: sidebar 
+permalink: task_modifying_ontap_cloud.html 
+keywords: license, licensing, install, instance type, virtual machine type, VM type, change, modify, configuration, subscription, paygo, pay-as-you-go, pay as you go, byol, password, MTU, jumbo frames, c4.xlarge, c4.8xlarge, HA pair, file, license file, install, upload, change, modify, svm, storage virtual machine, password, route tables, nlf, gcp, machine type, virtual machine type, vm instance, write speed, high write speed, normal write speed, storage VM, storage virtual machine, SVM, modify SVM name, change SVM name 
+summary: 您可能需要在 Cloud Volumes ONTAP 儲存需求改變時、變更不必要的功能組態。例如、您可以在隨用隨付組態之間變更、變更執行個體或 VM 類型等。 
+---
+= 修改 Cloud Volumes ONTAP 功能系統
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+您可能需要在 Cloud Volumes ONTAP 儲存需求改變時、變更不必要的功能組態。例如、您可以在隨用隨付組態之間變更、變更執行個體或 VM 類型等。
+
+
+
+== 變更 Cloud Volumes ONTAP 執行個體或機器類型以供使用
+
+在 Cloud Volumes ONTAP AWS 、 Azure 或 GCP 中啟動時、您可以從多種執行個體或機器類型中進行選擇。如果判斷執行個體的大小過小或過大、您可以隨時變更執行個體或機器類型。
+
+.關於這項工作
+* 自動恢復必須在 Cloud Volumes ONTAP 一個「無法恢復的 HA 配對」上啟用（這是預設設定）。如果沒有、則作業將會失敗。
++
+http://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-hacg/GUID-3F50DE15-0D01-49A5-BEFD-D529713EC1FA.html["供應說明文件：設定自動恢復的命令 ONTAP"^]
+
+* 變更執行個體或機器類型會影響雲端供應商的服務費用。
+* 此作業會重新啟動 Cloud Volumes ONTAP 。
++
+對於單一節點系統、 I/O 會中斷。
+
++
+對於 HA 配對、變更不中斷營運。HA 配對可繼續提供資料。
+
++
+
+TIP: Cloud Manager 會啟動接管作業並等待回饋、一次只能正常變更一個節點。NetApp 的 QA 團隊在這段過程中測試了寫入和讀取檔案的能力、並未發現客戶端有任何問題。隨著連線變更、我們確實看到 I/O 層級的重試次數、但應用程式層卻取代了 NFS/CIFS 連線的這些短「重新連線」。
+
+
+
+.步驟
+. 在工作環境中、按一下功能表圖示、然後按一下 * 變更 AWS 授權或執行個體 * 、 * 變更 Azure 授權或 VM* 、或 * 變更 GCP 授權或機器 * 。
+. 如果您使用的是隨用隨付組態、您可以選擇不同的授權。
+. 選取執行個體或機器類型、選取核取方塊以確認您瞭解變更的影響、然後按一下 * 確定 * 。
+
+
+以新組態重新開機。 Cloud Volumes ONTAP
+
+
+
+== 在隨用隨付組態之間切換
+
+啟動「隨用隨付 Cloud Volumes ONTAP 」功能的更新版本後、您可以隨時修改授權、以變更 Explore 、 Standard 和 Premium 組態。變更授權會增加或減少原始容量限制、並可讓您從不同的 AWS 執行個體類型或 Azure 虛擬機器類型中進行選擇。
+
+
+NOTE: 在 GCP 中、每個隨用隨付組態都有一種機器類型可供使用。您無法在不同的機器類型之間進行選擇。
+
+請注意下列關於在隨用隨付授權之間變更的資訊：
+
+* 此作業會重新啟動 Cloud Volumes ONTAP 。
++
+對於單一節點系統、 I/O 會中斷。
+
++
+對於 HA 配對、變更不中斷營運。HA 配對可繼續提供資料。
+
+* 變更執行個體或機器類型會影響雲端供應商的服務費用。
+
+
+.步驟
+. 在工作環境中、按一下功能表圖示、然後按一下 * 變更 AWS 授權或執行個體 * 、 * 變更 Azure 授權或 VM* 、或 * 變更 GCP 授權或機器 * 。
+. 選取授權類型和執行個體類型或機器類型、選取核取方塊以確認您瞭解變更的影響、然後按一下 * 確定 * 。
+
+
+使用新的授權、執行個體類型或機器類型重新開機、或同時使用兩者。 Cloud Volumes ONTAP
+
+
+
+== 改用替代 Cloud Volumes ONTAP 的功能
+
+如果您想要在隨用隨付訂閱和 BYOL 訂閱之間切換、或是在單 Cloud Volumes ONTAP 一版的不間斷系統和 HA 配對之間切換、則需要部署新系統、然後將資料從現有系統複寫到新系統。
+
+.步驟
+. 打造全新 Cloud Volumes ONTAP 的運作環境。
++
+link:task_deploying_otc_aws.html["在 Cloud Volumes ONTAP AWS 中啟動"]
+link:task_deploying_otc_azure.html["在 Cloud Volumes ONTAP Azure 中啟動"]
+link:task_deploying_gcp.html["在 Cloud Volumes ONTAP GCP 中啟動"]
+
+. link:task_replicating_data.html["設定一次性資料複寫"] 每個必須複寫的磁碟區的系統之間。
+. 終止 Cloud Volumes ONTAP 不再需要的作業系統 link:task_deleting_working_env.html["刪除原始工作環境"]。
+
+
+
+
+== 將寫入速度變更為正常或高速
+
+Cloud Manager可讓您選擇單一節點Cloud Volumes ONTAP 的寫入速度設定。預設寫入速度為正常。如果工作負載需要快速寫入效能、您可以改為高速寫入。在變更寫入速度之前、您應該先進行 link:task_planning_your_config.html#choosing-a-write-speed["瞭解一般與高設定之間的差異"]。
+
+.關於這項工作
+* 確保磁碟區或集合體建立等作業未在進行中。
+* 請注意、這項變更會重新啟動Cloud Volumes ONTAP 、這表示I/O中斷。
+
+
+.步驟
+. 在工作環境中、按一下功能表圖示、然後按一下 * 進階 > 寫入速度 * 。
+. 選擇 * 正常 * 或 * 高 * 。
++
+如果您選擇「高」、則必須閱讀「我瞭解 ... 」聲明、並勾選方塊以確認。
+
+. 按一下「 * 儲存 * 」、檢閱確認訊息、然後按一下「 * 繼續 * 」。
+
+
+
+
+== 修改儲存 VM 名稱
+
+Cloud Manager 會自動為其建立的單一儲存 VM （ SVM ）命名 Cloud Volumes ONTAP 、以供其使用。如果您有嚴格的命名標準、可以修改 SVM 的名稱。例如、您可能希望名稱與您為 ONTAP 自己的叢集命名 SVM 的方式相符。
+
+但是如果您建立 Cloud Volumes ONTAP 任何其他的 SVM 來進行支援、那麼您就無法從 Cloud Manager 重新命名 SVM 。您必須 Cloud Volumes ONTAP 使用 System Manager 或 CLI 直接從支援功能進行此作業。
+
+.步驟
+. 在工作環境中、按一下功能表圖示、然後按一下 * 資訊 * 。
+. 按一下儲存 VM 名稱右側的編輯圖示。
++
+image:screenshot_svm.gif["螢幕擷取畫面：顯示 SVM 名稱欄位、以及您必須按一下以修改 SVM 名稱的編輯圖示。"]
+
+. 在「修改 SVM 名稱」對話方塊中、變更名稱、然後按一下「 * 儲存 * 」。
+
+
+
+
+== 變更 Cloud Volumes ONTAP 密碼以供使用
+
+包含叢集管理帳戶。 Cloud Volumes ONTAP如有需要、您可以從 Cloud Manager 變更此帳戶的密碼。
+
+
+IMPORTANT: 您不應透過 System Manager 或 CLI 變更管理帳戶的密碼。密碼不會反映在 Cloud Manager 中。因此 Cloud Manager 無法正確監控執行個體。
+
+.步驟
+. 在工作環境中、按一下功能表圖示、然後按一下 * 進階 > 設定密碼 * 。
+. 輸入新密碼兩次、然後按一下「 * 儲存 * 」。
++
+新密碼必須與您最近使用的六個密碼之一不同。
+
+
+
+
+
+== 變更 c4.4xLarge 和 c4.8xLarge 執行個體的網路 MTU
+
+根據預設、 Cloud Volumes ONTAP 當您在 AWS 中選擇 c4.4xlarge 執行個體或 c4.8xlarge 執行個體時、將使用 9 、 000 MTU （也稱為巨型框架）。如果網路 MTU 更適合您的網路組態、您可以將其變更為 1 、 500 位元組。
+
+網路最大傳輸單元（ MTU ）可提供特定組態所能達到的最高網路處理量。
+
+如果同一 VPC 中的用戶端與 Cloud Volumes ONTAP 該系統通訊、而部分或所有用戶端也支援 9 、 000 MTU 、則是理想的選擇。如果流量離開 VPC 、可能會發生封包分散、進而降低效能。
+
+如果 VPC 外部的用戶端或系統與 Cloud Volumes ONTAP 該系統通訊、則使用 1 、 500 位元組的網路 MTU 是很好的選擇。
+
+.步驟
+. 在工作環境中、按一下功能表圖示、然後按一下 * 進階 > 網路使用率 * 。
+. 選擇 * 標準 * 或 * 巨型框架 * 。
+. 按一下 * 變更 * 。
+
+
+
+
+== 在多個 AWS AZs 中變更與 HA 配對相關的路由表
+
+您可以修改 AWS 路由表、其中包含通往 HA 配對浮動 IP 位址的路由。如果新的 NFS 或 CIFS 用戶端需要存取 AWS 中的 HA 配對、您可以這麼做。
+
+.步驟
+. 在工作環境中、按一下功能表圖示、然後按一下 * 資訊 * 。
+. 按一下 * 路由表 * 。
+. 修改所選路由表的清單、然後按一下「 * 儲存 * 」。
+
+
+Cloud Manager 會傳送 AWS 要求來修改路由表。

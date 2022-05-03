@@ -1,0 +1,33 @@
+---
+sidebar: sidebar 
+permalink: task_adding_ontap_cloud.html 
+keywords: discover, discovering, add, adding, existing 
+summary: 您可以探索並新增 Cloud Volumes ONTAP 現有的 NetApp 系統至 Cloud Manager 。如果您部署了新的 Cloud Manager 系統、您可以這麼做。 
+---
+= 將現有 Cloud Volumes ONTAP 的功能系統新增至 Cloud Manager
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+您可以探索並新增 Cloud Volumes ONTAP 現有的 NetApp 系統至 Cloud Manager 。如果您部署了新的 Cloud Manager 系統、您可以這麼做。
+
+您必須知道 Cloud Volumes ONTAP 該密碼才能使用此功能。
+
+.步驟
+. 在「工作環境」頁面上、按一下「*新增工作環境*」。
+. 選取系統所在的雲端供應商。
+. 選擇 Cloud Volumes ONTAP 哪種類型的系統。
+. 按一下連結以探索現有系統。
++
+image:screenshot_discover.gif["顯示連結以探索現有 Cloud Volumes ONTAP 的一套系統的螢幕快照。"]
+
+. 在「區域」頁面上、選擇執行個體所在的區域、然後選取執行個體。
+. 在「認證資料」頁面上、輸入 Cloud Volumes ONTAP for the fu位 管理員使用者的密碼、然後按一下「 * 執行 * 」。
+
+
+Cloud Manager 會將 Cloud Volumes ONTAP 這些不全的執行個體新增至工作區。

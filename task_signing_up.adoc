@@ -1,0 +1,30 @@
+---
+sidebar: sidebar 
+permalink: task_signing_up.html 
+keywords: netapp cloud central, sign up, sign up to cloud central, create account 
+summary: 註冊 NetApp Cloud Central 、即可存取 NetApp 的雲端服務。 
+---
+= 註冊 NetApp Cloud Central
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+註冊 NetApp Cloud Central 、即可存取 NetApp 的雲端服務。
+
+.步驟
+. 開啟網頁瀏覽器並前往 https://cloud.netapp.com/["NetApp Cloud Central"^]。
+. 按一下 * 註冊 * 。
+. 填寫表單、然後按一下 * 註冊 * 。
++
+image:screenshot_cloud_central_signup.gif["Cloud Central 的註冊表單快照、您可在其中輸入電子郵件地址、密碼、公司、名稱和電話號碼。"]
+
+. 等待 NetApp Cloud Central 寄送電子郵件。
+. 按一下電子郵件中的連結、確認您的電子郵件地址。
+
+
+您現在擁有作用中的 Cloud Central 使用者登入權限。

@@ -1,0 +1,137 @@
+---
+sidebar: sidebar 
+permalink: task_creating_connectors_azure.html 
+keywords: create connector in Azure, create connector in azure, create connector in gcp, launch connector in Azure, launch connector in azure, launch connector in gcp, deploy connector in Azure, deploy connector in azure, deploy connector in gcp 
+summary: 客戶管理員必須先部署 Connector 、才能使用大多數 Cloud Manager 功能。Connector 可讓 Cloud Manager 管理公有雲環境中的資源與程序。 
+---
+= 從 Cloud Manager 在 Azure 中建立 Connector
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+客戶管理員必須先部署 _Connector_ 、才能使用大多數 Cloud Manager 功能。 link:concept_connectors.html["瞭解何時需要連接器"]。Connector 可讓 Cloud Manager 管理公有雲環境中的資源與程序。
+
+本頁說明如何直接從 Cloud Manager 在 Azure 中建立 Connector 。您也可以選擇 link:task_launching_azure_mktp.html["從 Azure Marketplace 建立 Connector"]或至 link:task_installing_linux.html["下載軟體並安裝在您自己的主機上"]。
+
+這些步驟必須由具有「帳戶管理」角色的使用者完成。工作區管理員無法建立 Connector 。
+
+
+TIP: 當您建立第一個 Cloud Volumes ONTAP 運作環境時、如果您還沒有 Cloud Manager 、 Cloud Manager 會提示您建立 Connector 。
+
+
+
+== 設定 Azure 權限以建立 Connector
+
+在您從 Cloud Manager 部署 Connector 之前、您必須確保 Azure 帳戶擁有正確的權限。
+
+.步驟
+. 使用連接器的 Azure 原則建立自訂角色：
++
+.. 下載 https://s3.amazonaws.com/occm-sample-policies/Policy_for_Setup_As_Service_Azure.json["連接器的 Azure 原則"^]。
++
+
+TIP: 在連結上按一下滑鼠右鍵、然後按一下「 * 另存連結為 ... * 」下載檔案。
+
+.. 將 Azure 訂閱 ID 新增至可指派的範圍、以修改 Json 檔案。
++
+* 範例 *
+
++
+[source, json]
+----
+"AssignableScopes": [
+"/subscriptions/d333af45-0d07-4154-943d-c25fbzzzzzzz",
+],
+----
+.. 使用 Json 檔案在 Azure 中建立自訂角色。
++
+下列範例說明如何使用 Azure CLI 2.0 建立自訂角色：
+
++
+「 AZ 角色定義建立 - 角色定義 C ： \Policy_for_Setup 、 as_Service_Azure 。 json 」
+
++
+您現在應該擁有名為 _Azure Setup AsService_ 的自訂角色。
+
+
+
+. 將角色指派給將從 Cloud Manager 部署 Connector 的使用者：
++
+.. 開啟 * 訂閱 * 服務、然後選取使用者的訂閱。
+.. 按一下 * 存取控制（ IAM ） * 。
+.. 按一下「 * 新增 * > * 新增角色指派 * 」、然後新增權限：
++
+*** 選取 * Azure 設定 AsService* 角色。
++
+
+NOTE: Azure Setup AsService 是中提供的預設名稱 https://mysupport.netapp.com/site/info/cloud-manager-policies["Azure 的連接器部署原則"^]。如果您為角色選擇不同的名稱、請改為選取該名稱。
+
+*** 將存取權指派給 * Azure AD 使用者、群組或應用程式 * 。
+*** 選取使用者帳戶。
+*** 按一下「 * 儲存 * 」。
+
+
+
+
+
+
+Azure 使用者現在擁有從 Cloud Manager 部署 Connector 所需的權限。
+
+
+
+== 在 Azure 中建立 Connector
+
+Cloud Manager 可讓您直接從 Azure 的使用者介面建立連接器。
+
+.您需要的是 #8217 ；需要的是什麼
+* 。 https://mysupport.netapp.com/site/info/cloud-manager-policies["必要權限"^] 適用於您的 Azure 帳戶。
+* Azure 訂閱。
+* 您所選擇的 Azure 區域中的 Vnet 和子網路。
+
+
+.步驟
+. 如果您要建立第一個工作環境、請按一下 * 新增工作環境 * 、然後依照提示進行。否則、請按一下「 * Connector* 」下拉式清單、然後選取「 * 新增 Connector* 」。
++
+image:screenshot_connector_add.gif["螢幕擷取畫面、會在標題和「新增連接器」動作中顯示「連接器」圖示。"]
+
+. 按一下「 * 讓我們開始 * 」。
+. 選擇 * Microsoft Azure * 作為雲端供應商。
++
+請記住、連接器必須連線至您所建立的工作環境類型、以及您計畫啟用的服務。
+
++
+link:reference_networking_cloud_manager.html["深入瞭解連接器的網路需求"]。
+
+. 檢閱您需要的內容、然後按一下 * 繼續 * 。
+. 如果出現提示、請登入您的 Microsoft 帳戶、該帳戶應有建立虛擬機器所需的權限。
++
+此表單由 Microsoft 擁有及託管。您的認證資料不會提供給 NetApp 。
+
++
+
+TIP: 如果您已經登入 Azure 帳戶、 Cloud Manager 將自動使用該帳戶。如果您有多個帳戶、則可能需要先登出、以確保您使用的是正確的帳戶。
+
+. 提供必要資訊：
++
+** * 虛擬機器驗證 * ：輸入虛擬機器的名稱、使用者名稱、密碼或公開金鑰。
+** * 基本設定 * ：選擇 Azure 訂閱、 Azure 地區、以及是建立新的資源群組或使用現有的資源群組。
+** * 網路 * ：選擇 Vnet 和子網路、是否啟用公用 IP 位址、以及是否指定 Proxy 組態（選用）。
+** * 安全性群組 * ：選擇是建立新的安全性群組、還是選擇允許傳入 HTTP 、 HTTPS 及 SSH 存取的現有安全性群組。
++
+
+NOTE: 除非您啟動連接器、否則不會有傳入流量進入連接器。HTTP 和 HTTPS 可存取 link:concept_connectors.html#the-local-user-interface["本機 UI"]、在極少數情況下使用。只有當您需要連線至主機進行疑難排解時、才需要 SSH 。
+
+
+
+. 按一下「 * 建立 * 」。
++
+虛擬機器應在約 7 分鐘內就緒。您應該留在頁面上、直到程序完成為止。
+
+
+
+您需要將 Connector 與工作空間建立關聯、讓 Workspace Admins 可以使用這些 Connectors 來建立 Cloud Volumes ONTAP 一套系統。如果您只有帳戶管理員、則不需要將 Connector 與工作區建立關聯。根據預設、 Account Admins 可存取 Cloud Manager 中的所有工作區。 link:task_setting_up_cloud_central_accounts.html#associating-connectors-with-workspaces["深入瞭解"]。

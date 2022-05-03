@@ -1,0 +1,183 @@
+---
+sidebar: sidebar 
+permalink: task_tiering_onprem_azure.html 
+keywords: data tiering, fabricpool, cloud tiering, tiering cold data, tiering inactive data, tiering aff, tiering fas, tiering ontap, tiering volumes, tier data, tier cold data, tier fas, tier aff, tier ontap, azure, blob, azure blob 
+summary: 將資料分層儲存至 Azure Blob 儲存設備、以釋放內部 ONTAP 環境中的空間。資料分層是以 NetApp 的雲端分層服務為後盾。 
+---
+= 將內部部署 ONTAP 的資料叢集分層至 Azure Blob 儲存設備
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+將資料分層儲存至 Azure Blob 儲存設備、以釋放內部 ONTAP 環境中的空間。資料分層是以 NetApp 的雲端分層服務為後盾。
+
+
+
+== 快速入門
+
+請依照下列步驟快速入門、或向下捲動至其餘部分以取得完整詳細資料。
+
+
+
+==== 準備將資料分層至 Azure Blob 儲存設備
+
+[role="quick-margin-para"]
+您需要下列項目：
+
+* 採用 All SSD 集合體的支援功能、執行版本為 9.4 或更新版本、並可透過 HTTPS 連線至 Azure Blob 儲存設備。 AFF FAS ONTAP
+* 安裝在 Azure vnet 中的 Connector 。
+* 連接器的網路功能、可將 HTTPS 連線傳出 ONTAP 至資料中心內的物件叢集、 Azure Blob 儲存設備、以及雲端分層服務。
+
+
+
+
+==== 設定分層
+
+[role="quick-margin-para"]
+在 Cloud Manager 中、選取內部工作環境、按一下 * 設定分層 * 、然後依照提示將資料分層至 Azure Blob 儲存設備。
+
+
+
+==== 設定授權
+
+[role="quick-margin-para"]
+免費試用結束後、請透過隨用隨付訂閱、 ONTAP 分層授權或兩者的組合來支付雲端分層費用：
+
+* 若要從 Azure Marketplace 訂閱、請按一下 * 分層 > 授權 * 、按一下 * 訂閱 * 、然後依照提示進行。
+* 若要新增分層授權、請傳送電子郵件至： ng-cloud-tiering@netapp.com ？ Subject=Licensing[ 如果您需要購買、請聯絡我們 ] 、然後再寄送 link:task_licensing_cloud_tiering.html["從雲端分層將其新增至叢集"]。
+
+
+
+
+== 需求
+
+驗證 ONTAP 支援您的物件叢集、設定網路、以及準備物件儲存。
+
+下圖顯示每個元件及其之間需要準備的連線：
+
+image:diagram_cloud_tiering_azure.png["此架構影像顯示雲端分層服務、可連線至雲端供應商的 Service Connector 、可連線 ONTAP 至您的叢集的 Service Connector 、 ONTAP 以及在雲端供應商的叢集與物件儲存設備之間建立連線。作用中資料位於 ONTAP 資源中心叢集、而非作用中資料則位於物件儲存區。"]
+
+
+NOTE: Connector 與 Blob 儲存設備之間的通訊僅供物件儲存設定使用。
+
+
+
+=== 準備 ONTAP 您的叢集
+
+將資料分層至 Azure Blob 儲存設備時、您的叢集必須符合下列需求。 ONTAP
+
+支援 ONTAP 的支援功能平台:: Cloud Tiering 可支援 AFF 在 FAS 各種系統上使用的不同步系統和 All SSD 集合體。
+支援 ONTAP 的支援版本:: 更新版本 ONTAP
+叢集網路連線需求::
++
+--
+* 此支援叢集可透過連接埠 443 、啟動 HTTPS 連線至 Azure Blob 儲存設備。 ONTAP
++
+可在物件儲存設備中讀取及寫入資料。 ONTAP物件儲存設備從未啟動、只是回應而已。
+
++
+雖然 ExpressRoute 提供更好的效能和更低的資料傳輸費用、 ONTAP 但在 VMware 叢集與 Azure Blob 儲存設備之間並不需要。由於使用 ExpressRoute 時效能大幅提升、因此建議您採用這種做法。
+
+* 必須從位於 Azure vnet 中的 NetApp Service Connector 進行傳入連線。
++
+叢集與雲端分層服務之間不需要連線。
+
+* 託管階層式磁碟區的 ONTAP 每個節點都需要叢集間 LIF 。LIF 必須與 _IPspac__ 建立關聯、 ONTAP 以便連接物件儲存設備。
++
+IPspaces 可隔離網路流量、讓用戶端流量得以分離、以確保隱私與安全。 http://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-nmg/GUID-69120CF0-F188-434F-913E-33ACB8751A5D.html["深入瞭解 IPspaces"^]。
+
++
+設定資料分層時、 Cloud Tiering 會提示您使用 IPspace 。您應該選擇每個 LIF 所關聯的 IPspace 。這可能是您建立的「預設」 IPspace 或自訂 IPspace 。
+
+
+
+--
+支援的磁碟區和集合體:: Cloud Tiering 可以分層的磁碟區總數可能低於 ONTAP 您的整套系統上的磁碟區數量。這是因為磁碟區無法從某些集合體分層。例如 SnapLock 、您無法將資料從「不完整」或 MetroCluster 「不完整」組態中分層。請參閱 ONTAP 的《》文件 link:http://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-psmg/GUID-8E421CC9-1DE1-492F-A84C-9EB1B0177807.html["功能或功能不受 FabricPool 支援"^]。
+
+
+
+NOTE: Cloud Tiering 支援 FlexGroup 從 ONTAP 功能完善的 9.5 開始的各種功能。安裝程式的運作方式與任何其他 Volume 相同。
+
+
+
+=== 建立或切換連接器
+
+需要連接器才能將資料分層至雲端。將資料分層至 Azure Blob 儲存設備時、 Azure vnet 中必須有一個 Connector 。您可能需要建立新的連接器、或是確定目前選取的連接器位於 Azure 中。
+
+* link:concept_connectors.html["深入瞭解連接器"]
+* link:task_creating_connectors_azure.html["在 Azure 中建立 Connector"]
+* link:task_managing_connectors.html["在連接器之間切換"]
+
+
+
+
+=== 為連接器準備網路
+
+確認連接器具備所需的網路連線。
+
+.步驟
+. 確保安裝 Connector 的 vnet 可啟用下列連線：
++
+** 透過連接埠 443 （ HTTPS ）連至雲端分層服務的傳出網際網路連線
+** 透過連接埠 443 連線至 Azure Blob 儲存設備的 HTTPS 連線
+** 透過連接埠 443 連線至 ONTAP 您的叢集的 HTTPS 連線
+
+
+. 如有需要、請為 Azure 儲存設備啟用 vnet 服務端點。
++
+如果 ONTAP 您從 DB2 叢集到 vnet 有 ExpressRoute 或 VPN 連線、而您想要連接器與 Blob 儲存設備之間的通訊保持在虛擬私有網路中、建議使用 vnet 服務端點到 Azure 儲存設備。
+
+
+
+
+
+== 將第一個叢集的非作用中資料分層至 Azure Blob 儲存設備
+
+準備好 Azure 環境之後、請從第一個叢集開始分層處理非作用中資料。
+
+link:task_discovering_ontap.html["內部部署工作環境"]。
+
+.步驟
+. 選取內部叢集。
+. 按一下 * 設定分層 * 。
++
+image:screenshot_setup_tiering_onprem.gif["螢幕擷取畫面顯示選取內部 ONTAP 環境後、畫面右側會出現「設定分層」選項。"]
+
++
+您現在已在分層儀表板上。
+
+. 按一下叢集旁的 * 設定分層 * 。
+. 完成「 * 分層設定 * 」頁面上的步驟：
++
+.. * 資源群組 * ：選取管理現有容器的資源群組、或是您要在其中建立階層式資料的新容器。
+.. * Azure Container * ：將新的 Blob 容器新增至儲存帳戶或選取現有的容器、然後按一下 * 繼續 * 。
++
+此步驟中顯示的儲存帳戶和容器屬於您在上一步中選取的資源群組。
+
+.. * 存取層 * ：選取您要用於階層式資料的存取層、然後按一下 * 繼續 * 。
+.. * 叢集網路 * ：選取 ONTAP 要用於連接物件儲存設備的 IPspace 、然後按一下 * 繼續 * 。
++
+選擇正確的 IPspace 、可確保 Cloud Tiering 能夠設定從 ONTAP 效益到雲端供應商物件儲存的連線。
+
+
+
+. 按一下 * 繼續 * 以選取您要分層的磁碟區。
+. 在「 * 層級磁碟區 * 」頁面上、為每個磁碟區設定分層。按一下 image:screenshot_edit_icon.gif["表格中每一列結尾的編輯圖示快照、用於分層磁碟區"] 圖示、選取分層原則（可選擇調整冷卻天數）、然後按一下「 * 套用 * 」。
++
+link:concept_cloud_tiering.html#volume-tiering-policies["深入瞭解磁碟區分層原則"]。
+
++
+image:https://docs.netapp.com/us-en/cloud-tiering/media/screenshot_volumes_select.gif["顯示「選取來源磁碟區」頁面中所選磁碟區的快照。"]
+
+
+
+您已成功設定資料分層、從叢集上的磁碟區到 Azure Blob 物件儲存設備。
+
+link:task_licensing_cloud_tiering.html["請務必從雲端分層服務訂閱"]。
+
+您也可以新增其他叢集、或檢閱叢集上作用中和非作用中資料的相關資訊。如需詳細資訊、請參閱 link:task_managing_tiering.html["從叢集管理資料分層"]。

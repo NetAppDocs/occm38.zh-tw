@@ -1,0 +1,46 @@
+---
+sidebar: sidebar 
+permalink: task_encrypting_volumes.html 
+keywords: encrypt, encryption, data, volumes, netapp volume encryption, volume encryption, nve, key managers, kmip, key management servers, license, ssl certificates, nae, netapp aggregate encryption 
+summary: 支援 NetApp Volume Encryption （ NVE ）和 NetApp Aggregate Encryption （ NAE ）與外部金鑰管理程式。 Cloud Volumes ONTAP如果您設定外部金鑰管理程式、則預設會啟用 NVE 和 NAE 。 
+---
+= 使用 NetApp 加密解決方案加密磁碟區
+:toc: macro
+:hardbreaks:
+:allow-uri-read: 
+:toc: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+:toc-position: content
+
+
+[role="lead"]
+支援 NetApp Volume Encryption （ NVE ）和 NetApp Aggregate Encryption （ NAE ）與外部金鑰管理程式。 Cloud Volumes ONTAPNVE 和 NAE 是軟體型解決方案、可對磁碟區進行（ FIPS ） 140-2 相容的閒置資料加密。 link:concept_security.html["深入瞭解這些加密解決方案"]。
+
+從更新版本的支援升級至 Cloud Volumes ONTAP 更新版本的更新版本、在您設定外部金鑰管理程式之後、新的 Aggregate 預設會啟用 NAE 。非 NAE Aggregate 一部分的新磁碟區預設會啟用 NVE （例如、如果在設定外部金鑰管理程式之前已建立現有的 Aggregate ）。
+
+不支援內建金鑰管理。 Cloud Volumes ONTAP
+
+您的支援系統應該已向 NetApp 註冊。 Cloud Volumes ONTAP從 Cloud Manager 3.7.1 開始、 NetApp Volume Encryption 授權會自動安裝在 Cloud Volumes ONTAP 每個已註冊 NetApp 支援的支援系統上。
+
+* link:task_adding_nss_accounts.html["新增 NetApp 支援網站帳戶至 Cloud Manager"]
+* link:task_registering.html["註冊隨用隨付系統"]
+
+
+
+NOTE: Cloud Manager 不會在中國地區的系統上安裝 NVE 授權。
+
+.步驟
+. 檢閱中支援的關鍵管理程式清單 http://mysupport.netapp.com/matrix["NetApp 互通性對照表工具"^]。
++
+
+TIP: 搜尋 * 關鍵經理 * 解決方案。
+
+. link:task_connecting_to_otc.html["連線 Cloud Volumes ONTAP 至 CLI"^]。
+. 安裝 SSL 憑證並連線至外部金鑰管理伺服器。
++
+http://docs.netapp.com/ontap-9/topic/com.netapp.doc.pow-nve/GUID-DD718B42-038D-4009-84FF-20BBD6530BC2.html["《 NetApp 加密電源指南》（英文） 9 ：設定外部金鑰管理 ONTAP"^]
+
+

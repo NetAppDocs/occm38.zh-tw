@@ -1,0 +1,449 @@
+---
+sidebar: sidebar 
+permalink: reference_security_groups.html 
+keywords: security group, security groups, rules, ports, aws, inbound, outbound, rules 
+summary: Cloud Manager 會建立 AWS 安全群組、其中包含 Cloud Manager 和 Cloud Volumes ONTAP NetApp 成功運作所需的傳入和傳出規則。您可能需要參照連接埠進行測試、或是需要使用自己的連接埠。 
+---
+= AWS 的安全群組規則
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Cloud Manager 會建立 AWS 安全性群組、其中包含 Connector 和 Cloud Volumes ONTAP NetApp 成功運作所需的傳入和傳出規則。您可能需要參照連接埠進行測試、或是偏好使用自己的安全性群組。
+
+
+
+== 規則 Cloud Volumes ONTAP
+
+適用於此功能的安全性群組 Cloud Volumes ONTAP 需要傳入和傳出規則。
+
+
+
+=== 傳入規則
+
+預先定義之安全性群組中的傳入規則來源為 0.00.0.0/0 。
+
+[cols="10,10,80"]
+|===
+| 傳輸協定 | 連接埠 | 目的 
+
+
+| 所有 ICMP | 全部 | Ping 執行個體 
+
+
+| HTTP | 80 | 使用叢集管理 LIF 的 IP 位址、以 HTTP 存取 System Manager Web 主控台 
+
+
+| HTTPS | 443.. | 使用叢集管理 LIF 的 IP 位址、以 HTTPS 存取 System Manager 網路主控台 
+
+
+| SSH | 22 | SSH 存取叢集管理 LIF 的 IP 位址或節點管理 LIF 
+
+
+| TCP | 111. | 遠端程序需要 NFS 
+
+
+| TCP | 139. | CIFS 的 NetBios 服務工作階段 
+
+
+| TCP | 161-162 | 簡單的網路管理傳輸協定 
+
+
+| TCP | 445 | Microsoft SMB/CIFS over TCP 搭配 NetBios 架構 
+
+
+| TCP | 635 | NFS 掛載 
+
+
+| TCP | 749 | Kerberos 
+
+
+| TCP | 2049 | NFS 伺服器精靈 
+
+
+| TCP | 3260 | 透過 iSCSI 資料 LIF 存取 iSCSI 
+
+
+| TCP | 4045 | NFS 鎖定精靈 
+
+
+| TCP | 4046 | NFS 的網路狀態監控 
+
+
+| TCP | 10000 | 使用 NDMP 備份 
+
+
+| TCP | 11104. | 管理 SnapMirror 的叢集間通訊工作階段 
+
+
+| TCP | 11105. | 使用叢集間生命體進行 SnapMirror 資料傳輸 
+
+
+| UDP | 111. | 遠端程序需要 NFS 
+
+
+| UDP | 161-162 | 簡單的網路管理傳輸協定 
+
+
+| UDP | 635 | NFS 掛載 
+
+
+| UDP | 2049 | NFS 伺服器精靈 
+
+
+| UDP | 4045 | NFS 鎖定精靈 
+
+
+| UDP | 4046 | NFS 的網路狀態監控 
+
+
+| UDP | 4049 | NFS rquotad 傳輸協定 
+|===
+
+
+=== 傳出規則
+
+預先定義 Cloud Volumes ONTAP 的 Security Group for the 旅行團會開啟所有的傳出流量。如果可以接受、請遵循基本的傳出規則。如果您需要更嚴格的規則、請使用進階的傳出規則。
+
+
+
+==== 基本傳出規則
+
+適用於此功能的預先定義安全性群組 Cloud Volumes ONTAP 包括下列傳出規則。
+
+[cols="20,20,60"]
+|===
+| 傳輸協定 | 連接埠 | 目的 
+
+
+| 所有 ICMP | 全部 | 所有傳出流量 
+
+
+| 所有 TCP | 全部 | 所有傳出流量 
+
+
+| 所有的 udp | 全部 | 所有傳出流量 
+|===
+
+
+==== 進階傳出規則
+
+如果您需要嚴格的傳出流量規則、可以使用下列資訊、僅開啟 Cloud Volumes ONTAP 那些由真人進行傳出通訊所需的連接埠。
+
+
+NOTE: 來源是 Cloud Volumes ONTAP 指在整個系統上的介面（ IP 位址）。
+
+[cols="10,10,6,20,20,34"]
+|===
+| 服務 | 傳輸協定 | 連接埠 | 來源 | 目的地 | 目的 
+
+
+.18+| Active Directory | TCP | 88 | 節點管理 LIF | Active Directory 樹系 | Kerberos V 驗證 
+
+
+| UDP | 137. | 節點管理 LIF | Active Directory 樹系 | NetBios 名稱服務 
+
+
+| UDP | 138 | 節點管理 LIF | Active Directory 樹系 | NetBios 資料報服務 
+
+
+| TCP | 139. | 節點管理 LIF | Active Directory 樹系 | NetBios 服務工作階段 
+
+
+| TCP 與 UDP | 389 | 節點管理 LIF | Active Directory 樹系 | LDAP 
+
+
+| TCP | 445 | 節點管理 LIF | Active Directory 樹系 | Microsoft SMB/CIFS over TCP 搭配 NetBios 架構 
+
+
+| TCP | 464.64 | 節點管理 LIF | Active Directory 樹系 | Kerberos V 變更及設定密碼（ Set_change ） 
+
+
+| UDP | 464.64 | 節點管理 LIF | Active Directory 樹系 | Kerberos 金鑰管理 
+
+
+| TCP | 749 | 節點管理 LIF | Active Directory 樹系 | Kerberos V 變更與設定密碼（ RPCSEC_GSS ） 
+
+
+| TCP | 88 | 資料 LIF （ NFS 、 CIFS 、 iSCSI ） | Active Directory 樹系 | Kerberos V 驗證 
+
+
+| UDP | 137. | 資料 LIF （ NFS 、 CIFS ） | Active Directory 樹系 | NetBios 名稱服務 
+
+
+| UDP | 138 | 資料 LIF （ NFS 、 CIFS ） | Active Directory 樹系 | NetBios 資料報服務 
+
+
+| TCP | 139. | 資料 LIF （ NFS 、 CIFS ） | Active Directory 樹系 | NetBios 服務工作階段 
+
+
+| TCP 與 UDP | 389 | 資料 LIF （ NFS 、 CIFS ） | Active Directory 樹系 | LDAP 
+
+
+| TCP | 445 | 資料 LIF （ NFS 、 CIFS ） | Active Directory 樹系 | Microsoft SMB/CIFS over TCP 搭配 NetBios 架構 
+
+
+| TCP | 464.64 | 資料 LIF （ NFS 、 CIFS ） | Active Directory 樹系 | Kerberos V 變更及設定密碼（ Set_change ） 
+
+
+| UDP | 464.64 | 資料 LIF （ NFS 、 CIFS ） | Active Directory 樹系 | Kerberos 金鑰管理 
+
+
+| TCP | 749 | 資料 LIF （ NFS 、 CIFS ） | Active Directory 樹系 | Kerberos V 變更及設定密碼（ RPCSEC_GSS ） 
+
+
+| 備份至 S3 | TCP | 5010. | 叢集間 LIF | 備份端點或還原端點 | 備份與還原備份至 S3 功能的作業 
+
+
+.3+| 叢集 | 所有流量 | 所有流量 | 一個節點上的所有 LIF | 其他節點上的所有 LIF | 叢集間通訊（ Cloud Volumes ONTAP 僅限不含 HA ） 
+
+
+| TCP | 3000 | 節點管理 LIF | HA 中介 | ZAPI 呼叫（ Cloud Volumes ONTAP 僅限 RHA ） 
+
+
+| ICMP | 1. | 節點管理 LIF | HA 中介 | Keepive Alive （ Cloud Volumes ONTAP 僅限 HHA ） 
+
+
+| DHCP | UDP | 68 | 節點管理 LIF | DHCP | 第一次設定的 DHCP 用戶端 
+
+
+| DHCPS | UDP | 67 | 節點管理 LIF | DHCP | DHCP 伺服器 
+
+
+| DNS | UDP | 53. | 節點管理 LIF 與資料 LIF （ NFS 、 CIFS ） | DNS | DNS 
+
+
+| NDMP | TCP | 18600 – 18699 | 節點管理 LIF | 目的地伺服器 | NDMP 複本 
+
+
+| SMTP | TCP | 25 | 節點管理 LIF | 郵件伺服器 | 可以使用 SMTP 警示 AutoSupport 來執行功能 
+
+
+.4+| SNMP | TCP | 161. | 節點管理 LIF | 監控伺服器 | 透過 SNMP 設陷進行監控 
+
+
+| UDP | 161. | 節點管理 LIF | 監控伺服器 | 透過 SNMP 設陷進行監控 
+
+
+| TCP | 162% | 節點管理 LIF | 監控伺服器 | 透過 SNMP 設陷進行監控 
+
+
+| UDP | 162% | 節點管理 LIF | 監控伺服器 | 透過 SNMP 設陷進行監控 
+
+
+.2+| SnapMirror | TCP | 11104. | 叢集間 LIF | 叢集間 LIF ONTAP | 管理 SnapMirror 的叢集間通訊工作階段 
+
+
+| TCP | 11105. | 叢集間 LIF | 叢集間 LIF ONTAP | SnapMirror 資料傳輸 
+
+
+| 系統記錄 | UDP | 514 | 節點管理 LIF | 系統記錄伺服器 | 系統記錄轉送訊息 
+|===
+
+
+== HA 協調器外部安全群組的規則
+
+針對此功能、預先定義 Cloud Volumes ONTAP 的外部安全群組包括下列傳入和傳出規則。
+
+
+
+=== 傳入規則
+
+傳入規則的來源為 0.00.0.0/0 。
+
+[cols="20,20,60"]
+|===
+| 傳輸協定 | 連接埠 | 目的 
+
+
+| SSH | 22 | SSH 連線至 HA 中介器 
+
+
+| TCP | 3000 | 從 Connector 進行 RESTful API 存取 
+|===
+
+
+=== 傳出規則
+
+HA 中介器的預先定義安全性群組會開啟所有傳出流量。如果可以接受、請遵循基本的傳出規則。如果您需要更嚴格的規則、請使用進階的傳出規則。
+
+
+
+==== 基本傳出規則
+
+HA 中介器的預先定義安全性群組包括下列傳出規則。
+
+[cols="20,20,60"]
+|===
+| 傳輸協定 | 連接埠 | 目的 
+
+
+| 所有 TCP | 全部 | 所有傳出流量 
+
+
+| 所有的 udp | 全部 | 所有傳出流量 
+|===
+
+
+==== 進階傳出規則
+
+如果您需要嚴格的傳出流量規則、可以使用下列資訊、只開啟 HA 中介者傳出通訊所需的連接埠。
+
+[cols="10,10,30,40"]
+|===
+| 傳輸協定 | 連接埠 | 目的地 | 目的 
+
+
+| HTTP | 80 | 連接器 IP 位址 | 下載中介程式升級 
+
+
+| HTTPS | 443.. | AWS API 服務 | 協助進行儲存容錯移轉 
+
+
+| UDP | 53. | AWS API 服務 | 協助進行儲存容錯移轉 
+|===
+
+NOTE: 您可以建立介面 VPC 端點、從目標子網路到 AWS EC2 服務、而非開啟連接埠 443 和 53 。
+
+
+
+== HA 中介器內部安全群組的規則
+
+針對此功能、預先定義 Cloud Volumes ONTAP 的內部安全群組包含下列規則：Cloud Manager 一律會建立這個安全群組。您沒有使用自己的選項。
+
+
+
+=== 傳入規則
+
+預先定義的安全性群組包含下列傳入規則。
+
+[cols="20,20,60"]
+|===
+| 傳輸協定 | 連接埠 | 目的 
+
+
+| 所有流量 | 全部 | HA 中介器與 HA 節點之間的通訊 
+|===
+
+
+=== 傳出規則
+
+預先定義的安全性群組包括下列傳出規則。
+
+[cols="20,20,60"]
+|===
+| 傳輸協定 | 連接埠 | 目的 
+
+
+| 所有流量 | 全部 | HA 中介器與 HA 節點之間的通訊 
+|===
+
+
+== Connector 規則
+
+Connector 的安全性群組需要傳入和傳出規則。
+
+
+
+=== 傳入規則
+
+預先定義之安全性群組中的傳入規則來源為 0.00.0.0/0 。
+
+[cols="10,10,80"]
+|===
+| 傳輸協定 | 連接埠 | 目的 
+
+
+| SSH | 22 | 提供對 Connector 主機的 SSH 存取權 
+
+
+| HTTP | 80 | 提供從用戶端 Web 瀏覽器到本機使用者介面的 HTTP 存取、以及從 Cloud Compliance 建立的連線 
+
+
+| HTTPS | 443.. | 提供 HTTPS 存取、從用戶端網頁瀏覽器存取本機使用者介面 
+
+
+| TCP | 3128 | 如果您的 AWS 網路不使用 NAT 或 Proxy 、則可提供具有網際網路存取功能的 Cloud Compliance 執行個體 
+|===
+
+
+=== 傳出規則
+
+Connector 的預先定義安全性群組會開啟所有傳出流量。如果可以接受、請遵循基本的傳出規則。如果您需要更嚴格的規則、請使用進階的傳出規則。
+
+
+
+==== 基本傳出規則
+
+Connector 的預先定義安全性群組包括下列傳出規則。
+
+[cols="20,20,60"]
+|===
+| 傳輸協定 | 連接埠 | 目的 
+
+
+| 所有 TCP | 全部 | 所有傳出流量 
+
+
+| 所有的 udp | 全部 | 所有傳出流量 
+|===
+
+
+==== 進階傳出規則
+
+如果您需要嚴格的傳出流量規則、可以使用下列資訊、僅開啟連接器傳出通訊所需的連接埠。
+
+
+NOTE: 來源 IP 位址為 Connector 主機。
+
+[cols="5*"]
+|===
+| 服務 | 傳輸協定 | 連接埠 | 目的地 | 目的 
+
+
+.9+| Active Directory | TCP | 88 | Active Directory 樹系 | Kerberos V 驗證 
+
+
+| TCP | 139. | Active Directory 樹系 | NetBios 服務工作階段 
+
+
+| TCP | 389 | Active Directory 樹系 | LDAP 
+
+
+| TCP | 445 | Active Directory 樹系 | Microsoft SMB/CIFS over TCP 搭配 NetBios 架構 
+
+
+| TCP | 464.64 | Active Directory 樹系 | Kerberos V 變更及設定密碼（ Set_change ） 
+
+
+| TCP | 749 | Active Directory 樹系 | Active Directory Kerberos V 變更及設定密碼（ RPCSEC_GSS ） 
+
+
+| UDP | 137. | Active Directory 樹系 | NetBios 名稱服務 
+
+
+| UDP | 138 | Active Directory 樹系 | NetBios 資料報服務 
+
+
+| UDP | 464.64 | Active Directory 樹系 | Kerberos 金鑰管理 
+
+
+| API 呼叫與 AutoSupport 功能 | HTTPS | 443.. | 傳出網際網路和 ONTAP 叢集管理 LIF | API 呼叫 AWS 和 ONTAP es供 、並傳送 AutoSupport 不只是功能的訊息給 NetApp 
+
+
+.2+| API 呼叫 | TCP | 3000 | 叢集管理 LIF ONTAP | API 呼叫 ONTAP 至 
+
+
+| TCP | 8088 | 備份至 S3 | API 呼叫備份至 S3 
+
+
+| DNS | UDP | 53. | DNS | 用於 Cloud Manager 的 DNS 解析 
+
+
+| 雲端法規遵循 | HTTP | 80 | 雲端法規遵循執行個體 | Cloud Compliance for Cloud Volumes ONTAP 解決此問題 
+|===

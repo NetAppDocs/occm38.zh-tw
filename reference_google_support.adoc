@@ -1,0 +1,67 @@
+---
+sidebar: sidebar 
+permalink: reference_google_support.html 
+keywords: google, gcp, regions, google regions, gcp regions, storage class, standard storage class 
+summary: 雲端分層可支援標準儲存類別和大部分地區。 
+---
+= 支援的 Google Cloud 儲存類別和地區
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+雲端分層可支援標準儲存類別和大部分的 Google Cloud 區域。
+
+
+
+== 支援的存取層
+
+雲端分層使用 _Standard_ 存取層來處理非使用中的資料。
+
+
+
+== 支援的 Google Cloud 地區
+
+雲端分層可支援下列地區：
+
+
+
+=== 美洲
+
+* 愛荷華州
+* 洛杉磯
+* 蒙特利爾
+* 不適用維吉尼亞州
+* 俄勒岡州
+* 聖保羅
+* 南卡羅萊納州
+
+
+
+
+=== 亞太地區
+
+* 香港
+* Mumbai
+* 大阪
+* 新加坡
+* 雪梨
+* 台灣
+* 東京
+
+
+
+
+=== 歐洲
+
+* 比利時
+* 芬蘭
+* 法蘭克福
+* 倫敦
+* 荷蘭
+* 蘇黎世
+

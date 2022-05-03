@@ -1,0 +1,154 @@
+---
+sidebar: sidebar 
+permalink: task_adding_aws_accounts.html 
+keywords: permissions, aws, policy, iam, iam role, role, granting, policy, iam policy, iam user, access keys, arn, cloud provider accounts, aws, cloud provider profile, json, iam, credentials, adding credentials, add credentials 
+summary: 如果您想要在 Cloud Volumes ONTAP 不同的 AWS 帳戶中部署此功能、則必須提供這些帳戶所需的權限、然後將詳細資料新增至 Cloud Manager 。您提供權限的方式取決於您是要為 Cloud Manager 提供 AWS 金鑰、還是要為信任帳戶中的角色提供 ARN 。 
+---
+= 管理 AWS 認證資料和 Cloud Manager 訂閱
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+當您建立 Cloud Volumes ONTAP 一個功能完善的系統時、您需要選取 AWS 認證資料和訂閱、才能與該系統搭配使用。如果您管理多個 AWS 訂閱、您可以從「認證」頁面將每個訂閱指派給不同的 AWS 認證資料。
+
+將 AWS 認證資料新增至 Cloud Manager 之前、您必須先提供該帳戶所需的權限。這些權限可讓 Cloud Manager 管理該 AWS 帳戶內的資源和程序。您提供權限的方式取決於您是要為 Cloud Manager 提供 AWS 金鑰、還是要為信任帳戶中的角色提供 ARN 。
+
+
+NOTE: 當您從 Cloud Manager 部署 Connector 時、 Cloud Manager 會自動為您部署 Connector 的帳戶新增 AWS 認證資料。如果您在現有系統上手動安裝 Connector 軟體、則不會新增此初始帳戶。 link:concept_accounts_aws.html["深入瞭解 AWS 認證與權限"]。
+
+* 選項 *
+
+* <<Granting permissions by providing AWS keys>>
+* <<Granting permissions by assuming IAM roles in other accounts>>
+
+
+.我該如何安全地旋轉 AWS 認證資料？
+****
+Cloud Manager 可讓您以幾種方式提供 AWS 認證資料：與 Connector 執行個體相關的 IAM 角色、在信任的帳戶中擔任 IAM 角色、或提供 AWS 存取金鑰。 link:concept_accounts_aws.html["深入瞭解 AWS 認證與權限"]。
+
+Cloud Manager 採用前兩個選項、使用 AWS 安全性權杖服務取得持續循環的暫用認證資料。此程序是最佳實務做法、自動化且安全無虞。
+
+如果您為 Cloud Manager 提供 AWS 存取金鑰、您應該定期在 Cloud Manager 中更新金鑰、藉此旋轉金鑰。這是完全手動的程序。
+
+****
+
+
+== 提供 AWS 金鑰來授予權限
+
+如果您想要為 IAM 使用者提供 AWS 金鑰給 Cloud Manager 、則必須將必要的權限授予該使用者。Cloud Manager IAM 原則定義了允許 Cloud Manager 使用的 AWS 動作和資源。
+
+.步驟
+. 請從下載 Cloud Manager IAM 原則 https://mysupport.netapp.com/site/info/cloud-manager-policies["Cloud Manager 原則頁面"^]。
+. 從 IAM 主控台複製並貼上 Cloud Manager IAM 原則中的文字、以建立您自己的原則。
++
+https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_create.html["AWS 文件：建立 IAM 原則"^]
+
+. 將原則附加至 IAM 角色或 IAM 使用者。
++
+** https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create.html["AWS 文件：建立 IAM 角色"^]
+** https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_manage-attach-detach.html["AWS 文件：新增和移除 IAM 原則"^]
+
+
+
+
+帳戶現在擁有必要的權限。 <<Adding AWS credentials to Cloud Manager,您現在可以將它新增至 Cloud Manager>>。
+
+
+
+== 在其他帳戶中假設 IAM 角色來授予權限
+
+您可以使用 IAM 角色、在部署 Connector 執行個體的來源 AWS 帳戶與其他 AWS 帳戶之間建立信任關係。接著、您將從信任的帳戶中、為 Cloud Manager 提供 IAM 角色的 ARN 。
+
+.步驟
+. 前往您要部署 Cloud Volumes ONTAP 的目標帳戶、並選取 * 其他 AWS 帳戶 * 來建立 IAM 角色。
++
+請務必執行下列動作：
+
++
+** 輸入連接器執行個體所在帳戶的 ID 。
+** 附加 Cloud Manager IAM 原則、可從取得 https://mysupport.netapp.com/site/info/cloud-manager-policies["Cloud Manager 原則頁面"^]。
++
+image:screenshot_iam_create_role.gif["顯示 AWS IAM Console 中「 Create role 」（建立角色）頁面的快照。在選取信任實體類型下、會選取另一個 AWS 帳戶。"]
+
+
+
+. 前往連接器執行個體所在的來源帳戶、然後選取附加至執行個體的 IAM 角色。
++
+.. 按一下「 * 附加原則 * 」、然後按一下「 * 建立原則 * 」。
+.. 建立包含「 STS:AssumeRole 」動作的原則、以及您在目標帳戶中建立之角色的 ARN 。
++
+* 範例 *
+
++
+[source, json]
+----
+{
+ "Version": "2012-10-17",
+ "Statement": {
+   "Effect": "Allow",
+   "Action": "sts:AssumeRole",
+   "Resource": "arn:aws:iam::ACCOUNT-B-ID:role/ACCOUNT-B-ROLENAME"
+}
+}
+----
+
+
+
+
+帳戶現在擁有必要的權限。 <<Adding AWS credentials to Cloud Manager,您現在可以將它新增至 Cloud Manager>>。
+
+
+
+== 將 AWS 認證資料新增至 Cloud Manager
+
+在您提供具備所需權限的 AWS 帳戶之後、您可以將該帳戶的認證資料新增至 Cloud Manager 。如此一來、您就能在 Cloud Volumes ONTAP 該帳戶中啟動支援系統。
+
+.步驟
+. 在 Cloud Manager 主控台右上角、按一下「設定」圖示、然後選取 * 認證 * 。
++
+image:screenshot_settings_icon.gif["顯示 Cloud Manager 主控台右上角「設定」圖示的快照。"]
+
+. 按一下 * 「 Add Credentials 」（新增認證） * 、然後選取 * 「 AWS
+. 提供 AWS 金鑰或可信 IAM 角色的 ARN 。
+. 確認已符合原則需求、然後按一下 * 繼續 * 。
+. 選擇您要與認證相關聯的隨用隨付訂閱、或是如果您還沒有認證、請按一下 * 新增訂閱 * 。
++
+若要建立隨用隨付 Cloud Volumes ONTAP 的功能、 AWS 認證資料必須與 Cloud Volumes ONTAP 從 AWS Marketplace 訂閱的功能相關聯。
+
+. 按一下「 * 新增 * 」。
+
+
+現在、您可以在建立新的工作環境時、從「詳細資料與認證」頁面切換至不同的認證資料集：
+
+image:screenshot_accounts_switch_aws.gif["在詳細資料 & 認證頁面中按一下「切換帳戶」之後、顯示在雲端供應商帳戶之間選取的快照。"]
+
+
+
+== 將 AWS 訂閱關聯至認證資料
+
+將 AWS 認證資料新增至 Cloud Manager 之後、您可以將 AWS Marketplace 訂閱與這些認證資料建立關聯。訂閱可讓您建立隨用隨付 Cloud Volumes ONTAP 的功能、並使用其他 NetApp 雲端服務。
+
+您可能會在將認證新增至 Cloud Manager 之後、在兩種情況下建立 AWS Marketplace 訂閱的關聯：
+
+* 初次將認證新增至 Cloud Manager 時、您並未建立訂閱關聯。
+* 您想要以新的訂閱取代現有的 AWS Marketplace 訂閱。
+
+
+您必須先建立連接器、才能變更 Cloud Manager 設定。 link:concept_connectors.html#how-to-create-a-connector["瞭解方法"]。
+
+.步驟
+. 在 Cloud Manager 主控台右上角、按一下「設定」圖示、然後選取 * 認證 * 。
+. 將游標暫留在一組認證上、然後按一下動作功能表。
+. 從功能表中、按一下「 * 關聯訂閱 * 」。
++
+image:screenshot_aws_add_subscription.gif["「認證」頁面的快照、您可以從功能表將訂閱新增至 AWS 認證資料。"]
+
+. 從下拉式清單中選取訂閱、或按一下「 * 新增訂閱 * 」、然後依照步驟建立新的訂閱。
++
+video::video_subscribing_aws.mp4[width=848,height=480]
+

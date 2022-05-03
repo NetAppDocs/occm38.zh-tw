@@ -1,0 +1,64 @@
+---
+sidebar: sidebar 
+permalink: task_setting_up_ontap_cloud.html 
+keywords: set up, setting up, ntp, time, synch, autosupport, asup, ems, lif, svm, backup, configuration files, config, snapcenter, snapdrive, ntp server, svm management lif, management lif 
+summary: 部署 Cloud Volumes ONTAP 完整套功能後、您可以使用 NTP 同步系統時間、並從 System Manager 或 CLI 執行幾項選用工作來設定。 
+---
+= 設定 Cloud Volumes ONTAP 功能
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+部署 Cloud Volumes ONTAP 完整套功能後、您可以使用 NTP 同步系統時間、並從 System Manager 或 CLI 執行幾項選用工作來設定。
+
+[cols="30,70"]
+|===
+| 工作 | 說明 
+
+
+| 使用 NTP 同步系統時間  a| 
+指定 NTP 伺服器可同步處理網路中系統之間的時間、有助於避免時間差異所造成的問題。
+
+在設定 CIFS 伺服器時、使用 Cloud Manager API 或從使用者介面指定 NTP 伺服器。
+
+* link:task_managing_storage.html#modifying-the-cifs-server["修改 CIFS 伺服器"]
+* link:api.html["Cloud Manager API 開發人員指南"^]
+
+
+例如、以下是 AWS 中單節點系統的 API ：
+
+image:screenshot_ntp_server_api.gif["顯示 NTP API 呼叫的 Swagger 介面快照。"]
+
+
+
+| 選用：設定 AutoSupport 功能 | 可主動監控系統健全狀況、並依預設自動傳送訊息給 NetApp 技術支援部門。 AutoSupport如果帳戶管理員在您啟動執行個體之前、已將 Proxy 伺服器新增至 Cloud Manager 、 Cloud Volumes ONTAP 則會將此伺服器設定為使用該 Proxy 伺服器來接收 AutoSupport 資訊。您應該測試 AutoSupport 此功能、以確保它能傳送訊息。如需相關指示、請參閱系統管理員說明或 http://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-sag/home.html["《系統管理參考資料》（英文） ONTAP"^]。 
+
+
+| 選用：將 Cloud Manager 設定為 AutoSupport 不受影響的 Proxy  a| 
+如果您的環境需要 Proxy 伺服器來傳送 AutoSupport 功能不全的訊息、您可以設定 Cloud Manager 做為 Proxy 。除了網際網路存取、不需要 Cloud Manager 的組態。您只需移至 CLI Cloud Volumes ONTAP 執行下列命令即可執行下列功能：
+
+....
+system node autosupport modify -proxy-url <cloud-manager-ip-address>
+....
+
+
+| 選用：設定 EMS | 事件管理系統（ EMS ）會收集 Cloud Volumes ONTAP 並顯示有關發生在故障系統上的事件資訊。若要接收事件通知、您可以針對特定事件嚴重性設定事件目的地（電子郵件地址、 SNMP 設陷主機或 syslog 伺服器）和事件路由。您可以使用 CLI 設定 EMS 。如需相關指示、請參閱 http://docs.netapp.com/ontap-9/topic/com.netapp.doc.exp-ems/home.html["《 9 EMS 組態快速指南》 ONTAP"^]。 
+
+
+| 選用：在多個 AWS 可用性區域中、為 HA 系統建立 SVM 管理網路介面（ LIF ）  a| 
+如果您想搭配 SnapCenter HA 配對使用 Windows 的功能、則需要儲存虛擬機器（ SVM ）管理網路介面（ LIF ） SnapDrive 。當在多個 AWS 可用區域之間使用 HA 配對時、 SVM 管理 LIF 必須使用 _浮 點 IP 位址。
+
+Cloud Manager 會在您啟動 HA 配對時提示您指定浮動 IP 位址。如果未指定 IP 位址、您可以從 System Manager 或 CLI 自行建立 SVM 管理 LIF 。以下範例說明如何從 CLI 建立 LIF ：
+
+....
+network interface create -vserver svm_cloud -lif svm_mgmt -role data -data-protocol none -home-node cloud-01 -home-port e0a -address 10.0.2.126 -netmask 255.255.255.0 -status-admin up -firewall-policy mgmt
+....
+
+
+| 選用：變更組態檔的備份位置 | 支援自動建立組態備份檔案、其中包含可設定選項的相關資訊、這些選項需要適當操作。 Cloud Volumes ONTAP根據預設 Cloud Volumes ONTAP 、每八小時將檔案備份至 Connector 主機。如果您想要將備份傳送到其他位置、可以將位置變更為資料中心或 AWS 中的 FTP 或 HTTP 伺服器。例如 FAS 、您可能已經有一個適用於您的支援系統的備份位置。您可以使用 CLI 變更備份位置。請參閱 http://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-sag/home.html["《系統管理參考資料》（英文） ONTAP"^]。 
+|===

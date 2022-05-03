@@ -1,0 +1,208 @@
+---
+sidebar: sidebar 
+permalink: task_tiering.html 
+keywords: tier, tiering, cold data, hot data, storage tiering, data tiering, S3 tiering, fabricpool, fabric pool, s3 endpoint, endpoint, connection, performance tier, capacity tier, object store, azure tiering, blob tiering, azure blob, container, inactive, gcp, tiering in gcp, tiering requirements 
+summary: 您可以將熱資料的 SSD 或 HDD 效能層與非作用中資料的物件儲存容量層合併、藉此降低 Cloud Volumes ONTAP VMware 的儲存成本。 
+---
+= 將非作用中資料分層至低成本物件儲存設備
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+您可以將熱資料的 SSD 或 HDD 效能層與非作用中資料的物件儲存容量層合併、藉此降低 Cloud Volumes ONTAP VMware 的儲存成本。如需詳細概述、請參閱 link:concept_data_tiering.html["資料分層總覽"]。
+
+若要設定資料分層、您只需執行下列動作：
+
+
+
+==== 選擇支援的組態
+
+[role="quick-margin-para"]
+支援大部分的組態。如果您的 Cloud Volumes ONTAP 系統執行的是最新版本、則使用的是「不含更新版本」、「高階」或「 BYOL 」、您應該會很滿意。 link:task_tiering.html#configurations-that-support-data-tiering["深入瞭解"]。
+
+
+
+==== 確保 Cloud Volumes ONTAP 在物件儲存設備與物件儲存設備之間建立連線
+
+* 對於 AWS 、您需要 VPC 端點對 S3 。 <<Requirements to tier cold data to AWS S3,深入瞭解>>。
+* 對於 Azure 而言、只要 Cloud Manager 具備必要的權限、您就不需要執行任何操作。 <<Requirements to tier cold data to Azure Blob storage,深入瞭解>>。
+* 對於 GCP 、您需要設定專屬 Google Access 的子網路、並設定服務帳戶。 <<Requirements to tier cold data to a Google Cloud Storage bucket,深入瞭解>>。
+
+
+
+
+==== 建立、修改或複寫磁碟區時、請選擇分層原則
+
+[role="quick-margin-para"]
+Cloud Manager 會在您建立、修改或複寫磁碟區時、提示您選擇分層原則。
+
+* link:task_tiering.html#tiering-data-from-read-write-volumes["在讀寫磁碟區上分層資料"]
+* link:task_tiering.html#tiering-data-from-data-protection-volumes["在資料保護磁碟區上分層資料"]
+
+
+[NOTE]
+.什麼是資料分層不需要的&#8217
+====
+* 您不需要安裝功能授權、就能進行資料分層。
+* 您不需要建立容量層（ S3 儲存區、 Azure Blob 容器或 GCP 儲存區）。Cloud Manager 能幫您達成這項目標。
+
+
+====
+
+
+== 支援資料分層的組態
+
+您可以在使用特定組態和功能時啟用資料分層：
+
+* 從下列版本開始、支援使用「資料分層 Cloud Volumes ONTAP 」功能：
++
+** AWS 版本 9.2
+** Azure 中的 9.4 版、搭配單一節點系統
+** Azure 版本 9.6 、搭配 HA 配對
+** GCP 版本 9.6
++
+
+NOTE: Azure 不支援 DS3_v2 虛擬機器類型的資料分層。
+
+
+
+* 在 AWS 中、效能層可以是通用 SSD 、已配置的 IOPS SSD 、或是處理量最佳化的 HDD 。
+* 在 Azure 中、效能層級可以是優質 SSD 託管磁碟、標準 SSD 託管磁碟或標準 HDD 託管磁碟。
+* 在 GCP 中、效能層可以是 SSD 或 HDD （標準磁碟）。
+* 加密技術支援資料分層。
+* 必須在磁碟區上啟用精簡配置。
+
+
+
+
+== 將冷資料分層至 AWS S3 的需求
+
+確保 Cloud Volumes ONTAP 與 S3 建立連線。提供此連線的最佳方法是建立 VPC 端點至 S3 服務。如需相關指示、請參閱 https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/vpce-gateway.html#create-gateway-endpoint["AWS 文件：建立閘道端點"^]。
+
+當您建立 VPC 端點時、請務必選取與 Cloud Volumes ONTAP 該實例相對應的區域、 VPC 和路由表。您也必須修改安全性群組、以新增允許流量到 S3 端點的傳出 HTTPS 規則。否則 Cloud Volumes ONTAP 、無法連線至 S3 服務。
+
+如果您遇到任何問題、請參閱 https://aws.amazon.com/premiumsupport/knowledge-center/connect-s3-vpc-endpoint/["AWS 支援知識中心：為什麼我無法使用閘道 VPC 端點連線至 S3 儲存區？"^]。
+
+
+
+== 將冷資料分層至 Azure Blob 儲存設備的需求
+
+只要 Cloud Manager 具備所需的權限、您就不需要在效能層與容量層之間建立連線。如果 Cloud Manager 原則具有下列權限、 Cloud Manager 可為您啟用 vnet 服務端點：
+
+[source, json]
+----
+"Microsoft.Network/virtualNetworks/subnets/write",
+"Microsoft.Network/routeTables/join/action",
+----
+權限包含在最新版本中 https://mysupport.netapp.com/site/info/cloud-manager-policies["Cloud Manager 原則"]。
+
+
+
+== 將冷資料分層至 Google Cloud Storage 儲存庫的需求
+
+* 駐留的子網路 Cloud Volumes ONTAP 必須設定為私有 Google Access 。如需相關指示、請參閱 https://cloud.google.com/vpc/docs/configure-private-google-access["Google Cloud 文件：設定私有 Google Access"^]。
+* 您需要具有預先定義儲存管理角色的服務帳戶。建立 Cloud Volumes ONTAP 一套可運作的環境時、您必須選擇此服務帳戶。
++
+https://cloud.google.com/iam/docs/creating-managing-service-accounts#creating_a_service_account["請依照下列步驟設定此分層服務帳戶"^]：
+
++
+.. 將預先定義的 _Storage Admin_ 角色指派給分層服務帳戶。
+.. 將 Connector 服務帳戶新增為 _ 服務帳戶使用者 _ 至分層服務帳戶。
++
+您可以提供使用者角色 https://cloud.google.com/iam/docs/creating-managing-service-accounts#creating_a_service_account["在精靈的步驟 3 中、當您建立分層服務帳戶時"]或 https://cloud.google.com/iam/docs/granting-roles-to-service-accounts#granting_access_to_a_user_for_a_service_account["在建立服務帳戶後、授予角色"^]。
+
++
+建立 Cloud Volumes ONTAP 一套可運作的環境之後、您需要選擇分層服務帳戶。
+
++
+如果您在建立 Cloud Volumes ONTAP 一套支援系統時、並未啟用資料分層功能並選取服務帳戶、則必須關閉系統、 Cloud Volumes ONTAP 並從 GCP 主控台將服務帳戶新增至支援系統。
+
+
+
+
+
+
+
+== 從讀寫磁碟區分層資料
+
+可將讀寫磁碟區上的非作用中資料分層保存至具成本效益的物件儲存設備、以釋出效能層以供熱資料使用。 Cloud Volumes ONTAP
+
+.步驟
+. 在工作環境中、建立新磁碟區或變更現有磁碟區的層級：
++
+[cols="30,70"]
+|===
+| 工作 | 行動 
+
+
+| 建立新的 Volume | 按一下「 * 新增 Volume * 」。 
+
+
+| 修改現有的 Volume | 選取磁碟區、然後按一下 * 變更磁碟類型與分層原則 * 。 
+|===
+. 選取分層原則。
++
+如需這些原則的說明、請參閱 link:concept_data_tiering.html["資料分層總覽"]。
+
++
+* 範例 *
+
++
+image:screenshot_tiered_storage.gif["顯示圖示的快照、可讓您分層儲存物件。"]
+
++
+如果啟用資料分層的 Aggregate 不存在、 Cloud Manager 會為磁碟區建立新的 Aggregate 。
+
++
+
+TIP: 如果您偏好自行建立集合體、則可在建立集合體時啟用集合體的資料分層功能。
+
+
+
+
+
+== 從資料保護磁碟區分層資料
+
+可將資料從資料保護磁碟區分層至容量層。 Cloud Volumes ONTAP如果您啟動目的地 Volume 、資料會隨著讀取而逐漸移至效能層。
+
+.步驟
+. 在「工作環境」頁面上、選取包含來源磁碟區的工作環境、然後將其拖曳到您要複寫磁碟區的工作環境。
+. 依照提示操作、直到您到達分層頁面、並啟用資料分層以供物件儲存使用。
++
+* 範例 *
+
++
+image:screenshot_replication_tiering.gif["快照顯示複寫磁碟區時的 S3 分層選項。"]
+
++
+如需複寫資料的說明、請參閱 link:task_replicating_data.html["在雲端之間複寫資料"]。
+
+
+
+
+
+== 變更階層式資料的儲存類別
+
+部署 Cloud Volumes ONTAP 完功能後、您可以變更 30 天內未存取的非使用中資料儲存類別、藉此降低儲存成本。如果您確實存取資料、存取成本就會較高、因此在變更儲存類別之前、您必須先將此納入考量。
+
+階層式資料的儲存類別是全系統的、並非每個 Volume 都有。
+
+如需支援的儲存類別資訊、請參閱 link:concept_data_tiering.html["資料分層總覽"]。
+
+.步驟
+. 在工作環境中、按一下功能表圖示、然後按一下「 * 儲存類別 * 」或「 * Blob 儲存分層 * 」。
+. 選擇一個儲存類別、然後按一下 * 「 Save 」（儲存） * 。
+
+
+
+
+== 我可以在現有的Aggregate上啟用資料分層嗎？
+
+否、您無法在現有的集合體上啟用資料分層。您只能在新的Aggregate上啟用資料分層。
+
+您也可以在新的Aggregate上啟用資料分層 link:task_provisioning_storage.html#creating-aggregates["自行建立Aggregate"] 或 <<Tiering data from read-write volumes,建立啟用資料分層的新磁碟區>>。如果啟用資料分層的Aggregate不存在、Cloud Manager就會為磁碟區建立新的Aggregate。

@@ -1,0 +1,44 @@
+---
+sidebar: sidebar 
+permalink: concept_evaluating.html 
+keywords: free trial, evaluation, evaluate, eval license, evaluation license, 30-day trial, 30 day trial, 30 day free trial 
+summary: 您可以在 Cloud Volumes ONTAP 購買軟體前先評估其功能。最常見的方法是啟動第一個 Cloud Volumes ONTAP 版本的 __LW_YGO 、以獲得 30 天免費試用。試用 BYOL 授權也是一種選擇。 
+---
+= 評估
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+您可以在 Cloud Volumes ONTAP 購買軟體前先評估其功能。最常見的方法是啟動第一個 Cloud Volumes ONTAP 版本的 __LW_YGO 、以獲得 30 天免費試用。試用 BYOL 授權也是一種選擇。
+
+如果您需要概念驗證方面的協助、請聯絡 https://cloud.netapp.com/contact-cds["銷售團隊"^] 或是透過聊天選項與您聯絡 https://cloud.netapp.com["NetApp Cloud Central"^] 以及 Cloud Manager 。
+
+
+
+== PAYGO 免費試用 30 天
+
+如果您計畫一 Cloud Volumes ONTAP 次性支付 VMware 的費用、則可免費試用 30 天。您可以 Cloud Volumes ONTAP 在 Cloud Volumes ONTAP 付款人的帳戶中建立第一個的 VMware 系統、從 Cloud Manager 開始 30 天的免費試用版。
+
+舉例來說、並不收取每小時的軟體授權費用、但您的雲端供應商仍需支付基礎架構費用。
+
+免費試用版會在到期時自動轉換為付費的每小時訂閱。如果您在期限內終止執行個體、則您部署的下一個執行個體不屬於免費試用（即使是在 30 天內部署）。
+
+隨用隨付的試用版是透過雲端供應商提供、不得以任何方式延長。
+
+
+
+== BYOL 的評估授權
+
+如果客戶希望透過 Cloud Volumes ONTAP 向 NetApp 購買稱為「授權」的方式來支付支援費、則可選擇使用 BYOL 試用版。您可以向客戶團隊、銷售工程師或合作夥伴取得評估授權。
+
+評估金鑰適用於 30 天、可多次使用、每次使用 30 天（無論建立日期為何）。
+
+30 天之後、每天都會關機、因此最好事先規劃。您可以在就地升級的評估授權上套用新的 BYOL 授權（這需要重新啟動單一節點系統）。您的託管資料 * 不會 * 在試用期結束時刪除。
+
+
+TIP: 使用試用版授權時 Cloud Volumes ONTAP 、您無法升級此軟體。

@@ -1,0 +1,195 @@
+---
+sidebar: sidebar 
+permalink: task_planning_your_config.html 
+keywords: license, disk, ebs, storage, size, write speed, volume usage, explore, standard, premium, byol, ec2, capacity, limit, configurations, virtual machine, vm, regions, supported disks, disk types, general purpose, gp2 provisioned IOPS, piops, throughput optimized, cold, SSD, HDD, st1, sc1, use profile, thin provisioning, deduplication, compression, Cloud Volumes ONTAP explore, Cloud Volumes ONTAP standard, Cloud Volumes ONTAP premium, Cloud Volumes ONTAP byol, shared instance, dedicated instance, write speed, high write speed, normal write speed, network information, worksheet, limit, limits, storage limits, volume limit, aggregate limit, maximum volume size, maximum aggregate size 
+summary: 在 Cloud Volumes ONTAP AWS 中部署時、您可以選擇符合工作負載需求的預先設定系統、也可以建立自己的組態。如果您選擇自己的組態、應該瞭解可用的選項。 
+---
+= 在 Cloud Volumes ONTAP AWS 中規劃您的功能
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+在 Cloud Volumes ONTAP AWS 中部署時、您可以選擇符合工作負載需求的預先設定系統、也可以建立自己的組態。如果您選擇自己的組態、應該瞭解可用的選項。
+
+
+
+== 選擇授權類型
+
+提供兩種定價選項：隨用隨付及自帶授權（ BYOL ） Cloud Volumes ONTAP 。若為隨用隨付、您可以從三種授權中選擇： Explore 、 Standard 或 Premium 。每個授權都提供不同的容量和運算選項。
+
+https://docs.netapp.com/us-en/cloud-volumes-ontap/reference_configs_aws_97.html["支援Cloud Volumes ONTAP AWS中的支援的支援組態"^]
+
+
+
+== 瞭解儲存限制
+
+一個不含資源的系統的原始容量上限 Cloud Volumes ONTAP 與授權有關。其他限制會影響集合體和磁碟區的大小。在規劃組態時、您應該注意這些限制。
+
+https://docs.netapp.com/us-en/cloud-volumes-ontap/reference_limits_aws_97.html["AWS中的更新儲存限制Cloud Volumes ONTAP"]
+
+
+
+== 在 AWS 中調整系統規模
+
+調整 Cloud Volumes ONTAP 您的支援規模、有助於滿足效能與容量的需求。在選擇執行個體類型、磁碟類型和磁碟大小時、您應該注意幾個關鍵點：
+
+執行個體類型::
++
+--
+* 將工作負載需求與每個 EC2 執行個體類型的最大處理量和 IOPS 配對。
+* 如果有多位使用者同時寫入系統、請選擇有足夠 CPU 來管理要求的執行個體類型。
+* 如果您的應用程式大多讀取、請選擇具有足夠 RAM 的系統。
++
+** https://aws.amazon.com/ec2/instance-types/["AWS 文件： Amazon EC2 執行個體類型"^]
+** https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSOptimized.html["AWS 文件： Amazon EBS 最佳化執行個體"^]
+
+
+
+
+--
+EBS 磁碟類型:: 通用 SSD 是 Cloud Volumes ONTAP 最常見的磁碟類型。若要檢視 EBS 磁碟的使用案例、請參閱 http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html["AWS 文件： EBS Volume 類型"^]。
+EBS 磁碟大小:: 啟動 Cloud Volumes ONTAP 一套系統時、您需要選擇初始磁碟大小。之後、您就可以了 link:concept_storage_management.html["讓 Cloud Manager 為您管理系統容量"]但如果您想要的話 link:task_provisioning_storage.html#creating-aggregates["自行建置集合體"]請注意下列事項：
++
+--
+* 集合體中的所有磁碟大小必須相同。
+* EBS 磁碟的效能與磁碟大小有關。大小決定 SSD 磁碟的基準 IOPS 和最大突發持續時間、以及 HDD 磁碟的基準和突發處理量。
+* 最後、您應該選擇能提供所需 _ 持續效能 _ 的磁碟大小。
+* 即使您選擇較大的磁碟（例如六個 4 TB 磁碟）、也可能無法取得所有 IOPS 、因為 EC2 執行個體可以達到其頻寬限制。
++
+如需 EBS 磁碟效能的詳細資訊、請參閱 http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html["AWS 文件： EBS Volume 類型"^]。
+
+
+
+--
+
+
+請觀看下列影片、以瞭解如何在 Cloud Volumes ONTAP AWS 中調整您的更新功能：
+
+video::GELcXmOuYPw[youtube, width=848,height=480]
+
+
+== 選擇支援 Flash Cache 的組態
+
+AWS 中的 Cloud Volumes ONTAP 部分支援部分支援 NVMe 儲存設備、 Cloud Volumes ONTAP 這些儲存設備可做為 _Flash Cache 、以獲得更好的效能。 link:concept_flash_cache.html["深入瞭解 Flash Cache"]。
+
+
+
+== AWS 網路資訊工作表
+
+在 Cloud Volumes ONTAP AWS 中啟動時、您需要指定 VPC 網路的詳細資料。您可以使用工作表向系統管理員收集資訊。
+
+
+
+==== 網路資訊 Cloud Volumes ONTAP
+
+[cols="30,70"]
+|===
+| AWS 資訊 | 您的價值 
+
+
+| 區域 |  
+
+
+| VPC |  
+
+
+| 子網路 |  
+
+
+| 安全性群組（如果使用您自己的） |  
+|===
+
+
+==== 多個 AZs 中 HA 配對的網路資訊
+
+[cols="30,70"]
+|===
+| AWS 資訊 | 您的價值 
+
+
+| 區域 |  
+
+
+| VPC |  
+
+
+| 安全性群組（如果使用您自己的） |  
+
+
+| 節點 1 可用度區域 |  
+
+
+| 節點 1 子網路 |  
+
+
+| 節點 2 可用度區域 |  
+
+
+| 節點 2 子網路 |  
+
+
+| 中介可用度區域 |  
+
+
+| 中介子網路 |  
+
+
+| 中介器的金鑰配對 |  
+
+
+| 叢集管理連接埠的浮動 IP 位址 |  
+
+
+| 節點 1 上資料的浮動 IP 位址 |  
+
+
+| 節點 2 上資料的浮動 IP 位址 |  
+
+
+| 浮動 IP 位址的路由表 |  
+|===
+
+
+== 選擇寫入速度
+
+Cloud Manager可讓您選擇單一節點Cloud Volumes ONTAP 的寫入速度設定。在您選擇寫入速度之前、您應該先瞭解一般與高設定之間的差異、以及使用高速寫入速度時的風險與建議。
+
+
+
+==== 正常寫入速度與高速寫入速度之間的差異
+
+當您選擇正常寫入速度時、資料會直接寫入磁碟、因此可降低發生非計畫性系統中斷時發生資料遺失的可能性。
+
+選擇高速寫入速度時、資料會在寫入磁碟之前先緩衝到記憶體中、以提供更快的寫入效能。由於這種快取、如果發生非計畫性的系統中斷、可能會導致資料遺失。
+
+發生非計畫性系統中斷時可能遺失的資料量、是最後兩個一致點的範圍。一致點是將緩衝資料寫入磁碟的行為。寫入日誌已滿或 10 秒後（以先到者為準）、就會出現一致點。然而、AWS EBS Volume效能可能會影響一致點處理時間。
+
+
+
+==== 何時使用高速寫入
+
+如果您的工作負載需要快速寫入效能、而且在非計畫性的系統中斷時、您可以承受資料遺失的風險、那麼高速寫入速度是很好的選擇。
+
+
+
+==== 使用高速寫入速度時的建議事項
+
+如果啟用高速寫入、則應確保應用程式層的寫入保護。
+
+
+
+== 選擇 Volume 使用設定檔
+
+包含多項儲存效率功能、可減少您所需的總儲存容量。 ONTAP在 Cloud Manager 中建立 Volume 時、您可以選擇啟用這些功能的設定檔、或是停用這些功能的設定檔。您應該深入瞭解這些功能、以協助您決定要使用的設定檔。
+
+NetApp 儲存效率功能提供下列效益：
+
+資源隨需配置:: 為主機或使用者提供比實體儲存資源池實際擁有更多的邏輯儲存設備。儲存空間不會預先配置儲存空間、而是會在寫入資料時動態分配給每個磁碟區。
+重複資料刪除:: 找出相同的資料區塊、並以單一共用區塊的參考資料取代這些區塊、藉此提升效率。這項技術可消除位於同一個磁碟區的備援資料區塊、進而降低儲存容量需求。
+壓縮:: 藉由壓縮主儲存設備、次儲存設備和歸檔儲存設備上磁碟區內的資料、來減少儲存資料所需的實體容量。
+

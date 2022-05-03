@@ -1,0 +1,82 @@
+---
+sidebar: sidebar 
+permalink: task_provisioning_ontap.html 
+keywords: ontap, cluster, manage, provision, provisioning, volumes, discovering, fas, aff, creating volumes, adding volumes 
+summary: 從 ONTAP Cloud Manager 探索內部的功能性叢集之後、您可以開啟工作環境來配置儲存設備。 
+---
+= 管理 ONTAP 適用於叢集的儲存設備
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+從 ONTAP Cloud Manager 探索完您的叢集後、您可以開啟工作環境來配置及管理儲存設備。
+
+
+
+== 為 ONTAP 叢集建立 Volume
+
+Cloud Manager 可讓您在 ONTAP 各個叢集上配置 NFS 、 CIFS 和 iSCSI 磁碟區。
+
+必須使用 System Manager 或 CLI 在叢集上設定資料傳輸協定。
+
+您可以在現有的集合體上建立磁碟區。您無法從 Cloud Manager 建立新的 Aggregate 。
+
+.步驟
+. 在「工作環境」頁面上、按兩下ONTAP 您要在其中配置磁碟區的叢集名稱。
+. 按一下「 * 新增 Volume * 」。
+. 在「 Create New Volume 」（建立新磁碟區）頁面上、輸入磁碟區的詳細資料、然後按一下「 * Create* 」。
++
+本頁中的部分欄位是不知自明的。下表說明您可能需要指導的欄位：
+
++
+[cols="2,6"]
+|===
+| 欄位 | 說明 
+
+
+| 尺寸 | 您可以輸入的最大大小、主要取決於您是否啟用精簡配置、這可讓您建立比目前可用實體儲存容量更大的磁碟區。 
+
+
+| Snapshot 原則 | Snapshot 複製原則會指定自動建立的 NetApp Snapshot 複本的頻率和數量。NetApp Snapshot 複本是一種不影響效能的時間點檔案系統映像、需要最少的儲存容量。您可以選擇預設原則或無。您可以針對暫時性資料選擇「無」：例如、 Microsoft SQL Server 的 Tempdb 。 
+
+
+| 存取控制（僅適用於 NFS ） | 匯出原則會定義子網路中可存取磁碟區的用戶端。根據預設、 Cloud Manager 會輸入一個值、讓您存取子網路中的所有執行個體。 
+
+
+| 權限與使用者 / 群組（僅限 CIFS ） | 這些欄位可讓您控制使用者和群組（也稱為存取控制清單或 ACL ）的共用存取層級。您可以指定本機或網域 Windows 使用者或群組、或 UNIX 使用者或群組。如果您指定網域 Windows 使用者名稱、則必須使用網域 \ 使用者名稱格式來包含使用者的網域。 
+
+
+| 啟動器群組和 IQN （僅適用於 iSCSI ） | iSCSI 儲存目標稱為 LUN （邏輯單元）、以標準區塊裝置的形式呈現給主機。啟動器群組是 iSCSI 主機節點名稱的表格、可控制哪些啟動器可存取哪些 LUN 。iSCSI 目標可透過標準乙太網路介面卡（ NIC ）、 TCP 卸載引擎（ TOE ）卡（含軟體啟動器）、整合式網路介面卡（ CNA ）或專用主機匯流排介面卡（ HBA ）連線至網路、並由 iSCSI 合格名稱（ IQN ）識別。建立 iSCSI Volume 時、 Cloud Manager 會自動為您建立 LUN 。我們只要在每個磁碟區建立一個 LUN 、就能輕鬆完成工作、因此不需要管理。建立磁碟區之後、選取該磁碟區、按一下「 Target IQN 」、然後使用 IQN 從主機連線至 LUN 。 
+
+
+| 使用設定檔 | 使用率設定檔定義了已啟用 Volume 的 NetApp 儲存效率功能。 
+|===
+
+
+
+
+== 複寫資料
+
+您 Cloud Volumes ONTAP 可以選擇一次性資料複寫、 ONTAP 以協助您在雲端之間來回移動資料、或是循環排程、藉此協助災難恢復或長期保留資料、藉此複寫資料。
+
+link:task_replicating_data.html["請按一下此處以取得更多詳細資料"]。
+
+
+
+== 備份資料
+
+您 ONTAP 可以使用 Cloud Manager Backup to Cloud 服務、將內部部署的資料還原至雲端中的低成本物件儲存設備。這項服務提供備份與還原功能、可保護雲端資料並長期歸檔。
+
+link:task_backup_from_ontap.html["請按一下此處以取得更多詳細資料"]。
+
+
+
+== 將資料分層至雲端
+
+自動將非作用中的資料從 ONTAP 叢集分層至物件式儲存設備、將資料中心延伸至雲端。
+
+link:concept_cloud_tiering.html["請按一下此處以取得更多詳細資料"]。
