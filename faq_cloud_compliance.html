@@ -1,0 +1,2853 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+  <head class="at-element-marker">
+  <title>雲端法規遵循的常見問題集</title>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge,chrome=1">
+  <meta http-equiv="language" content="en">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta property="og:title" content="雲端法規遵循的常見問題集" />
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="https://docs.netapp.com/zh-tw/occm38/faq_cloud_compliance.html" />
+	<meta property="og:description" content="如果您只是想要快速回答問題、這個常見問題集就能幫上忙。" />
+  <meta property="og:image" content="https://docs.netapp.com/zh-tw/occm38/images/logo-tophat-social.png" />
+  <meta property="og:image:alt" content="NetApp Logo" />
+  <meta name="format-detection" content="telephone=no">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="encoding" content="utf-8">
+  <meta http-equiv="nss-type" content="Product Documentation"/>
+  <meta http-equiv="nss-subtype" content="User Guide"/><meta http-equiv="nss-product" content="OnCommand Cloud Manager"/><meta name="description" content="如果您只是想要快速回答問題、這個常見問題集就能幫上忙。">
+  <meta name="keywords" content=" faq, frequently asked questions, questions"><!-- Icons -->
+  <link rel="icon" href="/zh-tw/occm38/images/favicon.ico" type="image/x-icon">
+
+  <!-- RSS Feed --><!-- CSS Definitions: NetApp CSS should be defined after generic css -->
+
+  <!-- Elastic Search -->
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/searchkit/0.10.0/theme.css">
+
+  <!-- Controls AsciiDoctor Admonition Blocks -->
+  <link rel="stylesheet" type="text/css" href="/zh-tw/occm38/css/font-awesome.min.css">
+
+  <!-- Controls the shadow effect for search dropdown menu -->
+  <link rel="stylesheet" href="/zh-tw/occm38/css/boxshadowproperties.css">
+
+  <!-- NetApp CSS controls the technical content -->
+  <link rel="stylesheet" type="text/css" href="/zh-tw/occm38/css/netapp.css">
+
+  <!-- WWW CSS Content -->
+  <link rel="stylesheet" type="text/css" href="/zh-tw/occm38/css/www-luci-dotcom.min.css">
+  <link rel="stylesheet" type="text/css" href="/zh-tw/occm38/css/www-netapp-dotcom.css">
+  <link rel="stylesheet" href="/zh-tw/occm38/css/www-netapp-library-critical.min.css" media="all" >
+  <link rel="stylesheet" href="/zh-tw/occm38/css/www-netapp-library-non-critical.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="stylesheet" href="/zh-tw/occm38/css/www-netapp-library-global-header-footer.min.css">
+
+  <!-- NetApp IE Customizations -->
+  <link rel="stylesheet" href='/zh-tw/occm38/css/na-utility.css' type='text/css'>
+  <link rel="stylesheet" href='/zh-tw/occm38/css/na-sidebar.css' type='text/css'>
+  <link rel='stylesheet' href='/zh-tw/occm38/css/clouddocs.css' type='text/css'>
+  <link rel='stylesheet' href='/zh-tw/occm38/css/custom-dropdown.css' type='text/css'>
+  <link rel='stylesheet' href='/zh-tw/occm38/css/na-pagenav.css' type='text/css'>
+
+  
+  <link rel="stylesheet" href="/zh-tw/occm38/css/landing-page.css" type="text/css">
+  <link rel="stylesheet" href="/zh-tw/occm38/css/tabbed-blocks.css" type="text/css">
+  <!-- Canonical url -->
+  <link rel='stylesheet' href='/zh-tw/occm38/css/na-feature.css' type='text/css'><!-- Top level site integrations --><script>
+    if (document.location.hostname === "docs.netapp.com") {
+      var head = document.getElementsByTagName('head')[0];
+      var onetrustConsent = document.createElement("script");
+      onetrustConsent.type = "text/javascript";
+      onetrustConsent.src = "https://cdn.cookielaw.org/consent/72570c5c-fe30-465f-b0e0-b77f7fb4ae34/OtAutoBlock.js";
+      head.appendChild(onetrustConsent);
+
+      var onetrustScript = document.createElement("script");
+      onetrustScript.type = "text/javascript";
+      onetrustScript.src = "https://cdn.cookielaw.org/scripttemplates/otSDKStub.js";
+      onetrustScript.charset = "UTF-8";
+      onetrustScript.dataset.documentLanguage = "true";
+      onetrustScript.dataset.domainScript = "72570c5c-fe30-465f-b0e0-b77f7fb4ae34";
+      head.appendChild(onetrustScript);
+    }
+
+    function OptanonWrapper() { }
+
+    if (document.location.hostname === "docs.netapp.com") {
+      var adobe = document.createElement("script");
+      adobe.type = "text/plain";
+      adobe.className = "optanon-category-C0002";
+      adobe.src = "//assets.adobedtm.com/60287eadf1ee/c284da483c83/launch-e9ff3acac59f.min.js";
+      head.appendChild(adobe);
+
+      var google = document.createElement("script");
+      google.type = "text/plain";
+      google.className = "optanon-category-C0002";
+      google.src = "https://www.googletagmanager.com/gtag/js?id=UA-81697994-3";
+      head.appendChild(google);
+
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-81697994-3');
+    }
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+
+  <!-- Used for Product Family Page Sidebar Visibility --><!-- Used to import Promise for IE. Required for SearchKit -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bluebird/3.3.5/bluebird.min.js"></script><script src='/zh-tw/occm38/js/na-search.js'></script><script src='/zh-tw/occm38/js/na-pagenav.js'></script><link rel='stylesheet' href='/zh-tw/occm38/css/prism.css' type='text/css'>
+  <link rel='stylesheet' href='/zh-tw/occm38/css/prism-netapp.css' type='text/css'>
+
+
+  <script src='/zh-tw/occm38/js/na-utility.js'></script>
+  <script src='/zh-tw/occm38/js/clouddocs.js'></script>
+  <script src='/zh-tw/occm38/js/jquery.navgoco.min.js'></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  <script src='/zh-tw/occm38/js/toc.js'></script>
+  <script src='/zh-tw/occm38/js/customscripts.js'></script><script>
+      $(document).ready(function() {
+          
+          var collapseOnInit = true;
+          
+
+          var navSettings = {
+              "caretHtml": '',
+              "accordion": collapseOnInit,
+              "openClass": 'active', // open
+              "save": false, // leave false or nav highlighting doesn't work right
+              "cookie": {
+                  "name": 'navgoco',
+                  "expires": false,
+                  "path": '/'
+              },
+              "slide": {
+                  "duration": 400,
+                  "easing": 'swing'
+              }
+          };
+
+          // Initialize navgoco with default options
+          $("#mysidebar").navgoco(navSettings);
+          
+
+          $("#collapseAll").click(function(e) {
+              e.preventDefault();
+              $("#mysidebar").navgoco('toggle', false);
+          });
+
+          $("#expandAll").click(function(e) {
+              e.preventDefault();
+              $("#mysidebar").navgoco('toggle', true);
+          });
+
+      });
+
+  </script>
+  <script>
+      $(document).ready(function() {
+          $("#tg-sb-link").click(function() {
+              $("#tg-sb-sidebar").toggle();
+              $("#tg-sb-content").toggleClass('col-md-9');
+              $("#tg-sb-content").toggleClass('col-md-12');
+              $("#tg-sb-icon").toggleClass('fa-toggle-on');
+              $("#tg-sb-icon").toggleClass('fa-toggle-off');
+          });
+      });
+  </script>
+  <script src='/zh-tw/occm38/js/custom-dropdown.js'></script>
+  <script src='/zh-tw/occm38/js/FileSaver.min.js'></script>
+  <script src='/zh-tw/occm38/js/jszip-utils.min.js'></script>
+  <script src='/zh-tw/occm38/js/jszip.min.js'></script>
+  <script src='/zh-tw/occm38/js/pdf-ux.js'></script>
+</head>
+
+
+  <body class role="document" data-flavor="">
+    <div id="page" class="n-off-canvas-menu">
+      <div class="n-off-canvas-menu__menu"><!--TODO: Add offcanvas code --></div>
+      <div class="n-off-canvas-menu__content-wrap">
+        <header class="site-header" id="banner">
+  
+  <!-- Start Page Toolbar -->
+  
+  <div class="page-nav-toolbar"><div class="page-nav-contribute"><a target="_blank" href="https://github.com/NetAppDocs/occm38/issues/new?body=Page%3A%20[雲端法規遵循的常見問題集](https://docs.netapp.com/zh-tw/occm38/faq_cloud_compliance.html)" class="page-nav-contribute-link" role="button"><img src="/zh-tw/occm38/images/discuss-sm.svg" class="github-icon" />要求變更文件</a><a target="_blank" href="https://github.com/NetAppDocs/occm38/blob/main/faq_cloud_compliance.adoc" class="page-nav-contribute-link" role="button"><img src="/zh-tw/occm38/images/edit-sm.svg" class="github-icon" />編輯此頁面</a><a target="_blank" href="https://docs.netapp.com/us-en/contribute/" class="page-nav-contribute-link"  ><img src="/zh-tw/occm38/images/article-sm.svg" class="github-icon" />瞭解如何作出貢獻</a></div>
+    <div class="page-nav-container">
+      <nav class="page-nav-fixed">
+        <div class="page-nav-title">在此頁面上</div>
+        <div class="page-nav-links">
+          <ul class="page-nav-inner" id="page-menu"></ul>
+        </div>
+      </nav>
+    </div>
+  </div>
+  
+  
+  <!-- Start top_hat -->
+  <div class="n-top-hat">
+    <div class="n-container">
+      <div class="n-top-hat__cross-property-nav">
+        <ul class="n-top-hat__list">
+          <li class="n-top-hat__list-item">
+            <a href="https://www.netapp.com/products-a-z/" class="n-top-hat__link">產品與解決方案</a>
+          </li>
+          <li class="n-top-hat__list-item">
+            <a href="https://www.netapp.com/support-and-training/netapp-university/" class="n-top-hat__link">支援與訓練</a>
+          </li>
+          <li class="n-top-hat__list-item">
+            <a href="https://cloud.netapp.com" class="n-top-hat__link">Cloud Central</a>
+          </li>
+          <li class="n-top-hat__list-item">
+            <a href="https://community.netapp.com/" class="n-top-hat__link">社群</a>
+          </li>
+          <li class="n-top-hat__list-item">
+            <a href="https://blog.netapp.com/" class="n-top-hat__link">部落格</a>
+          </li>
+          <li class="n-top-hat__list-item">
+            <a href="https://customers.netapp.com/en/" class="n-top-hat__link">客戶成功案例</a>
+          </li>
+          <li class="n-top-hat__list-item">
+            <a href="https://www.netapp.com/us/contact-us/index.aspx" target="_self" class="n-top-hat__link" data-ntap-ui="contact-us">聯絡人</a>
+          </li>
+        </ul>
+      </div>
+      <div class="n-top-hat__utils">
+        <ul class="n-top-hat__list">
+          <li class="n-top-hat__list-item">
+            <a href="https://www.netapp.com/us/contact-us/index.aspx" target="_self" class="n-top-hat__link" data-ntap-ui="contact-us">聯絡人</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <!-- End top_hat -->
+
+  <!-- Start property bar -->
+  <style>
+    .n-property-navigation-bar__menus--desktop-experience .n-menu--mega__default-content__heading span {
+    color: #34B0FF;
+    }
+  </style>
+  <div class="n-property-bar " data-ntap-ui="sticky-nav">
+    <div class="n-property-bar__inner-wrap">
+      <div class="n-property-bar__menu-toggle">
+        <a href="#" class="n-property-bar__menu-toggle-link">
+          <span class="n-property-bar__menu-toggle-text">Menu</span>
+          <svg class="n-icon-bars n-property-bar__menu-toggle-icon" aria-labelledby="title">
+            <title>bars</title>
+            <use xlink:href="/zh-tw/occm38/common/svg/sprite.svg#bars"></use>
+          </svg>
+        </a>
+      </div>
+      <div class="n-property-bar__property-mark ">
+        <a href="https://www.netapp.com" class="n-property-bar__property-link">
+          <div class="n-property-bar__logo">
+            <svg class="n-icon-netapp-mark n-icon-netapp-mark n-property-bar__netapp-mark-icon" aria-labelledby="title">
+              <title>netapp-mark</title>
+              <use xlink:href="/zh-tw/occm38/common/svg/sprite.svg#netapp-mark"></use>
+            </svg>
+            <svg class="n-icon-netapp-logo n-property-bar__logo-svg" aria-labelledby="title">
+              <title>netapp-logo</title>
+              <use xlink:href="/zh-tw/occm38/common/svg/sprite.svg#netapp-logo"></use>
+            </svg>
+          </div>
+        </a>
+      </div>
+
+      
+      <div class="search-property-bar">
+        <div id="search-demo-container" class="searchbox n-property-bar__search">
+          <div id="react-search" 
+          data-search-html="/zh-tw/occm38/search.html"
+          data-type="widget" 
+          data-placeholder="搜尋文件" 
+          data-no-results-found="找不到符合 {query} 的相關結果。" 
+          data-did-you-mean="搜尋 {suggestion}。" 
+          data-no-results-found-did-you-mean="找不到符合 {query} 的相關結果。您是否要找的是{suggestion}？" 
+          data-results-found="找到 {hitCount} 筆結果"  
+          data-sk-es-pf-indexes=""
+          data-flavor=""></div>
+          <button class="n-property-bar__search-toggle-button" type="button">
+            <svg class="n-icon-search n-property-bar__search-toggle-button-icon" aria-labelledby="title">
+              <title>search</title>
+              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/zh-tw/occm38/common/svg/sprite.svg#search"></use>
+            </svg>
+          </button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  <div class="n-property-bar__toolbar">
+    <!-- Start Language Selector --><div id="ie-i18n" class="n-property-bar__lang-selector">
+      <div id="ie-i18n-menu">
+      <span class="ie-i18n-lang">繁體中文</span>
+        <button class="ie-i18n-icon-container" type="button">
+          <svg class="n-globe__icon" aria-labelledby="title">
+            <title>globe</title>
+            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/zh-tw/occm38/common/svg/sprite.svg#globe"></use>
+          </svg>
+        </button>
+      </div>
+      <div id="n-property-navigation-bar__menu--language-selector" class="ie-i18n-results-container n-menu n-menu--v3 n-menu--is-active" style="display: none;">
+        <div class="n-language-selector-menu">
+          <ul class="n-menu__list">
+            <li class="n-menu__list-column">
+              <ul class="n-menu__list"><li class="n-menu__list-item n-menu__list-item--level-1">
+                  <a href="https://docs.netapp.com/us-en/occm38/faq_cloud_compliance.html" class="n-menu__header-text"><span translate="no" class="notranslate">English</span></a>
+                </li><li class="n-menu__list-item n-menu__list-item--level-1">
+                  <a href="https://docs.netapp.com/ja-jp/occm38/faq_cloud_compliance.html" class="n-menu__header-text"><span translate="no" class="notranslate">日本語</span></a>
+                </li><li class="n-menu__list-item n-menu__list-item--level-1">
+                  <a href="https://docs.netapp.com/ko-kr/occm38/faq_cloud_compliance.html" class="n-menu__header-text"><span translate="no" class="notranslate">한국어</span></a>
+                </li><li class="n-menu__list-item n-menu__list-item--level-1">
+                  <a href="https://docs.netapp.com/zh-cn/occm38/faq_cloud_compliance.html" class="n-menu__header-text"><span translate="no" class="notranslate">简体中文</span></a>
+                </li><li class="n-menu__list-item n-menu__list-item--level-1">
+                  <a href="https://docs.netapp.com/zh-tw/occm38/faq_cloud_compliance.html" class="n-menu__header-text"><span translate="no" class="notranslate">繁體中文</span></a>
+                </li></ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div><!-- End Language Selector -->
+
+    <div class="n-property-bar__cta"></div>
+  </div>
+  <script>
+    $(function(){
+        var currentLocalization = $('html').attr('lang');
+
+        var localizationsDictionary = {
+            "en-CA" : "https://www.netapp.com/search/index.aspx?for_cr=canada&",
+            "en-IN" : "https://www.netapp.com/search/index.aspx?for_cr=india&",
+            "nl-NL" : "https://www.netapp.com/search/index.aspx?for_cr=netherlands&",
+            "ru-RU" : "https://www.netapp.com/search/index.aspx?for_cr=russia&",
+            "sv-SE" : "https://www.netapp.com/search/index.aspx?for_cr=sweden&",
+            "it-IT" : "https://www.netapp.com/search/index.aspx?for_cr=italy&",
+            "he-IL" : "https://www.netapp.com/search/index.aspx?for_cr=israel&",
+            "ko-KR" : "https://www.netapp.com/search/index.aspx?for_cr=korea&",
+            "zh-TW" : "https://www.netapp.com/search/index.aspx?for_cr=taiwan&",
+            "en-GB" : "https://www.netapp.com/search/index.aspx?for_cr=unitedkingdom&",
+            "en-SG" : "https://www.netapp.com/search/index.aspx?for_cr=asean&",
+            "en-AU" : "https://www.netapp.com/search/index.aspx?for_cr=australia&",
+            "pt-BR" : "https://www.netapp.com/search/index.aspx?for_cr=brasil&",
+            "de-CH" : "https://www.netapp.com/search/index.aspx?for_cr=switzerland&",
+            "es-MX" : "https://www.netapp.com/search/index.aspx?for_cr=mexico&"
+        };
+
+        if($('html').hasClass('ntap-whitelisted') && localizationsDictionary.hasOwnProperty(currentLocalization)) {
+            $('.n-property-bar__property-link').attr('href', '/');
+        }
+    });
+  </script>
+  <!-- End property bar -->
+</header>
+
+
+        <main id="n-main-content" class="n-main-content">
+          <!-- Start Documentation Content -->
+<div class="ie-main">
+  <!-- Sidebar Column -->
+  
+  <div class="col-md-3" id="sidebar-height">
+      <div class="n-pdf-header">
+  <a id="toggleButtonPdf" class="n-pdf-button" type="button">
+    <img src="/zh-tw/occm38/images/pdf.png" width="16" height="16"/>可用的 PDF<span>
+    </span>
+  </a>
+</div>
+<div class="n-pdf-body-container">
+  <ul id="toggleContainerPdf" class="n-pdf-body" style="display:none;"><li class="pdf-ux-container">
+        
+        
+        
+        <a target="_blank" href="/zh-tw/occm38/pdfs/fullsite-sidebar/Cloud_Manager_與_Cloud_Volumes_ONTAP_技術文件.pdf" >
+          <img src="/zh-tw/occm38/images/pdf.png" width="16" height="16"/>此文件網站（PDF 格式）</a>
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/occm38/pdfs/sidebar/版本資訊.pdf" 
+            
+          >
+            <img src="/zh-tw/occm38/images/pdf.png" width="16" height="16"/>
+            版本資訊
+          </a>
+          
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/occm38/pdfs/sidebar/Cloud_Manager.pdf" 
+            
+          >
+            <img src="/zh-tw/occm38/images/pdf.png" width="16" height="16"/>
+            Cloud Manager
+          </a>
+          
+
+
+
+
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/occm38/pdfs/sidebar/開始使用_Cloud_Manager.pdf" 
+            
+          >
+            <img src="/zh-tw/occm38/images/pdf.png" width="16" height="16"/>
+            開始使用 Cloud Manager
+          </a>
+          
+
+
+
+
+
+
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/occm38/pdfs/sidebar/設定_Cloud_Central_帳戶.pdf" 
+            
+          >
+            <img src="/zh-tw/occm38/images/pdf.png" width="16" height="16"/>
+            設定 Cloud Central 帳戶
+          </a>
+          
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/occm38/pdfs/sidebar/設定連接器.pdf" 
+            
+          >
+            <img src="/zh-tw/occm38/images/pdf.png" width="16" height="16"/>
+            設定連接器
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/occm38/pdfs/sidebar/管理_Cloud_Volumes_ONTAP.pdf" 
+            
+          >
+            <img src="/zh-tw/occm38/images/pdf.png" width="16" height="16"/>
+            管理 Cloud Volumes ONTAP
+          </a>
+          
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/occm38/pdfs/sidebar/瞭解.pdf" 
+            
+          >
+            <img src="/zh-tw/occm38/images/pdf.png" width="16" height="16"/>
+            瞭解
+          </a>
+          
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/occm38/pdfs/sidebar/儲存設備.pdf" 
+            
+          >
+            <img src="/zh-tw/occm38/images/pdf.png" width="16" height="16"/>
+            儲存設備
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/occm38/pdfs/sidebar/高可用度配對.pdf" 
+            
+          >
+            <img src="/zh-tw/occm38/images/pdf.png" width="16" height="16"/>
+            高可用度配對
+          </a>
+          
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/occm38/pdfs/sidebar/開始使用_AWS.pdf" 
+            
+          >
+            <img src="/zh-tw/occm38/images/pdf.png" width="16" height="16"/>
+            開始使用 AWS
+          </a>
+          
+
+
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/occm38/pdfs/sidebar/設定您的網路.pdf" 
+            
+          >
+            <img src="/zh-tw/occm38/images/pdf.png" width="16" height="16"/>
+            設定您的網路
+          </a>
+          
+
+
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/occm38/pdfs/sidebar/開始使用_Azure.pdf" 
+            
+          >
+            <img src="/zh-tw/occm38/images/pdf.png" width="16" height="16"/>
+            開始使用 Azure
+          </a>
+          
+
+
+
+
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/occm38/pdfs/sidebar/開始使用_GCP.pdf" 
+            
+          >
+            <img src="/zh-tw/occm38/images/pdf.png" width="16" height="16"/>
+            開始使用 GCP
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/occm38/pdfs/sidebar/配置及管理儲存設備.pdf" 
+            
+          >
+            <img src="/zh-tw/occm38/images/pdf.png" width="16" height="16"/>
+            配置及管理儲存設備
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/occm38/pdfs/sidebar/監控效能.pdf" 
+            
+          >
+            <img src="/zh-tw/occm38/images/pdf.png" width="16" height="16"/>
+            監控效能
+          </a>
+          
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/occm38/pdfs/sidebar/管理.pdf" 
+            
+          >
+            <img src="/zh-tw/occm38/images/pdf.png" width="16" height="16"/>
+            管理
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/occm38/pdfs/sidebar/使用檔案服務來配置磁碟區.pdf" 
+            
+          >
+            <img src="/zh-tw/occm38/images/pdf.png" width="16" height="16"/>
+            使用檔案服務來配置磁碟區
+          </a>
+          
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/occm38/pdfs/sidebar/Azure_NetApp_Files.pdf" 
+            
+          >
+            <img src="/zh-tw/occm38/images/pdf.png" width="16" height="16"/>
+            Azure NetApp Files
+          </a>
+          
+
+
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/occm38/pdfs/sidebar/AWS_適用的_Cloud_Volumes_Service.pdf" 
+            
+          >
+            <img src="/zh-tw/occm38/images/pdf.png" width="16" height="16"/>
+            AWS 適用的 Cloud Volumes Service
+          </a>
+          
+
+
+
+
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/occm38/pdfs/sidebar/參考資料.pdf" 
+            
+          >
+            <img src="/zh-tw/occm38/images/pdf.png" width="16" height="16"/>
+            參考資料
+          </a>
+          
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/occm38/pdfs/sidebar/適用於_GCP_Cloud_Volumes_Service.pdf" 
+            
+          >
+            <img src="/zh-tw/occm38/images/pdf.png" width="16" height="16"/>
+            適用於 GCP Cloud Volumes Service
+          </a>
+          
+
+
+
+
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/occm38/pdfs/sidebar/管理_ONTAP_叢集.pdf" 
+            
+          >
+            <img src="/zh-tw/occm38/images/pdf.png" width="16" height="16"/>
+            管理 ONTAP 叢集
+          </a>
+          
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/occm38/pdfs/sidebar/備份到雲端.pdf" 
+            
+          >
+            <img src="/zh-tw/occm38/images/pdf.png" width="16" height="16"/>
+            備份到雲端
+          </a>
+          
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/occm38/pdfs/sidebar/開始使用.pdf" 
+            
+          >
+            <img src="/zh-tw/occm38/images/pdf.png" width="16" height="16"/>
+            開始使用
+          </a>
+          
+
+
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/occm38/pdfs/sidebar/複製與同步資料.pdf" 
+            
+          >
+            <img src="/zh-tw/occm38/images/pdf.png" width="16" height="16"/>
+            複製與同步資料
+          </a>
+          
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/occm38/pdfs/sidebar/開始使用.pdf" 
+            
+          >
+            <img src="/zh-tw/occm38/images/pdf.png" width="16" height="16"/>
+            開始使用
+          </a>
+          
+
+
+
+
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/occm38/pdfs/sidebar/如何安裝資料代理程式.pdf" 
+            
+          >
+            <img src="/zh-tw/occm38/images/pdf.png" width="16" height="16"/>
+            如何安裝資料代理程式
+          </a>
+          
+
+
+
+
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/occm38/pdfs/sidebar/教學課程.pdf" 
+            
+          >
+            <img src="/zh-tw/occm38/images/pdf.png" width="16" height="16"/>
+            教學課程
+          </a>
+          
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/occm38/pdfs/sidebar/深入瞭解資料隱私.pdf" 
+            
+          >
+            <img src="/zh-tw/occm38/images/pdf.png" width="16" height="16"/>
+            深入瞭解資料隱私
+          </a>
+          
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/occm38/pdfs/sidebar/開始使用.pdf" 
+            
+          >
+            <img src="/zh-tw/occm38/images/pdf.png" width="16" height="16"/>
+            開始使用
+          </a>
+          
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/occm38/pdfs/sidebar/啟動資料來源的掃描.pdf" 
+            
+          >
+            <img src="/zh-tw/occm38/images/pdf.png" width="16" height="16"/>
+            啟動資料來源的掃描
+          </a>
+          
+
+
+
+
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+
+
+
+
+
+    <ul class="subfolders" style="display:none;"><li class="active pdf-hide">
+  <a target="_blank" href="/zh-tw/occm38/pdfs/pages/faq_cloud_compliance.pdf" >
+    <img src="/zh-tw/occm38/images/pdf.png" width="16" height="16"/>
+    PDF of this page
+  </a>
+</li>
+
+</ul>
+  
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/occm38/pdfs/sidebar/啟用即時全域檔案共用.pdf" 
+            
+          >
+            <img src="/zh-tw/occm38/images/pdf.png" width="16" height="16"/>
+            啟用即時全域檔案共用
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/occm38/pdfs/sidebar/最佳化雲端運算成本.pdf" 
+            
+          >
+            <img src="/zh-tw/occm38/images/pdf.png" width="16" height="16"/>
+            最佳化雲端運算成本
+          </a>
+          
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/occm38/pdfs/sidebar/將資料分層至雲端.pdf" 
+            
+          >
+            <img src="/zh-tw/occm38/images/pdf.png" width="16" height="16"/>
+            將資料分層至雲端
+          </a>
+          
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/occm38/pdfs/sidebar/開始使用.pdf" 
+            
+          >
+            <img src="/zh-tw/occm38/images/pdf.png" width="16" height="16"/>
+            開始使用
+          </a>
+          
+
+
+
+
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/occm38/pdfs/sidebar/參考資料.pdf" 
+            
+          >
+            <img src="/zh-tw/occm38/images/pdf.png" width="16" height="16"/>
+            參考資料
+          </a>
+          
+
+
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/occm38/pdfs/sidebar/管理_Cloud_Manager.pdf" 
+            
+          >
+            <img src="/zh-tw/occm38/images/pdf.png" width="16" height="16"/>
+            管理 Cloud Manager
+          </a>
+          
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/occm38/pdfs/sidebar/管理連接器.pdf" 
+            
+          >
+            <img src="/zh-tw/occm38/images/pdf.png" width="16" height="16"/>
+            管理連接器
+          </a>
+          
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/occm38/pdfs/sidebar/建立連接器的更多方法.pdf" 
+            
+          >
+            <img src="/zh-tw/occm38/images/pdf.png" width="16" height="16"/>
+            建立連接器的更多方法
+          </a>
+          
+
+
+
+
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/occm38/pdfs/sidebar/管理認證資料.pdf" 
+            
+          >
+            <img src="/zh-tw/occm38/images/pdf.png" width="16" height="16"/>
+            管理認證資料
+          </a>
+          
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/occm38/pdfs/sidebar/AWS.pdf" 
+            
+          >
+            <img src="/zh-tw/occm38/images/pdf.png" width="16" height="16"/>
+            AWS
+          </a>
+          
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/occm38/pdfs/sidebar/Azure.pdf" 
+            
+          >
+            <img src="/zh-tw/occm38/images/pdf.png" width="16" height="16"/>
+            Azure
+          </a>
+          
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/occm38/pdfs/sidebar/GCP.pdf" 
+            
+          >
+            <img src="/zh-tw/occm38/images/pdf.png" width="16" height="16"/>
+            GCP
+          </a>
+          
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/occm38/pdfs/sidebar/參考資料.pdf" 
+            
+          >
+            <img src="/zh-tw/occm38/images/pdf.png" width="16" height="16"/>
+            參考資料
+          </a>
+          
+
+
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/zh-tw/occm38/pdfs/sidebar/使用API和自動化.pdf" 
+            
+          >
+            <img src="/zh-tw/occm38/images/pdf.png" width="16" height="16"/>
+            使用API和自動化
+          </a>
+          
+
+
+
+
+
+          
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+
+
+
+
+
+</li></ul>
+  <div class="zip-pdf-link-container" style="display: none;">   
+    <a href="#" id="zipPdf">
+      <img src="/zh-tw/occm38/images/pdf-zip.png" width="16" height="16"/>
+      <pre>個別 PDF 文件的集合<span class="zip-size"></span></pre>
+    </a><div id="zip-link-popup" class="hide">
+    <div class="inner-modal">
+        <div class="downloading-progress">
+            <div class="spinner"></div>
+            <h1>Creating your file...</h1>
+            <div>This may take a few minutes. Thanks for your patience.</div>
+            <button class="cancel-download-btn" type="button">Cancel</button>
+        </div>
+        <div class="download-complete hide">
+            <div class="done-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z"/></svg>
+            </div>
+            <div>Your file is ready</div>
+            <button class="cancel-download-btn" type="button">OK</button>
+        </div>
+    </div>
+</div>
+<script>
+    $(".cancel-download-btn").click(function(){
+        $("#zip-link-popup").addClass("hide");
+        $("#zip-link-popup .downloading-progress").removeClass("hide");
+        $("#zip-link-popup .download-complete").addClass("hide");
+    });
+</script></div>
+</div>
+<script>
+  $("#toggleContainerPdf li.active:last-child").parents('ul.subfolders').toggle('display');
+  $("#toggleButtonPdf").click(function () {
+    $("#toggleContainerPdf").toggle('display');
+    $(".n-pdf-body-container .zip-pdf-link-container").toggle('display');
+  });
+</script><div class="sidebar-nav-container">
+  <ul id="mysidebar" class="nav"><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/index.html">
+        Cloud Manager文件
+      </a></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> 版本資訊</div>
+      </a>
+      <ul><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> Cloud Manager</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/reference_new_occm.html">
+        新增功能
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/concept_saas.html">
+        移轉至 SaaS
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/reference_issues.html">
+        已知問題
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/reference_limitations.html">
+        已知限制
+      </a></li></ul></li><li class=" "><a class="na-navbar-padding" href="https://docs.netapp.com/us-en/cloud-volumes-ontap/">
+        Cloud Volumes ONTAP
+      </a></li></ul></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/reference_key_changes.html">
+        重要變更
+      </a></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> 開始使用 Cloud Manager</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/concept_overview.html">
+        深入瞭解 Cloud Manager
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/reference_networking.html">
+        網路總覽
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/task_signing_up.html">
+        註冊 Cloud Central
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/task_logging_in.html">
+        登入 Cloud Manager
+      </a></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> 設定 Cloud Central 帳戶</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/concept_cloud_central_accounts.html">
+        深入瞭解 Cloud Central 帳戶
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/task_setting_up_cloud_central_accounts.html">
+        設定帳戶
+      </a></li></ul></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> 設定連接器</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/concept_connectors.html">
+        深入瞭解連接器
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/reference_networking_cloud_manager.html">
+        網路需求
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/task_creating_connectors_aws.html">
+        在 AWS 中建立連接器
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/task_creating_connectors_azure.html">
+        在 Azure 中建立 Connector
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/task_creating_connectors_gcp.html">
+        在 GCP 中建立連接器
+      </a></li></ul></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/reference_whats_next.html">
+        下一步
+      </a></li></ul></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> 管理 Cloud Volumes ONTAP</div>
+      </a>
+      <ul><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> 瞭解</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/concept_overview_cvo.html">
+        總覽
+      </a></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> 儲存設備</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/concept_storage.html">
+        磁碟與集合體
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/concept_data_tiering.html">
+        資料分層
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/concept_storage_management.html">
+        儲存管理
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/concept_flash_cache.html">
+        Flash 快取
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/concept_worm.html">
+        WORM 儲存設備
+      </a></li></ul></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> 高可用度配對</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/concept_ha.html">
+        AWS 中的 HA 配對
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/concept_ha_azure.html">
+        Azure 中的 HA 配對
+      </a></li></ul></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/concept_evaluating.html">
+        評估
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/concept_licensing.html">
+        授權
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/concept_security.html">
+        安全性
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/concept_performance.html">
+        效能
+      </a></li><li class=" "><a class="na-navbar-padding" href="https://docs.netapp.com/us-en/cloud-volumes-ontap/index.html">
+        支援的組態
+      </a></li><li class=" "><a class="na-navbar-padding" href="https://cloud.netapp.com/cloud-volumes-global-regions">
+        支援的地區
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/reference_default_configs.html">
+        預設組態
+      </a></li></ul></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> 開始使用 AWS</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/task_getting_started_aws.html">
+        快速入門
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/task_planning_your_config.html">
+        規劃您的組態
+      </a></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> 設定您的網路</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/reference_networking_aws.html">
+        網路需求
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/task_setting_up_transit_gateway.html">
+        設定 AWS 傳輸閘道
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/reference_security_groups.html">
+        AWS 的安全群組規則
+      </a></li></ul></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/task_setting_up_kms.html">
+        設定 AWS KMS
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/task_deploying_otc_aws.html">
+        在 AWS 中啟動系統
+      </a></li><li class=" "><a class="na-navbar-padding" href="https://docs.netapp.com/us-en/occm/media/c2s.pdf">
+        開始使用 AWS C2S
+      </a></li></ul></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> 開始使用 Azure</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/task_getting_started_azure.html">
+        快速入門
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/task_planning_your_config_azure.html">
+        規劃您的組態
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/reference_networking_azure.html">
+        設定您的網路
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/task_deploying_otc_azure.html">
+        在 Azure 中啟動系統
+      </a></li></ul></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> 開始使用 GCP</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/task_getting_started_gcp.html">
+        快速入門
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/task_planning_your_config_gcp.html">
+        規劃您的組態
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/reference_networking_gcp.html">
+        設定您的網路
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/task_setting_up_gcp_encryption.html">
+        使用客戶管理的加密金鑰
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/task_deploying_gcp.html">
+        在 GCP 中啟動系統
+      </a></li></ul></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> 配置及管理儲存設備</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/task_provisioning_storage.html">
+        建立磁碟區、集合體和 LUN
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/task_managing_storage.html">
+        管理磁碟區和集合體
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/task_tiering.html">
+        將非作用中資料分層至物件儲存設備
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/task_managing_svms.html">
+        管理儲存 VM
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/task_connecting_kubernetes.html">
+        使用功能區做為持續儲存的儲存設備 ONTAP
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/task_encrypting_volumes.html">
+        使用 NetApp 加密來加密磁碟區
+      </a></li></ul></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/task_replicating_data.html">
+        複寫資料
+      </a></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> 監控效能</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/concept_monitoring.html">
+        深入瞭解監控
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/task_getting_started_monitoring.html">
+        開始使用
+      </a></li></ul></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/task_protecting_ransomware.html">
+        改善勒索軟體保護
+      </a></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> 管理</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/task_registering.html">
+        註冊隨用隨付系統
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/task_setting_up_ontap_cloud.html">
+        設定 Cloud Volumes ONTAP 功能
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/task_managing_licenses.html">
+        管理 BYOL 授權
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/task_updating_ontap_cloud.html">
+        更新軟體
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/task_modifying_ontap_cloud.html">
+        修改系統組態
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/task_managing_state.html">
+        停止並啟動系統
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/task_monitoring_costs.html">
+        監控 AWS 成本
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/task_connecting_to_otc.html">
+        連線 Cloud Volumes ONTAP 至
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/task_adding_ontap_cloud.html">
+        新增現有系統
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/task_deleting_working_env.html">
+        刪除系統
+      </a></li></ul></li></ul></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> 使用檔案服務來配置磁碟區</div>
+      </a>
+      <ul><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> Azure NetApp Files</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/concept_azure_netapp_files.html">
+        深入瞭解 Azure NetApp Files
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/task_manage_anf.html">
+        設定 Azure NetApp Files 功能
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/task_manage_anf_volumes.html">
+        建立及管理磁碟區
+      </a></li></ul></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> AWS 適用的 Cloud Volumes Service</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/concept_cvs_aws.html">
+        深入瞭 Cloud Volumes Service 解適用於 AWS 的功能
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/task_manage_cvs_aws.html">
+        部署及管理雲端磁碟區
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/task_manage_cloud_volumes_snapshots.html">
+        管理雲端磁碟區快照
+      </a></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> 參考資料</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/reference_cvs_service_levels_and_quotas.html">
+        服務層級和已分配容量
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/reference_security_groups_windows_ad_servers.html">
+        適用於 Windows AD 伺服器的 AWS 安全性群組設定
+      </a></li></ul></li></ul></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> 適用於 GCP Cloud Volumes Service</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/concept_cvs_gcp.html">
+        深入瞭 Cloud Volumes Service 解適用於 GCP 的功能
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/task_setup_cvs_gcp.html">
+        設定 Cloud Volumes Service GCP 的功能
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/task_manage_cvs_gcp.html">
+        建立及管理雲端磁碟區
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/task_manage_cloud_volumes_gcp_snapshots.html">
+        管理雲端磁碟區快照
+      </a></li></ul></li></ul></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> 管理 ONTAP 叢集</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/task_discovering_ontap.html">
+        探索 ONTAP 叢集
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/task_provisioning_ontap.html">
+        管理 ONTAP 功能
+      </a></li></ul></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> 備份到雲端</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/concept_backup_to_cloud.html">
+        深入瞭解備份至雲端
+      </a></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> 開始使用</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/task_backup_to_s3.html">
+        備份至 Amazon S3
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/task_backup_to_azure.html">
+        備份至 Azure Blob 儲存設備
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/task_backup_from_onprem.html">
+        從內部部署 ONTAP 的資訊系統進行備份
+      </a></li></ul></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/task_managing_backups.html">
+        管理備份與還原資料
+      </a></li></ul></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> 複製與同步資料</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/concept_cloud_sync.html">
+        深入瞭解 Cloud Sync
+      </a></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> 開始使用</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/task_sync_quick_start.html">
+        快速入門
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/reference_sync_requirements.html">
+        準備來源和目標
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/reference_sync_networking.html">
+        準備網路
+      </a></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> 如何安裝資料代理程式</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/task_sync_installing_aws.html">
+        安裝於 AWS
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/task_sync_installing_azure.html">
+        安裝於 Azure
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/task_sync_installing_gcp.html">
+        安裝於 GCP
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/task_sync_installing_linux.html">
+        安裝在 Linux 主機上
+      </a></li></ul></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/task_sync_creating_relationships.html">
+        建立同步關係
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/task_sync_licensing.html">
+        支付同步關係費用
+      </a></li></ul></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> 教學課程</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/task_sync_copying_acls.html">
+        在共享區之間複製 ACL
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/task_sync_nfs_encryption.html">
+        加密傳輸中的 NFS 資料
+      </a></li></ul></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/task_sync_managing_relationships.html">
+        管理同步關係
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/api_sync.html">
+        API
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/faq_sync.html">
+        常見問題集
+      </a></li></ul></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> 深入瞭解資料隱私</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/concept_cloud_compliance.html">
+        深入瞭解雲端法規遵循
+      </a></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> 開始使用</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/task_deploy_cloud_compliance.html">
+        部署雲端法規遵循
+      </a></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> 啟動資料來源的掃描</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/task_getting_started_compliance.html">
+        不再是不一樣的Cloud Volumes ONTAP Azure NetApp Files
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/task_scanning_s3.html">
+        Amazon S3 儲存桶
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/task_scanning_databases.html">
+        資料庫架構
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/task_scanning_onprem.html">
+        內部部署ONTAP 的不全資料
+      </a></li></ul></li></ul></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/task_controlling_private_data.html">
+        取得資料的可見度與控制權
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/task_generating_compliance_reports.html">
+        產生報告
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/task_responding_to_dsar.html">
+        回應 DSAR
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/task_managing_compliance.html">
+        停用雲端法規遵循
+      </a></li><li class="  active "><a class="na-navbar-padding" href="/zh-tw/occm38/faq_cloud_compliance.html">
+        常見問題集
+      </a></li></ul></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> 啟用即時全域檔案共用</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/concept_gfc.html">
+        深入瞭解全域檔案快取
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/concept_before_you_begin_to_deploy_gfc.html">
+        開始部署全域檔案快取之前
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/task_gfc_getting_started.html">
+        快速入門
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/download_gfc_resources.html">
+        開始部署全域檔案快取 Edge 之前
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/task_deploy_gfc_edge_instances.html">
+        部署全域檔案快取 Edge
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/concept_gfc_enduser_training.html">
+        終端使用者訓練
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/reference_gfc_additional_information.html">
+        其他資訊
+      </a></li></ul></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> 最佳化雲端運算成本</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/concept_compute.html">
+        瞭解運算服務
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/task_getting_started_compute.html">
+        開始使用
+      </a></li></ul></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> 將資料分層至雲端</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/concept_cloud_tiering.html">
+        深入瞭解雲端分層
+      </a></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> 開始使用</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/task_tiering_onprem_aws.html">
+        將資料分層至 Amazon S3
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/task_tiering_onprem_azure.html">
+        將資料層級至 Azure Blob 儲存設備
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/task_tiering_onprem_gcp.html">
+        將資料分層至 Google Cloud Storage
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/task_tiering_onprem_storagegrid.html">
+        將資料分層 StorageGRID 至
+      </a></li></ul></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/task_licensing_cloud_tiering.html">
+        設定授權
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/task_managing_tiering.html">
+        管理資料分層
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/faq_cloud_tiering.html">
+        常見問題集
+      </a></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> 參考資料</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/reference_aws_support.html">
+        支援的 Amazon S3 儲存類別和地區
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/reference_azure_support.html">
+        支援的 Azure 存取層級和地區
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/reference_google_support.html">
+        支援的 Google Cloud 儲存類別和地區
+      </a></li></ul></li></ul></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/task_viewing_amazon_s3.html">
+        檢視 Amazon S3 儲存桶
+      </a></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> 管理 Cloud Manager</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/task_finding_system_id.html">
+        尋找您的系統 ID
+      </a></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> 管理連接器</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/task_managing_connectors.html">
+        管理現有的連接器
+      </a></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> 建立連接器的更多方法</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/reference_cloud_mgr_reqs.html">
+        連接器主機需求
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/task_launching_aws_mktp.html">
+        從 AWS Marketplace 建立
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/task_launching_azure_mktp.html">
+        從 Azure Marketplace 建立
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/task_installing_linux.html">
+        手動安裝軟體
+      </a></li></ul></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/reference_connector_default_config.html">
+        預設組態
+      </a></li></ul></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> 管理認證資料</div>
+      </a>
+      <ul><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> AWS</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/concept_accounts_aws.html">
+        瞭解 AWS 認證資料
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/task_adding_aws_accounts.html">
+        管理 AWS 認證資料
+      </a></li></ul></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> Azure</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/concept_accounts_azure.html">
+        瞭解 Azure 認證資料
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/task_adding_azure_accounts.html">
+        管理 Azure 認證資料
+      </a></li></ul></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> GCP</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/concept_accounts_gcp.html">
+        深入瞭解 GCP 認證
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/task_adding_gcp_accounts.html">
+        管理 GCP 認證
+      </a></li></ul></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/task_adding_nss_accounts.html">
+        NetApp 支援網站認證
+      </a></li></ul></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/task_managing_cloud_central_accounts.html">
+        管理您的帳戶
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/task_installing_https_cert.html">
+        安裝 HTTPS 憑證
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/task_removing.html">
+        移除工作環境
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/task_configuring_proxy.html">
+        設定 Proxy 設定
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/task_overriding_cifs_locks.html">
+        置換 Azure 中的 CIFS 鎖定
+      </a></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> 參考資料</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/reference_user_roles.html">
+        使用者角色
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/reference_permissions.html">
+        權限
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/reference_aws_marketplace.html">
+        AWS Marketplace 頁面
+      </a></li></ul></li></ul></li><li class="subfolders "><a href="#">
+        <div class="na-navbar-padding"> 使用API和自動化</div>
+      </a>
+      <ul><li class=" "><a class="na-navbar-padding" href="https://docs.netapp.com/us-en/occm/api.html">
+        API 開發人員指南
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/reference_infrastructure_as_code.html">
+        使用DevOps工具自動化
+      </a></li></ul></li><li class=" "><a class="na-navbar-padding" href="https://kb.netapp.com/Advice_and_Troubleshooting/Cloud_Services">
+        疑難排解問題
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/reference_additional_info.html">
+        相關連結
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/reference_earlier_versions.html">
+        舊版
+      </a></li><li class=" "><a class="na-navbar-padding" href="/zh-tw/occm38/reference_legal_notices.html">
+        法律聲明
+      </a></li></ul>
+</div>
+<script>
+  window.onscroll = () => {
+    const value = -40 - (document.body.scrollHeight - (window.innerHeight + document.scrollingElement.scrollTop));
+    
+    document.getElementById("sidebar-height").style.bottom = Math.max(0,value) + "px";
+};
+</script>
+<!-- this highlights the active parent class in the navgoco sidebar. this is critical so that the parent expands when you're viewing a page. This must appear below the sidebar code above. Otherwise, if placed inside customscripts.js, the script runs before the sidebar code runs and the class never gets inserted.-->
+<script>$("li.active").parents('li').toggleClass("active");</script>
+
+
+  </div>
+  
+
+  <div class="ie-content-pane n-doc__component-detail-content n-doc__component-detail-content--show-code">
+    <!-- Begin of page container --><article class="page-content">
+      <div class="ie-utility">
+  <div class="ie-menu">
+    <div class="n-breadcrumb">
+      <ul class="n-breadcrumb__list">
+        <li class="n-breadcrumb__list-item">
+          <a href="https://docs.netapp.com">docs.netapp.com</a>
+        </li>
+        
+
+        
+
+        <li class="n-breadcrumb__list-item">
+          <a href="/zh-tw/occm38/">Cloud&nbsp;Manager&nbsp;3.8</a>
+        </li>
+
+      </ul>
+    </div>
+    <div style="clear: both"></div><!-- Main needs to have height -->
+  </div>
+</div>
+
+      
+<div class="ie-notification">
+  <span class="ie-notification-highlight">本文件適用於舊版的 Cloud Manager。</span><br>
+  <span><a href="https://docs.netapp.com/zh-tw/occm/">前往文件取得最新版本。</a></span>
+</div>
+<div class="ie-nmt-disclaimer">
+  <span>
+    <div class="ie-nmt-disclaimer-container">
+      <div class="ie-nmt-disclaimer-icon">
+        <svg class="luci-icon" aria-hidden="true">
+          <use xlink:href="/zh-tw/occm38/common/svg/sprite.svg#circle-info">
+        </svg>
+      </div>
+      <div class="ie-nmt-disclaimer-content">
+        <span> 本繁體中文版使用機器翻譯，譯文僅供參考，若與英文版本牴觸，應以英文版本為準。 </span>
+      </div>
+      <div style="clear:both;"></div>
+    </div>
+  </span>
+</div><div class="n-doc__component-detail-heading-wrap">
+  <h1 class="n-doc__component-detail-heading">雲端法規遵循的常見問題集</h1>
+</div>
+
+
+<p class="page-details">
+  
+    
+    <time datetime="2022-05-03 06:26:21 +0000">05/03/2022</time>
+    
+  
+
+
+</p>
+
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph lead">
+<p>如果您只是想要快速回答問題、這個常見問題集就能幫上忙。</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="什麼是雲端法規遵循">什麼是雲端法規遵循？</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Cloud Compliance是一款雲端產品、採用人工智慧（AI）導向技術、協助組織瞭解資料內容、並識別Azure NetApp Files 整個支援AWS Cloud Volumes ONTAP 或Azure、Amazon S3儲存桶和資料庫的敏感資料。</p>
+</div>
+<div class="paragraph">
+<p>雲端法規遵循提供預先定義的參數（例如敏感資訊類型和類別）、以因應資料隱私和敏感度的新資料法規遵循要求、例如 GDPR 、 CCPA 、 HIPAA 等。</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="為何應該使用雲端法規遵循">為何應該使用雲端法規遵循？</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>雲端法規遵循可協助您運用資料、協助您：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>遵守資料法規遵循與隱私權法規。</p>
+</li>
+<li>
+<p>遵守資料保留政策。</p>
+</li>
+<li>
+<p>根據 GDPR 、 CCPA 、 HIPAA 及其他資料隱私法規的要求、輕鬆找出特定資料並進行報告、以因應資料主題。</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="雲端法規遵循的常見使用案例為何">雲端法規遵循的常見使用案例為何？</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>識別個人識別資訊（ PII ）。</p>
+</li>
+<li>
+<p>根據 GDPR 和 CCPA 隱私權法規的要求、識別廣泛的敏感資訊。</p>
+</li>
+<li>
+<p>遵守新的及即將推出的資料隱私權法規。</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><a href="https://cloud.netapp.com/cloud-compliance" target="_blank" rel="noopener">"深入瞭解雲端法規遵循的使用案例"</a>。</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="哪些類型的資料可透過-cloud-compliance-進行掃描">哪些類型的資料可透過 Cloud Compliance 進行掃描？</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Cloud Compliance 支援透過 NFS 和 CIFS 傳輸協定掃描非結構化資料 Cloud Volumes ONTAP 、這些傳輸協定由支援的是由支援的功能。 Azure NetApp FilesCloud Compliance也可以掃描儲存在Amazon S3儲存區上的資料。</p>
+</div>
+<div class="paragraph">
+<p>此外、Cloud Compliance可掃描位於任何位置的資料庫、而不需要由Cloud Manager管理。</p>
+</div>
+<div class="paragraph">
+<p><a href="concept_cloud_compliance.html#how-scans-work">"瞭解掃描的運作方式"</a>。</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="支援哪些雲端供應商">支援哪些雲端供應商？</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Cloud Compliance 是 Cloud Manager 的一部分、目前支援 AWS 和 Azure 。如此一來、您的組織便能在不同的雲端供應商之間統一化隱私權可見度。Google Cloud Platform （ GCP ）支援即將新增。</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="如何存取雲端法規遵循">如何存取雲端法規遵循？</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>雲端法規遵循是透過 Cloud Manager 進行營運與管理。您可以從 Cloud Manager 的「 * Compliance * 」（ * 法規遵循 * ）索引標籤存取 Cloud Compliance 功能。</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="雲端法規遵循的運作方式為何">雲端法規遵循的運作方式為何？</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Cloud Compliance 會在 Cloud Manager 系統和儲存系統旁部署另一層人工智慧。然後掃描磁碟區、儲存區和資料庫上的資料、並為找到的資料洞見建立索引。</p>
+</div>
+<div class="paragraph">
+<p><a href="concept_cloud_compliance.html">"深入瞭解 Cloud Compliance 的運作方式"</a>。</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="cloud-compliance-的成本是多少">Cloud Compliance 的成本是多少？</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>雲端法規遵循的使用成本取決於您所掃描的資料量。Cloud Compliance 在 Cloud Manager 工作區中掃描的前 1 TB 資料是免費的。必須訂閱 AWS 或 Azure Marketplace 、才能在該時間點之後繼續掃描資料。請參閱 <a href="https://cloud.netapp.com/cloud-compliance#pricing" target="_blank" rel="noopener">"定價"</a> 以取得詳細資料。</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="cloud-compliance-多久掃描一次我的資料">Cloud Compliance 多久掃描一次我的資料？</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>資料經常變更、因此 Cloud Compliance 會持續掃描您的資料、而不會對您的資料造成任何影響。雖然初次掃描資料可能需要較長時間、但後續掃描只會掃描遞增變更、如此可縮短系統掃描時間。</p>
+</div>
+<div class="paragraph">
+<p><a href="concept_cloud_compliance.html#how-scans-work">"瞭解掃描的運作方式"</a>。</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="cloud-compliance-是否提供報告">Cloud Compliance 是否提供報告？</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>是的。Cloud Compliance 所提供的資訊可能與貴組織中的其他利害關係人有關、因此我們可讓您產生報告、以分享這些見解。</p>
+</div>
+<div class="paragraph">
+<p>下列報告適用於雲端法規遵循：</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">隱私權風險評估報告</dt>
+<dd>
+<p>提供資料的隱私見解和隱私權風險分數。 <a href="task_generating_compliance_reports.html">"深入瞭解"</a>。</p>
+</dd>
+<dt class="hdlist1">資料主旨存取要求報告</dt>
+<dd>
+<p>可讓您擷取包含資料主旨特定名稱或個人識別碼相關資訊之所有檔案的報告。 <a href="task_responding_to_dsar.html">"深入瞭解"</a>。</p>
+</dd>
+<dt class="hdlist1">PCI DSS 報告</dt>
+<dd>
+<p>協助您辨識信用卡資訊在檔案之間的發佈情形。 <a href="task_generating_compliance_reports.html">"深入瞭解"</a>。</p>
+</dd>
+<dt class="hdlist1">HIPAA 報告</dt>
+<dd>
+<p>協助您識別檔案之間的健全狀況資訊發佈。 <a href="task_generating_compliance_reports.html">"深入瞭解"</a>。</p>
+</dd>
+<dt class="hdlist1">報告特定資訊類型</dt>
+<dd>
+<p>報告中包含有關已識別檔案的詳細資料、這些檔案包含個人資料和敏感個人資料。您也可以查看依類別和檔案類型分類的檔案。 <a href="task_controlling_private_data.html">"深入瞭解"</a>。</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="雲端法規遵循需要哪種類型的執行個體或-vm">雲端法規遵循需要哪種類型的執行個體或 VM ？</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>在 Azure 中、 Cloud Compliance 可在標準磁碟機 D16s_v3 VM 上執行、磁碟容量為 512 GB 。</p>
+</li>
+<li>
+<p>在 AWS 中、 Cloud Compliance 會在具有 500 GB GP2 磁碟的 m5.4x大型 執行個體上執行。</p>
+<div class="paragraph">
+<p>在無法使用 m5.4xLarge 的區域中、 Cloud Compliance 會改在 m4.4xLarge 執行個體上執行。</p>
+</div>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/occm38/images/note.svg" alt="附註">
+</td>
+<td class="content">
+不支援變更或調整執行個體 / VM 類型的大小。您需要使用提供的預設大小。
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p><a href="concept_cloud_compliance.html">"深入瞭解 Cloud Compliance 的運作方式"</a>。</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="掃描效能是否有所差異">掃描效能是否有所差異？</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>掃描效能可能會因網路頻寬和雲端環境中的平均檔案大小而異。</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="支援哪些檔案類型">支援哪些檔案類型？</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Cloud Compliance 會掃描所有檔案以取得類別和中繼資料深入資訊、並在儀表板的「檔案類型」區段中顯示所有檔案類型。</p>
+</div>
+<div class="paragraph">
+<p>當 Cloud Compliance 偵測到個人識別資訊（ PII ）、或執行 DSAR 搜尋時、僅支援下列檔案格式： .PDF 、 .DOCX 、 .DOC 、 .PPTX 、 .XLS 、 .XLSX 、 .CSV 、 TXT 、 .RTF 及 .Json 。</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="如何實現雲端法規遵循">如何實現雲端法規遵循？</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>首先、您需要在 Cloud Manager 中部署 Cloud Compliance 執行個體。執行執行個體之後、您可以從 * Compliance * 索引標籤或選取特定工作環境、在現有的工作環境和資料庫上啟用執行個體。</p>
+</div>
+<div class="paragraph">
+<p><a href="task_getting_started_compliance.html">"瞭解如何開始使用"</a>。</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/occm38/images/note.svg" alt="附註">
+</td>
+<td class="content">
+啟動 Cloud Compliance 會立即進行初始掃描。法規遵循結果不久即會顯示。
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="如何停用雲端法規遵循">如何停用雲端法規遵循？</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>選取個別工作環境之後、即可從「工作環境」頁面停用「雲端法規遵循」。</p>
+</div>
+<div class="paragraph">
+<p><a href="task_managing_compliance.html">"深入瞭解"</a>。</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/occm38/images/note.svg" alt="附註">
+</td>
+<td class="content">
+若要完全移除 Cloud Compliance 執行個體、您可以從雲端供應商的入口網站手動移除 Cloud Compliance 執行個體。
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="如果在不支援的情況下啟用資料分層會發生什麼情況-cloud-volumes-ontap">如果在不支援的情況下啟用資料分層、會發生什麼情況 Cloud Volumes ONTAP ？</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>您可能想要在 Cloud Volumes ONTAP 將冷資料分層儲存至物件儲存的支援系統上、啟用 Cloud Compliance 。如果啟用資料分層、 Cloud Compliance 會掃描磁碟上的所有資料、然後將冷資料分層至物件儲存設備。</p>
+</div>
+<div class="paragraph">
+<p>法規遵循掃描不會將冷資料加熱、而是維持冷態並分層至物件儲存設備。</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="我可以使用cloud-compliance來掃描內部部署ontap-的不實資料儲存設備嗎">我可以使用Cloud Compliance來掃描內部部署ONTAP 的不實資料儲存設備嗎？</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>不ONTAP 支援直接從內部部署的不支援環境掃描資料。但您可以將ONTAP 內部部署的內部NFS或CIFS資料複寫到Cloud Volumes ONTAP 可運作的環境、然後在這些磁碟區上啟動法規遵循功能、藉此掃描內部部署的資訊。我們計畫支援Cloud Compliance、提供Cloud Volumes Service 更多雲端產品、例如： </p>
+</div>
+<div class="paragraph">
+<p><a href="task_scanning_onprem.html">"深入瞭解"</a>。</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="cloud-compliance-是否能傳送通知給我的組織">Cloud Compliance 是否能傳送通知給我的組織？</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>否、但您可以下載狀態報告、以便在組織內部分享。</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="我可以根據組織的需求自訂服務嗎">我可以根據組織的需求自訂服務嗎？</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>雲端法規遵循可為您的資料提供隨裝即用的洞見。您可以擷取這些洞見、並將其用於貴組織的需求。</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="我可以將雲端法規遵循資訊限制在特定使用者身上嗎">我可以將雲端法規遵循資訊限制在特定使用者身上嗎？</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>是的、 Cloud Compliance 已與 Cloud Manager 完全整合。Cloud Manager 使用者只能根據其工作區權限、查看其符合檢視資格的工作環境資訊。</p>
+</div>
+<div class="paragraph">
+<p>此外、如果您想要讓特定使用者在不管理雲端法規遵循設定的情況下、只檢視 Cloud Compliance 掃描結果、您可以將 <em>Cloud Compliance Viewer</em> 角色指派給這些使用者。</p>
+</div>
+<div class="paragraph">
+<p><a href="concept_cloud_compliance.html#user-access-to-compliance-information">"深入瞭解"</a>。</p>
+</div>
+</div>
+</div>
+
+    </article>
+    <!-- Page Container -->
+  </div>
+
+  <div style="clear: both"></div><!-- Main needs to have height --></div>
+
+        </main>
+
+        <footer class="n-footer">
+  <div class="n-footer__bottom">
+    <div class="n-container">
+      <div class="n-footer__bottom-left">
+        <div class="n-footer__copyright">
+          <ul class="n-footer__copyright-list">
+            <li class="n-footer__copyright-link">
+              <a href="https://www.netapp.com/us/legal/copyright.aspx">© 2022 NetApp, Inc.</a>
+            </li>
+            <li class="n-footer__copyright-link">
+              <a href="https://www.netapp.com/company/legal/terms-of-use/">legal-terms</a>
+            </li>
+            <li class="n-footer__copyright-link">
+              <a href="https://www.netapp.com/company/legal/privacy-policy/">legal-privacy</a>
+            </li>
+            <li class="n-footer__copyright-link">
+              <a href="https://www.netapp.com/company/legal/cookie-policy/">legal-cookies</a>
+            </li>
+            <li class="n-footer__copyright-link">
+              <a class="ot-sdk-show-settings">cookie-settings</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="n-footer__bottom-right">
+        <div class="n-footer__copyright">
+          <ul class="n-footer__copyright-list">
+            <li class="n-footer__copyright-link">
+              <span class="n-footer__fine-print">對我們的網站有任何意見或要求？</span>
+              <a target="_self" href="javascript:netapp_mailto()">請與我們聯絡</a>
+            </li>
+            <li class="n-footer__copyright-link">
+              <a href="https://docs.netapp.com/zh-tw/announcements/">公告</a>
+            </li>
+          </ul>
+        </div>
+        <div class="n-footer__social-links">
+          <ul class="n-footer__social-link-list">
+            <li class="n-footer__social-link-list-item">
+              <a class="n-footer__social-link" data-ntap-social="follow-blog" href="https://blog.netapp.com"
+                target="_blank" title="blog" alt="blog">
+                <span class="n-footer__social-link-text">blog</span>
+                <svg class="n-icon-blog n-footer__social-link-icon" aria-labelledby="title">
+                  <title>blog@</title>
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xlink:href="/zh-tw/occm38/common/svg/sprite.svg#blog"></use>
+                </svg>
+              </a>
+            </li>
+            <li class="n-footer__social-link-list-item">
+              <a class="n-footer__social-link" data-ntap-social="follow-community" href="https://community.netapp.com/"
+                target="_blank" title="community" alt="community">
+                <span class="n-footer__social-link-text">community</span>
+                <svg class="n-icon-community n-footer__social-link-icon" aria-labelledby="title">
+                  <title>community@</title>
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xlink:href="/zh-tw/occm38/common/svg/sprite.svg#comments"></use>
+                </svg>
+              </a>
+            </li>
+            <li class="n-footer__social-link-list-item">
+              <a class="n-footer__social-link" data-ntap-social="follow-twitter" href="https://twitter.com/netapp"
+                target="_blank" title="twitter" alt="twitter">
+                <span class="n-footer__social-link-text">twitter</span>
+                <svg class="n-icon-twitter n-footer__social-link-icon" aria-labelledby="title">
+                  <title>twitter@</title>
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xlink:href="/zh-tw/occm38/common/svg/sprite.svg#twitter"></use>
+                </svg>
+              </a>
+            </li>
+            <li class="n-footer__social-link-list-item">
+              <a class="n-footer__social-link" data-ntap-social="follow-facebook" href="https://www.facebook.com/NetApp"
+                target="_blank" title="facebook" alt="facebook">
+                <span class="n-footer__social-link-text">facebook</span>
+                <svg class="n-icon-facebook n-footer__social-link-icon" aria-labelledby="title">
+                  <title>facebook@</title>
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xlink:href="/zh-tw/occm38/common/svg/sprite.svg#facebook"></use>
+                </svg>
+              </a>
+            </li>
+            <li class="n-footer__social-link-list-item">
+              <a class="n-footer__social-link" data-ntap-social="follow-linkedin"
+                href="https://www.linkedin.com/company/netapp" target="_blank" title="linkedin" alt="linkedin">
+                <span class="n-footer__social-link-text">linkedin</span>
+                <svg class="n-icon-linkedin n-footer__social-link-icon" aria-labelledby="title">
+                  <title>linkedin@</title>
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xlink:href="/zh-tw/occm38/common/svg/sprite.svg#linkedin"></use>
+                </svg>
+              </a>
+            </li>
+            <li class="n-footer__social-link-list-item">
+              <a class="n-footer__social-link" data-ntap-social="follow-youtube"
+                href="https://www.youtube.com/user/NetAppTV" target="_blank" title="youtube" alt="youtube">
+                <span class="n-footer__social-link-text">youtube</span>
+                <svg class="n-icon-youtube n-footer__social-link-icon" aria-labelledby="title">
+                  <title>youtube@</title>
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xlink:href="/zh-tw/occm38/common/svg/sprite.svg#youtube"></use>
+                </svg>
+              </a>
+            </li>
+            <li class="n-footer__social-link-list-item">
+              <a class="n-footer__social-link" data-ntap-social="follow-slideshare"
+                href="https://www.slideshare.net/NetApp" target="_blank" title="slideshare" alt="slideshare">
+                <span class="n-footer__social-link-text">slideshare</span>
+                <svg class="n-icon-slideshare n-footer__social-link-icon" aria-labelledby="title">
+                  <title>slideshare@</title>
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xlink:href="/zh-tw/occm38/common/svg/sprite.svg#slideshare"></use>
+                </svg>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+      </div><!-- Elasticsearch JS -->
+      <script type="text/javascript" src='/zh-tw/occm38/js/bundle.js'></script>
+
+      <!-- Syntax Highlighting -->
+      <script type="text/javascript" src='/zh-tw/occm38/js/prism.js'></script>
+      <script type="text/javascript" src='/zh-tw/occm38/js/prism-curl.js'></script>
+    </div>
+    <script>
+      document.body.offsetWidth=1903;
+      cookieLaw = {}
+      cookieLaw.euCountry = "US";
+      cookieLaw.invoke = function(){return false;}
+    </script>
+    <script src='/zh-tw/occm38/js/www-ntap.js'></script>
+    <script src='/zh-tw/occm38/js/tabbed-blocks.js'></script>
+  </body></html>
