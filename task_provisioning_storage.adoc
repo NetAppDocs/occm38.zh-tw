@@ -210,4 +210,4 @@ Cloud Manager FlexCache 目前並未提供對各個版本的管理、但您可�
 
 NOTE: 若要產生授權、 Cloud Manager 必須存取 \https://ipa-signer.cloudmanager.netapp.com 。請確定此 URL 可從防火牆存取。
 
-video::PBNPVRUeT1o[youtube, width=848,height=480]
+video::PBNPVRUeT1o[youtube,width=848,height=480]

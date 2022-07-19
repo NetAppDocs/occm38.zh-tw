@@ -70,7 +70,7 @@ EBS 磁碟大小:: 啟動 Cloud Volumes ONTAP 一套系統時、您需要選擇�
 
 請觀看下列影片、以瞭解如何在 Cloud Volumes ONTAP AWS 中調整您的更新功能：
 
-video::GELcXmOuYPw[youtube, width=848,height=480]
+video::GELcXmOuYPw[youtube,width=848,height=480]
 
 
 == 選擇支援 Flash Cache 的組態
