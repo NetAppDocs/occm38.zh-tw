@@ -23,8 +23,8 @@ NOTE: 當您從 Cloud Manager 部署 Connector 時、 Cloud Manager 會自動為
 
 * 選項 *
 
-* <<Granting permissions by providing AWS keys>>
-* <<Granting permissions by assuming IAM roles in other accounts>>
+*  permissions by providing AWS keys
+*  permissions by assuming IAM roles in other accounts
 
 
 .我該如何安全地旋轉 AWS 認證資料？
@@ -56,7 +56,7 @@ https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_create.html["AW
 
 
 
-帳戶現在擁有必要的權限。 <<Adding AWS credentials to Cloud Manager,您現在可以將它新增至 Cloud Manager>>。
+帳戶現在擁有必要的權限。  AWS credentials to Cloud Manager,您現在可以將它新增至 Cloud Manager。
 
 
 
@@ -100,7 +100,7 @@ image:screenshot_iam_create_role.gif["顯示 AWS IAM Console 中「 Create role 
 
 
 
-帳戶現在擁有必要的權限。 <<Adding AWS credentials to Cloud Manager,您現在可以將它新增至 Cloud Manager>>。
+帳戶現在擁有必要的權限。  AWS credentials to Cloud Manager,您現在可以將它新增至 Cloud Manager。
 
 
 
@@ -125,7 +125,7 @@ image:screenshot_settings_icon.gif["顯示 Cloud Manager 主控台右上角「�
 
 現在、您可以在建立新的工作環境時、從「詳細資料與認證」頁面切換至不同的認證資料集：
 
-image:screenshot_accounts_switch_aws.gif["在詳細資料 & 認證頁面中按一下「切換帳戶」之後、顯示在雲端供應商帳戶之間選取的快照。"]
+image:screenshot_accounts_switch_aws.gif["在詳細資料  認證頁面中按一下「切換帳戶」之後、顯示在雲端供應商帳戶之間選取的快照。"]
 
 
 

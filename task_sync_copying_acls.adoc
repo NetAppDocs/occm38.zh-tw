@@ -17,8 +17,8 @@ summary: 可在來源 SMB 共用區和目標 SMB 共用區之間複製存取控�
 可在來源 SMB 共用區和目標 SMB 共用區之間複製存取控制清單（ ACL ） Cloud Sync 。如有需要、您可以使用 Robocopy 自行手動保留 ACL 。
 
 .選擇
-* <<Setting up Cloud Sync to copy ACLs between SMB servers,設定 Cloud Sync 功能以自動複製 ACL>>
-* <<Manually copying ACLs,自行手動複製 ACL>>
+*  up Cloud Sync to copy ACLs between SMB servers,設定 Cloud Sync 功能以自動複製 ACL
+*  copying ACLs,自行手動複製 ACL
 
 
 

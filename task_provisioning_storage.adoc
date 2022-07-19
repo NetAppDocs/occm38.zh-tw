@@ -25,7 +25,7 @@ IMPORTANT: 所有磁碟和集合體都必須直接從 Cloud Manager 建立和刪
 
 如果您在啟動 Cloud Volumes ONTAP 完一套功能完善的系統之後需要更多儲存設備、您可以 FlexVol 從 Cloud Manager 為 NFS 、 CIFS 或 iSCSI 建立新的功能完善的功能。
 
-建立 iSCSI Volume 時、 Cloud Manager 會自動為您建立 LUN 。我們只要在每個磁碟區建立一個 LUN 、就能輕鬆完成工作、因此不需要管理。建立磁碟區之後、 <<Connecting a LUN to a host,使用 IQN 從主機連線至 LUN>>。
+建立 iSCSI Volume 時、 Cloud Manager 會自動為您建立 LUN 。我們只要在每個磁碟區建立一個 LUN 、就能輕鬆完成工作、因此不需要管理。建立磁碟區之後、  a LUN to a host,使用 IQN 從主機連線至 LUN。
 
 
 NOTE: 您可以從 System Manager 或 CLI 建立其他 LUN 。

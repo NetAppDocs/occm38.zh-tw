@@ -34,7 +34,7 @@ summary: 請完成幾個步驟、在 Cloud Manager 工作區中部署 Cloud Comp
 ==== 檢閱先決條件
 
 [role="quick-margin-para"]
-確保您的雲端環境符合先決條件、包括16個vCPU用於Cloud Compliance執行個體、例如傳出網際網路存取、連接器與雲端法規遵循之間透過連接埠80的連線等。 <<Reviewing prerequisites,請參閱完整清單>>。
+確保您的雲端環境符合先決條件、包括16個vCPU用於Cloud Compliance執行個體、例如傳出網際網路存取、連接器與雲端法規遵循之間透過連接埠80的連線等。  prerequisites,請參閱完整清單。
 
 
 
@@ -159,7 +159,7 @@ Cloud Compliance 在 Cloud Manager 工作區中掃描的前 1 TB 資料是免費
 
 image:screenshot_compliance_subscribe.png["螢幕快照顯示正在掃描多少資料、以及訂閱服務的「訂閱」按鈕。"]
 
-* 附註： * 如果 Cloud Compliance 提示您訂閱、但您已經訂閱 Azure 、您可能使用舊的 * Cloud Manager* 訂閱、而且需要變更為新的 * NetApp Cloud Manager* 訂閱。請參閱<<Changing to the new Cloud Manager plan in Azure,改用 Azure 中的全新 NetApp Cloud Manager 計畫>> 以取得詳細資料。
+* 附註： * 如果 Cloud Compliance 提示您訂閱、但您已經訂閱 Azure 、您可能使用舊的 * Cloud Manager* 訂閱、而且需要變更為新的 * NetApp Cloud Manager* 訂閱。請參閱 to the new Cloud Manager plan in Azure,改用 Azure 中的全新 NetApp Cloud Manager 計畫 以取得詳細資料。
 
 這些步驟必須由擁有 _Account Admin_ 角色的使用者完成。
 

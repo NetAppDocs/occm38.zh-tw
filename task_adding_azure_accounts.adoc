@@ -32,11 +32,11 @@ Cloud Manager 需要權限才能在 Azure 中執行動作。您可以在 Azure A
 image:diagram_azure_authentication.png["概念性映像顯示 Cloud Manager 在進行 API 呼叫之前、先從 Azure Active Directory 取得驗證與授權。在 Active Directory 中、 Cloud Manager 操作員角色定義權限。它與一或多個 Azure 訂閱以及代表 Cloud Manger 應用程式的服務主要物件相關聯。"]
 
 .步驟
-. <<Creating an Azure Active Directory application,建立 Azure Active Directory 應用程式>>。
-. <<Assigning the application to a role,將應用程式指派給角色>>。
-. <<Adding Windows Azure Service Management API permissions,新增 Windows Azure Service Management API 權限>>。
-. <<Getting the application ID and directory ID,取得應用程式 ID 和目錄 ID>>。
-. <<Creating a client secret,建立用戶端機密>>。
+.  an Azure Active Directory application,建立 Azure Active Directory 應用程式。
+.  the application to a role,將應用程式指派給角色。
+.  Windows Azure Service Management API permissions,新增 Windows Azure Service Management API 權限。
+.  the application ID and directory ID,取得應用程式 ID 和目錄 ID。
+.  a client secret,建立用戶端機密。
 
 
 
@@ -197,9 +197,9 @@ image:screenshot_settings_icon.gif["顯示 Cloud Manager 主控台右上角「�
 . 按一下 * 「 Add Credentials 」（新增認證） * 、然後選取 * 「 Microsoft Azure 」
 . 輸入 Azure Active Directory 服務主體的相關資訊、以授予必要的權限：
 +
-** 應用程式（用戶端） ID ：請參閱 <<Getting the application ID and directory ID>>。
-** 目錄（租戶） ID ：請參閱 <<Getting the application ID and directory ID>>。
-** 用戶端機密：請參閱 <<Creating a client secret>>。
+** 應用程式（用戶端） ID ：請參閱  the application ID and directory ID。
+** 目錄（租戶） ID ：請參閱  the application ID and directory ID。
+** 用戶端機密：請參閱  a client secret。
 
 
 . 確認已符合原則需求、然後按一下 * 繼續 * 。
@@ -212,7 +212,7 @@ image:screenshot_settings_icon.gif["顯示 Cloud Manager 主控台右上角「�
 
 您現在可以從「詳細資料與認證」頁面切換至不同的認證集合 link:task_deploying_otc_azure.html["在建立新的工作環境時"]：
 
-image:screenshot_accounts_switch_azure.gif["在詳細資料 & 認證資料頁面中按一下「編輯認證資料」之後、顯示在認證資料之間選取的快照。"]
+image:screenshot_accounts_switch_azure.gif["在詳細資料  認證資料頁面中按一下「編輯認證資料」之後、顯示在認證資料之間選取的快照。"]
 
 
 

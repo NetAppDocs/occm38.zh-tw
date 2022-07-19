@@ -30,7 +30,7 @@ summary: 將資料分層存放至 Amazon S3 、以釋放內部 ONTAP 資源的�
 您需要下列項目：
 
 * 採用 All SSD 集合體的不支援即用系統、 AFF 執行版本為 S9.2 或更新版本、並可透過 HTTPS 連線至 Amazon S3 。 FAS ONTAP
-* 具有存取金鑰和的 AWS 帳戶 <<Preparing Amazon S3,必要的權限>> 因此、這個功能可將非作用中的資料分層置於 S3 的內和外。 ONTAP
+* 具有存取金鑰和的 AWS 帳戶  Amazon S3,必要的權限 因此、這個功能可將非作用中的資料分層置於 S3 的內和外。 ONTAP
 * 連接器安裝在 AWS VPC 或內部部署環境中。
 * 連接器的網路功能、可將 HTTPS 連線傳出 ONTAP 至叢集、 S3 儲存設備及雲端分層服務。
 

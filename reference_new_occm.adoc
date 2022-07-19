@@ -54,11 +54,11 @@ image:screenshot_compute_dashboard.gif["在Cloud Manager中顯示「成本分析
 
 == Cloud Manager 3.8.9（2020年10月4日）
 
-* <<Cloud Compliance enhancements>>
-* <<Cloud Volumes Service for AWS enhancements>>
-* <<Cloud Sync integration>>
-* <<Account management enhancements>>
-* <<Changes for Government regions>>
+*  Compliance enhancements
+*  Volumes Service for AWS enhancements
+*  Sync integration
+*  management enhancements
+*  for Government regions
 
 
 
@@ -162,12 +162,12 @@ link:concept_gfc.html["深入瞭解全域檔案快取"]。
 
 == Cloud Manager 3.8.82020年9月9日
 
-* <<Support for Cloud Volumes Service for Google Cloud>>
-* <<Backup to Cloud now supports on-premises ONTAP clusters>>
-* <<Backup to Cloud enhancements>>
-* <<Cloud Compliance enhancements>>
-* <<Refreshed navigation>>
-* <<Administration improvements>>
+*  for Cloud Volumes Service for Google Cloud
+*  to Cloud now supports on-premises ONTAP clusters
+*  to Cloud enhancements
+*  Compliance enhancements
+*  navigation
+*  improvements
 
 
 
@@ -253,13 +253,13 @@ https://occm-sample-policies.s3.amazonaws.com/Policy_for_cloud_Manager_Azure_3.8
 
 == Cloud Manager 3.8.7（2020年8月3日）
 
-* <<New software-as-a-service experience>>
-* <<Cloud Volumes ONTAP enhancements>>
-* <<Azure NetApp Files enhancements>>
-* <<Cloud Volumes Service for AWS enhancements>>
-* <<Cloud Compliance enhancements>>
-* <<Backup to Cloud enhancements>>
-* <<Support for Global File Cache>>
+*  software-as-a-service experience
+*  Volumes ONTAP enhancements
+*  NetApp Files enhancements
+*  Volumes Service for AWS enhancements
+*  Compliance enhancements
+*  to Cloud enhancements
+*  for Global File Cache
 
 
 
@@ -488,8 +488,8 @@ Cloud Manager會提示您變更機器類型的指示。
 
 == Cloud Manager 3.8.6（2020年7月6日）
 
-* <<Support for iSCSI volumes>>
-* <<Support for the All tiering policy>>
+*  for iSCSI volumes
+*  for the All tiering policy
 
 
 
@@ -519,9 +519,9 @@ NOTE: 您可以從 System Manager 或 CLI 建立其他 LUN 。
 
 == Cloud Manager 3.8.5（2020年5月31日）
 
-* <<New subscription required in the Azure Marketplace>>
-* <<Backup to Cloud enhancements>>
-* <<Cloud Compliance enhancements>>
+*  subscription required in the Azure Marketplace
+*  to Cloud enhancements
+*  Compliance enhancements
 
 
 
@@ -601,11 +601,11 @@ Azure現已提供Cloud Volumes ONTAP 雲端備份功能。備份到雲端提供�
 
 == Cloud Manager 3.8.3（2020年4月5日）
 
-* <<Cloud Tiering integration>>
-* <<Data migration to Azure NetApp Files>>
-* <<Cloud Compliance enhancements>>
-* <<Backup to S3 enhancements>>
-* <<iSCSI volumes using APIs>>
+*  Tiering integration
+*  migration to Azure NetApp Files
+*  Compliance enhancements
+*  to S3 enhancements
+*  volumes using APIs
 
 
 
@@ -683,10 +683,10 @@ Cloud Manager API現在可讓您建立iSCSI磁碟區。 link:api.html#_provision
 
 == Cloud Manager 3.8.2（2020年3月1日）
 
-* <<Amazon S3 working environments>>
-* <<Cloud Compliance enhancements>>
-* <<NFS version for volumes>>
-* <<Support for Azure US Gov regions>>
+*  S3 working environments
+*  Compliance enhancements
+*  version for volumes
+*  for Azure US Gov regions
 
 
 
@@ -786,9 +786,9 @@ link:task_backup_to_s3.html["深入瞭解Backup to S3"]。
 
 == Cloud Manager 3.8.1（2020年2月2日）
 
-* <<Cloud Compliance enhancements>>
-* <<Enhancements to accounts and subscriptions>>
-* <<Timeline enhancements>>
+*  Compliance enhancements
+*  to accounts and subscriptions
+*  enhancements
 
 
 
@@ -839,7 +839,7 @@ link:task_controlling_private_data.html#categories["深入瞭解類別"]。
 
 例如、當您在AWS中建立系統時、如果您不想使用預設帳戶和訂閱、請按一下*編輯認證*：
 
-image:screenshot_accounts_select_aws.gif["工作環境精靈中的詳細資料&認證頁面快照、顯示「編輯認證」按鈕。"]
+image:screenshot_accounts_select_aws.gif["工作環境精靈中的詳細資料"]
 
 您可以從這裡選擇想要使用的帳戶認證資料、以及相關的AWS市場訂閱。您甚至可以視需要新增市場訂閱。
 
@@ -869,8 +869,8 @@ image:screenshot_timeline.gif["Cloud Manager中出現的時間軸快照。時間
 
 == Cloud Manager 3.8（2020年1月8日）
 
-* <<HA enhancements in Azure>>
-* <<Data tiering enhancements in GCP>>
+*  enhancements in Azure
+*  tiering enhancements in GCP
 
 
 

@@ -143,7 +143,7 @@ NOTE: 即使選項標示為「 * _ON-Prem_Data Broners* 」、也適用於內部
 「 curl <URI > -o data_broker_installer.sh -x <proxy_username>:<proxy_password>@<proxy_host>:<proxy_port>'
 
 +
-開放的我們:: 在指示頁面上顯示安裝檔案的 URI 、當您依照提示部署內部部署的 Prem Data Broker 時、就會載入此頁面。 Cloud Sync此 URI 不會重複出現、因為連結是動態產生的、只能使用一次。 <<Installing the data broker,請遵循下列步驟、從 Cloud Sync 無法取得 URI>>。
+開放的我們:: 在指示頁面上顯示安裝檔案的 URI 、當您依照提示部署內部部署的 Prem Data Broker 時、就會載入此頁面。 Cloud Sync此 URI 不會重複出現、因為連結是動態產生的、只能使用一次。  the data broker,請遵循下列步驟、從 Cloud Sync 無法取得 URI。
 
 
 
@@ -167,8 +167,8 @@ NOTE: 下列每個命令都包含 AWS 存取和 GCP 存取的參數。請依照�
 s chmod+x data_broker_installer.sh ./data_broker_installer.sh -a <AWs_access_key> -s <AWs_secret 鍵 > -g <jure_path_to_the_json_file> -h <proxy_host> -p <proxy_port> -u <proxy_username>-w <proxy_password>`
 
 +
-AWS 金鑰:: 這些是您應該準備的使用者金鑰 <<Enabling access to AWS,請依照下列步驟操作>>。AWS 金鑰會儲存在資料代理程式上、該代理程式會在內部部署或雲端網路中執行。NetApp 不會使用資料代理程式以外的金鑰。
-Json 檔案:: 這是 Json 檔案、其中包含您應該準備的服務帳戶金鑰 <<Enabling access to Google Cloud,請依照下列步驟操作>>。
+AWS 金鑰:: 這些是您應該準備的使用者金鑰  access to AWS,請依照下列步驟操作。AWS 金鑰會儲存在資料代理程式上、該代理程式會在內部部署或雲端網路中執行。NetApp 不會使用資料代理程式以外的金鑰。
+Json 檔案:: 這是 Json 檔案、其中包含您應該準備的服務帳戶金鑰  access to Google Cloud,請依照下列步驟操作。
 
 
 

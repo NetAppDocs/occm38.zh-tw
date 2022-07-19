@@ -52,7 +52,7 @@ Cloud Compliance 可掃描下列資料來源類型的資料：
 +
 link:task_deploy_cloud_compliance.html#subscribing-to-the-cloud-compliance-service["瞭解如何訂閱"^]。
 
-* 若要安裝Cloud Compliance、必須部署雲端執行個體、這會導致部署雲端的雲端供應商收取費用。請參閱 <<The Cloud Compliance instance,為每個雲端供應商部署的執行個體類型>>
+* 若要安裝Cloud Compliance、必須部署雲端執行個體、這會導致部署雲端的雲端供應商收取費用。請參閱  Cloud Compliance instance,為每個雲端供應商部署的執行個體類型
 * 雲端法規遵循要求您已部署 Connector 。在許多情況下、由於 Cloud Manager 中使用的其他儲存設備和服務、您已經擁有 Connector 。連接器執行個體會從部署該執行個體的雲端供應商收取費用。請參閱 link:reference_cloud_mgr_reqs.html["為每個雲端供應商部署的執行個體類型"^]。
 
 

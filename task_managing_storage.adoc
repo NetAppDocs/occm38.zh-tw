@@ -223,11 +223,11 @@ TIP: 集合體中的所有磁碟大小必須相同。
 Cloud Manager 可能會顯示「必要行動」訊息、指出移動磁碟區是避免容量問題的必要措施、但無法提供修正問題的建議。如果發生這種情況、您需要找出如何修正問題、然後移動一或多個磁碟區。
 
 .步驟
-. <<Identifying how to correct capacity issues,找出如何修正問題>>。
+.  how to correct capacity issues,找出如何修正問題。
 . 根據您的分析、移動磁碟區以避免容量問題：
 +
-** <<Moving volumes to another system to avoid capacity issues,將磁碟區移至其他系統>>。
-** <<Moving volumes to another aggregate to avoid capacity issues,將磁碟區移至同一系統上的其他 Aggregate>>。
+**  volumes to another system to avoid capacity issues,將磁碟區移至其他系統。
+**  volumes to another aggregate to avoid capacity issues,將磁碟區移至同一系統上的其他 Aggregate。
 
 
 

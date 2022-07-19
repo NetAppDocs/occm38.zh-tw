@@ -87,7 +87,7 @@ image:screenshot_backup_to_s3_restore_icon.gif["選取磁碟區後、用於備�
 
 支援 ONTAP 的支援版本:: 更新版本。 Cloud Volumes ONTAP
 支援的 Azure 地區:: 所有 Azure 地區均支援雲端備份 https://cloud.netapp.com/cloud-volumes-global-regions["支援的地方 Cloud Volumes ONTAP"^]。
-授權需求:: 若要備份至雲端 PAYGO 授權、必須先透過 Azure Marketplace 訂閱、才能啟用「備份至雲端」。備份到雲端的計費是透過此訂閱完成。 link:task_deploying_otc_azure.html["您可以從工作環境精靈的詳細資料 & 認證頁面訂閱"^]。
+授權需求:: 若要備份至雲端 PAYGO 授權、必須先透過 Azure Marketplace 訂閱、才能啟用「備份至雲端」。備份到雲端的計費是透過此訂閱完成。 link:task_deploying_otc_azure.html["您可以從工作環境精靈的詳細資料  認證頁面訂閱"^]。
 +
 --
 若要備份至 Cloud BYOL 授權、您需要 NetApp 的序號、以便在授權期間和容量內使用服務。請參閱 link:task_managing_licenses.html#adding-and-updating-your-backup-byol-license["新增及更新備份 BYOL 授權"^]。
@@ -104,7 +104,7 @@ image:screenshot_backup_to_s3_restore_icon.gif["選取磁碟區後、用於備�
 工作環境精靈預設會啟用「備份至雲端」。請務必保持啟用選項。
 
 
-NOTE: 如果您想挑選資源群組的名稱、請在部署 Cloud Volumes ONTAP 時 * 停用 * 「備份至雲端」。請依照的步驟執行 <<enabling-backup-to-cloud-on-an-existing-system,在現有系統上啟用雲端備份>> 若要啟用「備份至雲端」、請選擇資源群組。
+NOTE: 如果您想挑選資源群組的名稱、請在部署 Cloud Volumes ONTAP 時 * 停用 * 「備份至雲端」。請依照的步驟執行 ,在現有系統上啟用雲端備份 若要啟用「備份至雲端」、請選擇資源群組。
 
 .步驟
 . 按一下「 * 建立 Cloud Volumes ONTAP 參考 * 」。

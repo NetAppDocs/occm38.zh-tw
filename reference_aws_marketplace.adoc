@@ -23,10 +23,10 @@ AWS Marketplace for Cloud Manager 和 Cloud Volumes ONTAP 《解決方案與解�
 | 目標 | 使用 AWS Marketplace 頁面 | 更多資訊 
 
 
-| 啟用 Cloud Volumes ONTAP 使用功能：功能完善的功能：功能完善、雲端分層、雲端法規遵循及其他附加服務 | https://aws.amazon.com/marketplace/pp/B07QX2QLXX["Cloud Manager - 部署 & 管理 NetApp 雲端資料服務"^] | 此訂閱可為 PAYGO 版本 Cloud Volumes ONTAP 的 __LW_9.6 及更新版本充電。它也能為雲端分層、雲端法規遵循及其他附加服務充電。當 Cloud Manager 提示您並將您重新導向頁面時、您應該訂閱此服務項目。Cloud Manager 會在「工作環境」精靈中或在「設定」中新增認證時提示您。此頁面無法讓您在 AWS 中啟動 Cloud Manager 。這項工作應該從開始進行 https://cloud.netapp.com["NetApp Cloud Central"^]或使用本表第 3 列所列的 AMI 。 
+| 啟用 Cloud Volumes ONTAP 使用功能：功能完善的功能：功能完善、雲端分層、雲端法規遵循及其他附加服務 | https://aws.amazon.com/marketplace/pp/B07QX2QLXX["Cloud Manager - 部署  管理 NetApp 雲端資料服務"^] | 此訂閱可為 PAYGO 版本 Cloud Volumes ONTAP 的 __LW_9.6 及更新版本充電。它也能為雲端分層、雲端法規遵循及其他附加服務充電。當 Cloud Manager 提示您並將您重新導向頁面時、您應該訂閱此服務項目。Cloud Manager 會在「工作環境」精靈中或在「設定」中新增認證時提示您。此頁面無法讓您在 AWS 中啟動 Cloud Manager 。這項工作應該從開始進行 https://cloud.netapp.com["NetApp Cloud Central"^]或使用本表第 3 列所列的 AMI 。 
 
 
-| 使用 Cloud Volumes ONTAP 年度合約、即可使用 SURF1PAYGO 、 Cloud Tiering 、 Cloud Compliance 及其他附加服務 | https://aws.amazon.com/marketplace/pp/B086PDWSS8["Cloud Manager （合約） - 部署 &擴大 機；管理 NetApp 雲端資料服務"^] | 此訂閱是第一列訂閱的替代方案。這可讓您取得每年的上市預付款項。這主要是針對 NetApp 合作夥伴。 
+| 使用 Cloud Volumes ONTAP 年度合約、即可使用 SURF1PAYGO 、 Cloud Tiering 、 Cloud Compliance 及其他附加服務 | https://aws.amazon.com/marketplace/pp/B086PDWSS8["Cloud Manager （合約） - 部署  機；管理 NetApp 雲端資料服務"^] | 此訂閱是第一列訂閱的替代方案。這可讓您取得每年的上市預付款項。這主要是針對 NetApp 合作夥伴。 
 
 
 | 使用 AMI 從 AWS Marketplace 部署 Cloud Manager | https://aws.amazon.com/marketplace/pp/B018REK8QG["Cloud Manager ：手動安裝、不需存取金鑰"^] | 我們建議您從 AWS 啟動 Cloud Manager https://cloud.netapp.com["NetApp Cloud Central"^]、但您可以從這個 AWS Marketplace 頁面（如果您願意）啟動。 

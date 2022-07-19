@@ -79,7 +79,7 @@ image:screenshot_cloud_compliance_we_scan_config.png["部署 Cloud Compliance �
 
 
 
-請參閱 <<Enabling and disabling compliance scans on volumes,啟用及停用磁碟區的法規遵循掃描>> 以取得詳細資料。
+請參閱  and disabling compliance scans on volumes,啟用及停用磁碟區的法規遵循掃描 以取得詳細資料。
 
 Cloud Compliance會開始掃描每個工作環境中的資料。一旦 Cloud Compliance 完成初始掃描、結果就會顯示在「法規遵循」儀表板中。所需時間取決於資料量、可能需要幾分鐘或幾小時。
 

@@ -29,9 +29,9 @@ summary: 您可以將熱資料的 SSD 或 HDD 效能層與非作用中資料的�
 
 ==== 確保 Cloud Volumes ONTAP 在物件儲存設備與物件儲存設備之間建立連線
 
-* 對於 AWS 、您需要 VPC 端點對 S3 。 <<Requirements to tier cold data to AWS S3,深入瞭解>>。
-* 對於 Azure 而言、只要 Cloud Manager 具備必要的權限、您就不需要執行任何操作。 <<Requirements to tier cold data to Azure Blob storage,深入瞭解>>。
-* 對於 GCP 、您需要設定專屬 Google Access 的子網路、並設定服務帳戶。 <<Requirements to tier cold data to a Google Cloud Storage bucket,深入瞭解>>。
+* 對於 AWS 、您需要 VPC 端點對 S3 。  to tier cold data to AWS S3,深入瞭解。
+* 對於 Azure 而言、只要 Cloud Manager 具備必要的權限、您就不需要執行任何操作。  to tier cold data to Azure Blob storage,深入瞭解。
+* 對於 GCP 、您需要設定專屬 Google Access 的子網路、並設定服務帳戶。  to tier cold data to a Google Cloud Storage bucket,深入瞭解。
 
 
 
@@ -205,4 +205,4 @@ image:screenshot_replication_tiering.gif["快照顯示複寫磁碟區時的 S3 �
 
 否、您無法在現有的集合體上啟用資料分層。您只能在新的Aggregate上啟用資料分層。
 
-您也可以在新的Aggregate上啟用資料分層 link:task_provisioning_storage.html#creating-aggregates["自行建立Aggregate"] 或 <<Tiering data from read-write volumes,建立啟用資料分層的新磁碟區>>。如果啟用資料分層的Aggregate不存在、Cloud Manager就會為磁碟區建立新的Aggregate。
+您也可以在新的Aggregate上啟用資料分層 link:task_provisioning_storage.html#creating-aggregates["自行建立Aggregate"] 或  data from read-write volumes,建立啟用資料分層的新磁碟區。如果啟用資料分層的Aggregate不存在、Cloud Manager就會為磁碟區建立新的Aggregate。

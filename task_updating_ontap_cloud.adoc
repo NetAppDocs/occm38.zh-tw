@@ -30,7 +30,7 @@ Cloud Manager Cloud Volumes ONTAP 會在出現新版 Cloud Volumes ONTAP 的功�
 
 image:screenshot_cot_upgrade.gif["螢幕擷取畫面：顯示「工作環境」頁面中選取工作環境後顯示的「可用新版本」通知。"]
 
-您可以從此通知開始升級程序、從 S3 儲存區取得軟體映像、安裝映像、然後重新啟動系統、藉此自動化程序。如需詳細資訊、請參閱 <<Upgrading Cloud Volumes ONTAP from Cloud Manager notifications>>。
+您可以從此通知開始升級程序、從 S3 儲存區取得軟體映像、安裝映像、然後重新啟動系統、藉此自動化程序。如需詳細資訊、請參閱  Cloud Volumes ONTAP from Cloud Manager notifications。
 
 
 NOTE: 對於 AWS 中的 HA 系統、 Cloud Manager 可能會將 HA 中介程式升級為升級程序的一部分。
@@ -46,14 +46,14 @@ Cloud Manager也提供下列進階選項來更新Cloud Volumes ONTAP 支援的�
 如果Cloud Manager無法存取S3儲存區來升級軟體、如果您已取得修補程式、或您想要將軟體降級至特定版本、此選項就很有幫助。
 
 +
-如需詳細資訊、請參閱 <<Upgrading or downgrading Cloud Volumes ONTAP by using an HTTP or FTP server>>。
+如需詳細資訊、請參閱  or downgrading Cloud Volumes ONTAP by using an HTTP or FTP server。
 
 * 使用系統上的替代映像進行軟體更新
 +
 您可以使用此選項將替代軟體映像設為預設映像、以降級至舊版。此選項不適用於 HA 配對。
 
 +
-如需詳細資訊、請參閱 <<Downgrading Cloud Volumes ONTAP by using a local image>>。
+如需詳細資訊、請參閱  Cloud Volumes ONTAP by using a local image。
 
 
 
@@ -63,11 +63,11 @@ Cloud Manager也提供下列進階選項來更新Cloud Volumes ONTAP 支援的�
 
 在執行升級或降級之前、您必須先確認系統已就緒、並進行任何必要的組態變更。
 
-* <<Planning for downtime>>
-* <<Reviewing version requirements>>
-* <<Verifying that automatic giveback is still enabled>>
-* <<Suspending SnapMirror transfers>>
-* <<Verifying that aggregates are online>>
+*  for downtime
+*  version requirements
+*  that automatic giveback is still enabled
+*  SnapMirror transfers
+*  that aggregates are online
 
 
 
