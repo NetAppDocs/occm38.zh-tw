@@ -116,4 +116,5 @@ image:screenshot_cvs_restore_snapshot.png["選取要還原至新磁碟區的快�
 
 
 
+.完成後
 繼續 link:task_manage_cvs_gcp.html#mount-cloud-volumes["掛載雲端 Volume"^]。

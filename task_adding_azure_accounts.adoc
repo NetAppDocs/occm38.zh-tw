@@ -27,16 +27,17 @@ NOTE: 當您從 Cloud Manager 部署 Connector 時、 Cloud Manager 會自動新
 
 Cloud Manager 需要權限才能在 Azure 中執行動作。您可以在 Azure Active Directory 中建立及設定服務主體、並取得 Cloud Manager 所需的 Azure 認證資料、將必要的權限授予 Azure 帳戶。
 
+.關於這項工作
 下圖說明 Cloud Manager 如何取得在 Azure 中執行作業的權限。與一或多個 Azure 訂閱相關聯的服務主體物件、代表 Azure Active Directory 中的 Cloud Manager 、並指派給允許必要權限的自訂角色。
 
 image:diagram_azure_authentication.png["概念性映像顯示 Cloud Manager 在進行 API 呼叫之前、先從 Azure Active Directory 取得驗證與授權。在 Active Directory 中、 Cloud Manager 操作員角色定義權限。它與一或多個 Azure 訂閱以及代表 Cloud Manger 應用程式的服務主要物件相關聯。"]
 
 .步驟
-.  an Azure Active Directory application,建立 Azure Active Directory 應用程式。
-.  the application to a role,將應用程式指派給角色。
-.  Windows Azure Service Management API permissions,新增 Windows Azure Service Management API 權限。
-.  the application ID and directory ID,取得應用程式 ID 和目錄 ID。
-.  a client secret,建立用戶端機密。
+. <<建立 Azure Active Directory 應用程式,建立 Azure Active Directory 應用程式>>。
+. <<將應用程式指派給角色,將應用程式指派給角色>>。
+. <<新增 Windows Azure Service Management API 權限,新增 Windows Azure Service Management API 權限>>。
+. <<取得應用程式 ID 和目錄 ID,取得應用程式 ID 和目錄 ID>>。
+. <<建立用戶端機密,建立用戶端機密>>。
 
 
 
@@ -45,6 +46,7 @@ image:diagram_azure_authentication.png["概念性映像顯示 Cloud Manager 在�
 
 建立 Azure Active Directory （ AD ）應用程式與服務主體、讓 Cloud Manager 可用於角色型存取控制。
 
+.開始之前
 您必須在 Azure 中擁有適當權限、才能建立 Active Directory 應用程式、並將應用程式指派給角色。如需詳細資訊、請參閱 https://docs.microsoft.com/en-us/azure/active-directory/develop/howto-create-service-principal-portal#required-permissions/["Microsoft Azure 說明文件：必要權限"^]。
 
 .步驟
@@ -64,6 +66,7 @@ image:screenshot_azure_ad.gif["顯示 Microsoft Azure 中的 Active Directory �
 . 按一下 * 註冊 * 。
 
 
+.結果
 您已建立 AD 應用程式和服務主體。
 
 
@@ -179,6 +182,7 @@ image:screenshot_azure_client_secret.gif["Azure 入口網站的快照、顯示 A
 
 
 
+.結果
 您的服務主體現在已設定完成、您應該已經複製應用程式（用戶端） ID 、目錄（租戶） ID 、以及用戶端機密的值。新增 Azure 帳戶時、您必須在 Cloud Manager 中輸入此資訊。
 
 
@@ -187,6 +191,7 @@ image:screenshot_azure_client_secret.gif["Azure 入口網站的快照、顯示 A
 
 在您提供 Azure 帳戶所需的權限之後、即可將該帳戶的認證資料新增至 Cloud Manager 。如此一來、您就能在 Cloud Volumes ONTAP 該帳戶中啟動支援系統。
 
+.您需要的產品
 您必須先建立連接器、才能變更 Cloud Manager 設定。 link:concept_connectors.html#how-to-create-a-connector["瞭解方法"]。
 
 .步驟
@@ -197,9 +202,9 @@ image:screenshot_settings_icon.gif["顯示 Cloud Manager 主控台右上角「�
 . 按一下 * 「 Add Credentials 」（新增認證） * 、然後選取 * 「 Microsoft Azure 」
 . 輸入 Azure Active Directory 服務主體的相關資訊、以授予必要的權限：
 +
-** 應用程式（用戶端） ID ：請參閱  the application ID and directory ID。
-** 目錄（租戶） ID ：請參閱  the application ID and directory ID。
-** 用戶端機密：請參閱  a client secret。
+** 應用程式（用戶端） ID ：請參閱 <<取得應用程式 ID 和目錄 ID>>。
+** 目錄（租戶） ID ：請參閱 <<取得應用程式 ID 和目錄 ID>>。
+** 用戶端機密：請參閱 <<建立用戶端機密>>。
 
 
 . 確認已符合原則需求、然後按一下 * 繼續 * 。
@@ -210,6 +215,7 @@ image:screenshot_settings_icon.gif["顯示 Cloud Manager 主控台右上角「�
 . 按一下「 * 新增 * 」。
 
 
+.結果
 您現在可以從「詳細資料與認證」頁面切換至不同的認證集合 link:task_deploying_otc_azure.html["在建立新的工作環境時"]：
 
 image:screenshot_accounts_switch_azure.gif["在詳細資料  認證資料頁面中按一下「編輯認證資料」之後、顯示在認證資料之間選取的快照。"]
@@ -226,6 +232,7 @@ image:screenshot_accounts_switch_azure.gif["在詳細資料  認證資料頁面�
 * 您想要以新的訂閱取代現有的 Azure Marketplace 訂閱。
 
 
+.您需要的產品
 您必須先建立連接器、才能變更 Cloud Manager 設定。 link:concept_connectors.html#how-to-create-a-connector["瞭解方法"]。
 
 .步驟
@@ -249,6 +256,7 @@ video::video_subscribing_azure.mp4[width=848,height=480]
 
 Cloud Manager 可讓您選擇要部署 Cloud Volumes ONTAP 的 Azure 認證和 Azure 訂閱。除非您建立關聯、否則您無法為託管身分識別設定檔選取不同的 Azure 訂閱 https://docs.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/overview["託管身分識別"^] 這些訂閱。
 
+.關於這項工作
 託管身分識別是 link:concept_accounts_azure.html["初始 Azure 帳戶"] 當您從 Cloud Manager 部署 Connector 時。部署 Connector 時、 Cloud Manager 會建立 Cloud Manager 操作員角色、並將其指派給 Connector 虛擬機器。
 
 .步驟
@@ -274,6 +282,7 @@ NOTE: Cloud Manager 運算子是中提供的預設名稱 https://mysupport.netap
 . 請重複這些步驟以取得額外訂閱內容。
 
 
+.結果
 當您建立新的工作環境時、現在應該能夠從多個 Azure 訂閱中選取託管身分識別設定檔。
 
 image:screenshot_accounts_switch_azure_subscription.gif["此螢幕快照顯示選取 Microsoft Azure Provider 帳戶時、可選擇多個 Azure 訂閱。"]

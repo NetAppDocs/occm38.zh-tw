@@ -49,6 +49,7 @@ https://cloud.google.com/iam/docs/creating-custom-roles#iam-custom-roles-create-
 
 
 
+.結果
 GCP 使用者現在擁有從 Cloud Manager 建立 Connector 所需的權限、並已設定 Connector VM 的服務帳戶。
 
 
@@ -75,7 +76,7 @@ GCP 使用者現在擁有從 Cloud Manager 建立 Connector 所需的權限、�
 
 Cloud Manager 可讓您直接從使用者介面在 GCP 中建立 Connector 。
 
-.您需要的是 #8217 ；需要的是什麼
+.您需要的產品
 * 。 https://mysupport.netapp.com/site/info/cloud-manager-policies["必要權限"^] 適用於您的 Google Cloud 帳戶。
 * Google Cloud 專案。
 * 擁有建立及管理 Cloud Volumes ONTAP 功能所需權限的服務帳戶。
@@ -118,4 +119,5 @@ NOTE: 除非您啟動連接器、否則不會有傳入流量進入連接器。HT
 
 
 
+.完成後
 您需要將 Connector 與工作空間建立關聯、讓 Workspace Admins 可以使用這些 Connectors 來建立 Cloud Volumes ONTAP 一套系統。如果您只有帳戶管理員、則不需要將 Connector 與工作區建立關聯。根據預設、 Account Admins 可存取 Cloud Manager 中的所有工作區。 link:task_setting_up_cloud_central_accounts.html#associating-connectors-with-workspaces["深入瞭解"]。

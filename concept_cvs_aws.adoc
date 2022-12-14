@@ -57,28 +57,28 @@ AWS 的支援提供下列優點： Cloud Volumes Service
 
 
 
-==== 確認您的組態支援
+==== image:number1.png["第1名"] 確認您的組態支援
 
 [role="quick-margin-para"]
 您已設定 AWS Cloud Volumes Service for the se供 使用、而且您必須訂閱其中一項 https://aws.amazon.com/marketplace/search/results?x=0&y=0&searchTerms=netapp+cloud+volumes+service["AWS Marketplace 上的 NetApp Cloud Volumes Service 產品"^]。
 
 
 
-==== 新增 Cloud Volumes Service 適用於 AWS 訂閱的功能
+==== image:number2.png["第2名"] 新增 Cloud Volumes Service 適用於 AWS 訂閱的功能
 
 [role="quick-margin-para"]
 您必須根據 Cloud Volumes Service 您的需求為 AWS 訂閱建立工作環境、以供磁碟區使用。
 
 
 
-==== 建立雲端磁碟區
+==== image:number3.png["第3名"] 建立雲端磁碟區
 
 [role="quick-margin-para"]
 此訂閱已存在的雲端磁碟區會顯示在新的工作環境中。否則、您可以從 Cloud Manager 建立新的磁碟區。
 
 
 
-==== 掛載雲端磁碟區
+==== image:number4.png["第4名"] 掛載雲端磁碟區
 
 [role="quick-margin-para"]
 將新的雲端磁碟區掛載至 AWS 執行個體、以便使用者開始使用儲存設備。

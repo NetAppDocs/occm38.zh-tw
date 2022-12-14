@@ -25,11 +25,13 @@ IMPORTANT: 所有磁碟和集合體都必須直接從 Cloud Manager 建立和刪
 
 如果您在啟動 Cloud Volumes ONTAP 完一套功能完善的系統之後需要更多儲存設備、您可以 FlexVol 從 Cloud Manager 為 NFS 、 CIFS 或 iSCSI 建立新的功能完善的功能。
 
-建立 iSCSI Volume 時、 Cloud Manager 會自動為您建立 LUN 。我們只要在每個磁碟區建立一個 LUN 、就能輕鬆完成工作、因此不需要管理。建立磁碟區之後、  a LUN to a host,使用 IQN 從主機連線至 LUN。
+.關於這項工作
+建立 iSCSI Volume 時、 Cloud Manager 會自動為您建立 LUN 。我們只要在每個磁碟區建立一個 LUN 、就能輕鬆完成工作、因此不需要管理。建立磁碟區之後、 <<將 LUN 連線至主機,使用 IQN 從主機連線至 LUN>>。
 
 
 NOTE: 您可以從 System Manager 或 CLI 建立其他 LUN 。
 
+.開始之前
 如果您想在 AWS 中使用 CIFS 、則必須設定 DNS 和 Active Directory 。如需詳細資訊、請參閱 link:reference_networking_aws.html["AWS 的 Cloud Volumes ONTAP 網路需求"]。
 
 .步驟
@@ -125,8 +127,10 @@ AD 網域中與 CIFS 伺服器相關聯的組織單位。預設值為「 CN= 電
 . 按一下「 * 執行 * 」。
 
 
+.結果
 供應 Volume 。 Cloud Volumes ONTAP
 
+.完成後
 如果您已配置 CIFS 共用區、請授予使用者或群組檔案和資料夾的權限、並確認這些使用者可以存取共用區並建立檔案。
 
 如果要將配額套用至磁碟區、則必須使用 System Manager 或 CLI 。配額可讓您限制或追蹤使用者、群組或 qtree 所使用的磁碟空間和檔案數量。
@@ -146,6 +150,7 @@ AD 網域中與 CIFS 伺服器相關聯的組織單位。預設值為「 CN= 電
 . 輸入新磁碟區的詳細資料、然後按一下「 * 建立 * 」。
 
 
+.完成後
 您可以視需要在此集合體上建立其他磁碟區。
 
 

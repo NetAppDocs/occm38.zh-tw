@@ -23,6 +23,7 @@ summary: 支援 NetApp Volume Encryption （ NVE ）和 NetApp Aggregate Encrypt
 
 不支援內建金鑰管理。 Cloud Volumes ONTAP
 
+.您需要的產品
 您的支援系統應該已向 NetApp 註冊。 Cloud Volumes ONTAP從 Cloud Manager 3.7.1 開始、 NetApp Volume Encryption 授權會自動安裝在 Cloud Volumes ONTAP 每個已註冊 NetApp 支援的支援系統上。
 
 * link:task_adding_nss_accounts.html["新增 NetApp 支援網站帳戶至 Cloud Manager"]

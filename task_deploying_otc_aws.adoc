@@ -34,6 +34,7 @@ NOTE: 您必須是帳戶管理員才能建立 Connector 。當您建立第一個
 * 如果您想要使用 CIFS 、則必須設定 DNS 和 Active Directory 。如需詳細資訊、請參閱 link:reference_networking_aws.html["AWS 的網路需求 Cloud Volumes ONTAP"]。
 
 
+.關於這項工作
 建立工作環境之後、 Cloud Manager 會立即在指定的 VPC 中啟動測試執行個體、以驗證連線能力。如果成功、 Cloud Manager 會立即終止執行個體、然後開始部署 Cloud Volumes ONTAP 該系統。如果 Cloud Manager 無法驗證連線能力、則無法建立工作環境。測試執行個體為 T2.奈 米（預設 VPC 租賃）或 m3.medium （專屬 VPC 租賃）。
 
 .步驟
@@ -227,6 +228,7 @@ image:screenshot_cot_vol.gif["螢幕擷取畫面：顯示針對 Cloud Volumes ON
 
 
 
+.結果
 Cloud Manager 會啟動 Cloud Volumes ONTAP 此功能。您可以追蹤時間表的進度。
 
 如果您在啟動 Cloud Volumes ONTAP 該實例時遇到任何問題、請檢閱故障訊息。您也可以選取工作環境、然後按一下重新建立環境。
@@ -259,8 +261,10 @@ NOTE: 您必須是帳戶管理員才能建立 Connector 。當您建立第一個
 * 如果您想要使用 CIFS 、則必須設定 DNS 和 Active Directory 。如需詳細資訊、請參閱 link:reference_networking_aws.html["AWS 的網路需求 Cloud Volumes ONTAP"]。
 
 
+.限制
 目前 AWS out貼 文不支援 HA 配對。
 
+.關於這項工作
 建立工作環境之後、 Cloud Manager 會立即在指定的 VPC 中啟動測試執行個體、以驗證連線能力。如果成功、 Cloud Manager 會立即終止執行個體、然後開始部署 Cloud Volumes ONTAP 該系統。如果 Cloud Manager 無法驗證連線能力、則無法建立工作環境。測試執行個體為 T2.奈 米（預設 VPC 租賃）或 m3.medium （專屬 VPC 租賃）。
 
 .步驟
@@ -461,6 +465,7 @@ image:screenshot_cot_vol.gif["螢幕擷取畫面：顯示針對 Cloud Volumes ON
 
 
 
+.結果
 Cloud Manager 會啟動 Cloud Volumes ONTAP 「叢集式 HA 配對」。您可以追蹤時間表的進度。
 
 如果您在啟動 HA 配對時遇到任何問題、請檢閱故障訊息。您也可以選取工作環境、然後按一下重新建立環境。

@@ -29,28 +29,28 @@ NOTE: 內部 ONTAP 的叢集不支援 Kubernetes 功能。僅支援以不支援�
 
 
 
-==== 檢閱先決條件
+==== image:number1.png["第1名"] 檢閱先決條件
 
 [role="quick-margin-para"]
-確保您的環境符合先決條件、包括 Kubernetes 叢集與 Cloud Volumes ONTAP 更新之間的連線、 Kubernetes 叢集與連接器之間的連線、最低 Kubernetes 版本 1.14 、叢集中至少有一個工作節點等。  prerequisites,請參閱完整清單。
+確保您的環境符合先決條件、包括 Kubernetes 叢集與 Cloud Volumes ONTAP 更新之間的連線、 Kubernetes 叢集與連接器之間的連線、最低 Kubernetes 版本 1.14 、叢集中至少有一個工作節點等。 <<檢閱先決條件,請參閱完整清單>>。
 
 
 
-==== 將 Kubernetes 叢集新增至 Cloud Manager
+==== image:number2.png["第2名"] 將 Kubernetes 叢集新增至 Cloud Manager
 
 [role="quick-margin-para"]
 在Cloud Manager中、按一下* Kubernetes*、直接從雲端供應商的託管服務探索叢集、或是提供Kubeconfig檔案來匯入叢集。
 
 
 
-==== 將叢集連線 Cloud Volumes ONTAP 至
+==== image:number3.png["第3名"] 將叢集連線 Cloud Volumes ONTAP 至
 
 [role="quick-margin-para"]
 新增 Kubernetes 叢集後、按一下 * 「 Connect to Working Environment* （連線至工作環境 * ）」、將叢集連線至一 Cloud Volumes ONTAP 或多個支援系統。
 
 
 
-==== 開始配置持續磁碟區
+==== image:number4.png["第4名"] 開始配置持續磁碟區
 
 [role="quick-margin-para"]
 使用原生 Kubernetes 介面和架構來要求及管理持續磁碟區。Cloud Manager 會建立 NFS 和 iSCSI 儲存類別、供您在配置持續磁碟區時使用。
@@ -174,6 +174,7 @@ image:diagram_kubernetes.png["在 AWS 中執行 Kubernetes 叢集的架構圖、
 
 
 
+.結果
 Cloud Manager 會新增 Kubernetes 叢集。您現在可以將叢集連線 Cloud Volumes ONTAP 至
 
 
@@ -200,6 +201,7 @@ image:screenshot_kubernetes_confirm.gif["「確認」頁面的快照、您可在
 . 按一下「 * 新增工作環境 * 」。
 
 
+.結果
 Cloud Manager 可將工作環境連線至叢集、最多需要 15 分鐘。
 
 
@@ -252,6 +254,7 @@ image:screenshot_kubernetes_upgrade.gif["叢集詳細資料頁面的快照、其
 . 當您的網頁瀏覽器出現提示時、請選取更新的 KUbeconfig 檔案、然後按一下 * 「 Open* （開啟 * ）」。
 
 
+.結果
 Cloud Manager 會根據最新的 Kubeconfig 檔案、更新 Kubernetes 叢集的相關資訊。
 
 
@@ -270,6 +273,7 @@ image:screenshot_kubernetes_disconnect.gif["在您按一下表格最右側的功
 . 按一下「 * 中斷連線 * 」。
 
 
+.結果
 Cloud Manager 會中斷叢集與 Cloud Volumes ONTAP 整個系統的連線。
 
 

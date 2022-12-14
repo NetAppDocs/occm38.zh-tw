@@ -74,7 +74,7 @@ image:screenshot_anf_hover.gif[""]
 
 
 
-== 編輯 Volume 的大小和標記
+== 編輯磁碟區的大小和標記
 
 建立磁碟區之後、您可以隨時修改其大小和標記。
 

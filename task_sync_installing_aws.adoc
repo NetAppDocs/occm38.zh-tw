@@ -46,7 +46,7 @@ summary: 建立同步關係時、請選擇AWS Data Broker選項、將資料代�
 
 
 
-== 將您自己的 IAM 角色用於 AWS 資料代理程式的要求
+== [[iam]要求您在AWS資料代理程式中使用自己的IAM角色
 
 當執行數據代理部署時、它會為資料代理執行個體建立 IAM 角色。 Cloud Sync您可以視需要使用自己的 IAM 角色來部署資料代理程式。如果您的組織具有嚴格的安全性原則、您可以使用此選項。
 
@@ -92,7 +92,7 @@ image:screenshot_create_data_broker.gif["Data Broker 頁面的快照、可讓您
 video::video_cloud_sync.mp4[width=848,height=480]
 . 如果您輸入 AWS 存取金鑰、請選取執行個體的位置、選取金鑰組、選擇是否啟用公用 IP 位址、然後選取現有的 IAM 角色、或將欄位保留空白、 Cloud Sync 以便讓 NetApp 為您建立角色。
 +
-如果您選擇自己的 IAM 角色、 ,您需要提供必要的權限。
+如果您選擇自己的 IAM 角色、 <<iam,您需要提供必要的權限>>。
 
 +
 image:screenshot_aws_data_broker.gif["在 AWS 中部署資料代理程式時所需提供資訊的快照。"]
@@ -107,4 +107,5 @@ image:screenshot_created_instance.gif["此快照顯示已成功部署的執行�
 . 完成精靈中的頁面、以建立新的同步關係。
 
 
+.結果
 您已在 AWS 中部署資料代理程式、並建立新的同步關係。您可以將此資料代理程式與其他同步關係搭配使用。

@@ -26,7 +26,7 @@ link:concept_cloud_sync.html["深入瞭解授權的運作方式"]。
 ****
 
 
-== 訂閱 AWS
+== [AWS ]訂閱AWS
 
 AWS 可讓您隨用隨付或每年付費。
 
@@ -50,10 +50,11 @@ video::video_cloud_sync_registering.mp4[width=848,height=480]
 
 
 
-== 訂閱 Azure
+== [azure]訂閱Azure
 
 Azure 可讓您隨用隨付或每年付費。
 
+.您需要的產品
 具備相關訂閱之「參與者」或「擁有者」權限的 Azure 使用者帳戶。
 
 .步驟
@@ -75,7 +76,7 @@ video::video_cloud_sync_registering_azure.mp4[width=848,height=480]
 
 
 
-== 向 NetApp 購買授權、並將其新增 Cloud Sync 至
+== [[licenses]]向NetApp購買授權、並將其新增Cloud Sync 至
 
 若要預付同步關係的費用、您必須購買一或多份授權、並將其新增至 Cloud Sync 該服務。
 

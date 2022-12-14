@@ -21,8 +21,10 @@ summary: 從 ONTAP Cloud Manager 探索內部的功能性叢集之後、您可�
 
 Cloud Manager 可讓您在 ONTAP 各個叢集上配置 NFS 、 CIFS 和 iSCSI 磁碟區。
 
+.開始之前
 必須使用 System Manager 或 CLI 在叢集上設定資料傳輸協定。
 
+.關於這項工作
 您可以在現有的集合體上建立磁碟區。您無法從 Cloud Manager 建立新的 Aggregate 。
 
 .步驟

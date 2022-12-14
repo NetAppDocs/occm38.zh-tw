@@ -24,21 +24,21 @@ summary: 在 Cloud Volumes Service Cloud Manager 中建立一個適用於 Google
 
 
 
-==== 啟用 Cloud Volumes Service 此功能
+==== image:number1.png["第1名"] 啟用 Cloud Volumes Service 此功能
 
 [role="quick-margin-para"]
 從 Google 啟用 Cloud Volumes Service 適用於 GCP API 的功能、讓 Cloud Manager 能夠管理訂閱和雲端磁碟區。
 
 
 
-==== 建立 GCP 服務帳戶並下載認證資料
+==== image:number2.png["第2名"] 建立 GCP 服務帳戶並下載認證資料
 
 [role="quick-margin-para"]
 從 Google 建立 GCP 服務帳戶和角色、以便 Cloud Manager 存取 Cloud Volumes Service 您的適用於 GCP 的支援服務帳戶。
 
 
 
-==== 建立 Cloud Volumes Service GCP 工作環境的功能
+==== image:number3.png["第3名"] 建立 Cloud Volumes Service GCP 工作環境的功能
 
 [role="quick-margin-para"]
 在 Cloud Manager 中、按一下 * 新增工作環境 * > * Google Cloud * > * Cloud Volumes Service S供 * 、然後提供服務帳戶和 Google Cloud 專案的詳細資料。
@@ -101,6 +101,7 @@ summary: 在 Cloud Volumes Service Cloud Manager 中建立一個適用於 Google
 
 TIP: 如果您在多個 GCP 專案中有訂閱和磁碟區、則必須針對每個專案執行此工作。
 
+.開始之前
 新增每個專案的訂閱時、您必須提供下列資訊：
 
 * 服務帳戶認證（您下載的 Json 私密金鑰）
@@ -126,6 +127,7 @@ image:screenshot_add_cvs_gcp_credentials.png["為 Cloud Volumes Service GCP 訂�
 
 
 
+.結果
 Cloud Manager 會顯示 Cloud Volumes Service 您的 Google Cloud 工作環境的功能。
 
 image:screenshot_cvs_gcp_cloud.png["適用於 Google Cloud 工作環境的功能快照 Cloud Volumes Service 。"]
@@ -134,4 +136,5 @@ image:screenshot_cvs_gcp_cloud.png["適用於 Google Cloud 工作環境的功能
 
 如果此訂閱不存在任何雲端磁碟區、請立即建立。
 
+.接下來呢？
 link:task_manage_cvs_gcp.html["開始建立及管理磁碟區"]。

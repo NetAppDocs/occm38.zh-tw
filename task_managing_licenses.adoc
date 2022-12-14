@@ -62,6 +62,7 @@ image:screenshot_system_license.gif["一份《不實系統授權》的快照 Clo
 . 按一下「 * 新增授權 * 」。
 
 
+.結果
 Cloud Manager 會將新的授權檔案安裝在 Cloud Volumes ONTAP 更新的作業系統上。
 
 
@@ -83,6 +84,7 @@ image:screenshot_system_license.gif["一份《不實系統授權》的快照 Clo
 . 按一下 * 更新授權 * 。
 
 
+.結果
 Cloud Manager 會更新 Cloud Volumes ONTAP 整個作業系統的授權。
 
 
@@ -112,4 +114,5 @@ image:screenshot_backup_byol_license_add.png["顯示新增 Backup BYOL 授權頁
 
 
 
+.結果
 Cloud Manager 會新增或更新授權、讓您的 Backup to Cloud 服務處於作用中狀態。

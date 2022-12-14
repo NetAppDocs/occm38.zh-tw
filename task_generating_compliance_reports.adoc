@@ -16,7 +16,7 @@ summary: Cloud Compliance 提供報告、讓您更瞭解組織的資料隱私權
 [role="lead"]
 Cloud Compliance 提供報告、讓您更瞭解組織的資料隱私權方案狀態。
 
-根據預設、 Cloud Compliance 儀表板會顯示所有工作環境和資料庫的法規遵循資料。如果您只想檢視某些工作環境中含有資料的報告、  the working environments for reports,選擇那些工作環境。
+根據預設、 Cloud Compliance 儀表板會顯示所有工作環境和資料庫的法規遵循資料。如果您只想檢視某些工作環境中含有資料的報告、 <<選擇報告的工作環境,選擇那些工作環境>>。
 
 
 NOTE: NetApp 無法保證 Cloud Compliance 所識別的個人資料和敏感個人資料 100% 準確無誤。您應該一律檢閱資料來驗證資訊。
@@ -27,7 +27,7 @@ NOTE: NetApp 無法保證 Cloud Compliance 所識別的個人資料和敏感個�
 
 隱私權風險評估報告概述貴組織的隱私權風險狀態、如 GDPR 和 CCPA 等隱私權法規要求。報告包含下列資訊：
 
-法規遵循狀態:: 答  score,嚴重性分數 以及資料的發佈、無論是不敏感、個人或敏感的個人資料。
+法規遵循狀態:: 答 <<嚴重性分數,嚴重性分數>> 以及資料的發佈、無論是不敏感、個人或敏感的個人資料。
 評估總覽:: 所找到的個人資料類型及資料類別的明細。
 本評估的資料主題:: 按地點列出的找到國家識別碼的人數。
 
@@ -46,6 +46,7 @@ image:screenshot_privacy_risk_assessment.gif["Cloud Manager 中法規遵循索�
 
 
 
+.結果
 Cloud Compliance 會產生一份 PDF 報告、您可以視需要檢閱並傳送給其他群組。
 
 
@@ -125,6 +126,7 @@ image:screenshot_pci_dss.gif["Cloud Manager 中法規遵循索引標籤的螢幕
 
 
 
+.結果
 Cloud Compliance 會產生一份 PDF 報告、您可以視需要檢閱並傳送給其他群組。
 
 
@@ -163,6 +165,7 @@ image:screenshot_hipaa.gif["Cloud Manager 中法規遵循索引標籤的螢幕�
 
 
 
+.結果
 Cloud Compliance 會產生一份 PDF 報告、您可以視需要檢閱並傳送給其他群組。
 
 

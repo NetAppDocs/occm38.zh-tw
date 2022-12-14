@@ -18,7 +18,7 @@ summary: 只要幾個步驟、 Cloud Volumes ONTAP 就能開始使用適用於 A
 
 
 
-==== 建立連接器
+==== image:number1.png["第1名"] 建立連接器
 
 [role="quick-margin-para"]
 如果您沒有 link:concept_connectors.html["連接器"] 然而、帳戶管理員需要建立一個帳戶。 link:task_creating_connectors_azure.html["瞭解如何在 Azure 中建立 Connector"]。
@@ -28,15 +28,16 @@ summary: 只要幾個步驟、 Cloud Volumes ONTAP 就能開始使用適用於 A
 
 
 
-==== 規劃您的組態
+==== image:number2.png["第2名"] 規劃您的組態
 
 [role="quick-margin-para"]
 Cloud Manager 提供符合工作負載需求的預先設定套件、您也可以建立自己的組態。如果您選擇自己的組態、應該瞭解可用的選項。 link:task_planning_your_config_azure.html["深入瞭解"]。
 
 
 
-==== 設定您的網路
+==== image:number3.png["第3名"] 設定您的網路
 
+[role="quick-margin-list"]
 . 確保您的 Vnet 和子網路可支援連接器與 Cloud Volumes ONTAP 支援的連接功能。
 . 啟用從目標 vnet 的傳出網際網路存取、讓 Connector 和 Cloud Volumes ONTAP 支援中心能夠連絡多個端點。
 +
@@ -49,7 +50,7 @@ link:reference_networking_azure.html["深入瞭解網路需求"]。
 
 
 
-==== 使用 Cloud Manager 啟動 Cloud Volumes ONTAP
+==== image:number4.png["第4名"] 使用 Cloud Manager 啟動 Cloud Volumes ONTAP
 
 [role="quick-margin-para"]
 按一下「 * 新增工作環境 * 」、選取您要部署的系統類型、然後完成精靈中的步驟。 link:task_deploying_otc_azure.html["閱讀逐步指示"]。

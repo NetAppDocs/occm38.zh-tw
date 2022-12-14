@@ -24,21 +24,21 @@ summary: 在 Azure NetApp Files Cloud Manager 中建立一個可運作的環境�
 
 
 
-==== 申請存取權
+==== image:number1.png["第1名"] 申請存取權
 
 [role="quick-margin-para"]
 https://aka.ms/azurenetappfiles["提交線上申請"^] 獲得 Azure NetApp Files 存取功能。
 
 
 
-==== 設定 Azure AD 應用程式
+==== image:number2.png["第2名"] 設定 Azure AD 應用程式
 
 [role="quick-margin-para"]
 從 Azure 授予 Azure AD 應用程式權限、並複製應用程式（用戶端） ID 、目錄（租戶） ID 及用戶端機密的值。
 
 
 
-==== 打造 Azure NetApp Files 一個不一樣的工作環境
+==== image:number3.png["第3名"] 打造 Azure NetApp Files 一個不一樣的工作環境
 
 [role="quick-margin-para"]
 在 Cloud Manager 中、按一下 * 新增工作環境 * > * Microsoft Azure * > * Azure NetApp Files Sfor * 、然後提供 AD 應用程式的詳細資料。
@@ -61,6 +61,7 @@ Cloud Manager 需要權限來設定及管理 Azure NetApp Files 功能。您可�
 
 建立 Azure Active Directory （ AD ）應用程式與服務主體、讓 Cloud Manager 可用於角色型存取控制。
 
+.開始之前
 您必須在 Azure 中擁有適當權限、才能建立 Active Directory 應用程式、並將應用程式指派給角色。如需詳細資訊、請參閱 https://docs.microsoft.com/en-us/azure/active-directory/develop/howto-create-service-principal-portal#required-permissions/["Microsoft Azure 說明文件：必要權限"^]。
 
 .步驟
@@ -102,6 +103,7 @@ image:screenshot_anf_client_secret.gif["Azure 入口網站的快照、顯示 Azu
 
 
 
+.結果
 您的 AD 應用程式現在已設定完成、您應該已經複製應用程式（用戶端） ID 、目錄（租戶） ID 、以及用戶端機密的值。當您新增 Azure NetApp Files 功能正常的環境時、必須在 Cloud Manager 中輸入此資訊。
 
 
@@ -172,8 +174,10 @@ image:screenshot_anf_details.gif["建立 Azure NetApp Files 功能不全的環�
 . 按一下「 * 新增 * 」。
 
 
+.結果
 現在您應該擁有 Azure NetApp Files 一個不再只是運作的環境。
 
 image:screenshot_anf_we.gif["一份關於整個作業環境的快照 Azure NetApp Files 。"]
 
+.接下來呢？
 link:task_manage_anf_volumes.html["開始建立及管理磁碟區"]。

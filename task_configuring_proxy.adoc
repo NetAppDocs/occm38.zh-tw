@@ -41,4 +41,5 @@ NOTE: Cloud Manager 不支援包含 @ 字元的密碼。
 
 
 
+.結果
 指定 Proxy 伺服器之後、系統 Cloud Volumes ONTAP 會自動設定新的更新功能、讓您在傳送 AutoSupport 更新訊息時使用 Proxy 伺服器。如果您在使用者建立 Cloud Volumes ONTAP 完整套系統之前未指定 Proxy 伺服器、則他們必須使用 System Manager 在 AutoSupport 各個系統的「更新」選項中手動設定 Proxy 伺服器。

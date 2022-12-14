@@ -29,7 +29,7 @@ TIP: 當您建立第一個 Cloud Volumes ONTAP 運作環境時、如果您還沒
 
 Cloud Manager 可讓您直接從 AWS 使用者介面建立連接器。您也可以選擇 link:task_launching_aws_mktp.html["從 AWS Marketplace 建立 Connector"]或 link:task_installing_linux.html["下載軟體並安裝在您自己的主機上"]。
 
-.您需要的是 #8217 ；需要的是什麼
+.您需要的產品
 * 擁有的 IAM 使用者可使用 AWS 存取金鑰和秘密金鑰 https://mysupport.netapp.com/site/info/cloud-manager-policies["必要權限"^]。
 * 您選擇的 AWS 區域中的 VPC 、子網路和金鑰組。
 
@@ -72,7 +72,7 @@ NOTE: 除非您啟動連接器、否則不會有傳入流量進入連接器。HT
 
 Cloud Manager 可讓您直接從 Azure 的使用者介面建立連接器。您也可以選擇 link:task_launching_azure_mktp.html["從 Azure Marketplace 建立 Connector"]或至 link:task_installing_linux.html["下載軟體並安裝在您自己的主機上"]。
 
-.您需要的是 #8217 ；需要的是什麼
+.您需要的產品
 * 。 https://mysupport.netapp.com/site/info/cloud-manager-policies["必要權限"^] 適用於您的 Azure 帳戶。
 * Azure 訂閱。
 * 您所選擇的 Azure 區域中的 Vnet 和子網路。
@@ -120,7 +120,7 @@ NOTE: 除非您啟動連接器、否則不會有傳入流量進入連接器。HT
 
 Cloud Manager 可讓您直接從使用者介面在 GCP 中建立 Connector 。您也可以選擇 link:task_installing_linux.html["下載軟體並安裝在您自己的主機上"]。
 
-.您需要的是 #8217 ；需要的是什麼
+.您需要的產品
 * 。 https://mysupport.netapp.com/site/info/cloud-manager-policies["必要權限"^] 適用於您的 Google Cloud 帳戶。
 * Google Cloud 專案。
 * 擁有建立及管理 Cloud Volumes ONTAP 功能所需權限的服務帳戶。

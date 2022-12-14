@@ -54,11 +54,11 @@ image:screenshot_compute_dashboard.gif["在Cloud Manager中顯示「成本分析
 
 == Cloud Manager 3.8.9（2020年10月4日）
 
-*  Compliance enhancements
-*  Volumes Service for AWS enhancements
-*  Sync integration
-*  management enhancements
-*  for Government regions
+* <<雲端法規遵循增強功能>>
+* <<適用於AWS增強功能Cloud Volumes Service>>
+* <<整合Cloud Sync>>
+* <<帳戶管理增強功能>>
+* <<政府區域的變更>>
 
 
 
@@ -162,12 +162,12 @@ link:concept_gfc.html["深入瞭解全域檔案快取"]。
 
 == Cloud Manager 3.8.82020年9月9日
 
-*  for Cloud Volumes Service for Google Cloud
-*  to Cloud now supports on-premises ONTAP clusters
-*  to Cloud enhancements
-*  Compliance enhancements
-*  navigation
-*  improvements
+* <<支援Cloud Volumes Service for Google Cloud>>
+* <<備份到雲端現在支援內部部署ONTAP 的架構式叢集>>
+* <<備份至雲端增強功能>>
+* <<雲端法規遵循增強功能>>
+* <<重新整理導覽>>
+* <<系統管理改良>>
 
 
 
@@ -253,13 +253,13 @@ https://occm-sample-policies.s3.amazonaws.com/Policy_for_cloud_Manager_Azure_3.8
 
 == Cloud Manager 3.8.7（2020年8月3日）
 
-*  software-as-a-service experience
-*  Volumes ONTAP enhancements
-*  NetApp Files enhancements
-*  Volumes Service for AWS enhancements
-*  Compliance enhancements
-*  to Cloud enhancements
-*  for Global File Cache
+* <<全新的軟體即服務體驗>>
+* <<更新功能 Cloud Volumes ONTAP>>
+* <<更新功能Azure NetApp Files>>
+* <<適用於AWS增強功能Cloud Volumes Service>>
+* <<雲端法規遵循增強功能>>
+* <<備份至雲端增強功能>>
+* <<支援全域檔案快取>>
 
 
 
@@ -488,8 +488,8 @@ Cloud Manager會提示您變更機器類型的指示。
 
 == Cloud Manager 3.8.6（2020年7月6日）
 
-*  for iSCSI volumes
-*  for the All tiering policy
+* <<支援iSCSI磁碟區>>
+* <<支援All Tiering原則>>
 
 
 
@@ -519,9 +519,9 @@ NOTE: 您可以從 System Manager 或 CLI 建立其他 LUN 。
 
 == Cloud Manager 3.8.5（2020年5月31日）
 
-*  subscription required in the Azure Marketplace
-*  to Cloud enhancements
-*  Compliance enhancements
+* <<Azure Marketplace需要新的訂閱>>
+* <<備份至雲端增強功能>>
+* <<雲端法規遵循增強功能>>
 
 
 
@@ -601,11 +601,11 @@ Azure現已提供Cloud Volumes ONTAP 雲端備份功能。備份到雲端提供�
 
 == Cloud Manager 3.8.3（2020年4月5日）
 
-*  Tiering integration
-*  migration to Azure NetApp Files
-*  Compliance enhancements
-*  to S3 enhancements
-*  volumes using APIs
+* <<雲端分層整合>>
+* <<資料移轉至Azure NetApp Files>>
+* <<雲端法規遵循增強功能>>
+* <<備份到S3的增強功能>>
+* <<使用API的iSCSI磁碟區>>
 
 
 
@@ -683,10 +683,10 @@ Cloud Manager API現在可讓您建立iSCSI磁碟區。 link:api.html#_provision
 
 == Cloud Manager 3.8.2（2020年3月1日）
 
-*  S3 working environments
-*  Compliance enhancements
-*  version for volumes
-*  for Azure US Gov regions
+* <<Amazon S3工作環境>>
+* <<雲端法規遵循增強功能>>
+* <<適用於Volume的NFS版本>>
+* <<支援Azure US Gov地區>>
 
 
 
@@ -786,9 +786,9 @@ link:task_backup_to_s3.html["深入瞭解Backup to S3"]。
 
 == Cloud Manager 3.8.1（2020年2月2日）
 
-*  Compliance enhancements
-*  to accounts and subscriptions
-*  enhancements
+* <<雲端法規遵循增強功能>>
+* <<客戶與訂閱的增強功能>>
+* <<時間軸增強功能>>
 
 
 
@@ -869,8 +869,8 @@ image:screenshot_timeline.gif["Cloud Manager中出現的時間軸快照。時間
 
 == Cloud Manager 3.8（2020年1月8日）
 
-*  enhancements in Azure
-*  tiering enhancements in GCP
+* <<Azure的HA增強功能>>
+* <<GCP的資料分層增強功能>>
 
 
 

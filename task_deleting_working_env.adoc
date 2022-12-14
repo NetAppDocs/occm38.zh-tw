@@ -16,6 +16,7 @@ summary: 最好從 Cloud Volumes ONTAP Cloud Manager 刪除不含 AWS 或 Azure 
 [role="lead"]
 最好是從 Cloud Volumes ONTAP Cloud Manager 刪除不要從雲端供應商的主控台刪除。例如、如果您從 Cloud Volumes ONTAP AWS 終止授權的樣例、則無法將授權金鑰用於其他執行個體。您必須從 Cloud Manager 刪除工作環境、才能釋出授權。
 
+.關於這項工作
 刪除工作環境時、 Cloud Manager 會終止執行個體、刪除磁碟和快照。
 
 

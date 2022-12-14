@@ -38,6 +38,7 @@ https://mysupport.netapp.com/site/info/cloud-manager-policies["NetApp Cloud Mana
 . 將您在上一步建立的原則附加到 IAM 使用者、 IAM 使用者將從 Cloud Manager 建立 Connector 。
 
 
+.結果
 AWS 使用者現在擁有從 Cloud Manager 建立 Connector 所需的權限。當 Cloud Manager 提示您時、您需要為此使用者指定 AWS 存取金鑰。
 
 
@@ -46,7 +47,7 @@ AWS 使用者現在擁有從 Cloud Manager 建立 Connector 所需的權限。�
 
 Cloud Manager 可讓您直接從 AWS 使用者介面建立連接器。
 
-.您需要的是 #8217 ；需要的是什麼
+.您需要的產品
 * 擁有的 IAM 使用者可使用 AWS 存取金鑰和秘密金鑰 https://mysupport.netapp.com/site/info/cloud-manager-policies["必要權限"^]。
 * 您選擇的 AWS 區域中的 VPC 、子網路和金鑰組。
 
@@ -83,4 +84,5 @@ NOTE: 除非您啟動連接器、否則不會有傳入流量進入連接器。HT
 
 
 
+.完成後
 您需要將 Connector 與工作空間建立關聯、讓 Workspace Admins 可以使用這些 Connectors 來建立 Cloud Volumes ONTAP 一套系統。如果您只有帳戶管理員、則不需要將 Connector 與工作區建立關聯。根據預設、 Account Admins 可存取 Cloud Manager 中的所有工作區。 link:task_setting_up_cloud_central_accounts.html#associating-connectors-with-workspaces["深入瞭解"]。

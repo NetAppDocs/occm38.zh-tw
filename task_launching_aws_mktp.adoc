@@ -77,4 +77,5 @@ image:screenshot_set_up_cloud_manager.gif["顯示「設定連接器」畫面的�
 
 
 
+.結果
 現在、您可以使用 Cloud Central 帳戶來安裝和設定 Connector 。當您建立新的工作環境時、 Cloud Manager 會自動使用此 Connector 。但如果您有多個連接器、就需要 link:task_managing_connectors.html["在兩者之間切換"]。

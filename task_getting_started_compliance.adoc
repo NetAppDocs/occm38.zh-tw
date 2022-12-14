@@ -24,25 +24,26 @@ summary: 在Azure NetApp Files AWS或Azure中完成幾個步驟、即可開始�
 
 
 
-==== 部署 Cloud Compliance 執行個體
+==== image:number1.png["第1名"] 部署 Cloud Compliance 執行個體
 
 [role="quick-margin-para"]
 link:task_deploy_cloud_compliance.html["在 Cloud Manager 中部署 Cloud Compliance"^] 如果尚未部署執行個體、
 
 
 
-==== 在您的工作環境中實現雲端法規遵循
+==== image:number2.png["第2名"] 在您的工作環境中實現雲端法規遵循
 
 [role="quick-margin-para"]
 按一下「* Cloud Compliance *（*雲端法規遵循）」、選取「* Configuration *（組態*）」索引標籤、然後針對特定工作環境啟動法規遵循掃描。
 
 
 
-==== 確保能夠存取磁碟區
+==== image:number3.png["第3名"] 確保能夠存取磁碟區
 
 [role="quick-margin-para"]
 雲端法規遵循已啟用、請確保 IT 能夠存取磁碟區。
 
+[role="quick-margin-list"]
 * Cloud Compliance執行個體需要連線至Cloud Volumes ONTAP 每個子網路或Azure NetApp Files 子網路的網路連線。
 * 適用於此功能的安全群組 Cloud Volumes ONTAP 必須允許來自 Cloud Compliance 執行個體的傳入連線。
 * NFS Volume 匯出原則必須允許從 Cloud Compliance 執行個體存取。
@@ -54,7 +55,7 @@ link:task_deploy_cloud_compliance.html["在 Cloud Manager 中部署 Cloud Compli
 
 
 
-==== 設定要掃描的Volume
+==== image:number4.png["第4名"] 設定要掃描的Volume
 
 [role="quick-margin-para"]
 選取您要掃描的磁碟區、Cloud Compliance會開始掃描。
@@ -79,8 +80,9 @@ image:screenshot_cloud_compliance_we_scan_config.png["部署 Cloud Compliance �
 
 
 
-請參閱  and disabling compliance scans on volumes,啟用及停用磁碟區的法規遵循掃描 以取得詳細資料。
+請參閱 <<啟用及停用磁碟區的法規遵循掃描,啟用及停用磁碟區的法規遵循掃描>> 以取得詳細資料。
 
+.結果
 Cloud Compliance會開始掃描每個工作環境中的資料。一旦 Cloud Compliance 完成初始掃描、結果就會顯示在「法規遵循」儀表板中。所需時間取決於資料量、可能需要幾分鐘或幾小時。
 
 
@@ -165,6 +167,7 @@ TIP: 只有在啟用「所有磁碟區的 * 啟動符合性 * 」設定時、才
 
 image:screenshot_cloud_compliance_dp_volumes.png["顯示「啟用 DP 磁碟區存取」按鈕的快照、可供您選擇掃描資料保護磁碟區。"]
 
+.步驟
 如果您要掃描這些資料保護磁碟區：
 
 . 按一下頁面頂端的 * 「 Enable Access to DP Volumes （啟用 DP 磁碟區存取）」按鈕。

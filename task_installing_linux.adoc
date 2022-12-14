@@ -101,8 +101,10 @@ image:screenshot_set_up_cloud_manager.gif["顯示設定畫面的快照、可讓�
 
 
 
+.結果
 現在、您可以使用 Cloud Central 帳戶來安裝和設定 Connector 。當您建立新的工作環境時、 Cloud Manager 會自動使用此 Connector 。
 
+.完成後
 設定權限、讓 Cloud Manager 能夠管理公有雲環境中的資源和程序：
 
 * AWS ： link:task_adding_aws_accounts.html["設定 AWS 帳戶、然後將其新增至 Cloud Manager"]。

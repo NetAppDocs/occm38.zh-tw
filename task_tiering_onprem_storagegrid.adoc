@@ -24,11 +24,12 @@ summary: 將資料分層至異地、以釋放內部 ONTAP 的物件叢集空間 
 
 
 
-==== 準備將資料分層 StorageGRID 以供運用
+==== image:number1.png["第1名"] 準備將資料分層 StorageGRID 以供運用
 
 [role="quick-margin-para"]
 您需要下列項目：
 
+[role="quick-margin-list"]
 * 包含 All SSD 集合體的不完整或不完整系統、執行版本為 9.4 或更新版本、並透過使用者指定的連接埠連線至。 AFF FAS ONTAP StorageGRID
 * 支援 AWS 存取金鑰的 S3 權限、可支援支援支援支援的版本。 StorageGRID
 * 安裝在內部部署上的 Connector 。
@@ -37,7 +38,7 @@ summary: 將資料分層至異地、以釋放內部 ONTAP 的物件叢集空間 
 
 
 
-==== 設定分層
+==== image:number2.png["第2名"] 設定分層
 
 [role="quick-margin-para"]
 選擇內部工作環境、按一下 * 設定分層 * 、然後依照提示將資料分層 StorageGRID 至 BIOS 。
@@ -150,7 +151,7 @@ S3 認證:: 當您設定 StorageGRID 層疊至物件時、您需要使用 S3 存
 
 準備好環境之後、請從第一個叢集開始分層處理非作用中資料。
 
-.您需要的是 #8217 ；需要的是什麼
+.您需要的產品
 * link:task_discovering_ontap.html["內部部署工作環境"]。
 * 具備所需 S3 權限的 AWS 存取金鑰。
 
@@ -186,6 +187,8 @@ image:https://docs.netapp.com/us-en/cloud-tiering/media/screenshot_volumes_selec
 
 
 
+.結果
 您已成功設定資料分層、從叢集上的磁碟區到 StorageGRID 物件。
 
+.接下來呢？
 您可以新增其他叢集、或檢閱叢集上作用中和非作用中資料的相關資訊。如需詳細資訊、請參閱 link:task_managing_tiering.html["從叢集管理資料分層"]。

@@ -18,7 +18,7 @@ summary: 只要幾個步驟、就能開始使用 Cloud Volumes ONTAP 適用於 G
 
 
 
-==== 建立連接器
+==== image:number1.png["第1名"] 建立連接器
 
 [role="quick-margin-para"]
 如果您沒有 link:concept_connectors.html["連接器"] 然而、帳戶管理員需要建立一個帳戶。 link:task_creating_connectors_gcp.html["瞭解如何在 GCP 中建立連接器"]。
@@ -28,15 +28,16 @@ summary: 只要幾個步驟、就能開始使用 Cloud Volumes ONTAP 適用於 G
 
 
 
-==== 規劃您的組態
+==== image:number2.png["第2名"] 規劃您的組態
 
 [role="quick-margin-para"]
 Cloud Manager 提供符合工作負載需求的預先設定套件、您也可以建立自己的組態。如果您選擇自己的組態、應該瞭解可用的選項。 link:task_planning_your_config_gcp.html["深入瞭解"]。
 
 
 
-==== 設定您的網路
+==== image:number3.png["第3名"] 設定您的網路
 
+[role="quick-margin-list"]
 . 確保您的 VPC 和子網路支援連接器與 Cloud Volumes ONTAP 支援之間的連線。
 . 啟用從目標 VPC 的傳出網際網路存取、讓 Connector 和 Cloud Volumes ONTAP 支援中心能夠連絡多個端點。
 +
@@ -49,11 +50,12 @@ link:reference_networking_gcp.html["深入瞭解網路需求"]。
 
 
 
-==== 設定GCP以進行資料分層
+==== image:number4.png["第4名"] 設定GCP以進行資料分層
 
 [role="quick-margin-para"]
 必須滿足兩項要求、才能將冷資料從Cloud Volumes ONTAP 功能性的物件儲存設備（Google Cloud Storage儲存庫）分層至低成本的物件儲存設備（Google Cloud Storage儲存庫）：
 
+[role="quick-margin-list"]
 . https://cloud.google.com/vpc/docs/configure-private-google-access["設定 Cloud Volumes ONTAP 私有 Google Access 的子網路"^]。
 . https://cloud.google.com/iam/docs/creating-managing-service-accounts#creating_a_service_account["設定資料分層的服務帳戶"^]：
 +
@@ -74,11 +76,12 @@ link:reference_networking_gcp.html["深入瞭解網路需求"]。
 
 
 
-==== 啟用 Google Cloud API
+==== image:number5.png["第5名"] 啟用 Google Cloud API
 
 [role="quick-margin-para"]
 https://cloud.google.com/apis/docs/getting-started#enabling_apis["在專案中啟用下列 Google Cloud API"^]。這些 API 是部署連接器和 Cloud Volumes ONTAP 功能不全的必備條件。
 
+[role="quick-margin-list"]
 * Cloud Deployment Manager V2 API
 * 雲端記錄 API
 * Cloud Resource Manager API
@@ -88,7 +91,7 @@ https://cloud.google.com/apis/docs/getting-started#enabling_apis["在專案中�
 
 
 
-==== 使用 Cloud Manager 啟動 Cloud Volumes ONTAP
+==== image:number6.png["數字6."] 使用 Cloud Manager 啟動 Cloud Volumes ONTAP
 
 [role="quick-margin-para"]
 按一下「 * 新增工作環境 * 」、選取您要部署的系統類型、然後完成精靈中的步驟。 link:task_deploying_gcp.html["閱讀逐步指示"]。

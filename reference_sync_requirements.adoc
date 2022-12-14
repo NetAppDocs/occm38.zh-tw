@@ -328,7 +328,7 @@ summary: 驗證是否支援並設定來源和目標、以準備同步資料。
 
 
 
-=== AWS S3 儲存區需求
+=== [S3）] AWS S3儲存區需求
 
 請確定您的 AWS S3 儲存區符合下列需求。
 
@@ -375,7 +375,7 @@ image:screenshot_iam_role_arn.gif["顯示角色 ARN 的 AWS IAM 主控台快照�
 
 
 
-=== Azure Blob 儲存需求
+=== [[blob]Azure Blob儲存需求
 
 請確定您的 Azure Blob 儲存設備符合下列需求。
 

@@ -27,6 +27,7 @@ NOTE: 您必須是帳戶管理員才能建立 Connector 。當您建立第一個
 * 若要部署 BYOL 系統、您需要每個節點的 20 位數序號（授權金鑰）。
 
 
+.關於這項工作
 Cloud Manager Cloud Volumes ONTAP 在 Azure 中建立一套功能完善的系統時、會建立多個 Azure 物件、例如資源群組、網路介面和儲存帳戶。您可以在精靈結束時檢閱資源摘要。
 
 [WARNING]
@@ -210,6 +211,7 @@ image:screenshot_cot_vol.gif["螢幕擷取畫面：顯示針對 Cloud Volumes ON
 
 
 
+.結果
 Cloud Manager 部署 Cloud Volumes ONTAP 了這個功能。您可以追蹤時間表的進度。
 
 如果您在部署 Cloud Volumes ONTAP 此系統時遇到任何問題、請檢閱故障訊息。您也可以選取工作環境、然後按一下 * 重新建立環境 * 。

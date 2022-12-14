@@ -15,7 +15,7 @@ summary: Cloud Manager 可在 ONTAP 內部部署環境、 NetApp 私有儲存組
 
 Cloud Manager 可在 ONTAP 內部部署環境、 NetApp 私有儲存組態和 IBM Cloud 中探索這些功能集區。探索ONTAP 一個支援功能的叢集、可讓您從內部叢集配置儲存設備、複寫資料、備份資料、以及將冷資料分層至雲端。
 
-.您需要的是 #8217 ；需要的是什麼
+.您需要的產品
 * 安裝在雲端供應商或內部部署環境中的 Connector 。
 +
 如果您想要將冷資料分層至雲端、則應根據您計畫將冷資料分層的位置來審查 Connector 的需求。
@@ -56,4 +56,5 @@ image:screenshot_discover_ontap.gif["螢幕快照顯示ONTAP 「叢集詳細資�
 . 在「詳細資料」頁面上、輸入工作環境的名稱和說明、然後按一下「 * 執行 * 」。
 
 
+.結果
 Cloud Manager會探索叢集。您現在可以建立磁碟區、在叢集之間複寫資料、設定資料分層至雲端、將磁碟區備份至雲端、以及啟動 System Manager 來執行進階工作。

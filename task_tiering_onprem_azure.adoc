@@ -24,11 +24,12 @@ summary: 將資料分層儲存至 Azure Blob 儲存設備、以釋放內部 ONTA
 
 
 
-==== 準備將資料分層至 Azure Blob 儲存設備
+==== image:number1.png["第1名"] 準備將資料分層至 Azure Blob 儲存設備
 
 [role="quick-margin-para"]
 您需要下列項目：
 
+[role="quick-margin-list"]
 * 採用 All SSD 集合體的支援功能、執行版本為 9.4 或更新版本、並可透過 HTTPS 連線至 Azure Blob 儲存設備。 AFF FAS ONTAP
 * 安裝在 Azure vnet 中的 Connector 。
 * 連接器的網路功能、可將 HTTPS 連線傳出 ONTAP 至資料中心內的物件叢集、 Azure Blob 儲存設備、以及雲端分層服務。
@@ -36,18 +37,19 @@ summary: 將資料分層儲存至 Azure Blob 儲存設備、以釋放內部 ONTA
 
 
 
-==== 設定分層
+==== image:number2.png["編號2"] 設定分層
 
 [role="quick-margin-para"]
 在 Cloud Manager 中、選取內部工作環境、按一下 * 設定分層 * 、然後依照提示將資料分層至 Azure Blob 儲存設備。
 
 
 
-==== 設定授權
+==== image:number3.png["第3名"] 設定授權
 
 [role="quick-margin-para"]
 免費試用結束後、請透過隨用隨付訂閱、 ONTAP 分層授權或兩者的組合來支付雲端分層費用：
 
+[role="quick-margin-list"]
 * 若要從 Azure Marketplace 訂閱、請按一下 * 分層 > 授權 * 、按一下 * 訂閱 * 、然後依照提示進行。
 * 若要新增分層授權、請傳送電子郵件至： ng-cloud-tiering@netapp.com ？ Subject=Licensing[ 如果您需要購買、請聯絡我們 ] 、然後再寄送 link:task_licensing_cloud_tiering.html["從雲端分層將其新增至叢集"]。
 
@@ -140,6 +142,7 @@ NOTE: Cloud Tiering 支援 FlexGroup 從 ONTAP 功能完善的 9.5 開始的各�
 
 準備好 Azure 環境之後、請從第一個叢集開始分層處理非作用中資料。
 
+.您需要的產品
 link:task_discovering_ontap.html["內部部署工作環境"]。
 
 .步驟
@@ -176,8 +179,10 @@ image:https://docs.netapp.com/us-en/cloud-tiering/media/screenshot_volumes_selec
 
 
 
+.結果
 您已成功設定資料分層、從叢集上的磁碟區到 Azure Blob 物件儲存設備。
 
+.接下來呢？
 link:task_licensing_cloud_tiering.html["請務必從雲端分層服務訂閱"]。
 
 您也可以新增其他叢集、或檢閱叢集上作用中和非作用中資料的相關資訊。如需詳細資訊、請參閱 link:task_managing_tiering.html["從叢集管理資料分層"]。

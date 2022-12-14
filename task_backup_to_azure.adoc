@@ -24,8 +24,9 @@ summary: 請完成幾個步驟、開始將資料從 Cloud Volumes ONTAP 功能�
 
 
 
-==== 確認您的組態支援
+==== image:number1.png["第1名"] 確認您的組態支援
 
+[role="quick-margin-list"]
 * 您在 Cloud Volumes ONTAP Azure 上執行的是版本為 9.7 或更新版本。
 * 您已訂閱有效的雲端供應商、以取得備份所在的儲存空間。
 * 您已訂閱 https://azuremarketplace.microsoft.com/en-us/marketplace/apps/netapp.cloud-manager?tab=Overview["Cloud Manager Marketplace 備份產品"^]或您已購買 link:task_managing_licenses.html#adding-and-updating-your-backup-byol-license["並啟動"^] NetApp 的「備份到雲端 BYOL 」授權。
@@ -33,8 +34,9 @@ summary: 請完成幾個步驟、開始將資料從 Cloud Volumes ONTAP 功能�
 
 
 
-==== 在新系統或現有系統上啟用「備份至雲端」
+==== image:number2.png["第2名"] 在新系統或現有系統上啟用「備份至雲端」
 
+[role="quick-margin-list"]
 * 新系統：工作環境精靈預設會啟用「備份至雲端」。請務必保持啟用選項。
 * 現有系統：選取工作環境、然後按一下右窗格中「 Backup to Cloud （備份至雲端）」服務旁的「 * Activate* （啟動 * ）」、然後依照設定精靈進行。
 +
@@ -44,7 +46,7 @@ image:screenshot_backup_to_s3_icon.gif["螢幕擷取畫面會顯示「 Backup to
 
 
 
-==== 輸入供應商詳細資料
+==== image:number3.png["第3名"] 輸入供應商詳細資料
 
 [role="quick-margin-para"]
 選取提供者訂閱、然後選擇是要建立新的資源群組、還是要使用現有的資源群組。
@@ -54,7 +56,7 @@ image:screenshot_backup_provider_settings_azure.png["此螢幕擷取畫面顯示
 
 
 
-==== 定義備份原則
+==== image:number4.png["第4名"] 定義備份原則
 
 [role="quick-margin-para"]
 預設原則會每天備份磁碟區、並保留每個磁碟區最近 30 個備份複本。變更為每週或每月備份、或選取其中一個提供更多選項的系統定義原則。
@@ -64,14 +66,14 @@ image:screenshot_backup_onprem_policy.png["顯示「備份至雲端」設定的�
 
 
 
-==== 選取您要備份的磁碟區
+==== image:number5.png["第5名"] 選取您要備份的磁碟區
 
 [role="quick-margin-para"]
 在「 Select Volumes （選取磁碟區）」頁面中、找出您要備份的磁碟區。
 
 
 
-==== 視需要還原資料
+==== image:number6.png["數字6."] 視需要還原資料
 
 [role="quick-margin-para"]
 從備份清單中選取一個磁碟區、選取一個備份、然後將資料從備份還原到新的磁碟區。
@@ -104,7 +106,7 @@ image:screenshot_backup_to_s3_restore_icon.gif["選取磁碟區後、用於備�
 工作環境精靈預設會啟用「備份至雲端」。請務必保持啟用選項。
 
 
-NOTE: 如果您想挑選資源群組的名稱、請在部署 Cloud Volumes ONTAP 時 * 停用 * 「備份至雲端」。請依照的步驟執行 ,在現有系統上啟用雲端備份 若要啟用「備份至雲端」、請選擇資源群組。
+NOTE: 如果您想挑選資源群組的名稱、請在部署 Cloud Volumes ONTAP 時 * 停用 * 「備份至雲端」。請依照的步驟執行 <<enabling-backup-to-cloud-on-an-existing-system,在現有系統上啟用雲端備份>> 若要啟用「備份至雲端」、請選擇資源群組。
 
 .步驟
 . 按一下「 * 建立 Cloud Volumes ONTAP 參考 * 」。
@@ -117,8 +119,10 @@ image:screenshot_backup_to_azure.gif["在工作環境精靈中顯示「 Backup t
 . 完成精靈中的頁面以部署系統。
 
 
+.結果
 備份到雲端是在系統上啟用、每天備份磁碟區、並保留最近 30 個備份複本。
 
+.接下來呢？
 link:task_managing_backups.html["您可以變更備份排程、還原磁碟區等、來管理備份"^]。
 
 
@@ -158,6 +162,8 @@ image:screenshot_backup_select_volumes.png["選取要備份之磁碟區的快照
 
 
 
+.結果
 備份到雲端開始對每個選取的磁碟區進行初始備份。
 
+.接下來呢？
 link:task_managing_backups.html["您可以變更備份排程、還原磁碟區等、來管理備份"^]。

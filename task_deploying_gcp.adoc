@@ -16,7 +16,7 @@ summary: 您可以Cloud Volumes ONTAP 建立工作環境、在GCP中啟動單一
 [role="lead"]
 您可以Cloud Volumes ONTAP 建立工作環境、在GCP中啟動單一節點的不二系統。
 
-.您需要的是 #8217 ；需要的是什麼
+.您需要的產品
 * 您應該擁有 link:task_creating_connectors_aws.html["與工作區相關的連接器"]。
 +
 
@@ -213,6 +213,7 @@ image:screenshot_cot_vol.gif["螢幕擷取畫面：顯示針對 Cloud Volumes ON
 
 
 
+.結果
 Cloud Manager 部署 Cloud Volumes ONTAP 了這個功能。您可以追蹤時間表的進度。
 
 如果您在部署 Cloud Volumes ONTAP 此系統時遇到任何問題、請檢閱故障訊息。您也可以選取工作環境、然後按一下 * 重新建立環境 * 。

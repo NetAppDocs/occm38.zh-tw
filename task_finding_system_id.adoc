@@ -16,6 +16,7 @@ summary: 為了協助您開始使用、您的 NetApp 代表可能會要求您提
 [role="lead"]
 為了協助您開始使用、您的 NetApp 代表可能會要求您提供 Cloud Manager 系統 ID 。此 ID 通常用於授權和疑難排解。
 
+.您需要的產品
 您必須先建立連接器、才能變更 Cloud Manager 設定。 link:concept_connectors.html#how-to-create-a-connector["瞭解方法"]。
 
 .步驟

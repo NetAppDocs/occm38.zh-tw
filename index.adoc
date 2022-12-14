@@ -16,7 +16,7 @@ Cloud Manager 可讓 IT 專家和雲端架構設計師使用 NetApp 的雲端解
 
 
 
-== 瞭解新功能
+== 瞭解最新資訊
 
 * link:reference_key_changes.html["Cloud Manager 的重要變更"]
 * link:reference_new_occm.html["Cloud Manager 的新功能"]

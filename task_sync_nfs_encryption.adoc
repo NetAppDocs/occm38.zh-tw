@@ -136,4 +136,5 @@ image:screenshot_nfs_encryption_review.gif["顯示檢閱畫面的快照。它會
 
 
 
+.結果
 從建立新的同步關係開始。 Cloud Sync完成後、按一下「儀表板」中的 * 「檢視」 * 即可檢視新關係的詳細資料。

@@ -20,27 +20,29 @@ summary: 您可以將熱資料的 SSD 或 HDD 效能層與非作用中資料的�
 
 
 
-==== 選擇支援的組態
+==== image:number1.png["第1名"] 選擇支援的組態
 
 [role="quick-margin-para"]
 支援大部分的組態。如果您的 Cloud Volumes ONTAP 系統執行的是最新版本、則使用的是「不含更新版本」、「高階」或「 BYOL 」、您應該會很滿意。 link:task_tiering.html#configurations-that-support-data-tiering["深入瞭解"]。
 
 
 
-==== 確保 Cloud Volumes ONTAP 在物件儲存設備與物件儲存設備之間建立連線
+==== image:number2.png["第2名"] 確保 Cloud Volumes ONTAP 在物件儲存設備與物件儲存設備之間建立連線
 
-* 對於 AWS 、您需要 VPC 端點對 S3 。  to tier cold data to AWS S3,深入瞭解。
-* 對於 Azure 而言、只要 Cloud Manager 具備必要的權限、您就不需要執行任何操作。  to tier cold data to Azure Blob storage,深入瞭解。
-* 對於 GCP 、您需要設定專屬 Google Access 的子網路、並設定服務帳戶。  to tier cold data to a Google Cloud Storage bucket,深入瞭解。
+[role="quick-margin-list"]
+* 對於 AWS 、您需要 VPC 端點對 S3 。 <<將冷資料分層至 AWS S3 的需求,深入瞭解>>。
+* 對於 Azure 而言、只要 Cloud Manager 具備必要的權限、您就不需要執行任何操作。 <<將冷資料分層至 Azure Blob 儲存設備的需求,深入瞭解>>。
+* 對於 GCP 、您需要設定專屬 Google Access 的子網路、並設定服務帳戶。 <<將冷資料分層至 Google Cloud Storage 儲存庫的需求,深入瞭解>>。
 
 
 
 
-==== 建立、修改或複寫磁碟區時、請選擇分層原則
+==== image:number3.png["第3名"] 建立、修改或複寫磁碟區時、請選擇分層原則
 
 [role="quick-margin-para"]
 Cloud Manager 會在您建立、修改或複寫磁碟區時、提示您選擇分層原則。
 
+[role="quick-margin-list"]
 * link:task_tiering.html#tiering-data-from-read-write-volumes["在讀寫磁碟區上分層資料"]
 * link:task_tiering.html#tiering-data-from-data-protection-volumes["在資料保護磁碟區上分層資料"]
 
@@ -205,4 +207,4 @@ image:screenshot_replication_tiering.gif["快照顯示複寫磁碟區時的 S3 �
 
 否、您無法在現有的集合體上啟用資料分層。您只能在新的Aggregate上啟用資料分層。
 
-您也可以在新的Aggregate上啟用資料分層 link:task_provisioning_storage.html#creating-aggregates["自行建立Aggregate"] 或  data from read-write volumes,建立啟用資料分層的新磁碟區。如果啟用資料分層的Aggregate不存在、Cloud Manager就會為磁碟區建立新的Aggregate。
+您也可以在新的Aggregate上啟用資料分層 link:task_provisioning_storage.html#creating-aggregates["自行建立Aggregate"] 或 <<從讀寫磁碟區分層資料,建立啟用資料分層的新磁碟區>>。如果啟用資料分層的Aggregate不存在、Cloud Manager就會為磁碟區建立新的Aggregate。

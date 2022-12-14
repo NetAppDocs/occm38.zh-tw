@@ -24,29 +24,30 @@ summary: 請完成幾個步驟、開始監控 Cloud Volumes ONTAP 效能。
 
 
 
-==== 確認您的組態支援
+==== image:number1.png["第1名"] 確認您的組態支援
 
 [role="quick-margin-para"]
 您需要在 Cloud Volumes ONTAP AWS 上的 AWS 上安裝 Cloud Manager 3.8.4 或更新版本、而且您必須是新 Cloud Insights 的支援客戶。
 
 
 
-==== 在新的或現有的系統上啟用監控
+==== image:number2.png["第2名"] 在新的或現有的系統上啟用監控
 
+[role="quick-margin-list"]
 * 新的工作環境：建立工作環境時（預設為啟用監控）、請務必保持啟用監控。
 * 現有工作環境：選取工作環境、然後按一下 * 開始監控 * 。
 
 
 
 
-==== 檢視效能資料
+==== image:number3.png["第3名"] 檢視效能資料
 
 [role="quick-margin-para"]
 按一下 * 監控 * 、檢視磁碟區的效能資料。
 
 
 
-==== 訂閱 Cloud Insights 此功能
+==== image:number4.png["第4名"] 訂閱 Cloud Insights 此功能
 
 [role="quick-margin-para"]
 請在 30 天免費試用結束前訂閱、以繼續在 Cloud Manager 和 Cloud Insights VMware 中看到效能資料。 https://docs.netapp.com/us-en/cloudinsights/concept_subscribing_to_cloud_insights.html["瞭解如何訂閱"^]。
@@ -165,6 +166,7 @@ image:screenshot_cloud_insights.gif["顯示 Cloud Insights 「監控」索引標
 
 
 
+.結果
 可在新的瀏覽器索引標籤中開啟。 Cloud Insights如果您需要協助、請參閱 https://docs.netapp.com/us-en/cloudinsights["本文檔 Cloud Insights"^]。
 
 

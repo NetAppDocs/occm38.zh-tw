@@ -24,8 +24,9 @@ summary: 請完成幾個步驟、開始將資料從內部部署 ONTAP 的支援�
 
 
 
-==== 確認您的組態支援
+==== image:number1.png["第1名"] 確認您的組態支援
 
+[role="quick-margin-list"]
 * 您已探索內部部署叢集、並將其新增至 Cloud Manager 中的工作環境。請參閱 link:task_discovering_ontap.html["探索 ONTAP 叢集"^] 以取得詳細資料。
 * 您正在ONTAP 叢集上執行的是更新版本的1.7P5。
 * 您已訂閱有效的雲端供應商、以取得備份所在的儲存空間。
@@ -34,7 +35,7 @@ summary: 請完成幾個步驟、開始將資料從內部部署 ONTAP 的支援�
 
 
 
-==== 在系統上啟用「備份至雲端」
+==== image:number2.png["第2名"] 在系統上啟用「備份至雲端」
 
 [role="quick-margin-para"]
 選取工作環境、然後按一下右窗格中「Backup to Cloud（備份至雲端）」服務旁的* Activate*、然後依照設定精靈進行。
@@ -44,7 +45,7 @@ image:screenshot_backup_to_s3_icon.gif["螢幕擷取畫面會顯示「 Backup to
 
 
 
-==== 選取雲端供應商、然後輸入供應商詳細資料
+==== image:number3.png["第3名"] 選取雲端供應商、然後輸入供應商詳細資料
 
 [role="quick-margin-para"]
 選取供應商、然後選取供應商訂閱、地區和資源群組。您也需要在 ONTAP 磁碟區所在的叢集中指定 IPspace 。
@@ -54,7 +55,7 @@ image:screenshot_backup_onprem_to_azure.png["此螢幕擷取畫面顯示將磁�
 
 
 
-==== 定義備份原則
+==== image:number4.png["第4名"] 定義備份原則
 
 [role="quick-margin-para"]
 預設原則會每天備份磁碟區、並保留每個磁碟區最近 30 個備份複本。變更為每週或每月備份、或選取其中一個提供更多選項的系統定義原則。
@@ -64,14 +65,14 @@ image:screenshot_backup_onprem_policy.png["螢幕擷取畫面會顯示「備份�
 
 
 
-==== 選取您要備份的磁碟區
+==== image:number5.png["第5名"] 選取您要備份的磁碟區
 
 [role="quick-margin-para"]
 識別要從叢集備份的磁碟區。
 
 
 
-==== 視需要還原資料
+==== image:number6.png["數字6."] 視需要還原資料
 
 [role="quick-margin-para"]
 從備份清單中、選取一個Volume、選擇一個備份、然後將資料從備份還原到Cloud Volumes ONTAP 使用相同雲端供應商的更新系統上的新Volume。
@@ -142,6 +143,8 @@ image:screenshot_backup_select_onprem_volumes.png["選取要備份之磁碟區�
 
 
 
+.結果
 備份到雲端開始對每個選取的磁碟區進行初始備份。
 
+.接下來呢？
 link:task_managing_backups.html["您可以變更備份排程、還原磁碟區等、來管理備份"^]。

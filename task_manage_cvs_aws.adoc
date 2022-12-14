@@ -27,6 +27,7 @@ Cloud Manager 可讓您根據建立雲端磁碟區 https://cloud.netapp.com/clou
 
 TIP: 如果您在多個 AWS 區域中有訂閱和磁碟區、則必須針對每個區域執行此工作。
 
+.開始之前
 在每個地區新增訂閱時、您必須提供下列資訊：
 
 * Cloud Volumes API 金鑰與秘密金鑰： https://docs.netapp.com/us-en/cloud_volumes/aws/reference_cloud_volume_apis.html#finding-the-api-url-api-key-and-secret-key["請參閱 Cloud Volumes Service 《 for AWS 》文件以取得此資訊"^]。
@@ -52,6 +53,7 @@ image:screenshot_add_cvs_aws_credentials.png["新增認證以供 Cloud Volumes S
 
 
 
+.結果
 Cloud Manager會Cloud Volumes Service 在「工作環境」頁面上顯示您的AWS組態。
 
 image:screenshot_cvs_aws_cloud.gif["工作環境頁面上的《 AWS 版》擷取畫面 Cloud Volumes Service 。"]
@@ -183,6 +185,7 @@ TIP: 您應該遵循 AWS 安全群組設定的指引、讓雲端磁碟區能夠�
 
 新磁碟區會新增至工作環境。
 
+.完成後
 如果這是此 AWS 訂閱所建立的第一個磁碟區、您需要啟動 AWS 管理主控台、以接受此 AWS 區域將使用的兩個虛擬介面來連接所有雲端磁碟區。請參閱 https://docs.netapp.com/us-en/cloud_volumes/aws/media/cvs_aws_account_setup.pdf["NetApp Cloud Volumes Service 《 AWS 帳戶設定指南》"^] 以取得詳細資料。
 
 您必須在按一下「 * 新增 Volume * 」按鈕 10 分鐘內接受介面、否則系統可能會逾時。如果發生這種情況、請寄送電子郵件至 cvs-support@netapp.com 、附上您的 AWS 客戶 ID 和 NetApp 序號。支援部門將會修正此問題、您可以重新啟動就職程序。

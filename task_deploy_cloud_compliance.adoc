@@ -24,28 +24,28 @@ summary: 請完成幾個步驟、在 Cloud Manager 工作區中部署 Cloud Comp
 
 
 
-==== 建立連接器
+==== image:number1.png["第1名"] 建立連接器
 
 [role="quick-margin-para"]
 如果您還沒有連接器、請在 Azure 或 AWS 中建立連接器。請參閱 link:task_creating_connectors_aws.html["在 AWS 中建立連接器"] 或 link:task_creating_connectors_azure.html["在 Azure 中建立 Connector"]。
 
 
 
-==== 檢閱先決條件
+==== image:number2.png["第2名"] 檢閱先決條件
 
 [role="quick-margin-para"]
-確保您的雲端環境符合先決條件、包括16個vCPU用於Cloud Compliance執行個體、例如傳出網際網路存取、連接器與雲端法規遵循之間透過連接埠80的連線等。  prerequisites,請參閱完整清單。
+確保您的雲端環境符合先決條件、包括16個vCPU用於Cloud Compliance執行個體、例如傳出網際網路存取、連接器與雲端法規遵循之間透過連接埠80的連線等。 <<檢閱先決條件,請參閱完整清單>>。
 
 
 
-==== 部署雲端法規遵循
+==== image:number3.png["第3名"] 部署雲端法規遵循
 
 [role="quick-margin-para"]
 啟動安裝精靈、在Cloud Manager中部署Cloud Compliance執行個體。
 
 
 
-==== 訂閱雲端法規遵循服務
+==== image:number4.png["第4名"] 訂閱雲端法規遵循服務
 
 [role="quick-margin-para"]
 Cloud Compliance 在 Cloud Manager 中掃描的前 1 TB 資料是免費的。必須訂閱 AWS 或 Azure Marketplace 、才能在該時間點之後繼續掃描資料。
@@ -145,8 +145,10 @@ image:screenshot_cloud_compliance_wizard_start.png["雲端法規遵循精靈的�
 . 部署執行個體後、按一下 * 繼續進行組態 * 以前往「 _Scan Configuration 」頁面。
 
 
+.結果
 Cloud Manager 會在雲端供應商中部署 Cloud Compliance 執行個體。
 
+.下一步
 從「掃描組態」頁面中、您可以選取要掃描法規遵循的工作環境、磁碟區和儲存區。您也可以連線至資料庫伺服器、以掃描特定的資料庫架構。在任何這些資料來源上啟動Cloud Compliance。
 
 
@@ -159,8 +161,9 @@ Cloud Compliance 在 Cloud Manager 工作區中掃描的前 1 TB 資料是免費
 
 image:screenshot_compliance_subscribe.png["螢幕快照顯示正在掃描多少資料、以及訂閱服務的「訂閱」按鈕。"]
 
-* 附註： * 如果 Cloud Compliance 提示您訂閱、但您已經訂閱 Azure 、您可能使用舊的 * Cloud Manager* 訂閱、而且需要變更為新的 * NetApp Cloud Manager* 訂閱。請參閱 to the new Cloud Manager plan in Azure,改用 Azure 中的全新 NetApp Cloud Manager 計畫 以取得詳細資料。
+* 附註： * 如果 Cloud Compliance 提示您訂閱、但您已經訂閱 Azure 、您可能使用舊的 * Cloud Manager* 訂閱、而且需要變更為新的 * NetApp Cloud Manager* 訂閱。請參閱<<在 Azure 中改用新的 Cloud Manager 計畫,改用 Azure 中的全新 NetApp Cloud Manager 計畫>> 以取得詳細資料。
 
+.步驟
 這些步驟必須由擁有 _Account Admin_ 角色的使用者完成。
 
 . 在 Cloud Manager 主控台右上角、按一下「設定」圖示、然後選取 * 認證 * 。
@@ -206,6 +209,7 @@ video::video_subscribing_azure.mp4[width=848,height=480]
 
 NOTE: 如果您現有的訂閱已隨附特殊的私人優惠方案、您必須聯絡 NetApp 、以便我們在包含法規遵循的情況下、發行新的專屬優惠方案。
 
+.步驟
 這些步驟類似於如上所述新增訂閱、但在幾個地方有所不同。
 
 . 在 Cloud Manager 主控台右上角、按一下「設定」圖示、然後選取 * 認證 * 。

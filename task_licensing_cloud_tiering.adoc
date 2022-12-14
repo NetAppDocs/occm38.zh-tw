@@ -95,6 +95,8 @@ image:screenshot_activate_license.gif["「授權」頁面的快照、可讓您�
 . 按一下「 * 啟動授權 * 」。
 
 
+.結果
 Cloud Tiering 會登錄授權、並將其安裝在叢集上。
 
+.完成後
 如果您稍後購買額外的附加容量、叢集上的授權會自動以新容量更新。無需將新的 NetApp 授權檔案（ NLF ）套用至叢集。

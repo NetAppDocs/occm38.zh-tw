@@ -41,6 +41,7 @@ image:screenshot_compute_add_account.gif["顯示連線頁面上每個可用欄�
 
 
 
+.結果
 從系統開始處理 AWS 帳戶資料。 Cloud Analyzer如果您有多個帳戶、 Cloud Analyzer 則從主付款人帳戶下所有連結帳戶的唯讀功能開始。如果您想要取得更多有關這些帳戶可能節約成本的詳細資料、您也需要將這些帳戶連結起來。您可以在下方的區段中找到更多有關此程序的詳細資料。
 
 

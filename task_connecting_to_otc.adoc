@@ -21,6 +21,7 @@ summary: 如果您需要執行 Cloud Volumes ONTAP 進階的支援管理功能�
 
 您可能需要從 Cloud Volumes ONTAP System Manager 執行部分功能、 System Manager 是一種瀏覽器型管理工具、可在 Cloud Volumes ONTAP 整個系統上執行。例如、如果您想要建立 LUN 、則需要使用 System Manager 。
 
+.開始之前
 您要從其中存取 Cloud Manager 的電腦、必須有連至 Cloud Volumes ONTAP NetApp 的網路連線。例如、您可能需要從 AWS 或 Azure 的跨接主機登入 Cloud Manager 。
 
 
@@ -36,6 +37,7 @@ NOTE: 當部署於多個 AWS 可用性區域時、 Cloud Volumes ONTAP 使用浮
 . 在登入畫面的「使用者名稱」欄位中輸入 * admin* 、輸入您在建立工作環境時所指定的密碼、然後按一下 * 登入 * 。
 
 
+.結果
 系統管理程式主控台會載入。您現在可以使用它來管理 Cloud Volumes ONTAP 功能。
 
 
@@ -44,6 +46,7 @@ NOTE: 當部署於多個 AWS 可用性區域時、 Cloud Volumes ONTAP 使用浮
 
 利用此功能、您可以執行所有的管理命令、這是進階工作或使用 CLI 時的最佳選擇。 Cloud Volumes ONTAP您可以使用 Secure Shell （ SSH ）連線至 CLI 。
 
+.開始之前
 您使用 SSH 連線 Cloud Volumes ONTAP 到 Suse 的主機必須有連至 Cloud Volumes ONTAP Suse 的網路連線。例如、您可能需要從 AWS 或 Azure 中的跨接主機使用 SSH 。
 
 

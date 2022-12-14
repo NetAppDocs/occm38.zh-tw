@@ -18,7 +18,7 @@ summary: 只要幾個步驟、就能開始使用 Cloud Volumes ONTAP 適用於 A
 
 
 
-==== 建立連接器
+==== image:number1.png["第1名"] 建立連接器
 
 [role="quick-margin-para"]
 如果您沒有 link:concept_connectors.html["連接器"] 然而、帳戶管理員需要建立一個帳戶。 link:task_creating_connectors_aws.html["瞭解如何在 AWS 中建立 Connector"]。
@@ -28,15 +28,16 @@ summary: 只要幾個步驟、就能開始使用 Cloud Volumes ONTAP 適用於 A
 
 
 
-==== 規劃您的組態
+==== image:number2.png["第2名"] 規劃您的組態
 
 [role="quick-margin-para"]
 Cloud Manager 提供符合工作負載需求的預先設定套件、您也可以建立自己的組態。如果您選擇自己的組態、應該瞭解可用的選項。 link:task_planning_your_config.html["深入瞭解"]。
 
 
 
-==== 設定您的網路
+==== image:number3.png["第3名"] 設定您的網路
 
+[role="quick-margin-list"]
 . 確保您的 VPC 和子網路支援連接器與 Cloud Volumes ONTAP 支援之間的連線。
 . 啟用從目標 VPC 的傳出網際網路存取、讓 Connector 和 Cloud Volumes ONTAP 支援中心能夠連絡多個端點。
 +
@@ -53,14 +54,14 @@ link:reference_networking_aws.html["深入瞭解網路需求"]。
 
 
 
-==== 設定 AWS KMS
+==== image:number4.png["第4名"] 設定 AWS KMS
 
 [role="quick-margin-para"]
 如果您想搭配 Cloud Volumes ONTAP 使用 Amazon 加密搭配使用、則必須確保存在作用中的客戶主金鑰（ CMK ）。您也必須新增 IAM 角色、將連接器的權限提供給作為 _key 使用者 _ 的連接器、以修改每個 CMK 的金鑰原則。 link:task_setting_up_kms.html["深入瞭解"]。
 
 
 
-==== 使用 Cloud Manager 啟動 Cloud Volumes ONTAP
+==== image:number5.png["第5名"] 使用 Cloud Manager 啟動 Cloud Volumes ONTAP
 
 [role="quick-margin-para"]
 按一下「 * 新增工作環境 * 」、選取您要部署的系統類型、然後完成精靈中的步驟。 link:task_deploying_otc_aws.html["閱讀逐步指示"]。

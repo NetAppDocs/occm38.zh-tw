@@ -80,6 +80,7 @@ image:screenshot_gcp_access_key.gif["GCP 儲存主控台的快照、顯示新存
 
 現在您已擁有服務帳戶的存取金鑰、可以將其新增至 Cloud Manager 。
 
+.您需要的產品
 您必須先建立連接器、才能變更 Cloud Manager 設定。 link:concept_connectors.html#how-to-create-a-connector["瞭解方法"]。
 
 .步驟
@@ -95,6 +96,7 @@ image:screenshot_settings_icon.gif["顯示 Cloud Manager 主控台右上角「�
 . 確認已符合原則需求、然後按一下「 * 建立帳戶 * 」。
 
 
+.接下來呢？
 現在、您可以在 Cloud Volumes ONTAP 建立、修改或複寫資料時、在各個磁碟區上啟用資料分層功能。如需詳細資訊、請參閱 link:task_tiering.html["將非作用中資料分層至低成本物件儲存設備"]。
 
 但在您之前、請確定 Cloud Volumes ONTAP 駐留的子網路已設定為私有 Google Access 。如需相關指示、請參閱 https://cloud.google.com/vpc/docs/configure-private-google-access["Google Cloud 文件：設定私有 Google Access"^]。
