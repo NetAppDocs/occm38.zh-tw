@@ -99,8 +99,9 @@ IPspaces 可隔離網路流量、讓用戶端流量得以分離、以確保隱�
 
 
 --
-支援的磁碟區和集合體:: Cloud Tiering 可以分層的磁碟區總數可能低於 ONTAP 您的整套系統上的磁碟區數量。這是因為磁碟區無法從某些集合體分層。例如 SnapLock 、您無法將資料從「不完整」或 MetroCluster 「不完整」組態中分層。請參閱 ONTAP 的《》文件 link:http://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-psmg/GUID-8E421CC9-1DE1-492F-A84C-9EB1B0177807.html["功能或功能不受 FabricPool 支援"^]。
 
+
+<stdin> 中未解析的指令 - 包含:: https://raw.githubusercontent.com/NetAppDocs/cloud-tiering/master/_include/supported_volumes.adoc []
 
 
 NOTE: Cloud Tiering 支援 FlexGroup 從 ONTAP 功能完善的 9.5 開始的各種功能。安裝程式的運作方式與任何其他 Volume 相同。

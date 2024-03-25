@@ -752,9 +752,6 @@
   <block id="15791d531460b4c275e03017399fcd1a" category="inline-link">深入瞭解 IPspaces</block>
   <block id="cfff9c55ea85b0db9b604bdef2f48d4d" category="paragraph">IPspaces 可隔離網路流量、讓用戶端流量得以分離、以確保隱私與安全。<block ref="099fdf6e8ad70f15bd41fe67513de18c" category="inline-link-rx"></block>。</block>
   <block id="96788f015626d24d63f6f02843be51c3" category="paragraph">設定資料分層時、 Cloud Tiering 會提示您使用 IPspace 。您應該選擇每個 LIF 所關聯的 IPspace 。這可能是您建立的「預設」 IPspace 或自訂 IPspace 。</block>
-  <block id="ac711435545c1b14c721179de8ab94a0" category="list-text">支援的磁碟區和集合體</block>
-  <block id="cbd3171b775ecc9b275479726c41ccec" category="inline-link-macro">功能或功能不受 FabricPool 支援</block>
-  <block id="80be9dc982f371739dd1f289a1ea008c" category="list-text">Cloud Tiering 可以分層的磁碟區總數可能低於 ONTAP 您的整套系統上的磁碟區數量。這是因為磁碟區無法從某些集合體分層。例如 SnapLock 、您無法將資料從「不完整」或 MetroCluster 「不完整」組態中分層。請參閱 ONTAP 的《》文件 <block ref="735d4f7c28454cb31dcb5e7ad1dd69d6" category="inline-link-macro-rx"></block>。</block>
   <block id="c3fb869301bdf0050425864a1c816fd8" category="admonition">雲端分層可支援 FlexGroup 支援不同步磁碟區。安裝程式的運作方式與任何其他 Volume 相同。</block>
   <block id="d32e4305e9f04e1cbc37d3e892619ee7" category="section-title">建立或切換連接器</block>
   <block id="6f8de70a130cd2e986950accf1528a82" category="paragraph">需要連接器才能將資料分層至雲端。將資料分層至 Google Cloud Storage 時、 Google Cloud Platform VPC 必須提供 Connector 。您需要建立新的連接器、或確定目前選取的連接器位於 GCP 中。</block>
@@ -8139,4 +8136,5 @@
   <block id="1514a9e798eb61fcbaf1fddb8eb82097" category="paragraph">NetApp BlueXP 可擴充並強化雲端管理程式所提供的功能。</block>
   <block id="ab226d70455b3dcdb3cf804792103d43" category="inline-link">前往 BlueXP 文件</block>
   <block id="50523074a17d5fe93be8e3f013a747de" category="paragraph"><block ref="50523074a17d5fe93be8e3f013a747de" category="inline-link-rx"></block></block>
+  <block id="c20c1f7ac23768f21f88dd6e7ca4456d" category="paragraph">&lt;stdin&gt; 中未解析的指令 - 包含:: https://raw.githubusercontent.com/NetAppDocs/cloud-tiering/master/_include/supported_volumes.adoc []</block>
 </blocks>
