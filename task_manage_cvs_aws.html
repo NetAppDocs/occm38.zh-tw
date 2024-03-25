@@ -1,0 +1,4941 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+  <head class="at-element-marker">
+  <title>管理 Cloud Volumes Service AWS 的功能</title>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge,chrome=1">
+  <meta http-equiv="language" content="en">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta property="og:title" content="管理 Cloud Volumes Service AWS 的功能" />
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="https://docs.netapp.com/zh-tw/occm38/task_manage_cvs_aws.html" />
+	<meta property="og:description" content="Cloud Manager 可讓您根據 Cloud Volumes Service 您的需求來建立雲端磁碟區、以供 AWS 訂購。您也可以探索 Cloud Volumes Service 已從該解決方案介面建立的雲端磁碟區、並將其新增至工作環境。" />
+  <meta property="og:image" content="https://docs.netapp.com/zh-tw/occm38/images/logo-tophat-social.png" />
+  <meta property="og:image:alt" content="NetApp Logo" />
+  <meta name="format-detection" content="telephone=no">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="encoding" content="utf-8">
+  <meta http-equiv="nss-type" content="Product Documentation"/>
+  <meta http-equiv="nss-subtype" content="User Guide"/><meta http-equiv="nss-product" content="OnCommand Cloud Manager"/><meta name="description" content="Cloud Manager 可讓您根據 Cloud Volumes Service 您的需求來建立雲端磁碟區、以供 AWS 訂購。您也可以探索 Cloud Volumes Service 已從該解決方案介面建立的雲端磁碟區、並將其新增至工作環境。">
+  <meta name="keywords" content=" cloud volumes service for aws, cloud volumes, create cloud volumes, discover cloud volumes service for aws, delete cloud volumes, cloud volumes service subscription, discover cloud volumes service subscription, access key, secret key, discover region, service level, allowed clients, create snapshots"><!-- Icons -->
+  <link rel="icon" href="/zh-tw/occm38/images/favicon.ico" type="image/x-icon">
+
+  <!-- RSS Feed --><!-- CSS Definitions: NetApp CSS should be defined after generic css -->
+
+
+  <!-- Combined CSS -->
+  <link rel="stylesheet" type="text/css" href="/zh-tw/occm38/css/ie-netappdocs.css">
+
+  
+  <link rel="stylesheet" href="/zh-tw/occm38/css/ie-landing-page.css" type="text/css">
+  <link rel="stylesheet" href="/zh-tw/occm38/css/ie-tabbed-blocks.css" type="text/css">
+  <!-- Canonical url -->
+  <link rel="canonical" href="https://docs.netapp.com/zh-tw/occm38/task_manage_cvs_aws.html" />
+  <link rel="alternate" hreflang="x-default" href="https://docs.netapp.com/us-en/occm38/task_manage_cvs_aws.html" />
+  <link rel="alternate" hreflang="zh-Hant" href="https://docs.netapp.com/zh-tw/occm38/task_manage_cvs_aws.html" />
+  <link rel="alternate" hreflang="en" href="https://docs.netapp.com/us-en/occm38/task_manage_cvs_aws.html" />
+  <link rel="alternate" hreflang="ja" href="https://docs.netapp.com/ja-jp/occm38/task_manage_cvs_aws.html" />
+  <link rel="alternate" hreflang="ko" href="https://docs.netapp.com/ko-kr/occm38/task_manage_cvs_aws.html" />
+  <link rel="alternate" hreflang="zh-Hans" href="https://docs.netapp.com/zh-cn/occm38/task_manage_cvs_aws.html" />
+  <link rel="alternate" hreflang="de" href="https://docs.netapp.com/de-de/occm38/task_manage_cvs_aws.html" />
+  <link rel="alternate" hreflang="es" href="https://docs.netapp.com/es-es/occm38/task_manage_cvs_aws.html" />
+  <link rel="alternate" hreflang="fr" href="https://docs.netapp.com/fr-fr/occm38/task_manage_cvs_aws.html" />
+  <link rel="alternate" hreflang="it" href="https://docs.netapp.com/it-it/occm38/task_manage_cvs_aws.html" />
+  <!-- Top level site integrations -->
+<script type="text/javascript" src="https://cdn.cookielaw.org/consent/72570c5c-fe30-465f-b0e0-b77f7fb4ae34/OtAutoBlock.js"></script>
+    <script type="text/javascript" src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js" charset="UTF-8" data-document-language="true" data-domain-script="72570c5c-fe30-465f-b0e0-b77f7fb4ae34"></script>
+    <script type="text/javascript">function OptanonWrapper() { }</script>
+    <script type="text/plain" class="optanon-category-C0002" src="https://assets.adobedtm.com/60287eadf1ee/c284da483c83/launch-e9ff3acac59f.min.js"></script>
+    <script class="optanon-category-C0001">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.setAttributeNode(d.createAttribute('data-ot-ignore'));j.setAttribute('class','optanon-category-C0001');j.async=true;
+        j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl+'';f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-MD73T9M');</script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  
+  <script>
+    $(document).ready(function() {
+      const MASTHEAD_OFFSET = 65;
+      const SECTIONS = $("main h2, main h3");
+      // PAGE NAV - Init
+      if (SECTIONS.length == 0) {
+        // remove if there is no elements
+        /*
+        $("#ie-right-navbar").remove();
+        $("#ie-right-navbar-collapse").remove();
+        */
+      } else {
+        $(".page-nav-title").css('display', 'block');
+        for (var i = 0; i < SECTIONS.length; i++) {
+          var sectionId = $(SECTIONS[i]).attr('id');
+          var sectionName = $(SECTIONS[i]).text();
+          var subClass = $(SECTIONS[i]).is("h3") ? ' page-nav__sublink' : '';
+          $("#page-menu").append('<li class="page-nav-item"><a href="#' + sectionId + '" class="page-nav__link' + subClass + '">' + sectionName + '</a></li>');
+        }
+      }
+    });
+  </script>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+
+  <!-- Used for Product Family Page Sidebar Visibility --><!-- Used to import Promise for IE. Required for SearchKit -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bluebird/3.3.5/bluebird.min.js"></script><script src='/zh-tw/occm38/js/na-search.js'></script><script src='/zh-tw/occm38/js/ie-clouddocs.js'></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script><script>
+    /*
+      $(document).ready(function() {
+          $("#tg-sb-link").click(function() {
+              $("#tg-sb-sidebar").toggle();
+              $("#tg-sb-content").toggleClass('col-md-9');
+              $("#tg-sb-content").toggleClass('col-md-12');
+              $("#tg-sb-icon").toggleClass('fa-toggle-on');
+              $("#tg-sb-icon").toggleClass('fa-toggle-off');
+          });
+      });
+      */
+  </script>
+  <script src='/zh-tw/occm38/js/custom-dropdown.js'></script>
+  <script src='/zh-tw/occm38/js/FileSaver.min.js'></script>
+  <script src='/zh-tw/occm38/js/jszip-utils.min.js'></script>
+  <script src='/zh-tw/occm38/js/jszip.min.js'></script><script src='/zh-tw/occm38/js/ie-pdf-ux.js'></script></head>
+
+
+  <body class role="document" data-flavor="">
+    <div class="skip-to-main">
+      <a href="#main" >Skip to main content</a>
+    </div><noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MD73T9M"
+      height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript><div id="page" class="">
+      <div id="ie-phone-menu" class=""></div>
+      <div id="ie-content-wrap" class="">
+        <nav id="ie-new-header">
+    <ul>
+        <li id="ie-phone-menu-button">
+            <a href="#">
+                <image id="" src="/zh-tw/occm38/images/hamburger.svg" alt="menu" />
+            </a>
+        </li>
+
+        <li>
+            <a href="https://www.netapp.com/tw">
+                <image id="ie-header-logo" src="/zh-tw/occm38/images/netapp_logo.svg" alt="netapp" />
+            </a>
+        </li>
+        <li id="ie-header-docs">
+            <a href="https://www.netapp.com/support-and-training/documentation/">文件</a>
+        </li>
+
+        <!-- Empty container to push header left with or without lang selector -->
+        <li id="empty-container" style="margin-left: auto">
+        </li>
+        <!-- Start Language Selector --><li id="ie-language-dropdown">
+            <div id="language-dropdown" class="custom-dropdown custom-dropdown-lang">
+                <div class="custom-dropdown-select custom-dropdown-select-lang">
+                    <img src="/zh-tw/occm38/images/language_white_24dp.svg" class="n-globe__icon" />
+                    <span class="lang-name">繁體中文</span>
+                    <img src="/zh-tw/occm38/images/dropdown-arrow.svg" alt="" class="custom-icon chevrondown header invisible" />
+                    <img src="/zh-tw/occm38/images/dropdown-arrow.svg" alt="" class="custom-icon chevronup header" />
+                    </button>
+                </div>
+
+                <ul class="custom-dropdown-menu"><li>
+                        <a href="https://docs.netapp.com/zh-tw/occm38/task_manage_cvs_aws.html"
+                            target="_self"><span translate="no" class="notranslate">繁體中文</span></a>
+                    </li><li>
+                        <a href="https://docs.netapp.com/us-en/occm38/task_manage_cvs_aws.html"
+                            target="_self"><span translate="no" class="notranslate">English</span></a>
+                    </li><li>
+                        <a href="https://docs.netapp.com/ja-jp/occm38/task_manage_cvs_aws.html"
+                            target="_self"><span translate="no" class="notranslate">日本語</span></a>
+                    </li><li>
+                        <a href="https://docs.netapp.com/ko-kr/occm38/task_manage_cvs_aws.html"
+                            target="_self"><span translate="no" class="notranslate">한국어</span></a>
+                    </li><li>
+                        <a href="https://docs.netapp.com/zh-cn/occm38/task_manage_cvs_aws.html"
+                            target="_self"><span translate="no" class="notranslate">简体中文</span></a>
+                    </li><li>
+                        <a href="https://docs.netapp.com/de-de/occm38/task_manage_cvs_aws.html"
+                            target="_self"><span translate="no" class="notranslate">Deutsch</span></a>
+                    </li><li>
+                        <a href="https://docs.netapp.com/es-es/occm38/task_manage_cvs_aws.html"
+                            target="_self"><span translate="no" class="notranslate">Español</span></a>
+                    </li><li>
+                        <a href="https://docs.netapp.com/fr-fr/occm38/task_manage_cvs_aws.html"
+                            target="_self"><span translate="no" class="notranslate">Français</span></a>
+                    </li><li>
+                        <a href="https://docs.netapp.com/it-it/occm38/task_manage_cvs_aws.html"
+                            target="_self"><span translate="no" class="notranslate">Italiano</span></a>
+                    </li></ul>
+            </div>
+            </li>
+        <!-- End Language Selector -->
+
+
+        <li id="ie-allnetapp">
+            <div id="allnetapp-dropdown" class="custom-dropdown custom-dropdown-allnetapp">
+                <div class="custom-dropdown-select custom-dropdown-select-allnetapp">
+                    <img src="/zh-tw/occm38/images/apps_white_24dp.svg" alt="" class="allnetapp-icon" />
+                    <span class="allnetapp-name">所有 NetApp</span>
+                    <img src="/zh-tw/occm38/images/dropdown-arrow.svg" alt="" class="custom-icon chevrondown header invisible" />
+                    <img src="/zh-tw/occm38/images/dropdown-arrow.svg" alt="" class="custom-icon chevronup header" />
+                    </button>
+                </div>
+
+                <ul class="custom-dropdown-menu allnetapp-dropdown">
+                    <li>
+                        <a href="https://bluexp.netapp.com/"
+                            target="_self"><span translate="no" class="notranslate">BlueXP</span></a>
+                    </li>
+                    <li>
+                        <a href="https://mysupport.netapp.com/site/"
+                            target="_self"><span translate="no" class="notranslate">支援</span></a>
+                    </li>
+                    <li>
+                        <a href="https://kb.netapp.com/"
+                            target="_self"><span translate="no" class="notranslate">知識庫</span></a>
+                    </li>
+                    <li>
+                        <a href="https://www.netapp.com/support-and-training/netapp-learning-services/"
+                            target="_self"><span translate="no" class="notranslate">訓練</span></a>
+                    </li>
+                </ul>
+            </div>
+
+        </li>
+
+    </ul>
+</nav>
+
+        <main id="n-main-content" class="n-main-content">
+          <!-- Start Documentation Content -->
+<div class="ie-main">
+
+<div id="ie-new-sidebar-collapse" style="display: none">
+    <img id="sidebar-expand" class="ie-searchbox-icon" src="/zh-tw/occm38/images/double_arrow.svg" alt="" />
+</div>
+<div id="ie-new-sidebar">
+    <div id="ie-product-identity-lockup">
+        <div id="sidebar-collapse" class="">
+            <img src="/zh-tw/occm38/images/double_arrow.svg" alt="" />
+        </div>
+        <div id="ie-breadcrumb" class="">
+  <ul class="ie-breadcrumb">
+    <li class="">
+      <a href="https://docs.netapp.com">所有文件</a>
+    </li>
+    
+    
+
+    
+  </ul>
+  
+  <div class="ie-product-name" >
+    <!--<a href="/zh-tw/occm38/">-->
+      Cloud Manager 3.8
+    <!--</a>-->
+  </div>
+</div>
+
+            
+
+        
+        
+
+<div id="ie-searchbox" class="ie-searchbox-sidebar ">
+    <img class="ie-searchbox-icon" src="/zh-tw/occm38/images/loupe.svg" alt=""/>
+    <div id="react-search" 
+        data-search-html="/zh-tw/occm38/search.html" 
+        data-type="widget"
+        data-placeholder="搜尋說明文件"
+        data-no-results-found="找不到 {query} 的結果"
+        data-did-you-mean="搜尋 {suggestion}。"
+        data-no-results-found-did-you-mean="找不到 {query} 的結果。您的意思是 {suggestion} 嗎？"
+        data-results-found="找到 {hitCount} 個結果"
+        data-error-message="發生錯誤。請再試一次。"
+        data-error-reset="重設搜尋"
+        data-sk-es-pf-indexes="" 
+        data-flavor="">
+    </div>
+</div>
+        
+    </div>
+    <div id="ie-new-toc"><script>
+  let sidebarAccordion = true;
+
+  /* specific css rules for Mac */
+  if(navigator.platform.match('Mac') !== null) {
+    document.body.setAttribute('class', 'OSX');
+  }
+
+</script>
+
+<div id="ie-sidebar-container">
+  <ul id="ie-sidebar-list" ><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Cloud Manager文件"
+      data-li-level="1#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/index.html" 
+    ><a class="ie-sidebar-menuitem-1 " href="/zh-tw/occm38/index.html">
+        Cloud Manager文件
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="版本資訊"
+      data-li-level="1" 
+      class=" sidebar-folder    "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-1  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/occm38/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/occm38/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 版本資訊</div>-->
+         版本資訊
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Cloud Manager"
+      data-li-level="2" 
+      class=" sidebar-folder    "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-2  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/occm38/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/occm38/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> Cloud Manager</div>-->
+         Cloud Manager
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="新增功能"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/reference_new_occm.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/occm38/reference_new_occm.html">
+        新增功能
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="移轉至 SaaS"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/concept_saas.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/occm38/concept_saas.html">
+        移轉至 SaaS
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="已知問題"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/reference_issues.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/occm38/reference_issues.html">
+        已知問題
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="已知限制"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/reference_limitations.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/occm38/reference_limitations.html">
+        已知限制
+      </a></li></ul></li><li 
+      data-pdf-exists="false" 
+      data-pdf-filename="Cloud Volumes ONTAP"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="https://docs.netapp.com/us-en/cloud-volumes-ontap/" 
+    ><a class="ie-sidebar-menuitem-2 " href="https://docs.netapp.com/us-en/cloud-volumes-ontap/">
+        Cloud Volumes ONTAP
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="重要變更"
+      data-li-level="1#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/reference_key_changes.html" 
+    ><a class="ie-sidebar-menuitem-1 " href="/zh-tw/occm38/reference_key_changes.html">
+        重要變更
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="開始使用 Cloud Manager"
+      data-li-level="1" 
+      class=" sidebar-folder    "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-1  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/occm38/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/occm38/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 開始使用 Cloud Manager</div>-->
+         開始使用 Cloud Manager
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="深入瞭解 Cloud Manager"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/concept_overview.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/zh-tw/occm38/concept_overview.html">
+        深入瞭解 Cloud Manager
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="網路總覽"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/reference_networking.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/zh-tw/occm38/reference_networking.html">
+        網路總覽
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="註冊 Cloud Central"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/task_signing_up.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/zh-tw/occm38/task_signing_up.html">
+        註冊 Cloud Central
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="登入 Cloud Manager"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/task_logging_in.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/zh-tw/occm38/task_logging_in.html">
+        登入 Cloud Manager
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="設定 Cloud Central 帳戶"
+      data-li-level="2" 
+      class=" sidebar-folder    "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-2  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/occm38/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/occm38/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 設定 Cloud Central 帳戶</div>-->
+         設定 Cloud Central 帳戶
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="深入瞭解 Cloud Central 帳戶"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/concept_cloud_central_accounts.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/occm38/concept_cloud_central_accounts.html">
+        深入瞭解 Cloud Central 帳戶
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="設定帳戶"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/task_setting_up_cloud_central_accounts.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/occm38/task_setting_up_cloud_central_accounts.html">
+        設定帳戶
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="設定連接器"
+      data-li-level="2" 
+      class=" sidebar-folder    "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-2  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/occm38/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/occm38/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 設定連接器</div>-->
+         設定連接器
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="深入瞭解連接器"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/concept_connectors.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/occm38/concept_connectors.html">
+        深入瞭解連接器
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="網路需求"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/reference_networking_cloud_manager.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/occm38/reference_networking_cloud_manager.html">
+        網路需求
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="在 AWS 中建立連接器"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/task_creating_connectors_aws.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/occm38/task_creating_connectors_aws.html">
+        在 AWS 中建立連接器
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="在 Azure 中建立 Connector"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/task_creating_connectors_azure.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/occm38/task_creating_connectors_azure.html">
+        在 Azure 中建立 Connector
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="在 GCP 中建立連接器"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/task_creating_connectors_gcp.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/occm38/task_creating_connectors_gcp.html">
+        在 GCP 中建立連接器
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="下一步"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/reference_whats_next.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/zh-tw/occm38/reference_whats_next.html">
+        下一步
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="管理 Cloud Volumes ONTAP"
+      data-li-level="1" 
+      class=" sidebar-folder    "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-1  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/occm38/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/occm38/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 管理 Cloud Volumes ONTAP</div>-->
+         管理 Cloud Volumes ONTAP
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="瞭解"
+      data-li-level="2" 
+      class=" sidebar-folder    "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-2  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/occm38/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/occm38/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 瞭解</div>-->
+         瞭解
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="總覽"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/concept_overview_cvo.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/occm38/concept_overview_cvo.html">
+        總覽
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="儲存設備"
+      data-li-level="3" 
+      class=" sidebar-folder    "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-3  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/occm38/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/occm38/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 儲存設備</div>-->
+         儲存設備
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="磁碟與集合體"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/concept_storage.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/zh-tw/occm38/concept_storage.html">
+        磁碟與集合體
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="資料分層"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/concept_data_tiering.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/zh-tw/occm38/concept_data_tiering.html">
+        資料分層
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="儲存管理"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/concept_storage_management.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/zh-tw/occm38/concept_storage_management.html">
+        儲存管理
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Flash 快取"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/concept_flash_cache.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/zh-tw/occm38/concept_flash_cache.html">
+        Flash 快取
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="WORM 儲存設備"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/concept_worm.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/zh-tw/occm38/concept_worm.html">
+        WORM 儲存設備
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="高可用度配對"
+      data-li-level="3" 
+      class=" sidebar-folder    "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-3  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/occm38/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/occm38/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 高可用度配對</div>-->
+         高可用度配對
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="AWS 中的 HA 配對"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/concept_ha.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/zh-tw/occm38/concept_ha.html">
+        AWS 中的 HA 配對
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Azure 中的 HA 配對"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/concept_ha_azure.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/zh-tw/occm38/concept_ha_azure.html">
+        Azure 中的 HA 配對
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="評估"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/concept_evaluating.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/occm38/concept_evaluating.html">
+        評估
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="授權"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/concept_licensing.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/occm38/concept_licensing.html">
+        授權
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="安全性"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/concept_security.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/occm38/concept_security.html">
+        安全性
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="效能"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/concept_performance.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/occm38/concept_performance.html">
+        效能
+      </a></li><li 
+      data-pdf-exists="false" 
+      data-pdf-filename="支援的組態"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="https://docs.netapp.com/us-en/cloud-volumes-ontap/index.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="https://docs.netapp.com/us-en/cloud-volumes-ontap/index.html">
+        支援的組態
+      </a></li><li 
+      data-pdf-exists="false" 
+      data-pdf-filename="支援的地區"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="https://cloud.netapp.com/cloud-volumes-global-regions" 
+    ><a class="ie-sidebar-menuitem-3 " href="https://cloud.netapp.com/cloud-volumes-global-regions">
+        支援的地區
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="預設組態"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/reference_default_configs.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/occm38/reference_default_configs.html">
+        預設組態
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="開始使用 AWS"
+      data-li-level="2" 
+      class=" sidebar-folder    "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-2  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/occm38/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/occm38/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 開始使用 AWS</div>-->
+         開始使用 AWS
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="快速入門"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/task_getting_started_aws.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/occm38/task_getting_started_aws.html">
+        快速入門
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="規劃您的組態"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/task_planning_your_config.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/occm38/task_planning_your_config.html">
+        規劃您的組態
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="設定您的網路"
+      data-li-level="3" 
+      class=" sidebar-folder    "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-3  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/occm38/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/occm38/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 設定您的網路</div>-->
+         設定您的網路
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="網路需求"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/reference_networking_aws.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/zh-tw/occm38/reference_networking_aws.html">
+        網路需求
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="設定 AWS 傳輸閘道"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/task_setting_up_transit_gateway.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/zh-tw/occm38/task_setting_up_transit_gateway.html">
+        設定 AWS 傳輸閘道
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="AWS 的安全群組規則"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/reference_security_groups.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/zh-tw/occm38/reference_security_groups.html">
+        AWS 的安全群組規則
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="設定 AWS KMS"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/task_setting_up_kms.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/occm38/task_setting_up_kms.html">
+        設定 AWS KMS
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="在 AWS 中啟動系統"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/task_deploying_otc_aws.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/occm38/task_deploying_otc_aws.html">
+        在 AWS 中啟動系統
+      </a></li><li 
+      data-pdf-exists="false" 
+      data-pdf-filename="開始使用 AWS C2S"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="https://docs.netapp.com/us-en/occm/media/c2s.pdf" 
+    ><a class="ie-sidebar-menuitem-3 " href="https://docs.netapp.com/us-en/occm/media/c2s.pdf">
+        開始使用 AWS C2S
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="開始使用 Azure"
+      data-li-level="2" 
+      class=" sidebar-folder    "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-2  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/occm38/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/occm38/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 開始使用 Azure</div>-->
+         開始使用 Azure
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="快速入門"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/task_getting_started_azure.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/occm38/task_getting_started_azure.html">
+        快速入門
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="規劃您的組態"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/task_planning_your_config_azure.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/occm38/task_planning_your_config_azure.html">
+        規劃您的組態
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="設定您的網路"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/reference_networking_azure.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/occm38/reference_networking_azure.html">
+        設定您的網路
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="在 Azure 中啟動系統"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/task_deploying_otc_azure.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/occm38/task_deploying_otc_azure.html">
+        在 Azure 中啟動系統
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="開始使用 GCP"
+      data-li-level="2" 
+      class=" sidebar-folder    "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-2  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/occm38/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/occm38/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 開始使用 GCP</div>-->
+         開始使用 GCP
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="快速入門"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/task_getting_started_gcp.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/occm38/task_getting_started_gcp.html">
+        快速入門
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="規劃您的組態"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/task_planning_your_config_gcp.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/occm38/task_planning_your_config_gcp.html">
+        規劃您的組態
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="設定您的網路"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/reference_networking_gcp.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/occm38/reference_networking_gcp.html">
+        設定您的網路
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="使用客戶管理的加密金鑰"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/task_setting_up_gcp_encryption.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/occm38/task_setting_up_gcp_encryption.html">
+        使用客戶管理的加密金鑰
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="在 GCP 中啟動系統"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/task_deploying_gcp.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/occm38/task_deploying_gcp.html">
+        在 GCP 中啟動系統
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="配置及管理儲存設備"
+      data-li-level="2" 
+      class=" sidebar-folder    "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-2  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/occm38/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/occm38/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 配置及管理儲存設備</div>-->
+         配置及管理儲存設備
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="建立磁碟區、集合體和 LUN"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/task_provisioning_storage.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/occm38/task_provisioning_storage.html">
+        建立磁碟區、集合體和 LUN
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="管理磁碟區和集合體"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/task_managing_storage.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/occm38/task_managing_storage.html">
+        管理磁碟區和集合體
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="將非作用中資料分層至物件儲存設備"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/task_tiering.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/occm38/task_tiering.html">
+        將非作用中資料分層至物件儲存設備
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="管理儲存 VM"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/task_managing_svms.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/occm38/task_managing_svms.html">
+        管理儲存 VM
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="使用功能區做為持續儲存的儲存設備 ONTAP"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/task_connecting_kubernetes.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/occm38/task_connecting_kubernetes.html">
+        使用功能區做為持續儲存的儲存設備 ONTAP
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="使用 NetApp 加密來加密磁碟區"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/task_encrypting_volumes.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/occm38/task_encrypting_volumes.html">
+        使用 NetApp 加密來加密磁碟區
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="複寫資料"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/task_replicating_data.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/zh-tw/occm38/task_replicating_data.html">
+        複寫資料
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="監控效能"
+      data-li-level="2" 
+      class=" sidebar-folder    "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-2  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/occm38/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/occm38/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 監控效能</div>-->
+         監控效能
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="深入瞭解監控"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/concept_monitoring.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/occm38/concept_monitoring.html">
+        深入瞭解監控
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="開始使用"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/task_getting_started_monitoring.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/occm38/task_getting_started_monitoring.html">
+        開始使用
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="改善勒索軟體保護"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/task_protecting_ransomware.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/zh-tw/occm38/task_protecting_ransomware.html">
+        改善勒索軟體保護
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="管理"
+      data-li-level="2" 
+      class=" sidebar-folder    "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-2  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/occm38/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/occm38/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 管理</div>-->
+         管理
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="註冊隨用隨付系統"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/task_registering.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/occm38/task_registering.html">
+        註冊隨用隨付系統
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="設定 Cloud Volumes ONTAP 功能"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/task_setting_up_ontap_cloud.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/occm38/task_setting_up_ontap_cloud.html">
+        設定 Cloud Volumes ONTAP 功能
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="管理 BYOL 授權"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/task_managing_licenses.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/occm38/task_managing_licenses.html">
+        管理 BYOL 授權
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="更新軟體"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/task_updating_ontap_cloud.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/occm38/task_updating_ontap_cloud.html">
+        更新軟體
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="修改系統組態"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/task_modifying_ontap_cloud.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/occm38/task_modifying_ontap_cloud.html">
+        修改系統組態
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="停止並啟動系統"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/task_managing_state.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/occm38/task_managing_state.html">
+        停止並啟動系統
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="監控 AWS 成本"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/task_monitoring_costs.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/occm38/task_monitoring_costs.html">
+        監控 AWS 成本
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="連線 Cloud Volumes ONTAP 至"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/task_connecting_to_otc.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/occm38/task_connecting_to_otc.html">
+        連線 Cloud Volumes ONTAP 至
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="新增現有系統"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/task_adding_ontap_cloud.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/occm38/task_adding_ontap_cloud.html">
+        新增現有系統
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="刪除系統"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/task_deleting_working_env.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/occm38/task_deleting_working_env.html">
+        刪除系統
+      </a></li></ul></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="使用檔案服務來配置磁碟區"
+      data-li-level="1" 
+      class=" sidebar-folder    "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-1  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/occm38/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/occm38/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 使用檔案服務來配置磁碟區</div>-->
+         使用檔案服務來配置磁碟區
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Azure NetApp Files"
+      data-li-level="2" 
+      class=" sidebar-folder    "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-2  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/occm38/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/occm38/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> Azure NetApp Files</div>-->
+         Azure NetApp Files
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="深入瞭解 Azure NetApp Files"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/concept_azure_netapp_files.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/occm38/concept_azure_netapp_files.html">
+        深入瞭解 Azure NetApp Files
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="設定 Azure NetApp Files 功能"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/task_manage_anf.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/occm38/task_manage_anf.html">
+        設定 Azure NetApp Files 功能
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="建立及管理磁碟區"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/task_manage_anf_volumes.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/occm38/task_manage_anf_volumes.html">
+        建立及管理磁碟區
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="AWS 適用的 Cloud Volumes Service"
+      data-li-level="2" 
+      class=" sidebar-folder    "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-2  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/occm38/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/occm38/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> AWS 適用的 Cloud Volumes Service</div>-->
+         AWS 適用的 Cloud Volumes Service
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="深入瞭 Cloud Volumes Service 解適用於 AWS 的功能"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/concept_cvs_aws.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/occm38/concept_cvs_aws.html">
+        深入瞭 Cloud Volumes Service 解適用於 AWS 的功能
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="部署及管理雲端磁碟區"
+      data-li-level="3#" 
+      class="  ie-sidebar-selected    "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/task_manage_cvs_aws.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/occm38/task_manage_cvs_aws.html">
+        部署及管理雲端磁碟區
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="管理雲端磁碟區快照"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/task_manage_cloud_volumes_snapshots.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/occm38/task_manage_cloud_volumes_snapshots.html">
+        管理雲端磁碟區快照
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="參考資料"
+      data-li-level="3" 
+      class=" sidebar-folder    "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-3  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/occm38/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/occm38/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 參考資料</div>-->
+         參考資料
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="服務層級和已分配容量"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/reference_cvs_service_levels_and_quotas.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/zh-tw/occm38/reference_cvs_service_levels_and_quotas.html">
+        服務層級和已分配容量
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="適用於 Windows AD 伺服器的 AWS 安全性群組設定"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/reference_security_groups_windows_ad_servers.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/zh-tw/occm38/reference_security_groups_windows_ad_servers.html">
+        適用於 Windows AD 伺服器的 AWS 安全性群組設定
+      </a></li></ul></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="適用於 GCP Cloud Volumes Service"
+      data-li-level="2" 
+      class=" sidebar-folder    "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-2  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/occm38/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/occm38/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 適用於 GCP Cloud Volumes Service</div>-->
+         適用於 GCP Cloud Volumes Service
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="深入瞭 Cloud Volumes Service 解適用於 GCP 的功能"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/concept_cvs_gcp.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/occm38/concept_cvs_gcp.html">
+        深入瞭 Cloud Volumes Service 解適用於 GCP 的功能
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="設定 Cloud Volumes Service GCP 的功能"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/task_setup_cvs_gcp.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/occm38/task_setup_cvs_gcp.html">
+        設定 Cloud Volumes Service GCP 的功能
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="建立及管理雲端磁碟區"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/task_manage_cvs_gcp.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/occm38/task_manage_cvs_gcp.html">
+        建立及管理雲端磁碟區
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="管理雲端磁碟區快照"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/task_manage_cloud_volumes_gcp_snapshots.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/occm38/task_manage_cloud_volumes_gcp_snapshots.html">
+        管理雲端磁碟區快照
+      </a></li></ul></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="管理 ONTAP 叢集"
+      data-li-level="1" 
+      class=" sidebar-folder    "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-1  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/occm38/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/occm38/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 管理 ONTAP 叢集</div>-->
+         管理 ONTAP 叢集
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="探索 ONTAP 叢集"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/task_discovering_ontap.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/zh-tw/occm38/task_discovering_ontap.html">
+        探索 ONTAP 叢集
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="管理 ONTAP 功能"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/task_provisioning_ontap.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/zh-tw/occm38/task_provisioning_ontap.html">
+        管理 ONTAP 功能
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="備份到雲端"
+      data-li-level="1" 
+      class=" sidebar-folder    "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-1  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/occm38/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/occm38/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 備份到雲端</div>-->
+         備份到雲端
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="深入瞭解備份至雲端"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/concept_backup_to_cloud.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/zh-tw/occm38/concept_backup_to_cloud.html">
+        深入瞭解備份至雲端
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="開始使用"
+      data-li-level="2" 
+      class=" sidebar-folder    "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-2  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/occm38/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/occm38/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 開始使用</div>-->
+         開始使用
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="備份至 Amazon S3"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/task_backup_to_s3.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/occm38/task_backup_to_s3.html">
+        備份至 Amazon S3
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="備份至 Azure Blob 儲存設備"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/task_backup_to_azure.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/occm38/task_backup_to_azure.html">
+        備份至 Azure Blob 儲存設備
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="從內部部署 ONTAP 的資訊系統進行備份"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/task_backup_from_onprem.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/occm38/task_backup_from_onprem.html">
+        從內部部署 ONTAP 的資訊系統進行備份
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="管理備份與還原資料"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/task_managing_backups.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/zh-tw/occm38/task_managing_backups.html">
+        管理備份與還原資料
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="複製與同步資料"
+      data-li-level="1" 
+      class=" sidebar-folder    "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-1  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/occm38/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/occm38/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 複製與同步資料</div>-->
+         複製與同步資料
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="深入瞭解 Cloud Sync"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/concept_cloud_sync.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/zh-tw/occm38/concept_cloud_sync.html">
+        深入瞭解 Cloud Sync
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="開始使用"
+      data-li-level="2" 
+      class=" sidebar-folder    "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-2  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/occm38/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/occm38/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 開始使用</div>-->
+         開始使用
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="快速入門"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/task_sync_quick_start.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/occm38/task_sync_quick_start.html">
+        快速入門
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="準備來源和目標"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/reference_sync_requirements.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/occm38/reference_sync_requirements.html">
+        準備來源和目標
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="準備網路"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/reference_sync_networking.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/occm38/reference_sync_networking.html">
+        準備網路
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="如何安裝資料代理程式"
+      data-li-level="3" 
+      class=" sidebar-folder    "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-3  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/occm38/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/occm38/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 如何安裝資料代理程式</div>-->
+         如何安裝資料代理程式
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="安裝於 AWS"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/task_sync_installing_aws.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/zh-tw/occm38/task_sync_installing_aws.html">
+        安裝於 AWS
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="安裝於 Azure"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/task_sync_installing_azure.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/zh-tw/occm38/task_sync_installing_azure.html">
+        安裝於 Azure
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="安裝於 GCP"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/task_sync_installing_gcp.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/zh-tw/occm38/task_sync_installing_gcp.html">
+        安裝於 GCP
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="安裝在 Linux 主機上"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/task_sync_installing_linux.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/zh-tw/occm38/task_sync_installing_linux.html">
+        安裝在 Linux 主機上
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="建立同步關係"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/task_sync_creating_relationships.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/occm38/task_sync_creating_relationships.html">
+        建立同步關係
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="支付同步關係費用"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/task_sync_licensing.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/occm38/task_sync_licensing.html">
+        支付同步關係費用
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="教學課程"
+      data-li-level="2" 
+      class=" sidebar-folder    "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-2  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/occm38/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/occm38/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 教學課程</div>-->
+         教學課程
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="在共享區之間複製 ACL"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/task_sync_copying_acls.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/occm38/task_sync_copying_acls.html">
+        在共享區之間複製 ACL
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="加密傳輸中的 NFS 資料"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/task_sync_nfs_encryption.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/occm38/task_sync_nfs_encryption.html">
+        加密傳輸中的 NFS 資料
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="管理同步關係"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/task_sync_managing_relationships.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/zh-tw/occm38/task_sync_managing_relationships.html">
+        管理同步關係
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="API"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/api_sync.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/zh-tw/occm38/api_sync.html">
+        API
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="常見問題集"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/faq_sync.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/zh-tw/occm38/faq_sync.html">
+        常見問題集
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="深入瞭解資料隱私"
+      data-li-level="1" 
+      class=" sidebar-folder    "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-1  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/occm38/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/occm38/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 深入瞭解資料隱私</div>-->
+         深入瞭解資料隱私
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="深入瞭解雲端法規遵循"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/concept_cloud_compliance.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/zh-tw/occm38/concept_cloud_compliance.html">
+        深入瞭解雲端法規遵循
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="開始使用"
+      data-li-level="2" 
+      class=" sidebar-folder    "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-2  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/occm38/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/occm38/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 開始使用</div>-->
+         開始使用
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="部署雲端法規遵循"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/task_deploy_cloud_compliance.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/occm38/task_deploy_cloud_compliance.html">
+        部署雲端法規遵循
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="啟動資料來源的掃描"
+      data-li-level="3" 
+      class=" sidebar-folder    "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-3  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/occm38/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/occm38/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 啟動資料來源的掃描</div>-->
+         啟動資料來源的掃描
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="不再是不一樣的Cloud Volumes ONTAP Azure NetApp Files"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/task_getting_started_compliance.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/zh-tw/occm38/task_getting_started_compliance.html">
+        不再是不一樣的Cloud Volumes ONTAP Azure NetApp Files
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Amazon S3 儲存桶"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/task_scanning_s3.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/zh-tw/occm38/task_scanning_s3.html">
+        Amazon S3 儲存桶
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="資料庫架構"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/task_scanning_databases.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/zh-tw/occm38/task_scanning_databases.html">
+        資料庫架構
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="內部部署ONTAP 的不全資料"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/task_scanning_onprem.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/zh-tw/occm38/task_scanning_onprem.html">
+        內部部署ONTAP 的不全資料
+      </a></li></ul></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="取得資料的可見度與控制權"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/task_controlling_private_data.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/zh-tw/occm38/task_controlling_private_data.html">
+        取得資料的可見度與控制權
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="產生報告"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/task_generating_compliance_reports.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/zh-tw/occm38/task_generating_compliance_reports.html">
+        產生報告
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="回應 DSAR"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/task_responding_to_dsar.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/zh-tw/occm38/task_responding_to_dsar.html">
+        回應 DSAR
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="停用雲端法規遵循"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/task_managing_compliance.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/zh-tw/occm38/task_managing_compliance.html">
+        停用雲端法規遵循
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="常見問題集"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/faq_cloud_compliance.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/zh-tw/occm38/faq_cloud_compliance.html">
+        常見問題集
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="啟用即時全域檔案共用"
+      data-li-level="1" 
+      class=" sidebar-folder    "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-1  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/occm38/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/occm38/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 啟用即時全域檔案共用</div>-->
+         啟用即時全域檔案共用
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="深入瞭解全域檔案快取"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/concept_gfc.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/zh-tw/occm38/concept_gfc.html">
+        深入瞭解全域檔案快取
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="開始部署全域檔案快取之前"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/concept_before_you_begin_to_deploy_gfc.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/zh-tw/occm38/concept_before_you_begin_to_deploy_gfc.html">
+        開始部署全域檔案快取之前
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="快速入門"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/task_gfc_getting_started.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/zh-tw/occm38/task_gfc_getting_started.html">
+        快速入門
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="開始部署全域檔案快取 Edge 之前"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/download_gfc_resources.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/zh-tw/occm38/download_gfc_resources.html">
+        開始部署全域檔案快取 Edge 之前
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="部署全域檔案快取 Edge"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/task_deploy_gfc_edge_instances.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/zh-tw/occm38/task_deploy_gfc_edge_instances.html">
+        部署全域檔案快取 Edge
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="終端使用者訓練"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/concept_gfc_enduser_training.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/zh-tw/occm38/concept_gfc_enduser_training.html">
+        終端使用者訓練
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="其他資訊"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/reference_gfc_additional_information.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/zh-tw/occm38/reference_gfc_additional_information.html">
+        其他資訊
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="最佳化雲端運算成本"
+      data-li-level="1" 
+      class=" sidebar-folder    "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-1  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/occm38/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/occm38/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 最佳化雲端運算成本</div>-->
+         最佳化雲端運算成本
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="瞭解運算服務"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/concept_compute.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/zh-tw/occm38/concept_compute.html">
+        瞭解運算服務
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="開始使用"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/task_getting_started_compute.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/zh-tw/occm38/task_getting_started_compute.html">
+        開始使用
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="將資料分層至雲端"
+      data-li-level="1" 
+      class=" sidebar-folder    "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-1  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/occm38/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/occm38/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 將資料分層至雲端</div>-->
+         將資料分層至雲端
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="深入瞭解雲端分層"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/concept_cloud_tiering.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/zh-tw/occm38/concept_cloud_tiering.html">
+        深入瞭解雲端分層
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="開始使用"
+      data-li-level="2" 
+      class=" sidebar-folder    "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-2  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/occm38/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/occm38/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 開始使用</div>-->
+         開始使用
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="將資料分層至 Amazon S3"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/task_tiering_onprem_aws.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/occm38/task_tiering_onprem_aws.html">
+        將資料分層至 Amazon S3
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="將資料層級至 Azure Blob 儲存設備"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/task_tiering_onprem_azure.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/occm38/task_tiering_onprem_azure.html">
+        將資料層級至 Azure Blob 儲存設備
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="將資料分層至 Google Cloud Storage"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/task_tiering_onprem_gcp.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/occm38/task_tiering_onprem_gcp.html">
+        將資料分層至 Google Cloud Storage
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="將資料分層 StorageGRID 至"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/task_tiering_onprem_storagegrid.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/occm38/task_tiering_onprem_storagegrid.html">
+        將資料分層 StorageGRID 至
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="設定授權"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/task_licensing_cloud_tiering.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/zh-tw/occm38/task_licensing_cloud_tiering.html">
+        設定授權
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="管理資料分層"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/task_managing_tiering.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/zh-tw/occm38/task_managing_tiering.html">
+        管理資料分層
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="常見問題集"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/faq_cloud_tiering.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/zh-tw/occm38/faq_cloud_tiering.html">
+        常見問題集
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="參考資料"
+      data-li-level="2" 
+      class=" sidebar-folder    "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-2  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/occm38/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/occm38/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 參考資料</div>-->
+         參考資料
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="支援的 Amazon S3 儲存類別和地區"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/reference_aws_support.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/occm38/reference_aws_support.html">
+        支援的 Amazon S3 儲存類別和地區
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="支援的 Azure 存取層級和地區"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/reference_azure_support.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/occm38/reference_azure_support.html">
+        支援的 Azure 存取層級和地區
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="支援的 Google Cloud 儲存類別和地區"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/reference_google_support.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/occm38/reference_google_support.html">
+        支援的 Google Cloud 儲存類別和地區
+      </a></li></ul></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="檢視 Amazon S3 儲存桶"
+      data-li-level="1#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/task_viewing_amazon_s3.html" 
+    ><a class="ie-sidebar-menuitem-1 " href="/zh-tw/occm38/task_viewing_amazon_s3.html">
+        檢視 Amazon S3 儲存桶
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="管理 Cloud Manager"
+      data-li-level="1" 
+      class=" sidebar-folder    "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-1  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/occm38/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/occm38/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 管理 Cloud Manager</div>-->
+         管理 Cloud Manager
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="尋找您的系統 ID"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/task_finding_system_id.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/zh-tw/occm38/task_finding_system_id.html">
+        尋找您的系統 ID
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="管理連接器"
+      data-li-level="2" 
+      class=" sidebar-folder    "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-2  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/occm38/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/occm38/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 管理連接器</div>-->
+         管理連接器
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="管理現有的連接器"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/task_managing_connectors.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/occm38/task_managing_connectors.html">
+        管理現有的連接器
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="建立連接器的更多方法"
+      data-li-level="3" 
+      class=" sidebar-folder    "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-3  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/occm38/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/occm38/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 建立連接器的更多方法</div>-->
+         建立連接器的更多方法
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="連接器主機需求"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/reference_cloud_mgr_reqs.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/zh-tw/occm38/reference_cloud_mgr_reqs.html">
+        連接器主機需求
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="從 AWS Marketplace 建立"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/task_launching_aws_mktp.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/zh-tw/occm38/task_launching_aws_mktp.html">
+        從 AWS Marketplace 建立
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="從 Azure Marketplace 建立"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/task_launching_azure_mktp.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/zh-tw/occm38/task_launching_azure_mktp.html">
+        從 Azure Marketplace 建立
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="手動安裝軟體"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/task_installing_linux.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/zh-tw/occm38/task_installing_linux.html">
+        手動安裝軟體
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="預設組態"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/reference_connector_default_config.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/occm38/reference_connector_default_config.html">
+        預設組態
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="管理認證資料"
+      data-li-level="2" 
+      class=" sidebar-folder    "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-2  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/occm38/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/occm38/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 管理認證資料</div>-->
+         管理認證資料
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="AWS"
+      data-li-level="3" 
+      class=" sidebar-folder    "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-3  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/occm38/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/occm38/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> AWS</div>-->
+         AWS
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="瞭解 AWS 認證資料"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/concept_accounts_aws.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/zh-tw/occm38/concept_accounts_aws.html">
+        瞭解 AWS 認證資料
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="管理 AWS 認證資料"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/task_adding_aws_accounts.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/zh-tw/occm38/task_adding_aws_accounts.html">
+        管理 AWS 認證資料
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Azure"
+      data-li-level="3" 
+      class=" sidebar-folder    "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-3  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/occm38/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/occm38/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> Azure</div>-->
+         Azure
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="瞭解 Azure 認證資料"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/concept_accounts_azure.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/zh-tw/occm38/concept_accounts_azure.html">
+        瞭解 Azure 認證資料
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="管理 Azure 認證資料"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/task_adding_azure_accounts.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/zh-tw/occm38/task_adding_azure_accounts.html">
+        管理 Azure 認證資料
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="GCP"
+      data-li-level="3" 
+      class=" sidebar-folder    "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-3  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/occm38/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/occm38/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> GCP</div>-->
+         GCP
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="深入瞭解 GCP 認證"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/concept_accounts_gcp.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/zh-tw/occm38/concept_accounts_gcp.html">
+        深入瞭解 GCP 認證
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="管理 GCP 認證"
+      data-li-level="4#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/task_adding_gcp_accounts.html" 
+    ><a class="ie-sidebar-menuitem-4 " href="/zh-tw/occm38/task_adding_gcp_accounts.html">
+        管理 GCP 認證
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="NetApp 支援網站認證"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/task_adding_nss_accounts.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/occm38/task_adding_nss_accounts.html">
+        NetApp 支援網站認證
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="管理您的帳戶"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/task_managing_cloud_central_accounts.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/zh-tw/occm38/task_managing_cloud_central_accounts.html">
+        管理您的帳戶
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="安裝 HTTPS 憑證"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/task_installing_https_cert.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/zh-tw/occm38/task_installing_https_cert.html">
+        安裝 HTTPS 憑證
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="移除工作環境"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/task_removing.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/zh-tw/occm38/task_removing.html">
+        移除工作環境
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="設定 Proxy 設定"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/task_configuring_proxy.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/zh-tw/occm38/task_configuring_proxy.html">
+        設定 Proxy 設定
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="置換 Azure 中的 CIFS 鎖定"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/task_overriding_cifs_locks.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/zh-tw/occm38/task_overriding_cifs_locks.html">
+        置換 Azure 中的 CIFS 鎖定
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="參考資料"
+      data-li-level="2" 
+      class=" sidebar-folder    "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-2  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/occm38/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/occm38/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 參考資料</div>-->
+         參考資料
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="使用者角色"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/reference_user_roles.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/occm38/reference_user_roles.html">
+        使用者角色
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="權限"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/reference_permissions.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/occm38/reference_permissions.html">
+        權限
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="AWS Marketplace 頁面"
+      data-li-level="3#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/reference_aws_marketplace.html" 
+    ><a class="ie-sidebar-menuitem-3 " href="/zh-tw/occm38/reference_aws_marketplace.html">
+        AWS Marketplace 頁面
+      </a></li></ul></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="使用API和自動化"
+      data-li-level="1" 
+      class=" sidebar-folder    "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="" 
+    ><a class="ie-sidebar-menuitem-1  ie-sidebar-button " href="#">
+        <img class="ie-sidebar-icon ie-sidebar-button open" src="/zh-tw/occm38/images/link_expand.svg" alt="" />
+        <img class="ie-sidebar-icon ie-sidebar-button close" src="/zh-tw/occm38/images/link_collapse.svg" alt="" />
+        <!--<div class="" style="display: inline;"> 使用API和自動化</div>-->
+         使用API和自動化
+      </a>
+      <ul class="">
+        <li 
+      data-pdf-exists="false" 
+      data-pdf-filename="API 開發人員指南"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="https://docs.netapp.com/us-en/occm/api.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="https://docs.netapp.com/us-en/occm/api.html">
+        API 開發人員指南
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="使用DevOps工具自動化"
+      data-li-level="2#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/reference_infrastructure_as_code.html" 
+    ><a class="ie-sidebar-menuitem-2 " href="/zh-tw/occm38/reference_infrastructure_as_code.html">
+        使用DevOps工具自動化
+      </a></li></ul></li><li 
+      data-pdf-exists="false" 
+      data-pdf-filename="疑難排解問題"
+      data-li-level="1#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="https://kb.netapp.com/Advice_and_Troubleshooting/Cloud_Services" 
+    ><a class="ie-sidebar-menuitem-1 " href="https://kb.netapp.com/Advice_and_Troubleshooting/Cloud_Services">
+        疑難排解問題
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="相關連結"
+      data-li-level="1#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/reference_additional_info.html" 
+    ><a class="ie-sidebar-menuitem-1 " href="/zh-tw/occm38/reference_additional_info.html">
+        相關連結
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="舊版"
+      data-li-level="1#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/reference_earlier_versions.html" 
+    ><a class="ie-sidebar-menuitem-1 " href="/zh-tw/occm38/reference_earlier_versions.html">
+        舊版
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="法律聲明"
+      data-li-level="1#" 
+      class="   "
+      dale-page-url="/task_manage_cvs_aws.html" 
+      dale-entry-url="/reference_legal_notices.html" 
+    ><a class="ie-sidebar-menuitem-1 " href="/zh-tw/occm38/reference_legal_notices.html">
+        法律聲明
+      </a></li></ul>
+</div>
+<script>
+
+  $(".ie-sidebar-button").click(function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+
+    expandedLI = $('li.ie-sidebar-expand')
+
+    const li = $(this).closest("li");
+
+    const parentsLI = $(li).parents('li');
+
+    expandedLI.map(element => {
+      if (sidebarAccordion && !li.hasClass('ie-sidebar-expand') && jQuery.inArray(expandedLI[element], parentsLI) == -1) {
+        $(expandedLI[element]).toggleClass('ie-sidebar-expand');
+        $(expandedLI[element]).children("ul").animate({ height: 'toggle' }, 400, function () {
+          $(li).children("ul").toggleClass('ie-sidebar-open');
+
+        })
+      }
+
+    })
+
+    $(li).toggleClass('ie-sidebar-expand');
+    $(li).children("ul").animate({ height: 'toggle' }, 400, function () {
+      $(li).children("ul").toggleClass('ie-sidebar-open');
+    })
+  });
+
+
+  
+    $("li.ie-sidebar-selected").parents('ul').toggleClass("ie-sidebar-open");
+    $("li.ie-sidebar-selected").toggleClass("ie-sidebar-expand")
+    $("ul.ie-sidebar-open").parent().toggleClass("ie-sidebar-expand");
+    $("li.ie-sidebar-selected").children('ul').toggleClass("ie-sidebar-open")
+  
+  
+</script>
+    </div>
+</div>
+<script>
+
+    
+    let sidebarScrollTopPosition = 0;
+    $("#ie-new-toc").on("scroll", function () {
+        if (sidebarScrollTopPosition == 0) {
+            $.cookie("sidebarScroll", $("#ie-new-toc").scrollTop(), {
+                path: "/zh-tw/occm38"
+            });
+        }
+
+        if ($("#ie-new-toc").scrollTop() > 0) {
+            $('#ie-product-identity-lockup').addClass('ie-addShadow');
+        } else {
+            $('#ie-product-identity-lockup').removeClass('ie-addShadow');
+        }
+    });
+
+    $(function () {
+        if ($.cookie("sidebarScroll")) {
+            $("#ie-new-toc").scrollTop($.cookie("sidebarScroll"));
+        }
+    });
+
+    function setSidebarBottom() {
+        const footerGap = PXinViewport($(".n-footer"));
+        document.getElementById("ie-new-sidebar").style.bottom = Math.max(0, footerGap) + "px";
+    }
+
+    window.onscroll = () => {
+        setSidebarBottom();
+    };
+
+    $("#sidebar-collapse").click(function (e) {
+        const sidebarWidth = $("#ie-new-sidebar").width() - $("#ie-new-sidebar-collapse").width();
+        e.preventDefault();
+        const width = $(".ie-content-pane").width();
+        const marginLeft = parseInt($(".ie-content-pane").css('marginLeft'));
+
+        if ($.cookie("sidebarScroll")) {
+            sidebarScrollTopPosition = $.cookie("sidebarScroll");
+        }
+
+        $("#ie-new-sidebar").animate({ width: 'toggle' }, 350, function () {
+            $("#ie-new-sidebar-collapse").show();
+            $("#ie-new-sidebar").removeClass("open")
+            $("#ie-new-sidebar").addClass("close")
+            $("#ie-new-sidebar").removeAttr("style")
+        });
+        $(".ie-content-pane").animate({ width: (width + sidebarWidth), marginLeft: (marginLeft - sidebarWidth) }, 350, function () {
+            resizeContent()
+        })
+
+    });
+    $("#sidebar-expand").click(function (e) {
+        const sidebarWidth = $("#ie-new-sidebar").width() - $("#ie-new-sidebar-collapse").width();
+        e.preventDefault();
+        const width = $(".ie-content-pane").width();
+        const marginLeft = parseInt($(".ie-content-pane").css('marginLeft'));
+
+        $("#ie-new-sidebar").animate({ width: 'toggle' }, 250, function () {
+            $('#ie-new-sidebar').css('display', 'flex');
+            $("#ie-new-sidebar-collapse").hide();
+            $("#ie-new-sidebar").removeClass("close")
+            $("#ie-new-sidebar").addClass("open")
+            setSidebarBottom();
+
+            if (sidebarScrollTopPosition != 0) {
+                $.cookie("sidebarScroll", sidebarScrollTopPosition, {
+                    path: "/zh-tw/occm38"
+                })
+                $("#ie-new-toc").scrollTop(sidebarScrollTopPosition);
+                sidebarScrollTopPosition = 0;
+            }
+        });
+        $(".ie-content-pane").animate({ width: (width - sidebarWidth), 'marginLeft': (marginLeft + sidebarWidth) }, 250, function () {
+            resizeContent()
+        })
+    });
+    function resizeContent() {
+        const sidebarWidth = $("#ie-new-sidebar").width() - $("#ie-new-sidebar-collapse").width();
+        const rightNavbarVisible =  $("#ie-right-navbar").css('display') && $("#ie-right-navbar").css('display') != 'none';
+        const sidebarVisible = $("#ie-new-sidebar").css('display') != 'none';
+        const rightNavbarWidth = $("#ie-right-navbar").width();
+        const rightNavbarCollapseWidth = $("#ie-right-navbar-collapse").width();
+        const rightNavbarCollapseVisible = $("#ie-right-navbar-collapse").css('display') && $("#ie-right-navbar-collapse").css('display') != 'none';
+        
+        if (rightNavbarVisible && sidebarVisible) {
+            $(".ie-content-pane").width(`calc(100% - ${sidebarWidth + rightNavbarWidth}px)`)
+            $(".ie-content-pane").css('marginLeft', `${sidebarWidth}px`)
+        } else if (sidebarVisible) {
+            $(".ie-content-pane").css('marginLeft', `${sidebarWidth}px`)
+            if (rightNavbarCollapseVisible) {
+                $(".ie-content-pane").width(`calc(100% - ${sidebarWidth + rightNavbarCollapseWidth}px)`)
+            } else {
+                $(".ie-content-pane").width(`calc(100% - ${$("#ie-new-sidebar").width()}px)`)
+            }
+
+        } else if (rightNavbarVisible) {
+            $(".ie-content-pane").css('marginLeft', `${$("#ie-new-sidebar-collapse").width()}px`)
+            $(".ie-content-pane").width(`calc(100% - ${rightNavbarWidth}px)`)
+        } else {
+            $(".ie-content-pane").css('marginLeft', `${$("#ie-new-sidebar-collapse").width()}px`)
+            if (rightNavbarCollapseVisible) {
+                $(".ie-content-pane").width(`calc(100% - ${rightNavbarCollapseWidth}px)`);
+            } else {
+                $(".ie-content-pane").width(`calc(100% - ${$("#ie-new-sidebar-collapse").width()}px) `);
+            }
+            
+        }
+    }
+    $(window).on("resize load", function () {
+        setSidebarBottom();
+        resizeContent()
+    });
+
+
+</script>
+
+<div class="ie-content-pane ie-component-detail-content ie-component-detail-content--show-code">
+    <!-- Begin of page container --><article class="page-content" id="main">
+      <!-- include utility.html -->
+      
+  <div class="ie-info-disclaimer" id="downlevel-banner">
+    <span>
+      <div class="ie-info-disclaimer-container">
+        <div class="ie-info-disclaimer-icon">
+          <img src="/zh-tw/occm38/images/notification-icons.svg" class="luci-icon" alt="" />
+        </div>
+        <div class="ie-info-disclaimer-content">
+          <span>此產品有較新版本可以使用。</span><br>
+        </div>
+        <div style="clear:both;"></div>
+      </div>
+    </span>
+  </div>
+<div class="ie-info-disclaimer">
+    <span>
+      <div class="ie-info-disclaimer-container">
+        <div class="ie-info-disclaimer-icon">
+          <img src="/zh-tw/occm38/images/notification-icons.svg" class="luci-icon" alt="" />
+        </div>
+        <div class="ie-info-disclaimer-content">
+          <span> 本繁體中文版使用機器翻譯，譯文僅供參考，若與英文版本牴觸，應以英文版本為準。 </span>
+        </div>
+        <div style="clear:both;"></div>
+      </div>
+    </span>
+  </div><div class="ie-component-detail-heading-wrap">
+  <h1 class="ie-component-detail-heading">管理 Cloud Volumes Service AWS 的功能</h1>
+</div>
+
+<div id="ie-byline">
+  
+<div class="page-details">
+    
+        
+            <time datetime="2022-12-14 18:12:57 +0000">12/14/2022</time>
+        
+    
+    
+        <span>貢獻者
+        </span>
+    
+    
+</div>
+<div class="page-controls">
+    <div id="contribute-dropdown" class="custom-dropdown custom-dropdown-contrib" >
+        <div class="custom-dropdown-select custom-dropdown-select-contrib">
+        <span class="contrib-name"><img src="/zh-tw/occm38/images/discuss-sm.svg" alt="" class="github-icon" />建議變更</span>
+        <img src="/zh-tw/occm38/images/dropdown-arrow.svg" alt="" class="custom-icon chevrondown invisible" />
+        <img src="/zh-tw/occm38/images/dropdown-arrow.svg" alt="" class="custom-icon chevronup" />
+        </div>
+        <ul class="custom-dropdown-menu suggested-changes-dropdown"><li>
+                <a target="_blank" href="https://github.com/NetAppDocs/occm38.zh-tw/issues/new?template=new-from-page.yml&page-url=https://docs.netapp.com/zh-tw/occm38/task_manage_cvs_aws.html&page-title=管理 Cloud Volumes Service AWS 的功能" class="page-nav-contribute-link" role="button">請求文件變更</a>
+            </li><li> 
+                <a target="_blank" href="https://github.com/NetAppDocs/occm38/blob/main/task_manage_cvs_aws.adoc" class="page-nav-contribute-link" role="button">編輯本頁</a>
+            </li><li><a target="_blank" href="https://docs.netapp.com/us-en/contribute/" class="page-nav-contribute-link"  >瞭解如何貢獻</a></li>
+        </ul>
+    </div>
+    <div id="pdf-control-container">
+        <div class="n-pdf-header">
+            <a id="toggleButtonPdf" class="n-pdf-button" type="button">
+                <img class="adobe-icon" src="/zh-tw/occm38/images/pdf-icon.png" alt="" width="16" height="16"/>PDF<img src="/zh-tw/occm38/images/dropdown-arrow.svg" class="custom-icon" alt="" />
+            </a>
+        </div>
+        <div class="n-pdf-body-container">
+            <ul id="toggleContainerPdf" class="n-pdf-body" style="display:none;"><li class="pdf-ux-container">
+                    
+                    
+                    
+                    <a target="_blank" class="pdf-download-link" href="/zh-tw/occm38/pdfs/fullsite-sidebar/Cloud_Manager_與_Cloud_Volumes_ONTAP_技術文件.pdf" >
+                    <img src="/zh-tw/occm38/images/pdf-icon.png" alt="" width="16" height="16"/>此文件 PDF 的網站</a>
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/occm38/pdfs/sidebar/版本資訊.pdf" 
+            
+          >
+            <img src="/zh-tw/occm38/images/pdf-icon.png" alt="" width="16" height="16"/>
+            版本資訊
+          </a>
+          
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/occm38/pdfs/sidebar/Cloud_Manager.pdf" 
+            
+          >
+            <img src="/zh-tw/occm38/images/pdf-icon.png" alt="" width="16" height="16"/>
+            Cloud Manager
+          </a>
+          
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/occm38/pdfs/sidebar/開始使用_Cloud_Manager.pdf" 
+            
+          >
+            <img src="/zh-tw/occm38/images/pdf-icon.png" alt="" width="16" height="16"/>
+            開始使用 Cloud Manager
+          </a>
+          
+
+
+
+
+
+
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/occm38/pdfs/sidebar/設定_Cloud_Central_帳戶.pdf" 
+            
+          >
+            <img src="/zh-tw/occm38/images/pdf-icon.png" alt="" width="16" height="16"/>
+            設定 Cloud Central 帳戶
+          </a>
+          
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/occm38/pdfs/sidebar/設定連接器.pdf" 
+            
+          >
+            <img src="/zh-tw/occm38/images/pdf-icon.png" alt="" width="16" height="16"/>
+            設定連接器
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/occm38/pdfs/sidebar/管理_Cloud_Volumes_ONTAP.pdf" 
+            
+          >
+            <img src="/zh-tw/occm38/images/pdf-icon.png" alt="" width="16" height="16"/>
+            管理 Cloud Volumes ONTAP
+          </a>
+          
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/occm38/pdfs/sidebar/瞭解.pdf" 
+            
+          >
+            <img src="/zh-tw/occm38/images/pdf-icon.png" alt="" width="16" height="16"/>
+            瞭解
+          </a>
+          
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/occm38/pdfs/sidebar/儲存設備.pdf" 
+            
+          >
+            <img src="/zh-tw/occm38/images/pdf-icon.png" alt="" width="16" height="16"/>
+            儲存設備
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/occm38/pdfs/sidebar/高可用度配對.pdf" 
+            
+          >
+            <img src="/zh-tw/occm38/images/pdf-icon.png" alt="" width="16" height="16"/>
+            高可用度配對
+          </a>
+          
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/occm38/pdfs/sidebar/開始使用_AWS.pdf" 
+            
+          >
+            <img src="/zh-tw/occm38/images/pdf-icon.png" alt="" width="16" height="16"/>
+            開始使用 AWS
+          </a>
+          
+
+
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/occm38/pdfs/sidebar/設定您的網路.pdf" 
+            
+          >
+            <img src="/zh-tw/occm38/images/pdf-icon.png" alt="" width="16" height="16"/>
+            設定您的網路
+          </a>
+          
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/occm38/pdfs/sidebar/開始使用_Azure.pdf" 
+            
+          >
+            <img src="/zh-tw/occm38/images/pdf-icon.png" alt="" width="16" height="16"/>
+            開始使用 Azure
+          </a>
+          
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/occm38/pdfs/sidebar/開始使用_GCP.pdf" 
+            
+          >
+            <img src="/zh-tw/occm38/images/pdf-icon.png" alt="" width="16" height="16"/>
+            開始使用 GCP
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/occm38/pdfs/sidebar/配置及管理儲存設備.pdf" 
+            
+          >
+            <img src="/zh-tw/occm38/images/pdf-icon.png" alt="" width="16" height="16"/>
+            配置及管理儲存設備
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/occm38/pdfs/sidebar/監控效能.pdf" 
+            
+          >
+            <img src="/zh-tw/occm38/images/pdf-icon.png" alt="" width="16" height="16"/>
+            監控效能
+          </a>
+          
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/occm38/pdfs/sidebar/管理.pdf" 
+            
+          >
+            <img src="/zh-tw/occm38/images/pdf-icon.png" alt="" width="16" height="16"/>
+            管理
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/occm38/pdfs/sidebar/使用檔案服務來配置磁碟區.pdf" 
+            
+          >
+            <img src="/zh-tw/occm38/images/pdf-icon.png" alt="" width="16" height="16"/>
+            使用檔案服務來配置磁碟區
+          </a>
+          
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/occm38/pdfs/sidebar/Azure_NetApp_Files.pdf" 
+            
+          >
+            <img src="/zh-tw/occm38/images/pdf-icon.png" alt="" width="16" height="16"/>
+            Azure NetApp Files
+          </a>
+          
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/occm38/pdfs/sidebar/AWS_適用的_Cloud_Volumes_Service.pdf" 
+            
+          >
+            <img src="/zh-tw/occm38/images/pdf-icon.png" alt="" width="16" height="16"/>
+            AWS 適用的 Cloud Volumes Service
+          </a>
+          
+
+
+    <ul class="subfolders" id="pdf-remove" style="display:none;"><li class="active"></li></ul>
+  
+
+
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/occm38/pdfs/sidebar/參考資料.pdf" 
+            
+          >
+            <img src="/zh-tw/occm38/images/pdf-icon.png" alt="" width="16" height="16"/>
+            參考資料
+          </a>
+          
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/occm38/pdfs/sidebar/適用於_GCP_Cloud_Volumes_Service.pdf" 
+            
+          >
+            <img src="/zh-tw/occm38/images/pdf-icon.png" alt="" width="16" height="16"/>
+            適用於 GCP Cloud Volumes Service
+          </a>
+          
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/occm38/pdfs/sidebar/管理_ONTAP_叢集.pdf" 
+            
+          >
+            <img src="/zh-tw/occm38/images/pdf-icon.png" alt="" width="16" height="16"/>
+            管理 ONTAP 叢集
+          </a>
+          
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/occm38/pdfs/sidebar/備份到雲端.pdf" 
+            
+          >
+            <img src="/zh-tw/occm38/images/pdf-icon.png" alt="" width="16" height="16"/>
+            備份到雲端
+          </a>
+          
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/occm38/pdfs/sidebar/開始使用.pdf" 
+            
+          >
+            <img src="/zh-tw/occm38/images/pdf-icon.png" alt="" width="16" height="16"/>
+            開始使用
+          </a>
+          
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/occm38/pdfs/sidebar/複製與同步資料.pdf" 
+            
+          >
+            <img src="/zh-tw/occm38/images/pdf-icon.png" alt="" width="16" height="16"/>
+            複製與同步資料
+          </a>
+          
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/occm38/pdfs/sidebar/開始使用.pdf" 
+            
+          >
+            <img src="/zh-tw/occm38/images/pdf-icon.png" alt="" width="16" height="16"/>
+            開始使用
+          </a>
+          
+
+
+
+
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/occm38/pdfs/sidebar/如何安裝資料代理程式.pdf" 
+            
+          >
+            <img src="/zh-tw/occm38/images/pdf-icon.png" alt="" width="16" height="16"/>
+            如何安裝資料代理程式
+          </a>
+          
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/occm38/pdfs/sidebar/教學課程.pdf" 
+            
+          >
+            <img src="/zh-tw/occm38/images/pdf-icon.png" alt="" width="16" height="16"/>
+            教學課程
+          </a>
+          
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/occm38/pdfs/sidebar/深入瞭解資料隱私.pdf" 
+            
+          >
+            <img src="/zh-tw/occm38/images/pdf-icon.png" alt="" width="16" height="16"/>
+            深入瞭解資料隱私
+          </a>
+          
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/occm38/pdfs/sidebar/開始使用.pdf" 
+            
+          >
+            <img src="/zh-tw/occm38/images/pdf-icon.png" alt="" width="16" height="16"/>
+            開始使用
+          </a>
+          
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/occm38/pdfs/sidebar/啟動資料來源的掃描.pdf" 
+            
+          >
+            <img src="/zh-tw/occm38/images/pdf-icon.png" alt="" width="16" height="16"/>
+            啟動資料來源的掃描
+          </a>
+          
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/occm38/pdfs/sidebar/啟用即時全域檔案共用.pdf" 
+            
+          >
+            <img src="/zh-tw/occm38/images/pdf-icon.png" alt="" width="16" height="16"/>
+            啟用即時全域檔案共用
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/occm38/pdfs/sidebar/最佳化雲端運算成本.pdf" 
+            
+          >
+            <img src="/zh-tw/occm38/images/pdf-icon.png" alt="" width="16" height="16"/>
+            最佳化雲端運算成本
+          </a>
+          
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/occm38/pdfs/sidebar/將資料分層至雲端.pdf" 
+            
+          >
+            <img src="/zh-tw/occm38/images/pdf-icon.png" alt="" width="16" height="16"/>
+            將資料分層至雲端
+          </a>
+          
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/occm38/pdfs/sidebar/開始使用.pdf" 
+            
+          >
+            <img src="/zh-tw/occm38/images/pdf-icon.png" alt="" width="16" height="16"/>
+            開始使用
+          </a>
+          
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/occm38/pdfs/sidebar/參考資料.pdf" 
+            
+          >
+            <img src="/zh-tw/occm38/images/pdf-icon.png" alt="" width="16" height="16"/>
+            參考資料
+          </a>
+          
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/occm38/pdfs/sidebar/管理_Cloud_Manager.pdf" 
+            
+          >
+            <img src="/zh-tw/occm38/images/pdf-icon.png" alt="" width="16" height="16"/>
+            管理 Cloud Manager
+          </a>
+          
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/occm38/pdfs/sidebar/管理連接器.pdf" 
+            
+          >
+            <img src="/zh-tw/occm38/images/pdf-icon.png" alt="" width="16" height="16"/>
+            管理連接器
+          </a>
+          
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/occm38/pdfs/sidebar/建立連接器的更多方法.pdf" 
+            
+          >
+            <img src="/zh-tw/occm38/images/pdf-icon.png" alt="" width="16" height="16"/>
+            建立連接器的更多方法
+          </a>
+          
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/occm38/pdfs/sidebar/管理認證資料.pdf" 
+            
+          >
+            <img src="/zh-tw/occm38/images/pdf-icon.png" alt="" width="16" height="16"/>
+            管理認證資料
+          </a>
+          
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/occm38/pdfs/sidebar/AWS.pdf" 
+            
+          >
+            <img src="/zh-tw/occm38/images/pdf-icon.png" alt="" width="16" height="16"/>
+            AWS
+          </a>
+          
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/occm38/pdfs/sidebar/Azure.pdf" 
+            
+          >
+            <img src="/zh-tw/occm38/images/pdf-icon.png" alt="" width="16" height="16"/>
+            Azure
+          </a>
+          
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/occm38/pdfs/sidebar/GCP.pdf" 
+            
+          >
+            <img src="/zh-tw/occm38/images/pdf-icon.png" alt="" width="16" height="16"/>
+            GCP
+          </a>
+          
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/occm38/pdfs/sidebar/參考資料.pdf" 
+            
+          >
+            <img src="/zh-tw/occm38/images/pdf-icon.png" alt="" width="16" height="16"/>
+            參考資料
+          </a>
+          
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" class="pdf-download-link"
+            
+              href="/zh-tw/occm38/pdfs/sidebar/使用API和自動化.pdf" 
+            
+          >
+            <img src="/zh-tw/occm38/images/pdf-icon.png" alt="" width="16" height="16"/>
+            使用API和自動化
+          </a>
+          
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+
+
+
+
+</li></ul>
+            <div class="zip-pdf-link-container" style="display: none;">   
+                <a href="#" id="zipPdf">
+                <img src="/zh-tw/occm38/images/pdf-zip.png" alt="" width="16" height="16"/>
+                <pre>個別的 PDF 文件集合<span class="zip-size"></span></pre>
+                </a><div id="zip-link-popup" class="hide">
+    <div class="inner-modal">
+        <div class="downloading-progress">
+            <div class="spinner"></div>
+            <h1>Creating your file...</h1>
+            <div>This may take a few minutes. Thanks for your patience.</div>
+            <button class="cancel-download-btn" type="button">Cancel</button>
+        </div>
+        <div class="download-complete hide">
+            <div class="done-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z"/></svg>
+            </div>
+            <div>Your file is ready</div>
+            <button class="cancel-download-btn" type="button">OK</button>
+        </div>
+    </div>
+</div>
+<script>
+    $(".cancel-download-btn").click(function(){
+        $("#zip-link-popup").addClass("hide");
+        $("#zip-link-popup .downloading-progress").removeClass("hide");
+        $("#zip-link-popup .download-complete").addClass("hide");
+    });
+</script></div>
+        </div>
+    </div>        
+<script>
+$("#toggleContainerPdf li.active:last-child").parents('ul.subfolders').toggle('display');
+$("#toggleButtonPdf").on('click', function(e){ 
+    e.stopPropagation();
+    $("#toggleContainerPdf").toggle('display');
+    $(".n-pdf-body-container .zip-pdf-link-container").toggle('display');
+});
+
+//hide is by clicking outside pdfcontainer
+$(document).on('click', function (e) {
+    if ($('#toggleContainerPdf').is(':visible') && !$('.n-pdf-body-container').is(e.target) && !$('.n-pdf-body-container').has(e.target).length)  {
+        
+        $("#toggleContainerPdf").toggle('display');
+        $(".n-pdf-body-container .zip-pdf-link-container").toggle('display');
+        $("#toggleButtonPdf").removeClass("active");
+    }
+});
+</script>
+<script>
+    function getPdfLocation() {
+        const pdfLocation = window.scrollX + document.querySelector('#pdf-control-container').getBoundingClientRect().left
+        if (pdfLocation < 450) {
+            $(".n-pdf-body-container").addClass("block")
+        } else {
+            $(".n-pdf-body-container").removeClass("block")
+        }
+    
+    }
+    $( window ).on( "resize", function() {
+        getPdfLocation()
+} );
+</script>
+<script>
+    const pdfButtonWidth =  $(".n-pdf-header").width();
+    const pdfMenuWidth = $(".n-pdf-body-container").width();
+    $(".n-pdf-body-container").css('margin-left', `calc(${pdfButtonWidth - pdfMenuWidth}px)`);
+</script>
+</div>
+
+    
+
+</div>
+
+
+
+
+<div class="content-to-index">
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph lead">
+<p>Cloud Manager 可讓您根據建立雲端磁碟區 <a href="https://cloud.netapp.com/cloud-volumes-service-for-aws" target="_blank" rel="noopener">"AWS 適用的 Cloud Volumes Service"</a> 訂購：您也可以探索 Cloud Volumes Service 已從該解決方案介面建立的雲端磁碟區、並將其新增至工作環境。</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="新增-cloud-volumes-service-適用於-aws-訂閱的功能">新增 Cloud Volumes Service 適用於 AWS 訂閱的功能</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>無論您是否已從 Cloud Volumes Service 這個功能的使用者介面建立磁碟區、或是剛註冊 Cloud Volumes Service 使用 AWS 且尚未建立磁碟區、第一步是根據 AWS 訂閱建立磁碟區的工作環境。</p>
+</div>
+<div class="paragraph">
+<p>如果此訂閱已存在雲端磁碟區、則磁碟區會自動新增至新的工作環境。如果您尚未新增任何雲端磁碟區來訂閱 AWS 、則在建立新的工作環境之後、您就會這麼做。</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/occm38/images/tip.svg" alt="提示">
+</td>
+<td class="content">
+如果您在多個 AWS 區域中有訂閱和磁碟區、則必須針對每個區域執行此工作。
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<div class="title">開始之前</div>
+<p>在每個地區新增訂閱時、您必須提供下列資訊：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Cloud Volumes API 金鑰與秘密金鑰： <a href="https://docs.netapp.com/us-en/cloud_volumes/aws/reference_cloud_volume_apis.html#finding-the-api-url-api-key-and-secret-key" target="_blank" rel="noopener">"請參閱 Cloud Volumes Service 《 for AWS 》文件以取得此資訊"</a>。</p>
+</li>
+<li>
+<p>建立訂閱的 AWS 區域。</p>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">步驟</div>
+<ol class="arabic">
+<li>
+<p>在 Cloud Manager 中、新增工作環境、選取位置 * Amazon Web Services* 、然後按一下 * 繼續 * 。</p>
+</li>
+<li>
+<p>選取 * Cloud Volumes Service 《 * 》 * 《 * 》 * 、然後按一下 * 「 Continue * 」。</p>
+<div class="paragraph">
+<p><span class="image"><img src="./media/screenshot_add_cvs_aws_working_env.png" alt="新增工作環境以 Cloud Volumes Service 供 AWS 訂閱之用的快照"></span></p>
+</div>
+</li>
+<li>
+<p>提供 Cloud Volumes Service 有關您的不訂閱資訊：</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>輸入您要使用的工作環境名稱。</p>
+</li>
+<li>
+<p>輸入 Cloud Volumes Service 「保密 API 金鑰」和「秘密金鑰」。</p>
+</li>
+<li>
+<p>選取您的雲端磁碟區所在的 AWS 區域、或是部署這些磁碟區的位置。</p>
+</li>
+<li>
+<p>按一下「 * 新增 * 」。</p>
+<div class="paragraph">
+<p><span class="image"><img src="./media/screenshot_add_cvs_aws_credentials.png" alt="新增認證以供 Cloud Volumes Service AWS 訂閱之用的螢幕快照"></span></p>
+</div>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<div class="title">結果</div>
+<p>Cloud Manager會Cloud Volumes Service 在「工作環境」頁面上顯示您的AWS組態。</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./media/screenshot_cvs_aws_cloud.gif" alt="工作環境頁面上的《 AWS 版》擷取畫面 Cloud Volumes Service 。"></span></p>
+</div>
+<div class="paragraph">
+<p>如果此訂閱已存在雲端磁碟區、則磁碟區會自動新增至新的工作環境、如螢幕擷取畫面所示。您可以從 Cloud Manager 新增其他雲端磁碟區。</p>
+</div>
+<div class="paragraph">
+<p>如果此訂閱不存在任何雲端磁碟區、您可以立即建立這些磁碟區。</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="建立雲端磁碟區">建立雲端磁碟區</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>對於 Cloud Volumes Service 已存在於整個作業環境中的磁碟區組態、您可以使用下列步驟來新增磁碟區。</p>
+</div>
+<div class="paragraph">
+<p>若組態不存在磁碟區、您可以在 Cloud Volumes Service 設定 for AWS 訂閱後、直接從 Cloud Manager 建立第一個磁碟區。過去、第一個 Volume 必須直接在 Cloud Volumes Service 這個使用者介面中建立。</p>
+</div>
+<div class="ulist">
+<div class="title">開始之前</div>
+<ul>
+<li>
+<p>如果您想在 AWS 中使用 SMB 、則必須設定 DNS 和 Active Directory 。</p>
+</li>
+<li>
+<p>規劃建立 SMB Volume 時、您必須擁有可連線的 Windows Active Directory 伺服器。建立磁碟區時、您將輸入此資訊。此外、請確定管理使用者能夠在指定的組織單位（ OU ）路徑中建立機器帳戶。</p>
+</li>
+<li>
+<p>在新的區域 / 工作環境中建立第一個 Volume 時、您將需要這些資訊：</p>
+<div class="ulist">
+<ul>
+<li>
+<p>AWS 帳戶 ID ： 12 位數的 Amazon 帳戶識別碼、不含破折號。若要尋找您的帳戶 ID 、請參閱此資訊 <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/console_account-alias.html" target="_blank" rel="noopener">"AWS 主題"</a>。</p>
+</li>
+<li>
+<p>無類網域間路由（ CIDR ）區塊：未使用的 IPV4 CIDR 區塊。網路前置碼必須介於 /16 和 /28 之間、而且必須位於專為私有網路保留的範圍內（ RFC 1918 ）。請勿選擇與 VPC CIDR 配置重疊的網路。</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">步驟</div>
+<ol class="arabic">
+<li>
+<p>選取新的工作環境、然後按一下 * 新增 Volume * 。</p>
+</li>
+<li>
+<p>如果您要將第一個磁碟區新增至該區域的工作環境、則必須新增 AWS 網路資訊。</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>輸入該地區的 IPV4 範圍（ CIDR ）。</p>
+</li>
+<li>
+<p>輸入 12 位數的 AWS 帳戶 ID （不含破折號）、將 Cloud Volumes 帳戶連線至 AWS 帳戶。</p>
+</li>
+<li>
+<p>按一下 * 繼續 * 。</p>
+<div class="paragraph">
+<p><span class="image"><img src="./media/screenshot_cvs_aws_network_setup.png" alt="網路設定頁面的快照、您可在其中新增 CIDR 和 AWS 帳戶 ID"></span></p>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>「接受虛擬介面」頁面說明新增磁碟區之後、您需要執行的一些步驟、以便準備完成該步驟。只要再按一次 * 繼續 * 即可。</p>
+</li>
+<li>
+<p>在「詳細資料與標籤」頁面中、輸入有關磁碟區的詳細資料：</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>輸入磁碟區名稱。</p>
+</li>
+<li>
+<p>指定介於 100 GiB 到 9 、 000 GiB （相當於 88 Tibs ）之間的大小。</p>
+<div class="paragraph">
+<p><a href="reference_cvs_service_levels_and_quotas.html#allocated-capacity" target="_blank" rel="noopener">"深入瞭解已分配容量"</a>。</p>
+</div>
+</li>
+<li>
+<p>指定服務層級： Standard 、 Premium 或 Extreme 。</p>
+<div class="paragraph">
+<p><a href="reference_cvs_service_levels_and_quotas.html#service-levels" target="_blank" rel="noopener">"深入瞭解服務層級"</a>。</p>
+</div>
+</li>
+<li>
+<p>視需要輸入一或多個標記名稱、以便將磁碟區分類。</p>
+</li>
+<li>
+<p>按一下 * 繼續 * 。</p>
+<div class="paragraph">
+<p><span class="image"><img src="./media/screenshot_cvs_vol_details_page.png" alt="提供名稱、大小和服務層級的 Volume 詳細資料頁面快照"></span></p>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>在「傳輸協定」頁面中、選取「 NFS 」、「 SMB 」或「雙通訊協定」、然後定義詳細資料。NFS 和 SMB 的必要項目如下所示。</p>
+</li>
+<li>
+<p>在 Volume Path （磁碟區路徑）欄位中、指定掛載磁碟區時所看到的磁碟區匯出名稱。</p>
+</li>
+<li>
+<p>如果您選取「雙通訊協定」、可以選取 NTFS 或 UNIX 來選取安全樣式。安全性樣式會影響所使用的檔案權限類型、以及如何修改權限。</p>
+<div class="ulist">
+<ul>
+<li>
+<p>UNIX 使用 NFSv3 模式位元、只有 NFS 用戶端可以修改權限。</p>
+</li>
+<li>
+<p>NTFS 使用 NTFS ACL 、只有 SMB 用戶端可以修改權限。</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>NFS ：</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>在「 NFS 版本」欄位中、根據您的需求選取 NFSv3 、 NFSv4.1 或兩者。</p>
+</li>
+<li>
+<p>您也可以建立匯出原則、以識別可存取磁碟區的用戶端。指定：</p>
+<div class="ulist">
+<ul>
+<li>
+<p>使用 IP 位址或無類別網域間路由（ CIDR ）的允許用戶端。</p>
+</li>
+<li>
+<p>讀寫或唯讀的存取權限。</p>
+</li>
+<li>
+<p>存取傳輸協定（若 Volume 允許 NFSv3 和 NFSSv4.1 存取）、則為使用者所使用的傳輸協定。</p>
+</li>
+<li>
+<p>若要定義其他匯出原則規則、請按一下「 * + 新增匯出原則規則 * 」。</p>
+<div class="paragraph">
+<p>下圖顯示為 NFS 傳輸協定填寫的 Volume （磁碟區）頁面：</p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./media/screenshot_cvs_nfs_details.png" alt="快照顯示已填入 NFS Cloud Volumes Service S大批 量的 Volume 頁面。"></span></p>
+</div>
+</li>
+<li>
+<p>中小企業：</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>您可以勾選 SMB 傳輸協定加密方塊、啟用 SMB 工作階段加密。</p>
+</li>
+<li>
+<p>您可以填寫 Active Directory 區段中的欄位、將磁碟區與現有的 Windows Active Directory 伺服器整合：</p>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">欄位</th>
+<th class="tableblock halign-left valign-top">說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DNS 主要 IP 位址</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">提供 SMB 伺服器名稱解析的 DNS 伺服器 IP 位址。當參考多個伺服器時、請使用逗號分隔 IP 位址、例如 172.31.25.223 、 172.31.2.74 。</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">要加入的 Active Directory 網域</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">您要 SMB 伺服器加入之 Active Directory （ AD ）網域的 FQDN 。使用 AWS 託管 Microsoft AD 時、請使用「目錄 DNS 名稱」欄位中的值。</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SMB 伺服器的 NetBios 名稱</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">要建立之 SMB 伺服器的 NetBios 名稱。</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">授權加入網域的認證資料</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">具有足夠權限的 Windows 帳戶名稱和密碼、可將電腦新增至 AD 網域內的指定組織單位（ OU ）。</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">組織單位</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AD 網域中與 SMB 伺服器相關聯的組織單位。預設值為「 CN= 電腦」、用於連線至您自己的 Windows Active Directory 伺服器。如果您將 AWS 託管 Microsoft AD 設定為 Cloud Volumes Service 執行此動作的 AD 伺服器、您應該在此欄位中輸入 * OID=computers,O=corp* 。</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>下圖顯示 SMB 傳輸協定的「 Volume 」（磁碟區）頁面：</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./media/screenshot_cvs_smb_details.png" alt="快照顯示 SMB Cloud Volumes Service 版的 Volume 頁面已填滿。"></span></p>
+</div>
+</li>
+</ol>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/occm38/images/tip.svg" alt="提示">
+</td>
+<td class="content">
+您應該遵循 AWS 安全群組設定的指引、讓雲端磁碟區能夠正確地與 Windows Active Directory 伺服器整合。請參閱 <a href="reference_security_groups_windows_ad_servers.html" target="_blank" rel="noopener">"適用於 Windows AD 伺服器的 AWS 安全性群組設定"</a> 以取得更多資訊。
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>在「 Volume from Snapshot 」（從 Snapshot 建立磁碟區）頁面中、如果您想要根據現有磁碟區的快照建立此磁碟區、請從 Snapshot Name （快照名稱）下拉式清單中選取快照。</p>
+</li>
+<li>
+<p>在「 Snapshot Policy 」（ Snapshot 原則）頁面中、 Cloud Volumes Service 您可以根據排程來啟用「支援功能」、以建立磁碟區的 Snapshot 複本。您可以立即執行此動作、或稍後再編輯磁碟區以定義快照原則。</p>
+<div class="paragraph">
+<p>請參閱 <a href="task_manage_cloud_volumes_snapshots.html#create_or_modify_a_snapshot_policy" target="_blank" rel="noopener">"建立快照原則"</a> 以取得有關 Snapshot 功能的詳細資訊。</p>
+</div>
+</li>
+<li>
+<p>按一下 * 新增 Volume * 。</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>新磁碟區會新增至工作環境。</p>
+</div>
+<div class="paragraph">
+<div class="title">完成後</div>
+<p>如果這是此 AWS 訂閱所建立的第一個磁碟區、您需要啟動 AWS 管理主控台、以接受此 AWS 區域將使用的兩個虛擬介面來連接所有雲端磁碟區。請參閱 <a href="https://docs.netapp.com/us-en/cloud_volumes/aws/media/cvs_aws_account_setup.pdf" target="_blank" rel="noopener">"NetApp Cloud Volumes Service 《 AWS 帳戶設定指南》"</a> 以取得詳細資料。</p>
+</div>
+<div class="paragraph">
+<p>您必須在按一下「 * 新增 Volume * 」按鈕 10 分鐘內接受介面、否則系統可能會逾時。如果發生這種情況、請寄送電子郵件至 <a href="mailto:cvs-support@netapp.com">cvs-support@netapp.com</a> 、附上您的 AWS 客戶 ID 和 NetApp 序號。支援部門將會修正此問題、您可以重新啟動就職程序。</p>
+</div>
+<div class="paragraph">
+<p>然後繼續 <a href="task_manage_cvs_aws.html#mount-the-cloud-volume">"掛載雲端 Volume"</a>。</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="掛載雲端磁碟區">掛載雲端磁碟區</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>您可以將雲端磁碟區掛載至 AWS 執行個體。雲端磁碟區目前支援適用於 Linux 和 UNIX 用戶端的 NFSv3 和 NFSv4.1 、以及適用於 Windows 用戶端的 SMB 3.0 和 3.1.1 。</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>附註： * 請使用您用戶端所支援的反白傳輸協定 / 方言。</p>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">步驟</div>
+<ol class="arabic">
+<li>
+<p>開啟工作環境。</p>
+</li>
+<li>
+<p>將游標移到磁碟區上、然後按一下 * 掛載磁碟區 * 。</p>
+<div class="paragraph">
+<p>NFS 和 SMB 磁碟區會顯示該傳輸協定的掛載指示。雙傳輸協定磁碟區提供兩組指令。</p>
+</div>
+</li>
+<li>
+<p>將游標暫留在命令上、然後將其複製到剪貼簿、以簡化此程序。只要在命令結尾處新增目的地目錄 / 掛載點即可。</p>
+<div class="ulist">
+<ul>
+<li>
+<p>NFS 範例： *</p>
+<div class="paragraph">
+<p><span class="image"><img src="./media/screenshot_cvs_aws_nfs_mount.png" alt="NFS 磁碟區的掛載指示"></span></p>
+</div>
+<div class="paragraph">
+<p>「 rsize 」和「 wsize 」選項所定義的最大 I/O 大小為 1048576 、不過對於大多數使用案例、建議使用 65536 。</p>
+</div>
+<div class="paragraph">
+<p>請注意、 Linux 用戶端預設為 NFSv4.1 、除非使用「 VERRS=&lt;NFS_VERON&gt;&gt; 」選項指定版本。</p>
+</div>
+</li>
+<li>
+<p>中小企業範例： *</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./media/screenshot_cvs_aws_smb_mount.png" alt="SMB 磁碟區的掛載指示"></span></p>
+</div>
+</li>
+<li>
+<p>使用 SSH 或 RDP 用戶端連線至 Amazon Elastic Compute Cloud （ EC2 ）執行個體、然後依照執行個體的掛載指示進行。</p>
+<div class="paragraph">
+<p>完成掛載指示中的步驟之後、您已成功將雲端磁碟區掛載至 AWS 執行個體。</p>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="管理現有磁碟區">管理現有磁碟區</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>您可以在儲存需求變更時管理現有的磁碟區。您可以檢視、編輯、還原及刪除磁碟區。</p>
+</div>
+<div class="olist arabic">
+<div class="title">步驟</div>
+<ol class="arabic">
+<li>
+<p>開啟工作環境。</p>
+</li>
+<li>
+<p>將游標暫留在磁碟區上。</p>
+<div class="paragraph">
+<p><span class="image"><img src="./media/screenshot_cvs_aws_volume_hover_menu.png" alt="Volume Hover 功能表的快照、可讓您執行 Volume 工作"></span></p>
+</div>
+</li>
+<li>
+<p>管理您的磁碟區：</p>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 30%;">
+<col style="width: 70%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">工作</th>
+<th class="tableblock halign-left valign-top">行動</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">檢視磁碟區的相關資訊</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">選取磁碟區、然後按一下「 * 資訊 * 」。</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">編輯磁碟區（包括 Snapshot 原則）</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>選取磁碟區、然後按一下 * 編輯 * 。</p>
+</li>
+<li>
+<p>修改磁碟區的內容、然後按一下 * 更新 * 。</p>
+</li>
+</ol>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">取得 NFS 或 SMB 掛載命令</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>選取磁碟區、然後按一下 * 掛載磁碟區 * 。</p>
+</li>
+<li>
+<p>按一下 * 複製 * 以複製命令。</p>
+</li>
+</ol>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">隨需建立 Snapshot 複本</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>選取一個磁碟區、然後按一下 * 「 Create a Snapshot Copy* （建立 Snapshot 複本 * ）」。</p>
+</li>
+<li>
+<p>如有必要、請變更快照名稱、然後按一下「 * 建立 * 」。</p>
+</li>
+</ol>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">將磁碟區更換為 Snapshot 複本的內容</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>選取一個磁碟區、然後按一下 * 將磁碟區還原為 Snapshot * 。</p>
+</li>
+<li>
+<p>選取 Snapshot 複本、然後按一下 * Revert * 。</p>
+</li>
+</ol>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">刪除 Snapshot 複本</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>選取磁碟區、然後按一下 * 刪除 Snapshot 複本 * 。</p>
+</li>
+<li>
+<p>選取您要刪除的 Snapshot 複本、然後按一下 * 刪除 * 。</p>
+</li>
+<li>
+<p>再按一下 * 刪除 * 以確認。</p>
+</li>
+</ol>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">刪除 Volume</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>從所有用戶端卸載 Volume ：</p>
+<div class="ulist">
+<ul>
+<li>
+<p>在 Linux 用戶端上、請使用「 umount 」命令。</p>
+</li>
+<li>
+<p>在 Windows 用戶端上、按一下 * 中斷網路磁碟機 * 。</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>選取磁碟區、然後按一下 * 刪除 * 。</p>
+</li>
+<li>
+<p>再按一下 * 刪除 * 以確認。</p>
+</li>
+</ol>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="從-cloud-volumes-service-cloud-manager-移除">從 Cloud Volumes Service Cloud Manager 移除</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>您可以從 Cloud Volumes Service Cloud Manager 移除適用於 AWS 訂閱的功能、以及所有現有磁碟區。磁碟區不會刪除、只會從 Cloud Manager 介面移除。</p>
+</div>
+<div class="olist arabic">
+<div class="title">步驟</div>
+<ol class="arabic">
+<li>
+<p>開啟工作環境。</p>
+<div class="paragraph">
+<p><span class="image"><img src="./media/screenshot_cvs_aws_remove.png" alt="選擇從 Cloud Volumes Service Cloud Manager 移除功能的選項的快照。"></span></p>
+</div>
+</li>
+<li>
+<p>按一下 <span class="image"><img src="./media/screenshot_gallery_options.gif" alt=""></span> 按一下頁面頂端的按鈕、然後按一下「 * 移除 Cloud Volumes Service 此功能 * 」。</p>
+</li>
+<li>
+<p>在確認對話方塊中、按一下 * 移除 * 。</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="管理-active-directory-組態">管理 Active Directory 組態</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>如果您變更 DNS 伺服器或 Active Directory 網域、則需要修改 Cloud Volumes Services 中的 SMB 伺服器、以便伺服器繼續為用戶端提供儲存設備。</p>
+</div>
+<div class="paragraph">
+<p>如果您不再需要 Active Directory 連結、也可以刪除該連結。</p>
+</div>
+<div class="olist arabic">
+<div class="title">步驟</div>
+<ol class="arabic">
+<li>
+<p>開啟工作環境。</p>
+</li>
+<li>
+<p>按一下 <span class="image"><img src="./media/screenshot_gallery_options.gif" alt=""></span> 按鈕、然後按一下 * 管理 Active Directory * 。</p>
+</li>
+<li>
+<p>如果未設定 Active Directory 、您可以立即新增一個 Active Directory 。如果已設定、您可以使用修改或刪除設定 <span class="image"><img src="./media/screenshot_gallery_options.gif" alt=""></span> 按鈕。</p>
+</li>
+<li>
+<p>指定您要加入的 Active Directory 設定：</p>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">欄位</th>
+<th class="tableblock halign-left valign-top">說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DNS 主要 IP 位址</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">提供 SMB 伺服器名稱解析的 DNS 伺服器 IP 位址。當參考多個伺服器時、請使用逗號分隔 IP 位址、例如 172.31.25.223 、 172.31.2.74 。</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">要加入的 Active Directory 網域</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">您要 SMB 伺服器加入之 Active Directory （ AD ）網域的 FQDN 。使用 AWS 託管 Microsoft AD 時、請使用「目錄 DNS 名稱」欄位中的值。</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SMB 伺服器的 NetBios 名稱</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">要建立之 SMB 伺服器的 NetBios 名稱。</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">授權加入網域的認證資料</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">具有足夠權限的 Windows 帳戶名稱和密碼、可將電腦新增至 AD 網域內的指定組織單位（ OU ）。</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">組織單位</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AD 網域中與 SMB 伺服器相關聯的組織單位。預設值為「 CN= 電腦」、用於連線至您自己的 Windows Active Directory 伺服器。如果您將 AWS 託管 Microsoft AD 設定為 Cloud Volumes Service 執行此動作的 AD 伺服器、您應該在此欄位中輸入 * OID=computers,O=corp* 。</p></td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>按一下「 * 儲存 * 」以儲存您的設定。</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+
+
+
+
+    </article>
+    <!-- Page Container -->
+  </div>
+
+  
+  <!-- Start Page Toolbar -->
+<div id="ie-right-navbar-collapse" class="close">
+  <img id="navbar-expand" class="ie-searchbox-icon" src="/zh-tw/occm38/images/double_arrow.svg" alt="" />
+</div>
+<div id="ie-right-navbar" class="open">
+  <div id="right-navbar-collapse">
+    <img src="/zh-tw/occm38/images/double_arrow.svg" alt="" />
+  </div>
+  <div class="page-nav-container">
+    <nav class="page-nav-fixed">
+      <div class="page-nav-title">在本頁</div>
+      <div class="page-nav-links">
+        <ul class="page-nav-inner" id="page-menu"></ul>
+      </div>
+    </nav>
+  </div>
+</div>
+
+
+<script>
+  resizeContent();
+  function setRightBarHeight() {
+    var h = 0;
+
+    // header 1
+    h += PXinViewport($('.n-footer'));
+    h += PXinViewport($('#ie-new-header'));
+
+    if ($('#ie-right-navbar').length) {
+      $('#ie-right-navbar').css({ height: `calc(100vh - ${h}px)` });
+    }
+    if ($('.page-nav-links').length) {
+      h += 98;
+      $('.page-nav-links').css({ height: `calc(100vh - ${h}px)` });
+    }
+  }
+
+  $(document).ready(function () {
+    // PAGE NAV - Click
+    const MASTHEAD_OFFSET = 65;
+    const SECTIONS = $("main h2, main h3");
+    let calculateActiveSection = false;
+    setTimeout(() => {
+      calculateActiveSection = true;
+    }, 100)
+
+    $(".page-nav__link").click(function (event) {
+      calculateActiveSection = false;
+      $(".page-nav__link").removeClass('page-nav__link--active');
+      var target = $(event.target);
+      target.addClass('page-nav__link--active');
+      location.hash = event.target.hash;
+      setTimeout(() => {
+        calculateActiveSection = true;
+      }, 100)
+
+    });
+
+    // PAGE NAV - Scroll
+    $(window).on('resize scroll', function () {
+      if (calculateActiveSection) {
+        var activeSection = getActiveSection(SECTIONS, MASTHEAD_OFFSET);
+        if (activeSection) {
+          var activeHref = $(activeSection).attr('id');
+          $(".page-nav__link").removeClass('page-nav__link--active');
+          $("#page-menu a[href=#" + activeHref + "]").addClass('page-nav__link--active');
+          if (location.hash != "#" + activeHref) {
+            if (history.replaceState) {
+              history.replaceState(null, null, "#" + activeHref);
+            }
+          }
+        }
+      }
+    });
+
+    $(".n-pdf-button").click(function () {
+      $(this).toggleClass("active");
+    });
+
+    $.fn.isVisibleAndInViewport = function () {
+      var elementTop = $(this).offset().top;
+      var elementBottom = elementTop + $(this).outerHeight();
+
+      var viewportTop = $(window).scrollTop();
+      var viewportBottom = viewportTop + $(window).height();
+
+      return elementBottom > viewportTop && elementTop < viewportBottom && $(this).is(":visible");
+    };
+
+
+    $(window).on('resize scroll', function () {
+      setRightBarHeight();
+    });
+
+    $(window).trigger('resize');
+
+
+  });
+
+  $("#right-navbar-collapse").click(function (e) {
+    const rightNavbarWidth = $("#ie-right-navbar").width() - $("#ie-right-navbar-collapse").width();
+    e.preventDefault();
+    const width = $(".ie-content-pane").width();
+
+    $("#ie-right-navbar").animate({ width: 'toggle' }, 350, function () {
+      $("#ie-right-navbar-collapse").removeClass("close")
+      $("#ie-right-navbar-collapse").addClass("open")
+      $("#ie-right-navbar").removeClass("open")
+      $("#ie-right-navbar").addClass("close")
+    });
+    $(".ie-content-pane").animate({ width: (width + rightNavbarWidth) }, 350, function () {
+      resizeContent()
+      setSidebarBottom();
+    })
+
+  });
+  $("#navbar-expand").click(function (e) {
+    const rightNavbarWidth = $("#ie-right-navbar").width() - $("#ie-right-navbar-collapse").width();
+    e.preventDefault();
+    const width = $(".ie-content-pane").width();
+    $("#ie-right-navbar").animate({ width: 'toggle' }, 250, function () {
+      $("#ie-right-navbar-collapse").removeClass("open")
+      $("#ie-right-navbar-collapse").addClass("close")
+      $("#ie-right-navbar").removeClass("close")
+      $("#ie-right-navbar").addClass("open")
+      setRightBarHeight();
+      setSidebarBottom();
+    });
+    $(".ie-content-pane").animate({ width: (width - rightNavbarWidth) }, 250, function () {
+      resizeContent()
+    })
+  });
+
+  function navbarResize() {
+    const rightNavbarResized = $("#ie-right-navbar-collapse").hasClass('resized');
+    if (window.innerWidth < 1024) {
+      $("#ie-right-navbar").removeClass("open")
+      $("#ie-right-navbar").addClass("close")
+      $("#ie-right-navbar").removeAttr("style")
+      $("#ie-right-navbar-collapse").removeClass("close")
+      $("#ie-right-navbar-collapse").addClass("open")
+      $("#ie-right-navbar-collapse").addClass("resized")
+    } else {
+      if (rightNavbarResized) {
+        $('#ie-right-navbar').removeClass('close');
+        $('#ie-right-navbar').addClass('open');
+        $("#ie-right-navbar-collapse").removeClass("resized")
+        $("#ie-right-navbar-collapse").removeClass("open")
+        $("#ie-right-navbar-collapse").addClass("close")
+      }
+    }
+    resizeContent()
+  }
+  navbarResize();
+  $(window).on('resize load', function () {
+    navbarResize()
+  });
+
+  function getActiveSection(sections, offset) {
+    var scrollPosition = $(window).scrollTop() + offset + 5;
+    var activeSection;
+    for (var i = 0; i < sections.length; i++) {
+      var el = $(sections[i]);
+      var activePosition = el.offset().top;
+      if (activePosition > scrollPosition) {
+        break;
+      }
+
+      activeSection = sections[i];
+    }
+
+    return activeSection;
+  }
+
+  $("a[href*=#]:not([href=#])").click(function () {
+    setTimeout(() => {
+      $(window).trigger('scroll');
+    }, 105)
+  })
+
+  const hashOnLoad = location.href.split("#")[1];
+  setTimeout(function () {
+    if (hashOnLoad) {
+      $(".page-nav__link").removeClass('page-nav__link--active');
+      $("#page-menu a[href=#" + hashOnLoad + "]").addClass('page-nav__link--active');
+    }
+  }, 100)
+
+</script>
+
+
+  <div style="clear: both"></div><!-- Main needs to have height --></div>
+
+        </main>
+
+        <footer class="n-footer">
+  <div class="n-footer__bottom">
+    <div class="n-container">
+        <div class="n-footer__left">
+          <li class="n-footer__copyright-link">
+                    <a href="https://www.netapp.com/company/legal/copyright/">© 2024 NetApp, Inc.</a>
+          </li>
+        </div>
+        <div class="n-footer__center">
+          <ul class="n-footer__copyright-list">
+            <li class="n-footer__copyright-link">
+              <a href="https://www.netapp.com/company/legal/terms-of-use/">使用條款</a>
+            </li>
+            <li class="n-footer__copyright-link">
+              <a href="https://www.netapp.com/company/legal/privacy-policy/">隱私權政策</a>
+            </li>
+            <li class="n-footer__copyright-link">
+              <a href="https://www.netapp.com/company/legal/cookie-policy/">Cookie 政策</a>
+            </li>
+            <li class="n-footer__copyright-link">
+              <a class="ot-sdk-show-settings">Cookie 設定</a>
+            </li>
+          </ul>
+       </div>
+        <div class="n-footer__right">
+              <li class="n-footer__copyright-link">
+                <a target="_self" href="javascript:netapp_mailto()">傳送有關本網頁的意見反應</a>
+              </li>
+        </div>
+     </div>
+  </div>
+</footer>
+
+      </div><!-- Elasticsearch JS -->
+      <script type="text/javascript" src='/zh-tw/occm38/js/bundle.js'></script>
+
+      <!-- Syntax Highlighting -->
+      <script type="text/javascript" src='/zh-tw/occm38/js/prism.js'></script>
+      <script type="text/javascript" src='/zh-tw/occm38/js/prism-curl.js'></script>
+    </div>
+    <script>
+      document.body.offsetWidth=1903;
+      cookieLaw = {}
+      cookieLaw.euCountry = "US";
+      cookieLaw.invoke = function(){return false;}
+    </script>
+    <script src='/zh-tw/occm38/js/ie-tabbed-blocks.js'></script>
+    <script src='/zh-tw/occm38/js/ie-sidebar.js'></script>
+  </body>
+
+</html>
